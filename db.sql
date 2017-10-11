@@ -12,6 +12,14 @@ CREATE TABLE Usuarios(
   PRIMARY KEY(ID)
 );
 
+CREATE TABLE Usuarios_Usuarios(
+	ID_Usuario1 INT NOT NULL,
+    ID_Usuario2 INT NOT NULL,
+    CONSTRAINT FK_ID_Usuario1 FOREIGN KEY (ID_Usuario1) REFERENCES Usuarios(ID) ON DELETE CASCADE,
+    CONSTRAINT FK_ID_Usuario2 FOREIGN KEY (ID_Usuario2) REFERENCES Usuarios(ID) ON DELETE CASCADE,
+    PRIMARY KEY(ID_Usuario1, ID_Usuario2)
+);
+
 CREATE TABLE Zonas(
   ID INT NOT NULL AUTO_INCREMENT,
   Nombre NVARCHAR(30) NOT NULL UNIQUE,
@@ -25,8 +33,19 @@ CREATE TABLE Rollos(
   Destreza INT NOT NULL DEFAULT 1,
   ID_Zona INT NOT NULL,
   CONSTRAINT FK_Rollos_Usuario FOREIGN KEY(ID_Usuario) REFERENCES Usuarios(ID) ON DELETE CASCADE,
-  CONSTRAINT FK_Rollos_Zona FOREIGN KEY (ID_Zona) REFERENCES Zonas(ID) ON DELETE CASCADE,
+  CONSTRAINT FK_Rollos_Zona FOREIGN KEY (ID_Zona) REFERENCES Zonas(ID) ON DELETE NO ACTION,
   PRIMARY KEY(ID_Usuario)
+);
+
+CREATE TABLE Rollos_Rollos(
+	ID_Rollo1 INT NOT NULL,
+    ID_Rollo2 INT NOT NULL,
+    VidaRollo1 TINYINT NOT NULL DEFAULT 100,
+    VidaRollo2 TINYINT NOT NULL DEFAULT 100,
+    TurnoRollo1 TINYINT NULL,
+    TurnoRollo2 TINYINT NULL,
+    CONSTRAINT FK_Rollos_Rollos_1 FOREIGN KEY (ID_Rollo1) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE,
+    CONSTRAINT FK_Rollos_Rollos_2 FOREIGN KEY (ID_Rollo2) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE
 );
 
 CREATE TABLE Equipables(
@@ -72,11 +91,22 @@ CREATE TABLE Enemigos(
   Destreza INT NOT NULL,
   Material INT NOT NULL,
   ProbabilidadMaterial INT NOT NULL,
+  ID_Zona INT NOT NULL,
+  CONSTRAINT FK_Enemigos_Zona FOREIGN KEY (ID_Zona) REFERENCES Zonas(ID) ON DELETE NO ACTION,
   PRIMARY KEY(ID)
 );
 
--- Datos iniciales
+CREATE TABLE Rollos_Enemigos(
+	ID_Rollo INT NOT NULL,
+    ID_Enemigo INT NOT NULL,
+    VidaRollo TINYINT NOT NULL DEFAULT 100,
+    VidaEnemigo TINYINT NOT NULL DEFAULT 100,
+    CONSTRAINT FK_Rollos_Enemigos_Rollo FOREIGN KEY (ID_Rollo) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE,
+    CONSTRAINT FK_Rollos_Enemigos_Enemigo FOREIGN KEY (ID_Enemigo) REFERENCES Enemigos(ID) ON DELETE CASCADE
+);
 
+-- Datos iniciales
+INSERT INTO Zonas (Nombre) VALUES('Baño');
 INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria) VALUES ('Cartona', 'A', 1, 0);
 
 -- Pruebas
