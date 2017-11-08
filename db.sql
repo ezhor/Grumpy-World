@@ -4,10 +4,6 @@ DROP DATABASE GrumpyWorld; -- Borrar línea al terminar los tests
 CREATE DATABASE GrumpyWorld;
 USE GrumpyWorld;
 
--- Login
-CREATE USER 'daniel'@'localhost' IDENTIFIED BY 'hola';
-GRANT SELECT, UPDATE, DELETE, EXECUTE ON GrumpyWorld.* TO 'daniel';
-
 -- Tablas
 CREATE TABLE Usuarios(
   ID INT NOT NULL AUTO_INCREMENT,
@@ -154,4 +150,9 @@ INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
 -- SELECT * FROM Usuarios;
 -- SELECT * FROM Rollos;
 -- SELECT * FROM Equipables;
--- SELECT * FROM Enemigos
+SELECT
+	E.Nombre, E.Fuerza, E.Constitucion, E.Destreza, Z.Nombre AS Zona
+FROM
+	Enemigos AS E
+    INNER JOIN Zonas AS Z
+    ON E.ID_Zona = Z.ID

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="GrumpyWorld@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
     <root id="1"/>
-    <schema id="2" parent="1" name="GrumpyWorld">
+    <schema id="2" parent="1" name="grumpyworld">
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
     <schema id="3" parent="1" name="information_schema"/>
-    <table id="4" parent="2" name="Enemigos"/>
-    <table id="5" parent="2" name="Equipables"/>
-    <table id="6" parent="2" name="Materiales"/>
-    <table id="7" parent="2" name="Rollos"/>
-    <table id="8" parent="2" name="Rollos_Enemigos"/>
-    <table id="9" parent="2" name="Rollos_Equipables"/>
-    <table id="10" parent="2" name="Rollos_Materiales"/>
-    <table id="11" parent="2" name="Rollos_Rollos"/>
-    <table id="12" parent="2" name="Usuarios"/>
-    <table id="13" parent="2" name="Usuarios_Usuarios"/>
-    <table id="14" parent="2" name="Zonas"/>
+    <table id="4" parent="2" name="enemigos"/>
+    <table id="5" parent="2" name="equipables"/>
+    <table id="6" parent="2" name="materiales"/>
+    <table id="7" parent="2" name="rollos"/>
+    <table id="8" parent="2" name="rollos_enemigos"/>
+    <table id="9" parent="2" name="rollos_equipables"/>
+    <table id="10" parent="2" name="rollos_materiales"/>
+    <table id="11" parent="2" name="rollos_rollos"/>
+    <table id="12" parent="2" name="usuarios"/>
+    <table id="13" parent="2" name="usuarios_usuarios"/>
+    <table id="14" parent="2" name="zonas"/>
     <column id="15" parent="4" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
@@ -72,8 +72,8 @@
     </key>
     <foreign-key id="26" parent="4" name="FK_Enemigos_Zona">
       <ColNames>ID_Zona</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Zonas</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>zonas</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <column id="27" parent="5" name="ID">
@@ -176,15 +176,15 @@
     </key>
     <foreign-key id="47" parent="7" name="FK_Rollos_Usuario">
       <ColNames>ID_Usuario</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Usuarios</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>usuarios</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="48" parent="7" name="FK_Rollos_Zona">
       <ColNames>ID_Zona</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Zonas</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>zonas</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <column id="49" parent="8" name="ID_Rollo">
@@ -217,15 +217,15 @@
     </index>
     <foreign-key id="55" parent="8" name="FK_Rollos_Enemigos_Rollo">
       <ColNames>ID_Rollo</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Rollos</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="56" parent="8" name="FK_Rollos_Enemigos_Enemigo">
       <ColNames>ID_Enemigo</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Enemigos</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>enemigos</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
@@ -256,15 +256,15 @@ ID_Equipable</ColNames>
     </key>
     <foreign-key id="62" parent="9" name="FK_Rollos_Equipables_ID_Rollo">
       <ColNames>ID_Rollo</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Rollos</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="63" parent="9" name="FK_Rollos_Equipables_ID_Equipable">
       <ColNames>ID_Equipable</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Equipables</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>equipables</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
@@ -295,15 +295,15 @@ ID_Material</ColNames>
     </key>
     <foreign-key id="69" parent="10" name="FK_Rollos_Materiales_ID_Rollo">
       <ColNames>ID_Rollo</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Rollos</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="70" parent="10" name="FK_Rollos_Materiales_ID_Material">
       <ColNames>ID_Material</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Materiales</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>materiales</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
@@ -345,15 +345,15 @@ ID_Material</ColNames>
     </index>
     <foreign-key id="79" parent="11" name="FK_Rollos_Rollos_1">
       <ColNames>ID_Rollo1</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Rollos</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="80" parent="11" name="FK_Rollos_Rollos_2">
       <ColNames>ID_Rollo2</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Rollos</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
@@ -407,15 +407,15 @@ ID_Usuario2</ColNames>
     </key>
     <foreign-key id="91" parent="13" name="FK_ID_Usuario1">
       <ColNames>ID_Usuario1</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Usuarios</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>usuarios</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="92" parent="13" name="FK_ID_Usuario2">
       <ColNames>ID_Usuario2</ColNames>
-      <RefSchemaName>GrumpyWorld</RefSchemaName>
-      <RefTableName>Usuarios</RefTableName>
+      <RefSchemaName>grumpyworld</RefSchemaName>
+      <RefTableName>usuarios</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>

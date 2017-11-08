@@ -8,29 +8,36 @@
 
 require_once "Database.php";
 
-//Test de fichero
-/*$config = parse_ini_file('./config/config.ini');
-echo $config['host'].'<br>';
-echo $config['username'].'<br>';
-echo $config['password'].'<br>';
-echo $config['dbname'].'<br>';*/
-
-
 $database = Database::getInstance();
-$mysqli = $database->getConnection();
-$sql_query = "SELECT * FROM Enemigos";
+$conn = $database->getConnection();
+$sql_query = "
+            SELECT
+                E.Nombre, E.Fuerza, E.Constitucion, E.Destreza, Z.Nombre AS Zona
+            FROM
+                Enemigos AS E
+                INNER JOIN Zonas AS Z
+                ON E.ID_Zona = Z.ID";
 
-$result = $mysqli->query($sql_query);
+if ($stmt = $conn->prepare($sql_query)) {
+    $stmt->execute();
+    $stmt->bind_result($nombre, $fuerza, $constitucion, $destreza, $zona);
 
-if ($result->num_rows > 0) {
     echo '<table border=\"1\">';
     echo '<tr>';
     echo '<td>Nombre</td>';
+    echo '<td>Fuerza</td>';
+    echo '<td>Constitucion</td>';
+    echo '<td>Destreza</td>';
+    echo '<td>Zona</td>';
     echo '</tr>';
     // output data of each row
-    while ($row = $result->fetch_assoc()) {
+    while ($stmt->fetch()) {
         echo '<tr>';
-        echo '<td>' . $row['nombre'] . '</td>';
+        echo '<td>' . $nombre . '</td>';
+        echo '<td>' . $fuerza . '</td>';
+        echo '<td>' . $constitucion . '</td>';
+        echo '<td>' . $destreza . '</td>';
+        echo '<td>' . $zona . '</td>';
         echo '</tr>';
     }
     echo '</table>';
