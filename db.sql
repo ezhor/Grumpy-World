@@ -12,6 +12,21 @@ CREATE TABLE Usuarios(
   PRIMARY KEY(ID)
 );
 
+CREATE TABLE Dispositivos(
+	ID INT NOT NULL AUTO_INCREMENT,
+    StringID VARCHAR(30) UNIQUE,
+    IP VARCHAR(15),
+    PRIMARY KEY(ID)
+);
+
+CREATE TABLE Usuarios_Dispositivos(
+	ID_Usuario INT NOT NULL,
+    ID_Dispositivo INT NOT NULL,
+    CONSTRAINT FK_ID_Usuario FOREIGN KEY (ID_Usuario) REFERENCES Usuarios(ID) ON DELETE CASCADE,
+    CONSTRAINT FK_ID_Dispositivo FOREIGN KEY (ID_Dispositivo) REFERENCES Dispositivos(ID) ON DELETE CASCADE,
+    PRIMARY KEY(ID_Usuario, ID_Dispositivo)
+);
+
 CREATE TABLE Usuarios_Usuarios(
 	ID_Usuario1 INT NOT NULL,
     ID_Usuario2 INT NOT NULL,
@@ -150,9 +165,10 @@ INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
 -- SELECT * FROM Usuarios;
 -- SELECT * FROM Rollos;
 -- SELECT * FROM Equipables;
-SELECT
+/*SELECT
 	E.Nombre, E.Fuerza, E.Constitucion, E.Destreza, Z.Nombre AS Zona
 FROM
 	Enemigos AS E
     INNER JOIN Zonas AS Z
     ON E.ID_Zona = Z.ID
+*/
