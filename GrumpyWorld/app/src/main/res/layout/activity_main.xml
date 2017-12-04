@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.arensis.grumpyworld.MainActivity"
+    android:background="@drawable/fondo_oficina"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/rollo"
+        android:adjustViewBounds="true"
+        android:layout_centerVertical="true"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/enemigo_cepillo"
+        android:adjustViewBounds="true"
+        android:layout_centerVertical="true"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="1dp" >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="bottom|center"
+                android:textSize="12dp"
+                android:background="@drawable/color_boton_menu"
+                android:textColor="#FFF"
+                android:layout_margin="1dp"
+                android:src="@drawable/icono_entrenamiento"
+                android:scaleType="centerInside"
+                android:paddingBottom="20dp"
+                android:paddingTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entrenamiento"
+                android:layout_marginTop="-25dp"
+                android:layout_gravity="center"
+                android:textColor="#FFF"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="bottom|center"
+                android:textSize="12dp"
+                android:background="@drawable/color_boton_menu"
+                android:textColor="#FFF"
+                android:layout_margin="1dp"
+                android:src="@drawable/icono_caza"
+                android:scaleType="centerInside"
+                android:paddingBottom="20dp"
+                android:paddingTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Caza"
+                android:layout_marginTop="-25dp"
+                android:layout_gravity="center"
+                android:textColor="#FFF"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="bottom|center"
+                android:textSize="12dp"
+                android:background="@drawable/color_boton_menu"
+                android:textColor="#FFF"
+                android:layout_margin="1dp"
+                android:src="@drawable/icono_duelo"
+                android:scaleType="centerInside"
+                android:paddingBottom="20dp"
+                android:paddingTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duelo"
+                android:layout_marginTop="-25dp"
+                android:layout_gravity="center"
+                android:textColor="#FFF"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.widget.RelativeLayout>
