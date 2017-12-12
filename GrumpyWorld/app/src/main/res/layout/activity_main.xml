@@ -29,22 +29,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="1dp" >
+        android:layout_marginBottom="10dp" >
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="5dp"
             >
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="50dp"
                 android:gravity="bottom|center"
                 android:textSize="12dp"
                 android:background="@drawable/color_boton_menu"
                 android:textColor="#FFF"
-                android:layout_margin="1dp"
                 android:src="@drawable/icono_entrenamiento"
                 android:scaleType="centerInside"
                 android:paddingBottom="20dp"
@@ -55,7 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Entrenamiento"
-                android:layout_marginTop="-25dp"
+                android:layout_marginTop="-18dp"
+                android:textSize="12sp"
                 android:layout_gravity="center"
                 android:textColor="#FFF"
                 />
@@ -67,16 +68,16 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="5dp"
             >
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="50dp"
                 android:gravity="bottom|center"
                 android:textSize="12dp"
                 android:background="@drawable/color_boton_menu"
                 android:textColor="#FFF"
-                android:layout_margin="1dp"
                 android:src="@drawable/icono_caza"
                 android:scaleType="centerInside"
                 android:paddingBottom="20dp"
@@ -87,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Caza"
-                android:layout_marginTop="-25dp"
+                android:layout_marginTop="-20dp"
                 android:layout_gravity="center"
                 android:textColor="#FFF"
                 />
@@ -99,16 +100,16 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="5dp"
             >
 
             <ImageButton
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="50dp"
                 android:gravity="bottom|center"
                 android:textSize="12dp"
                 android:background="@drawable/color_boton_menu"
                 android:textColor="#FFF"
-                android:layout_margin="1dp"
                 android:src="@drawable/icono_duelo"
                 android:scaleType="centerInside"
                 android:paddingBottom="20dp"
@@ -119,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Duelo"
-                android:layout_marginTop="-25dp"
+                android:layout_marginTop="-20dp"
                 android:layout_gravity="center"
                 android:textColor="#FFF"
                 />
