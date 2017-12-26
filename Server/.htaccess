@@ -1,0 +1,16 @@
+#AcceptPathInfo On
+
+#Prevent directory browsing
+Options -Indexes
+
+RewriteEngine On
+RewriteBase /
+
+# Let's send all requests that don't refer to an existing file or directory to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+#RewriteRule (.*) index.php [QSA,L,E=PATH_INFO:/$1]
+
+# Prevent access to config directory
+RewriteRule ^config/ - [NC,F,L]
