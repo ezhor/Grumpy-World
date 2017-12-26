@@ -55,7 +55,8 @@ class EnemigoHandlerModel
 
             $prep_query->bind_result($id, $nombre, $fuerza, $constitucion, $destreza, $zona);
             while ($prep_query->fetch()) {
-                //$tit = utf8_encode($tit);
+                $nombre = utf8_encode($nombre);
+                $zona = utf8_encode($zona);
                 $enemigo = new EnemigoModel($id, $nombre, $fuerza, $constitucion, $destreza, $zona);
                 $listaEnemigos[] = $enemigo;
             }
@@ -68,10 +69,9 @@ class EnemigoHandlerModel
         }
         $db_connection->close();
 
-        /*if($listaEnemigos->count()<2){
+        if(count($listaEnemigos)<2){
             $listaEnemigos = $listaEnemigos[0];
-        }*/
-
+        }
         return $listaEnemigos;
     }
 
