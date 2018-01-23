@@ -8,7 +8,7 @@ USE GrumpyWorld;
 CREATE TABLE Usuarios(
   ID INT NOT NULL AUTO_INCREMENT,
   Usuario NVARCHAR(30) NOT NULL UNIQUE,
-  Contrasena NVARCHAR(30) NOT NULL,
+  Contrasena NVARCHAR(255) NOT NULL,
   PRIMARY KEY(ID)
 );
 
@@ -120,6 +120,10 @@ CREATE TABLE Rollos_Enemigos(
 );
 
 -- Datos iniciales
+
+-- Usuario de prueba
+INSERT INTO Usuarios (Usuario, Contrasena) VALUE ('dani', '$2y$10$uZUjItYSVniAARD3knDwROM0xkzfvRJ9Veq.v6zJQdOkEbCWgrRY.'); -- Contraseña: hola
+
 -- Zonas
 INSERT INTO Zonas (Nombre) VALUES('Baño');
 INSERT INTO Zonas (Nombre) VALUES('Cocina');

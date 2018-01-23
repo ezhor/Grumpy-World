@@ -3,6 +3,12 @@
 
 class EnemigoModel implements JsonSerializable
 {
+    private $id;
+    private $nombre;
+    private $fuerza;
+    private $constitucion;
+    private $destreza;
+    private $zona;
     /**
      * Model constructor.
      * @param $id
@@ -143,11 +149,4 @@ class EnemigoModel implements JsonSerializable
     {
         $this->zona = $zona;
     }
-    private $id;
-    private $nombre;
-    private $fuerza;
-    private $constitucion;
-    private $destreza;
-    private $zona;
-
 }

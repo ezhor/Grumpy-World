@@ -1,12 +1,10 @@
 <?php
 
-require_once "ConsLibrosModel.php";
-
 
 class EnemigoHandlerModel
 {
 
-    public static function getLibro($id)
+    public static function getEnemigo($id)
     {
         $listaEnemigos = null;
 

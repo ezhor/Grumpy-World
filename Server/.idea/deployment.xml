@@ -5,7 +5,7 @@
       <paths name="Miranda">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/pi/ficheros_web" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/pi/ficheros_web_gw" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

@@ -19,7 +19,7 @@ class EnemigoController extends Controller
         }
 
 
-        $listaEnemigos = EnemigoHandlerModel::getLibro($id);
+        $listaEnemigos = EnemigoHandlerModel::getEnemigo($id);
 
         if ($listaEnemigos != null) {
             $code = '200';
