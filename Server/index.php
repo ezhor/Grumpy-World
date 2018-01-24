@@ -6,9 +6,9 @@ require_once "Autenticacion.php";
 require_once "GestoraAutenticacion.php";
 
 //TESTING
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
 
 
 //Autoload rules
@@ -81,22 +81,28 @@ $req = new Request($verb, $url_elements, $query_string, $body, $content_type, $a
 
 // route the request to the right place
 if(isset($url_elements[1])){
-    if($gesAut->comprobarAutenticacion($autenticacion)){
-        $controller_name = ucfirst($url_elements[1]) . 'Controller';
-        if (class_exists($controller_name)) {
-            $controller = new $controller_name();
-            $action_name = 'manage' . ucfirst(strtolower($verb)) . 'Verb';
-            $controller->$action_name($req);
-            //$result = $controller->$action_name($req);
-            //print_r($result);
-        } //If class does not exist, we will send the request to NotFoundController
-        else {
-            $controller = new NotFoundController();
-            $controller->manage($req); //We don't care about the HTTP verb
-        }
+    if($url_elements[1]=='usuario'){
+        $controller = new UsuarioController();
+        $action_name = 'manage' . ucfirst(strtolower($verb)) . 'Verb';
+        $controller->$action_name($req);
     }else{
-        $controller = new UnauthorizedController();
-        $controller->manage($req);
+        if($gesAut->comprobarAutenticacion($autenticacion)){
+            $controller_name = ucfirst($url_elements[1]) . 'Controller';
+            if (class_exists($controller_name)) {
+                $controller = new $controller_name();
+                $action_name = 'manage' . ucfirst(strtolower($verb)) . 'Verb';
+                $controller->$action_name($req);
+                //$result = $controller->$action_name($req);
+                //print_r($result);
+            } //If class does not exist, we will send the request to NotFoundController
+            else {
+                $controller = new NotFoundController();
+                $controller->manage($req); //We don't care about the HTTP verb
+            }
+        }else{
+            $controller = new UnauthorizedController();
+            $controller->manage($req);
+        }
     }
 }else{
     echo '<html><head><title>Miranda Server</title></head></html>';
