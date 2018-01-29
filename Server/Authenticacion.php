@@ -6,13 +6,13 @@
  * Time: 19:58
  */
 
-class Autenticacion
+class Authenticacion
 {
     private $usuario;
     private $contrasena;
 
     /**
-     * Autenticacion constructor.
+     * Authenticacion constructor.
      * @param $usuario
      * @param $contrasena
      */

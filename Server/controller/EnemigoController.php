@@ -28,7 +28,7 @@ class EnemigoController extends Controller
 
             //We could send 404 in any case, but if we want more precission,
             //we can send 400 if the syntax of the entity was incorrect...
-            if (LibroHandlerModel::isValid($id)) {
+            if (EnemigoHandlerModel::isValid($id)) {
                 $code = '404';
             } else {
                 $code = '400';

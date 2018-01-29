@@ -10,7 +10,7 @@
 
 class GestoraAutenticacion
 {
-    public function comprobarAutenticacion(Autenticacion $autenticacion){
+    public function comprobarAutenticacion(Authenticacion $autenticacion){
         $resultado = false;
         $usuario = $autenticacion->getUsuario();
         $contrasena = $autenticacion->getContrasena();
@@ -24,7 +24,6 @@ class GestoraAutenticacion
             $prep_query->bind_result($contrasena_hash);
             $prep_query->execute();
             $prep_query->fetch();
-
             if(password_verify($contrasena, $contrasena_hash)){
                 $resultado = true;
             }

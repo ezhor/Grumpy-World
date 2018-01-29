@@ -2,14 +2,13 @@
 
 require_once "Request.php";
 require_once "Response.php";
-require_once "Autenticacion.php";
+require_once "Authenticacion.php";
 require_once "GestoraAutenticacion.php";
 
 //TESTING
 /*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);*/
-
 
 //Autoload rules
 spl_autoload_register('apiAutoload');
@@ -69,9 +68,9 @@ if (isset($_SERVER['HTTP_ACCEPT'])) {
     $accept = $_SERVER['HTTP_ACCEPT'];
 }
 
-$autenticacion = new Autenticacion(null, null);
+$autenticacion = new Authenticacion(null, null);
 if(isset($_SERVER['PHP_AUTH_USER']) || isset($_SERVER['PHP_AUTH_PW'])){
-    $autenticacion = new Autenticacion($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
+    $autenticacion = new Authenticacion($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
 }
 
 $gesAut = new GestoraAutenticacion();

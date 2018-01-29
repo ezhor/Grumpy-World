@@ -53,8 +53,6 @@ class EnemigoHandlerModel
 
             $prep_query->bind_result($id, $nombre, $fuerza, $constitucion, $destreza, $zona);
             while ($prep_query->fetch()) {
-                $nombre = utf8_encode($nombre);
-                $zona = utf8_encode($zona);
                 $enemigo = new EnemigoModel($id, $nombre, $fuerza, $constitucion, $destreza, $zona);
                 $listaEnemigos[] = $enemigo;
             }

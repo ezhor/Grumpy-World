@@ -119,60 +119,91 @@ CREATE TABLE Rollos_Enemigos(
     CONSTRAINT FK_Rollos_Enemigos_Enemigo FOREIGN KEY (ID_Enemigo) REFERENCES Enemigos(ID) ON DELETE CASCADE
 );
 
+-- Funciones y procedimientos
+DELIMITER $$
+CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(30))
+RETURNS BIT
+BEGIN
+  /*DECLARE existe BIT;
+  SET existe = FALSE;
+    IF((SELECT COUNT(*) FROM Usuarios WHERE Usuario = nombre_usuario)>0) THEN
+    BEGIN
+		SET existe = TRUE;
+    END;
+    END IF;*/
+	RETURN (SELECT COUNT(*) FROM Usuarios WHERE Usuario = nombre_usuario)>0;
+END $$
+
+CREATE PROCEDURE crearUsuario(IN usuario NVARCHAR(30), IN contrasena NVARCHAR(255), OUT conseguido BIT)
+BEGIN
+    INSERT INTO Usuarios (Usuario, Contrasena) VALUE (usuario, contrasena);
+    IF(ROW_COUNT()>0) THEN
+    BEGIN
+		INSERT INTO Rollos(ID_Usuario, ID_Zona) SELECT LAST_INSERT_ID(), ID FROM Zonas WHERE Nombre='bano';
+        SELECT 1 INTO conseguido;
+    END;
+    END IF;
+    
+END $$
+
+DELIMITER ;
+
 -- Datos iniciales
 
--- Usuario de prueba
-INSERT INTO Usuarios (Usuario, Contrasena) VALUE ('dani', '$2y$10$uZUjItYSVniAARD3knDwROM0xkzfvRJ9Veq.v6zJQdOkEbCWgrRY.'); -- Contraseña: hola
-
 -- Zonas
-INSERT INTO Zonas (Nombre) VALUES('Baño');
-INSERT INTO Zonas (Nombre) VALUES('Cocina');
-INSERT INTO Zonas (Nombre) VALUES('Parque');
+INSERT INTO Zonas (Nombre) VALUES('bano');
+INSERT INTO Zonas (Nombre) VALUES('cocina');
+INSERT INTO Zonas (Nombre) VALUES('oficina');
+INSERT INTO Zonas (Nombre) VALUES('parque');
 
 -- Enemigos
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Stripper', 10, 20, 30, 0, ID FROM Zonas WHERE Nombre = 'Baño';
+	SELECT 'stripper', 10, 20, 30, 0, ID FROM Zonas WHERE Nombre = 'bano';
 
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Cepillo', 10, 30, 20, 0, ID FROM Zonas WHERE Nombre = 'Baño';
+	SELECT 'cepillo', 10, 30, 20, 0, ID FROM Zonas WHERE Nombre = 'bano';
 
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Cuchilla', 30, 20, 10, 0, ID FROM Zonas WHERE Nombre = 'Baño';
+	SELECT 'cuchilla', 30, 20, 10, 0, ID FROM Zonas WHERE Nombre = 'bano';
 
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Champú', 20, 10, 30, 0, ID FROM Zonas WHERE Nombre = 'Baño';
+	SELECT 'champu', 20, 10, 30, 0, ID FROM Zonas WHERE Nombre = 'bano';
 
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Váter', 30, 50, 20, 1, ID FROM Zonas WHERE Nombre = 'Baño';
+	SELECT 'vater', 30, 50, 20, 1, ID FROM Zonas WHERE Nombre = 'bano';
 
 
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Leche', 60, 80, 70, 0, ID FROM Zonas WHERE Nombre = 'Cocina';
+	SELECT 'leche', 60, 80, 70, 0, ID FROM Zonas WHERE Nombre = 'cocina';
 
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Zanahoria', 80, 60, 70, 0, ID FROM Zonas WHERE Nombre = 'Cocina';
+	SELECT 'zanahoria', 80, 60, 70, 0, ID FROM Zonas WHERE Nombre = 'cocina';
 
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Cuchara', 70, 80, 60, 0, ID FROM Zonas WHERE Nombre = 'Cocina';
+	SELECT 'cuchara', 70, 80, 60, 0, ID FROM Zonas WHERE Nombre = 'cocina';
 
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Taza', 70, 60, 80, 0, ID FROM Zonas WHERE Nombre = 'Cocina';
+	SELECT 'limon', 70, 60, 80, 0, ID FROM Zonas WHERE Nombre = 'cocina';
 
 INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
-	SELECT 'Frigorífico', 80, 100, 70, 1, ID FROM Zonas WHERE Nombre = 'Cocina';
+	SELECT 'calabaza', 80, 100, 70, 1, ID FROM Zonas WHERE Nombre = 'cocina';
 
--- Pruebas
 
--- INSERT INTO Usuarios (Usuario, Contrasena) VALUES ("dani", "contrasena");
--- INSERT INTO Rollos (ID_Usuario) VALUES (LAST_INSERT_ID());
+INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
+	SELECT 'raton', 120, 110, 130, 0, ID FROM Zonas WHERE Nombre = 'oficina';
 
--- SELECT * FROM Usuarios;
--- SELECT * FROM Rollos;
--- SELECT * FROM Equipables;
-/*SELECT
-	E.Nombre, E.Fuerza, E.Constitucion, E.Destreza, Z.Nombre AS Zona
-FROM
-	Enemigos AS E
-    INNER JOIN Zonas AS Z
-    ON E.ID_Zona = Z.ID
-*/
+INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
+	SELECT 'grapadora', 130, 120, 110, 0, ID FROM Zonas WHERE Nombre = 'oficina';
+
+INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
+	SELECT 'lapiz', 130, 110, 120, 0, ID FROM Zonas WHERE Nombre = 'oficina';
+
+INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
+	SELECT 'libro', 110, 130, 120, 0, ID FROM Zonas WHERE Nombre = 'oficina';
+
+INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, Jefe, ID_Zona)
+	SELECT 'pendrive', 110, 150, 120, 1, ID FROM Zonas WHERE Nombre = 'oficina';
+
+
+-- Usuario de prueba
+CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
