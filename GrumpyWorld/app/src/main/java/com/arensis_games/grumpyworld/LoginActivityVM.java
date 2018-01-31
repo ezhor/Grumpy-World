@@ -18,15 +18,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class LoginActivityVM extends AndroidViewModel {
-    private MutableLiveData<Rollo> rolloLiveData;
+    private final MutableLiveData<Rollo> rolloLiveData;
+    private final MutableLiveData<Integer> errorLiveData;
 
     public LoginActivityVM(@NonNull Application application) {
         super(application);
         this.rolloLiveData = new MutableLiveData<>();
+        this.errorLiveData = new MutableLiveData<>();
     }
 
     public LiveData<Rollo> getRolloLiveData(){
         return this.rolloLiveData;
+    }
+    public MutableLiveData<Integer> getErrorLiveData() {
+        return errorLiveData;
     }
 
     public void obtenerRollo(Authentication authentication){
@@ -49,7 +54,11 @@ public class LoginActivityVM extends AndroidViewModel {
         rolloInterface.getRollo().enqueue(new Callback<Rollo>() {
             @Override
             public void onResponse(Call<Rollo> call, Response<Rollo> response) {
-                rolloLiveData.postValue(response.body());
+                if(response.isSuccessful()){
+                    rolloLiveData.postValue(response.body());
+                }else{
+                    errorLiveData.postValue(response.code());
+                }
             }
 
             @Override

@@ -8,15 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText etUsuario;
-    EditText etContrasena;
-    LoginActivityVM vm;
-    Observer<Rollo> observerRollo;
+    private EditText etUsuario;
+    private EditText etContrasena;
+    private LoginActivityVM vm;
+    private Observer<Rollo> observerRollo;
+    private Observer<Integer> observerError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,24 +28,46 @@ public class LoginActivity extends AppCompatActivity {
         etUsuario = findViewById(R.id.etUsuario);
         etContrasena = findViewById(R.id.etContrasena);
 
-        vm = ViewModelProviders.of(this).get(LoginActivityVM.class);
+        etUsuario.setText("dani"); //Debug
+        etContrasena.setText("hola");
 
-        vm.getRolloLiveData().observe(this, observerRollo);
+        vm = ViewModelProviders.of(this).get(LoginActivityVM.class);
 
         observerRollo = new Observer<Rollo>() {
             @Override
             public void onChanged(@Nullable Rollo rollo) {
-                //Pasar o no a la siguiente actividad
+                etUsuario.setText(rollo.getZona());
             }
         };
+        vm.getRolloLiveData().observe(this, observerRollo);
+
+        observerError = new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer integer) {
+                int error = integer;
+                switch (error){
+                    case 401:
+                        Toast.makeText(LoginActivity.this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        Toast.makeText(LoginActivity.this, "Error desconocido ("+error+")", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
+        vm.getErrorLiveData().observe(this, observerError);
     }
 
 
     public void enviar(View view) {
-        Authentication authentication = new Authentication();
-        authentication.setUsuario(etUsuario.getText().toString());
-        authentication.setContrasena(etContrasena.getText().toString());
+        if(etUsuario.getText().toString().equals("") || etContrasena.getText().toString().equals("")){
+            Toast.makeText(LoginActivity.this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
+        }else{
+            Authentication authentication = new Authentication();
+            authentication.setUsuario(etUsuario.getText().toString());
+            authentication.setContrasena(etContrasena.getText().toString());
 
-        vm.obtenerRollo(authentication);
+            vm.obtenerRollo(authentication);
+        }
     }
 }
