@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Grumpy World</string>
+    <string name="SERVER_URL">https://mirandaserver.ddns.net/</string>
 </resources>
