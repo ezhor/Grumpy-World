@@ -11,13 +11,16 @@ class Request
     private $format;
     //in $accept we store the format of the content that the server will send
     private $accept;
+    //Objeto de autenticación (usuario+contraseña)
+    private $authentication;
 
-    public function __construct($verb, $url_elements, $query_string, $body, $content_type, $accept)
+    public function __construct($verb, $url_elements, $query_string, $body, $content_type, $accept, $authentication)
     {
         $this->verb = $verb;
         $this->url_elements = $url_elements;
         $this->query_string = $query_string;
         $this->parseBody($body, $content_type);
+        $this->authentication = $authentication;
 
         switch ($accept) {
             case 'application/json':
@@ -166,6 +169,16 @@ class Request
     public function setAccept($accept)
     {
         $this->accept = $accept;
+    }
+
+    public function getAuthentication()
+    {
+        return $this->authentication;
+    }
+
+    public function setAuthentication($authentication)
+    {
+        $this->authentication = $authentication;
     }
 
 }
