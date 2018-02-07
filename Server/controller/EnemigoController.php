@@ -36,7 +36,7 @@ class EnemigoController extends Controller
 
         }
 
-        $response = new Response($code, null, $listaEnemigos, $request->getAccept());
+        $response = new Response($code, null, $listaEnemigos, $request->getAccept(), $request->getAuthentication()->getUsuario());
         $response->generate();
 
     }

@@ -1,5 +1,7 @@
 <?php
 
+require_once "GestoraAutenticacion.php";
+
 // This class will generate the HTTP headers and the body to send to the client
 class Response
 {
@@ -8,19 +10,27 @@ class Response
     private $headers;
     private $body;
     private $format;
+    private $usuario;
 
     // will receive the response code (200 by default), an associative array with the headers, the data for the body,
     // and the format to output the body (retrieved from the request that the client made)
-    public function __construct($code = '200', $headers = null, $body = null, $format = 'json')
+    public function __construct($code = '200', $headers = null, $body = null, $format = 'json', $usuario)
     {
         $this->code = $code;
         $this->headers = $headers;
         $this->body = $body;
         $this->format = $format;
+        $this->usuario = $usuario;
     }
 
     public function generate()
     {
+        //Generar Bearer token
+        if(isset($this->usuario)){
+            $gesAuth = new GestoraAutenticacion();
+            $token = $gesAuth->getTokenNuevo($this->usuario);
+            $this->headers['Authorization'] = "Bearer ".$token;
+        }
 
         switch ($this->format) {
             case 'json':

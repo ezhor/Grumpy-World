@@ -68,12 +68,9 @@ if (isset($_SERVER['HTTP_ACCEPT'])) {
     $accept = $_SERVER['HTTP_ACCEPT'];
 }
 
-$autenticacion = new Authenticacion(null, null);
-if(isset($_SERVER['PHP_AUTH_USER']) || isset($_SERVER['PHP_AUTH_PW'])){
-    $autenticacion = new Authenticacion($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
-}
-
 $gesAut = new GestoraAutenticacion();
+
+$autenticacion = $gesAut->getAutenticacion();
 
 $req = new Request($verb, $url_elements, $query_string, $body, $content_type, $accept, $autenticacion);
 

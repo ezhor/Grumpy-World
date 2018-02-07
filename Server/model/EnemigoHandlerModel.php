@@ -65,7 +65,7 @@ class EnemigoHandlerModel
         }
         $db_connection->close();
 
-        if(count($listaEnemigos)<2){
+        if(isset($listaEnemigos[0]) && count($listaEnemigos)<2){
             $listaEnemigos = $listaEnemigos[0];
         }
         return $listaEnemigos;

@@ -10,16 +10,18 @@ class Authenticacion
 {
     private $usuario;
     private $contrasena;
+    private $token;
 
     /**
      * Authenticacion constructor.
      * @param $usuario
      * @param $contrasena
      */
-    public function __construct($usuario, $contrasena)
+    public function __construct($usuario, $contrasena, $token)
     {
         $this->usuario = $usuario;
         $this->contrasena = $contrasena;
+        $this->token = $token;
     }
 
 
@@ -54,4 +56,22 @@ class Authenticacion
     {
         $this->contrasena = $contrasena;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+
 }

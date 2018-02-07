@@ -12,7 +12,7 @@ class UnauthorizedController extends Controller
 {
     public function manage(Request $req)
     {
-        $response = new Response('401', null, null, $req->getAccept());
+        $response = new Response('401', null, null, $req->getAccept(), null);
         $response->generate();
     }
 }
