@@ -23,7 +23,7 @@ class RolloController extends Controller
             $code = '200';
         }
 
-        $response = new Response($code, null, $rollo, $request->getAccept());
+        $response = new Response($code, null, $rollo, $request->getAccept(), $request->getAuthentication()->getUsuario());
         $response->generate();
     }
 }
