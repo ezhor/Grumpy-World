@@ -2,6 +2,7 @@ package com.arensis_games.grumpyworld;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginActivityVM vm;
     private Observer<Rollo> observerRollo;
     private Observer<Integer> observerError;
+    private LoginActivity thisActivity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +30,21 @@ public class LoginActivity extends AppCompatActivity {
         etUsuario = findViewById(R.id.etUsuario);
         etContrasena = findViewById(R.id.etContrasena);
 
-        etUsuario.setText("dani"); //Debug
-        etContrasena.setText("hola");
+        etUsuario.setText("dani"); //Borrar
+        etContrasena.setText("hola"); //Borrar
 
         vm = ViewModelProviders.of(this).get(LoginActivityVM.class);
 
         observerRollo = new Observer<Rollo>() {
             @Override
             public void onChanged(@Nullable Rollo rollo) {
-                etUsuario.setText(rollo.getZona());
+                Intent intent;
+                if(rollo!=null){
+                    intent = new Intent(thisActivity, MainActivity.class);
+                    intent.putExtra("rollo", rollo);
+                    startActivity(intent);
+                    finish();
+                }
             }
         };
         vm.getRolloLiveData().observe(this, observerRollo);

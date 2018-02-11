@@ -1,0 +1,40 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.arensis_games.grumpyworld.InicioFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo_oficina"
+        android:id="@+id/relativePrincipal"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rollo"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/rollo"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tenedor"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/arma"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/casco_obra"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/sombrero"
+            />
+
+    </RelativeLayout>
+</FrameLayout>

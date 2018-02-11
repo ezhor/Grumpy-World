@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://D:\Code\Grumpy-World\GrumpyWorld\GrumpyWorld.iml" filepath="D:\Code\Grumpy-World\GrumpyWorld\GrumpyWorld.iml" />
-      <module fileurl="file://$PROJECT_DIR$/GrumpyWorld.iml" filepath="$PROJECT_DIR$/GrumpyWorld.iml" />
-      <module fileurl="file://$PROJECT_DIR$/_GrumpyWorld.iml" filepath="$PROJECT_DIR$/_GrumpyWorld.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\Code\Grumpy-World\GrumpyWorld\app\app.iml" filepath="D:\Code\Grumpy-World\GrumpyWorld\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../GrumpyWorld/GrumpyWorld.iml" filepath="$PROJECT_DIR$/../GrumpyWorld/GrumpyWorld.iml" />
+      <module fileurl="file://D:\Code\Grumpy-World\_GrumpyWorld\GrumpyWorld.iml" filepath="D:\Code\Grumpy-World\_GrumpyWorld\GrumpyWorld.iml" />
+      <module fileurl="file://D:\Code\Grumpy-World\_GrumpyWorld\_GrumpyWorld.iml" filepath="D:\Code\Grumpy-World\_GrumpyWorld\_GrumpyWorld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../GrumpyWorld/app/app.iml" filepath="$PROJECT_DIR$/../GrumpyWorld/app/app.iml" />
+      <module fileurl="file://D:\Code\Grumpy-World\_GrumpyWorld\app\app.iml" filepath="D:\Code\Grumpy-World\_GrumpyWorld\app\app.iml" />
     </modules>
   </component>
 </project>
