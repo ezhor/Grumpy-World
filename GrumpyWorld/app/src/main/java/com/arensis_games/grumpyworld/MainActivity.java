@@ -1,12 +1,11 @@
 package com.arensis_games.grumpyworld;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
@@ -38,10 +37,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void rellenarDrawer() {
-        String[] elementos = {"Entrenamiento", "Caza"};
+        String[] elementos = {
+                "Entrenamiento", "Caza", "Mapa",
+                "Fabricación", "Equipamiento",
+                "Amigos","Duelo", "Ranking"
+        };
 
-        lvDrawer.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, elementos));
+        lvDrawer.setAdapter(new AdaptadorDrawer(getApplicationContext(),
+                R.layout.fila_drawer, R.id.texto, elementos));
         lvDrawer.setOnItemClickListener(this);
 
     }
