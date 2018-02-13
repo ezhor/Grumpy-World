@@ -1,13 +1,18 @@
 package com.arensis_games.grumpyworld.Fragments;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.arensis_games.grumpyworld.GestoraGUI;
 import com.arensis_games.grumpyworld.R;
+import com.arensis_games.grumpyworld.ViewModels.MainActivityVM;
 
 
 /**
@@ -58,10 +63,19 @@ public class InicioFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.frament_inicio, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        MainActivityVM vmMain = ViewModelProviders.of(getActivity()).get(MainActivityVM.class);
+        GestoraGUI gesGUI = new GestoraGUI();
+        View view = inflater.inflate(R.layout.fragment_inicio, container, false);
+        ImageView ivSombrero = view.findViewById(R.id.ivSombrero);
+        ImageView ivArma = view.findViewById(R.id.ivArma);
+        RelativeLayout relativePrincipal = view.findViewById(R.id.relativePrincipal);
+
+        ivSombrero.setImageDrawable(gesGUI.getDrawableSombreroByNombre(getResources(),  vmMain.getRollo().getSombrero()));
+        ivArma.setImageDrawable(gesGUI.getDrawableArmaByNombre(getResources(), vmMain.getRollo().getArma()));
+        relativePrincipal.setBackgroundDrawable(gesGUI.getDrawableZonaByNombre(getResources(), vmMain.getRollo().getZona()));
+
+        return view;
     }
 
 }

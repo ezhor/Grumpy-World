@@ -1,4 +1,4 @@
-package com.arensis_games.grumpyworld.Views;
+package com.arensis_games.grumpyworld.Activities;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -32,8 +32,9 @@ public class LoginActivity extends AppCompatActivity {
         etUsuario = findViewById(R.id.etUsuario);
         etContrasena = findViewById(R.id.etContrasena);
 
-        etUsuario.setText("dani"); //Borrar
-        etContrasena.setText("hola"); //Borrar
+        //etUsuario.setText("dani"); //Borrar
+        //etContrasena.setText("hola"); //Borrar
+
 
         vm = ViewModelProviders.of(this).get(LoginActivityVM.class);
 
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         vm.getErrorLiveData().observe(this, observerError);
+        //enviar(null); //Borrar
     }
 
 
