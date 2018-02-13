@@ -1,4 +1,4 @@
-package com.arensis_games.grumpyworld;
+package com.arensis_games.grumpyworld.Views;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+
+import com.arensis_games.grumpyworld.Adapters.AdaptadorDrawer;
+import com.arensis_games.grumpyworld.Fragments.InicioFragment;
+import com.arensis_games.grumpyworld.R;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 

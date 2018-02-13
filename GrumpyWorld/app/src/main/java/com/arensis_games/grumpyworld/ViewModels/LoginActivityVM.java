@@ -1,17 +1,5 @@
-package com.arensis_games.grumpyworld;
+package com.arensis_games.grumpyworld.ViewModels;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
-
-import okhttp3.OkHttpClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by dparrado on 31/01/18.
@@ -55,6 +43,7 @@ public class LoginActivityVM extends AndroidViewModel {
             @Override
             public void onResponse(Call<Rollo> call, Response<Rollo> response) {
                 if(response.isSuccessful()){
+                    GestoraToken.setToken(response.headers().get("Authorization"));
                     rolloLiveData.postValue(response.body());
                 }else{
                     errorLiveData.postValue(response.code());

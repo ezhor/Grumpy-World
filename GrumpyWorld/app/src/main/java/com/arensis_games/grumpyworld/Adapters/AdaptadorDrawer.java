@@ -1,4 +1,4 @@
-package com.arensis_games.grumpyworld;
+package com.arensis_games.grumpyworld.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.arensis_games.grumpyworld.R;
 
 /**
  * Created by dparrado on 14/11/17.

@@ -1,4 +1,4 @@
-package com.arensis_games.grumpyworld;
+package com.arensis_games.grumpyworld.Views;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.arensis_games.grumpyworld.Conexion.Authentication;
+import com.arensis_games.grumpyworld.ViewModels.LoginActivityVM;
+import com.arensis_games.grumpyworld.R;
+import com.arensis_games.grumpyworld.Models.Rollo;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -1,8 +1,10 @@
-package com.arensis_games.grumpyworld;
+package com.arensis_games.grumpyworld.Views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.arensis_games.grumpyworld.R;
 
 public class SplashActivity extends AppCompatActivity {
 

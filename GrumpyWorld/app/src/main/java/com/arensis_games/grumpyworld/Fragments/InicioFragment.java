@@ -1,4 +1,4 @@
-package com.arensis_games.grumpyworld;
+package com.arensis_games.grumpyworld.Fragments;
 
 
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.arensis_games.grumpyworld.R;
 
 
 /**

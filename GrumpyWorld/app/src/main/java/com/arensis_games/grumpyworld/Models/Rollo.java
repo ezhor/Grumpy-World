@@ -1,4 +1,4 @@
-package com.arensis_games.grumpyworld;
+package com.arensis_games.grumpyworld.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
