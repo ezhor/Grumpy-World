@@ -10,6 +10,7 @@ require_once "jwt/SignatureInvalidException.php";
 require_once "jwt/ExpiredException.php";
 require_once "jwt/BeforeValidException.php";
 require_once "jwt/JWT.php";
+require_once "Authentication.php";
 
 use Firebase\JWT\JWT as JWT;
 

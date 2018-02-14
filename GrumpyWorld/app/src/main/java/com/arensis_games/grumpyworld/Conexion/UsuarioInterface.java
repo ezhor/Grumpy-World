@@ -1,7 +1,5 @@
 package com.arensis_games.grumpyworld.Conexion;
 
-import com.arensis_games.grumpyworld.Models.Rollo;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -12,5 +10,5 @@ import retrofit2.http.POST;
 
 public interface UsuarioInterface {
     @POST("/usuario")
-    Call<Rollo> postUsuario(@Body Authentication authentication);
+    Call<Void> postUsuario(@Body Authentication authentication);
 }
