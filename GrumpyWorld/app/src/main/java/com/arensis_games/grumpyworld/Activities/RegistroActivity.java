@@ -13,74 +13,62 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.arensis_games.grumpyworld.Conexion.Authentication;
-import com.arensis_games.grumpyworld.ViewModels.LoginActivityVM;
 import com.arensis_games.grumpyworld.R;
-import com.arensis_games.grumpyworld.Models.Rollo;
+import com.arensis_games.grumpyworld.ViewModels.LoginActivityVM;
+import com.arensis_games.grumpyworld.ViewModels.RegistroActivityVM;
 
-public class LoginActivity extends AppCompatActivity {
-
+public class RegistroActivity extends AppCompatActivity {
     private EditText etUsuario;
     private EditText etContrasena;
-    private LoginActivityVM vm;
-    private Observer<Rollo> observerRollo;
-    private Observer<Integer> observerError;
-    private LoginActivity thisActivity = this;
+    private EditText etRepetirContrasena;
     private Button btnEnviar;
     private ProgressBar progress;
+    private RegistroActivityVM vm;
+    private Observer<Integer> codigoObserver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registro);
 
         etUsuario = findViewById(R.id.etUsuario);
         etContrasena = findViewById(R.id.etContrasena);
+        etRepetirContrasena = findViewById(R.id.etRepetirContrasena);
         btnEnviar = findViewById(R.id.btnEnviar);
         progress = findViewById(R.id.progress);
 
-        vm = ViewModelProviders.of(this).get(LoginActivityVM.class);
+        vm = ViewModelProviders.of(this).get(RegistroActivityVM.class);
 
-        observerRollo = new Observer<Rollo>() {
-            @Override
-            public void onChanged(@Nullable Rollo rollo) {
-                Intent intent;
-                if(rollo!=null){
-                    intent = new Intent(thisActivity, MainActivity.class);
-                    intent.putExtra("rollo", rollo);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        };
-        vm.getRolloLiveData().observe(this, observerRollo);
-
-        observerError = new Observer<Integer>() {
+        codigoObserver = new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
+                Intent intent;
 
                 if(integer != null){
                     btnEnviar.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);
                     int error = integer;
                     switch (error){
-                        case 401:
-                            Toast.makeText(LoginActivity.this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                        case 409:
+                            Toast.makeText(RegistroActivity.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
                             break;
                         default:
-                            Toast.makeText(LoginActivity.this, "Error desconocido ("+error+")", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistroActivity.this, "Error desconocido ("+error+")", Toast.LENGTH_SHORT).show();
                             break;
                     }
                 }
 
             }
         };
-        vm.getErrorLiveData().observe(this, observerError);
+        vm.getLdCodigo().observe(this, codigoObserver);
     }
 
-
-    public void enviar(View view) {
-        if(etUsuario.getText().toString().equals("") || etContrasena.getText().toString().equals("")){
-            Toast.makeText(LoginActivity.this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
+    public void enviar(View view){
+        if(etUsuario.getText().toString().equals("") || etContrasena.getText().toString().equals("")
+                || etRepetirContrasena.getText().toString().equals("")){
+            Toast.makeText(RegistroActivity.this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
+        }else if(!etContrasena.getText().toString().equals(etRepetirContrasena.getText().toString())){
+            Toast.makeText(RegistroActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
         }else{
             Authentication authentication = new Authentication();
             authentication.setUsuario(etUsuario.getText().toString());
@@ -89,13 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             btnEnviar.setVisibility(View.INVISIBLE);
             progress.setVisibility(View.VISIBLE);
 
-            vm.obtenerRollo(authentication);
+            vm.registrarUsuario(authentication);
         }
-    }
-
-    public void registrarse(View view) {
-        Intent intent = new Intent(this, RegistroActivity.class);
-        startActivity(intent);
-        finish();
     }
 }

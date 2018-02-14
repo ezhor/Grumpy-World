@@ -18,7 +18,7 @@ class UsuarioController extends Controller
             $response = new Response('405', null, null, $request->getAccept());
             $response->generate();
         }else{
-            $authentication = new Authenticacion($request->getBodyParameters()['usuario'], $request->getBodyParameters()['contrasena'], null);
+            $authentication = new Authentication($request->getBodyParameters()['usuario'], $request->getBodyParameters()['contrasena'], null);
             $conseguido = UsuarioHandlerModel::insertarUsuario($authentication);
             if($conseguido){
                 $response = new Response('200', null, null, $request->getAccept(), $request->getAuthentication()->getUsuario());

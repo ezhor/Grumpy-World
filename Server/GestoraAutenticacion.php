@@ -29,7 +29,7 @@ class GestoraAutenticacion
 
 
     //Autenticacion pasada por referencia
-    public function comprobarAutenticacion(Authenticacion &$autenticacion){
+    public function comprobarAutenticacion(Authentication &$autenticacion){
         $resultado = false;
         $token = $autenticacion->getToken();
         if(isset($token)){
@@ -85,7 +85,7 @@ class GestoraAutenticacion
                 }
             }
         }
-        return new Authenticacion($usuario, $contrasena, $token);
+        return new Authentication($usuario, $contrasena, $token);
     }
 
     public function getTokenNuevo($usuario){

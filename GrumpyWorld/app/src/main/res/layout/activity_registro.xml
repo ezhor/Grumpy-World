@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="Registro"
             android:textColor="@color/colorLetra"
             android:textSize="50sp"
             android:textAlignment="center"
@@ -53,13 +53,28 @@
             android:inputType="textPassword"
             android:maxLines="1"
             />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorLetra"
+            android:textAlignment="center"
+            android:hint="Repetir contraseña"
+            android:textColorHint="@color/colorAccent"
+            android:id="@+id/etRepetirContrasena"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_below="@id/etContrasena"
+            android:layout_marginTop="30dp"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/color_boton_menu"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_below="@id/etContrasena"
+            android:layout_below="@id/etRepetirContrasena"
             android:layout_marginTop="30dp"
             android:text="Enviar"
             android:layout_centerHorizontal="true"
@@ -70,21 +85,11 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/etContrasena"
+            android:layout_below="@id/etRepetirContrasena"
             android:layout_marginTop="30dp"
             android:layout_centerHorizontal="true"
             android:id="@+id/progress"
             android:visibility="gone"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#0000"
-            android:layout_below="@id/btnEnviar"
-            android:text="¿No tienes cuenta? Regístrate"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/colorLetra"
-            android:onClick="registrarse"
             />
     </RelativeLayout>
 </ScrollView>

@@ -10,7 +10,7 @@ require_once __DIR__."/../Authenticacion.php";
 
 class UsuarioHandlerModel
 {
-    public static function insertarUsuario(Authenticacion $autenticacion){
+    public static function insertarUsuario(Authentication $autenticacion){
         $usuario = $autenticacion->getUsuario();
         $contrasena = password_hash($autenticacion->getContrasena(), PASSWORD_DEFAULT);
 

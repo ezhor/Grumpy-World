@@ -1,6 +1,7 @@
 package com.arensis_games.grumpyworld.Activities;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.arensis_games.grumpyworld.Adapters.AdaptadorDrawer;
+import com.arensis_games.grumpyworld.Fragments.EntrenamientoFragment;
 import com.arensis_games.grumpyworld.Fragments.InicioFragment;
 import com.arensis_games.grumpyworld.Models.Rollo;
 import com.arensis_games.grumpyworld.R;
@@ -62,7 +64,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //lvDrawer.setItemChecked(position, true);
+        Fragment fragment = null;
+        Intent intent;
+
         drawerLayout.closeDrawer(lvDrawer);
+        switch (elementos[position]){
+            case "Entrenamiento":
+                fragment = new EntrenamientoFragment();
+                break;
+            case "Cerrar sesión":
+                vm.cerrarSesion();
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
+        if(fragment != null){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.framePrincipal, fragment)
+                    .commit();
+        }
     }
 }

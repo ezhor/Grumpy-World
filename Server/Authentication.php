@@ -6,7 +6,7 @@
  * Time: 19:58
  */
 
-class Authenticacion
+class Authentication
 {
     private $usuario;
     private $contrasena;
