@@ -56,6 +56,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
     parse_str($_SERVER['QUERY_STRING'], $query_string);
 }
 $body = file_get_contents("php://input");
+//$body = json_decode(file_get_contents('php://input'), true);
 if ($body === false) {
     $body = null;
 }

@@ -14,7 +14,6 @@ class UsuarioController extends Controller
 {
     public function managePostVerb(Request $request)
     {
-        var_dump($request->getBodyParameters());
         if (isset($request->getUrlElements()[2])) {
             $response = new Response('405', null, null, $request->getAccept());
             $response->generate();

@@ -9,8 +9,6 @@ import com.arensis_games.grumpyworld.Conexion.Authentication;
 import com.arensis_games.grumpyworld.Conexion.UsuarioInterface;
 import com.arensis_games.grumpyworld.R;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,14 +32,14 @@ public class RegistroActivityVM extends AndroidViewModel{
     }
 
     public void registrarUsuario(Authentication authentication) {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        /*HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor).build();
+                .addInterceptor(interceptor).build();*/
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getApplication().getString(R.string.SERVER_URL))
-                .client(client)
+                //.client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
