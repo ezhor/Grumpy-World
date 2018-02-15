@@ -3,6 +3,8 @@ package com.arensis_games.grumpyworld.ViewModels;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import com.arensis_games.grumpyworld.Conexion.Authentication;
@@ -21,6 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegistroActivityVM extends AndroidViewModel{
     private MutableLiveData<Integer> ldCodigo;
+    private SharedPreferences sharedPref = getApplication().getSharedPreferences("login", Context.MODE_PRIVATE);
+    private SharedPreferences.Editor editor = sharedPref.edit();
 
     public RegistroActivityVM(@NonNull Application application) {
         super(application);
@@ -31,7 +35,7 @@ public class RegistroActivityVM extends AndroidViewModel{
         return ldCodigo;
     }
 
-    public void registrarUsuario(Authentication authentication) {
+    public void registrarUsuario(final Authentication authentication) {
         /*HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
@@ -48,6 +52,11 @@ public class RegistroActivityVM extends AndroidViewModel{
         usuarioInterface.postUsuario(authentication).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.code()==200){
+                    editor.putString("usuario", authentication.getUsuario());
+                    editor.putString("contrasena", authentication.getContrasena());
+                    editor.commit();
+                }
                 ldCodigo.setValue(response.code());
             }
 
