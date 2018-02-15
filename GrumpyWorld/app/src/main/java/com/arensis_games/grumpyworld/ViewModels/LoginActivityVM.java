@@ -67,11 +67,12 @@ public class LoginActivityVM extends AndroidViewModel {
             @Override
             public void onResponse(Call<Rollo> call, Response<Rollo> response) {
                 if(response.isSuccessful()){
-                    GestoraToken.setToken(response.headers().get("Authorization"));
+                    GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     editor.putString("usuario", authentication.getUsuario());
                     editor.putString("contrasena", authentication.getContrasena());
                     editor.commit();
                     rolloLiveData.postValue(response.body());
+                    GestoraToken.setAuthorization(response.headers().get("Authorization"));
                 }else{
                     errorLiveData.postValue(response.code());
                 }

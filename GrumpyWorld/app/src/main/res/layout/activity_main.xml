@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:focusable="true" />
+
         <!-- The navigation drawer -->
         <ListView android:id="@+id/lvDrawer"
             android:layout_width="240dp"

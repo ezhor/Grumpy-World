@@ -5,13 +5,13 @@ package com.arensis_games.grumpyworld.Conexion;
  */
 
 public class GestoraToken {
-    private static String token;
+    private static String authorization;
 
-    public static String getToken() {
-        return token;
+    public static String getAuthorization() {
+        return authorization;
     }
 
-    public static void setToken(String token) {
-        GestoraToken.token = token;
+    public static void setAuthorization(String authorization) {
+        GestoraToken.authorization = authorization;
     }
 }
