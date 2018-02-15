@@ -2,7 +2,7 @@
 
 require_once "Request.php";
 require_once "Response.php";
-require_once "Authenticacion.php";
+require_once "Authentication.php";
 require_once "GestoraAutenticacion.php";
 
 //TESTING

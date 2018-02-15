@@ -17,7 +17,7 @@ class RolloController extends Controller
         No tiene sentido que alguien pida un ID concreto en la URL
         */
         if (isset($request->getUrlElements()[2])) {
-            $code = '404';
+            $code = '405';
         }else{
             $rollo = RolloHandlerModel::getRollo($request->getAuthentication()->getUsuario());
             $code = '200';

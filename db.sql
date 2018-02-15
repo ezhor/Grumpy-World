@@ -175,6 +175,49 @@ BEGIN
     
 END $$
 
+CREATE PROCEDURE entrenar(IN usuario NVARCHAR(30), IN atributo VARCHAR(15))
+BEGIN
+	IF (atributo = 'fuerza') THEN
+		BEGIN
+			UPDATE Atributos
+				INNER JOIN Rollos
+				ON Atributos.ID = Rollos.ID_Atributos
+				INNER JOIN Usuarios
+				ON Rollos.ID_Usuario = Usuarios.ID
+			SET Atributos.FinEntrenamiento = UNIX_TIMESTAMP()+((Atributos.Fuerza)*(Atributos.Fuerza)),
+				Atributos.Fuerza = Atributos.Fuerza+1
+			WHERE Usuarios.Usuario = usuario;
+				
+        END;
+        ELSE IF (atributo = 'constitucion') THEN
+			BEGIN
+				UPDATE Atributos
+					INNER JOIN Rollos
+					ON Atributos.ID = Rollos.ID_Atributos
+					INNER JOIN Usuarios
+					ON Rollos.ID_Usuario = Usuarios.ID
+				SET Atributos.FinEntrenamiento = UNIX_TIMESTAMP()+((Atributos.Constitucion)*(Atributos.Constitucion)),
+					Atributos.Constitucion = Atributos.Constitucion+1
+				WHERE Usuarios.Usuario = usuario;
+					
+			END;
+            ELSE IF (atributo = 'destreza') THEN
+				BEGIN
+					UPDATE Atributos
+						INNER JOIN Rollos
+						ON Atributos.ID = Rollos.ID_Atributos
+						INNER JOIN Usuarios
+						ON Rollos.ID_Usuario = Usuarios.ID
+					SET Atributos.FinEntrenamiento = UNIX_TIMESTAMP()+((Atributos.Destreza)*(Atributos.Destreza)),
+						Atributos.Destreza = Atributos.Destreza+1
+				WHERE Usuarios.Usuario = usuario;
+						
+				END;
+				END IF;
+			END IF;
+        END IF;
+END $$
+
 DELIMITER ;
 
 -- Datos iniciales
@@ -239,3 +282,4 @@ INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
 
 -- Usuario de prueba
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+SELECT * FROM Atributos;
