@@ -20,5 +20,5 @@ public interface AtributosInterface {
 
     @POST("/atributos")
     @Headers("Content-Type: application/json")
-    Call<Void> postAtributos(@Body Entrenamiento entrenamiento);
+    Call<Atributos> postAtributos(@Body Entrenamiento entrenamiento);
 }

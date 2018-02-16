@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
     private TextView tvFuerza;
     private TextView tvConstitucion;
     private TextView tvDestreza;
+    private ProgressBar progress;
     private EntrenamientoFragmentVM vm;
     private Observer<Atributos> atributosObserver;
 
@@ -47,17 +49,20 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
         tvFuerza = view.findViewById(R.id.tvFuerza);
         tvConstitucion = view.findViewById(R.id.tvConstitucion);
         tvDestreza = view.findViewById(R.id.tvDestreza);
+        progress = view.findViewById(R.id.progress);
 
         vm = ViewModelProviders.of(this).get(EntrenamientoFragmentVM.class);
 
         atributosObserver = new Observer<Atributos>() {
             @Override
             public void onChanged(@Nullable Atributos atributos) {
+                long tiempoUnix = System.currentTimeMillis()/1000;
                 if(atributos != null){
                     tvFuerza.setText(String.valueOf(atributos.getFuerza()));
                     tvConstitucion.setText(String.valueOf(atributos.getConstitucion()));
                     tvDestreza.setText(String.valueOf(atributos.getDestreza()));
-                    tvTiempoRestante.setText(String.valueOf(atributos.getFinEntrenamiento()));
+                    tvTiempoRestante.setText(String.valueOf(atributos.getFinEntrenamiento()-tiempoUnix)+" segundos restantes");
+                    progress.setVisibility(View.GONE);
                 }
             }
         };
@@ -72,15 +77,15 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.ibAumentarFuerza:
-                Toast.makeText(getContext(), "Aumentar fuerza", Toast.LENGTH_SHORT).show();
+                vm.entrenar("fuerza");
                 break;
 
             case R.id.ibAumentarConstitucion:
-                Toast.makeText(getContext(), "Aumentar constitución", Toast.LENGTH_SHORT).show();
+                vm.entrenar("constitucion");
                 break;
 
             case R.id.ibAumentarDestreza:
-                Toast.makeText(getContext(), "Aumentar destreza", Toast.LENGTH_SHORT).show();
+                vm.entrenar("destreza");
                 break;
         }
     }
