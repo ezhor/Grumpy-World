@@ -35,7 +35,7 @@ class GestoraAutenticacion
         $token = $autenticacion->getToken();
         if(isset($token)){
             try{
-                $jwtDecodificado = JWT::decode($token, $this->key);
+                $jwtDecodificado = JWT::decode($token, $this->key, array('HS256'));
                 $data = $jwtDecodificado->data;
                 $usuario = $data->usuario;
                 $autenticacion->setUsuario($usuario);

@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.arensis_games.grumpyworld.Conexion.AtributosInterface;
+import com.arensis_games.grumpyworld.Conexion.BasicAuthInterceptor;
 import com.arensis_games.grumpyworld.Conexion.BearerAuthInterceptor;
 import com.arensis_games.grumpyworld.Conexion.GestoraToken;
 import com.arensis_games.grumpyworld.Models.Atributos;
@@ -41,6 +42,7 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
 
         client = new OkHttpClient.Builder()
                 .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
+                //.addInterceptor(new BasicAuthInterceptor("dani", "hola"))
                 .build();
 
         retrofit = new Retrofit.Builder()

@@ -57,7 +57,7 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
                     tvFuerza.setText(String.valueOf(atributos.getFuerza()));
                     tvConstitucion.setText(String.valueOf(atributos.getConstitucion()));
                     tvDestreza.setText(String.valueOf(atributos.getDestreza()));
-                    tvDestreza.setText(String.valueOf(atributos.getFinEntrenamiento()));
+                    tvTiempoRestante.setText(String.valueOf(atributos.getFinEntrenamiento()));
                 }
             }
         };
