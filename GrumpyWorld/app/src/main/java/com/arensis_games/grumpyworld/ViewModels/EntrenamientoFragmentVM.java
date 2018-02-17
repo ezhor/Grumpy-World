@@ -26,6 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EntrenamientoFragmentVM extends AndroidViewModel {
     MutableLiveData<Atributos> ldAtributos;
+    MutableLiveData<Integer> ldError;
 
     public EntrenamientoFragmentVM(@NonNull Application application) {
         super(application);
@@ -61,7 +62,7 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
                     ldAtributos.postValue(response.body());
                     GestoraToken.setAuthorization(response.headers().get("Authorization"));
                 }else{
-                    //Gestionar error
+                    ldError.setValue(response.code());
                 }
             }
 

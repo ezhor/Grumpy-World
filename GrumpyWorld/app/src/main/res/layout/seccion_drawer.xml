@@ -3,16 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="10dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
+    android:paddingTop="10dp"
     >
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/icono_caza"
-        android:id="@+id/icono"
-        android:layout_margin="5dp"
-        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +13,7 @@
         android:layout_gravity="center"
         android:textSize="20sp"
         android:id="@+id/texto"
+        android:textStyle="bold"
         />
 
 </LinearLayout>

@@ -149,7 +149,7 @@
             <ImageButton
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/color_boton_menu"
+                android:background="@drawable/boton"
                 android:padding="10dp"
                 android:src="@drawable/icono_aumentar"
                 android:scaleType="fitXY"
@@ -159,7 +159,7 @@
             <ImageButton
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/color_boton_menu"
+                android:background="@drawable/boton"
                 android:padding="10dp"
                 android:src="@drawable/icono_aumentar"
                 android:scaleType="fitXY"
@@ -169,7 +169,7 @@
             <ImageButton
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/color_boton_menu"
+                android:background="@drawable/boton"
                 android:padding="10dp"
                 android:src="@drawable/icono_aumentar"
                 android:scaleType="fitXY"

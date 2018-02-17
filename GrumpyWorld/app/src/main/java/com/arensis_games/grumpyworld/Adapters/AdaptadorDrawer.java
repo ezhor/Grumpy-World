@@ -1,6 +1,7 @@
 package com.arensis_games.grumpyworld.Adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arensis_games.grumpyworld.GestoraGUI;
 import com.arensis_games.grumpyworld.R;
 
 /**
@@ -16,33 +18,37 @@ import com.arensis_games.grumpyworld.R;
 
 public class AdaptadorDrawer<T> extends ArrayAdapter<T> {
 
-    private String[] items;
     private Context context;
     private ViewHolder holder;
     private String elemento;
+    private GestoraGUI gesGUI = new GestoraGUI();
 
 
     public AdaptadorDrawer(Context context, int resource, int textViewResourceId, T[] objects) {
         super(context, resource, textViewResourceId, objects);
-        this.items = (String[]) objects;
         this.context = context;
     }
 
     public AdaptadorDrawer(Context context, int resource, int textViewResourceId, String[] objects) {
         super(context, resource, textViewResourceId, (T[])objects);
-        this.items = objects;
         this.context = context;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, @NonNull ViewGroup parent){
         View view;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 
         view = convertView;
 
         if(view==null){
-            view = inflater.inflate(R.layout.fila_drawer, null);
+            if(getItemViewType(position)==1){
+                view = inflater.inflate(R.layout.seccion_drawer, null);
+                view.setEnabled(false);
+                view.setOnClickListener(null);
+            }else{
+                view = inflater.inflate(R.layout.fila_drawer, null);
+            }
             holder = new ViewHolder(view, R.id.icono, R.id.texto);
             view.setTag(holder);
         }else{
@@ -52,14 +58,24 @@ public class AdaptadorDrawer<T> extends ArrayAdapter<T> {
 
         elemento = (String) getItem(position);
         holder.getTextView().setText(elemento);
-
+        if(getItemViewType(position)==0){
+            holder.getImageView().setImageDrawable(gesGUI.getDrawableIconoMenu(context.getResources(), elemento));
+        }
 
         return view;
     }
 
     @Override
     public int getItemViewType(int position){
-        return 0;
+        int tipo = 0;
+        if(
+            getItem(position).equals("Campaña") ||
+            getItem(position).equals("Multijugador") ||
+            getItem(position).equals("Rollo") ||
+            getItem(position).equals("Extras")) {
+            tipo = 1;
+        }
+        return tipo;
     }
 
     @Override
