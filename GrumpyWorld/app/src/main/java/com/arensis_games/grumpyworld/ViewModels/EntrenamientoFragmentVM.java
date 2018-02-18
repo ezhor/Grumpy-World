@@ -42,35 +42,49 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
         Retrofit retrofit;
         AtributosInterface atributosInterface;
 
-        client = new OkHttpClient.Builder()
-                .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
-                //.addInterceptor(new BasicAuthInterceptor("dani", "hola"))
-                .build();
+        /*
+            Android puede haber borrado el dato estático si necesita memoria.
+            En ese caso se manda al usuario a la pantalla de inicio.
+        */
+        if(GestoraToken.getAuthorization() != null){
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
+                    //.addInterceptor(new BasicAuthInterceptor("dani", "hola"))
+                    .build();
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(getApplication().getString(R.string.SERVER_URL))
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(getApplication().getString(R.string.SERVER_URL))
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
-        atributosInterface = retrofit.create(AtributosInterface.class);
+            atributosInterface = retrofit.create(AtributosInterface.class);
 
-        atributosInterface.getAtributos().enqueue(new Callback<Atributos>() {
-            @Override
-            public void onResponse(Call<Atributos> call, Response<Atributos> response) {
-                if(response.isSuccessful()){
-                    ldAtributos.postValue(response.body());
-                    GestoraToken.setAuthorization(response.headers().get("Authorization"));
-                }else{
-                    ldError.setValue(response.code());
+            atributosInterface.getAtributos().enqueue(new Callback<Atributos>() {
+                @Override
+                public void onResponse(Call<Atributos> call, Response<Atributos> response) {
+                    if(response.isSuccessful()){
+                        ldAtributos.postValue(response.body());
+                        GestoraToken.setAuthorization(response.headers().get("Authorization"));
+                    }else{
+                        /*
+                            Puede haber pasado una hora desde que el usuario uso la app por última
+                            vez y que Android aún no haya borrado el token de memoria por lo que
+                            dejaría de ser válido (401 Unauthorized)
+                            En este caso también se manda a
+                         */
+                        ldError.setValue(response.code());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Atributos> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Atributos> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }else{
+            ldError.setValue(401);
+        }
     }
 
     public void entrenar(String atributo) {
@@ -78,33 +92,37 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
         Retrofit retrofit;
         AtributosInterface atributosInterface;
 
-        client = new OkHttpClient.Builder()
-                .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
-                .build();
+        if(GestoraToken.getAuthorization() != null){
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
+                    .build();
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl(getApplication().getString(R.string.SERVER_URL))
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(getApplication().getString(R.string.SERVER_URL))
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
-        atributosInterface = retrofit.create(AtributosInterface.class);
+            atributosInterface = retrofit.create(AtributosInterface.class);
 
-        atributosInterface.postAtributos(new Entrenamiento(atributo)).enqueue(new Callback<Atributos>() {
-            @Override
-            public void onResponse(Call<Atributos> call, Response<Atributos> response) {
-                if(response.isSuccessful()){
-                    ldAtributos.postValue(response.body());
-                    GestoraToken.setAuthorization(response.headers().get("Authorization"));
-                }else{
-                    //Gestionar error
+            atributosInterface.postAtributos(new Entrenamiento(atributo)).enqueue(new Callback<Atributos>() {
+                @Override
+                public void onResponse(Call<Atributos> call, Response<Atributos> response) {
+                    if(response.isSuccessful()){
+                        ldAtributos.postValue(response.body());
+                        GestoraToken.setAuthorization(response.headers().get("Authorization"));
+                    }else{
+                        ldError.setValue(response.code());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Atributos> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Atributos> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }else{
+            ldError.setValue(401);
+        }
     }
 }
