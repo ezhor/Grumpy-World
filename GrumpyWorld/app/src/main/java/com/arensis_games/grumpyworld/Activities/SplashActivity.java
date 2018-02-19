@@ -61,7 +61,7 @@ public class SplashActivity extends AppCompatActivity {
                                 finish();
                                 break;
                             default:
-                                Toast.makeText(SplashActivity.this, "Error desconocido ("+error+")", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SplashActivity.this, getString(R.string.error_desconocido, error), Toast.LENGTH_SHORT).show();
                                 break;
                         }
                     }

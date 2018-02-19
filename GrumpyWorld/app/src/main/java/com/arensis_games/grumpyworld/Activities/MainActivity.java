@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                             finish();
                             break;
                         default:
-                            Toast.makeText(MainActivity.this, "Error desconocido ("+error+")", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, getString(R.string.error_desconocido, error), Toast.LENGTH_SHORT).show();
                             break;
                     }
                 }

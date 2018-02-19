@@ -64,10 +64,10 @@ public class LoginActivity extends AppCompatActivity {
                     int error = integer;
                     switch (error){
                         case 401:
-                            Toast.makeText(LoginActivity.this, "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, getString(R.string.error_usuario_contrasena_incorrectos), Toast.LENGTH_SHORT).show();
                             break;
                         default:
-                            Toast.makeText(LoginActivity.this, "Error desconocido ("+error+")", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, getString(R.string.error_desconocido, error), Toast.LENGTH_SHORT).show();
                             break;
                     }
                 }
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void enviar(View view) {
         if(etUsuario.getText().toString().equals("") || etContrasena.getText().toString().equals("")){
-            Toast.makeText(LoginActivity.this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, getString(R.string.error_campo_vacio), Toast.LENGTH_SHORT).show();
         }else{
             Authentication authentication = new Authentication();
             authentication.setUsuario(etUsuario.getText().toString());

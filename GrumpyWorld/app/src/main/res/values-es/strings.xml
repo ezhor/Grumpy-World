@@ -32,4 +32,10 @@
     <string name="repetir_contrasena_hint">Repetir contraseña</string>
     <string name="enviar">Enviar</string>
     <string name="registrate">¿No tienes cuenta? Regístrate</string>
+
+    <string name="error_desconocido">Error desconocido (%1$d)</string>
+    <string name="error_usuario_contrasena_incorrectos">Usuario y/o contraseña incorrectos</string>
+    <string name="error_campo_vacio">Ningún campo puede quedar vacío</string>
+    <string name="error_contrasenas_no_coinciden">Las contraseñas no coinciden</string>
+    <string name="error_usuario_ya_existe">El usuario ya existe</string>
 </resources>

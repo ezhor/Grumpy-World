@@ -34,4 +34,11 @@
     <string name="repetir_contrasena_hint">Repeat password</string>
     <string name="enviar">Send</string>
     <string name="registrate">You don\'t have an account? Sign up</string>
+
+    <string name="error_desconocido">Unknown error (%1$d)</string>
+    <string name="error_usuario_contrasena_incorrectos">Incorrect username and/or password</string>
+    <string name="error_campo_vacio">No field can be empty</string>
+    <string name="error_contrasenas_no_coinciden">Passwords don\'t match</string>
+    <string name="error_usuario_ya_existe">User already exists</string>
+
 </resources>

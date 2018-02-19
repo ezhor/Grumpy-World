@@ -59,10 +59,10 @@ public class RegistroActivity extends AppCompatActivity {
                             finish();
                             break;
                         case 409:
-                            Toast.makeText(RegistroActivity.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistroActivity.this, getString(R.string.error_usuario_ya_existe), Toast.LENGTH_SHORT).show();
                             break;
                         default:
-                            Toast.makeText(RegistroActivity.this, "Error desconocido ("+error+")", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistroActivity.this, getString(R.string.error_desconocido, error), Toast.LENGTH_SHORT).show();
                             break;
                     }
                 }
@@ -75,9 +75,9 @@ public class RegistroActivity extends AppCompatActivity {
     public void enviar(View view){
         if(etUsuario.getText().toString().equals("") || etContrasena.getText().toString().equals("")
                 || etRepetirContrasena.getText().toString().equals("")){
-            Toast.makeText(RegistroActivity.this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegistroActivity.this, getString(R.string.error_campo_vacio), Toast.LENGTH_SHORT).show();
         }else if(!etContrasena.getText().toString().equals(etRepetirContrasena.getText().toString())){
-            Toast.makeText(RegistroActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegistroActivity.this, getString(R.string.error_contrasenas_no_coinciden), Toast.LENGTH_SHORT).show();
         }else{
             authentication.setUsuario(etUsuario.getText().toString());
             authentication.setContrasena(etContrasena.getText().toString());
