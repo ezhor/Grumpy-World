@@ -69,10 +69,10 @@ public class AdaptadorDrawer<T> extends ArrayAdapter<T> {
     public int getItemViewType(int position){
         int tipo = 0;
         if(
-            getItem(position).equals("Campaña") ||
-            getItem(position).equals("Multijugador") ||
-            getItem(position).equals("Rollo") ||
-            getItem(position).equals("Extras")) {
+            getItem(position).equals(context.getString(R.string.menu_campana)) ||
+            getItem(position).equals(context.getString(R.string.menu_multijugador)) ||
+            getItem(position).equals(context.getString(R.string.menu_inventario)) ||
+            getItem(position).equals(context.getString(R.string.menu_extras))) {
             tipo = 1;
         }
         return tipo;

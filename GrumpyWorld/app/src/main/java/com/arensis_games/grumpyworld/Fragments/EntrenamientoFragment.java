@@ -87,7 +87,7 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
                     tvFuerza.setText(String.valueOf(atributos.getFuerza()));
                     tvConstitucion.setText(String.valueOf(atributos.getConstitucion()));
                     tvDestreza.setText(String.valueOf(atributos.getDestreza()));
-                    tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(finEntrenamiento));
+                    tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(getContext(), finEntrenamiento));
                     progress.setVisibility(View.GONE);
                     milis = System.currentTimeMillis();
                     if(finEntrenamiento-(milis/1000) <= 0){
@@ -95,7 +95,7 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
                     }
                     handler.postDelayed(new Runnable(){
                         public void run(){
-                            tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(finEntrenamiento));
+                            tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(getContext(), finEntrenamiento));
                             if(!cargando){
                                 milis = System.currentTimeMillis();
                                 if(finEntrenamiento-(milis/1000) <= 0){

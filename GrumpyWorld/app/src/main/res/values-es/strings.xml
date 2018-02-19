@@ -1,0 +1,35 @@
+<resources>
+    <string name="menu_campana">Campaña</string>
+    <string name="menu_entrenamiento">Entrenamiento</string>
+    <string name="menu_caza">Caza</string>
+    <string name="menu_mapa">Mapa</string>
+    <string name="menu_sello">\??????</string>
+    <string name="menu_multijugador">Multijugador</string>
+    <string name="menu_amigos">Amigos</string>
+    <string name="menu_duelo">Duelo</string>
+    <string name="menu_ranking">Ranking</string>
+    <string name="menu_inventario">Inventario</string>
+    <string name="menu_fabricacion">Fabricación</string>
+    <string name="menu_equipamiento">Equipamiento</string>
+    <string name="menu_extras">Extras</string>
+    <string name="menu_historia">Historia</string>
+    <string name="menu_cerrar_sesion">Cerrar sesión</string>
+
+    <string name="quedan_anos_meses">Quedan %1$d años y %2$d meses</string>
+    <string name="quedan_meses_dias">Quedan %1$d meses y %2$d días</string>
+    <string name="quedan_dias_horas">Quedan %1$d días y %2$d horas</string>
+    <string name="quedan_horas_minutos">Quedan %1$d horas y %2$d minutos</string>
+    <string name="quedan_minutos_segundos">Quedan %1$d minutos y %2$d segundos</string>
+    <string name="quedan_segundos">Quedan %1$d segundos</string>
+
+    <string name="titulo_fuerza">FUERZA</string>
+    <string name="titulo_constitucion">CONSTITUCIÓN</string>
+    <string name="titulo_destreza">DESTREZA</string>
+
+    <string name="registro">Registro</string>
+    <string name="usuario_hint">Usuario</string>
+    <string name="contrasena_hint">Contraseña</string>
+    <string name="repetir_contrasena_hint">Repetir contraseña</string>
+    <string name="enviar">Enviar</string>
+    <string name="registrate">¿No tienes cuenta? Regístrate</string>
+</resources>

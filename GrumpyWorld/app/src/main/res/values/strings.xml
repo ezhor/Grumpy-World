@@ -1,13 +1,37 @@
 <resources>
     <string name="app_name">Grumpy World</string>
     <string name="SERVER_URL">https://mirandaserver.ddns.net/</string>
+    <string name="menu_campana">Campaign</string>
+    <string name="menu_entrenamiento">Trainning</string>
+    <string name="menu_caza">Hunting</string>
+    <string name="menu_mapa">Map</string>
+    <string name="menu_sello">\??????</string>
+    <string name="menu_multijugador">Multiplayer</string>
+    <string name="menu_amigos">Friends</string>
+    <string name="menu_duelo">Duel</string>
+    <string name="menu_ranking">Ranking</string>
+    <string name="menu_inventario">Inventory</string>
+    <string name="menu_fabricacion">Crafting</string>
+    <string name="menu_equipamiento">Equipment</string>
+    <string name="menu_extras">Extra</string>
+    <string name="menu_historia">History</string>
+    <string name="menu_cerrar_sesion">Sign out</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="quedan_anos_meses">%1$d years and %2$d months left</string>
+    <string name="quedan_meses_dias">%1$d months and %2$d days left</string>
+    <string name="quedan_dias_horas">%1$d days and %2$d hours left</string>
+    <string name="quedan_horas_minutos">%1$d hours and %2$d minutes left</string>
+    <string name="quedan_minutos_segundos">%1$d minutes and %2$d seconds left</string>
+    <string name="quedan_segundos">%1$d seconds left</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="titulo_fuerza">STRENGTH</string>
+    <string name="titulo_constitucion">CONSTITUTION</string>
+    <string name="titulo_destreza">DEXTERITY</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="registro">Register</string>
+    <string name="usuario_hint">User</string>
+    <string name="contrasena_hint">Password</string>
+    <string name="repetir_contrasena_hint">Repeat password</string>
+    <string name="enviar">Send</string>
+    <string name="registrate">You don\'t have an account? Sign up</string>
 </resources>

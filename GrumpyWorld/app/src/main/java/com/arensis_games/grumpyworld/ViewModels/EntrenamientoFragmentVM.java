@@ -31,6 +31,7 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
     public EntrenamientoFragmentVM(@NonNull Application application) {
         super(application);
         ldAtributos = new MutableLiveData<>();
+        ldError = new MutableLiveData<>();
     }
 
     public MutableLiveData<Atributos> getLdAtributos() {

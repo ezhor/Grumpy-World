@@ -30,16 +30,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private MainActivityVM vm;
     private Observer<Integer> errorObserver;
     private Rollo rollo;
-    private String[] elementos ={
-            "Campaña",
-            "Entrenamiento", "Caza", "Mapa", "??????",
-            "Multijugador",
-            "Amigos","Duelo", "Ranking",
-            "Rollo",
-            "Fabricación", "Equipamiento",
-            "Extras",
-            "Historia", "Cerrar sesión"
-    };
+    private String[] elementos;
     private MainActivity thisActivity = this;
 
 
@@ -47,6 +38,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        elementos = new String[]{
+                getString(R.string.menu_campana),
+                getString(R.string.menu_entrenamiento),
+                getString(R.string.menu_caza),
+                getString(R.string.menu_mapa),
+                getString(R.string.menu_sello),
+                getString(R.string.menu_multijugador),
+                getString(R.string.menu_amigos),
+                getString(R.string.menu_duelo),
+                getString(R.string.menu_ranking),
+                getString(R.string.menu_inventario),
+                getString(R.string.menu_fabricacion),
+                getString(R.string.menu_equipamiento),
+                getString(R.string.menu_extras),
+                getString(R.string.menu_historia),
+                getString(R.string.menu_cerrar_sesion),
+        };
 
         vm = ViewModelProviders.of(this).get(MainActivityVM.class);
         rollo = getIntent().getParcelableExtra("rollo");
@@ -98,19 +107,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Fragment fragment = null;
         Intent intent;
+        String opcionElegida = elementos[position];
 
         drawerLayout.closeDrawer(lvDrawer);
-        switch (elementos[position]){
-            case "Entrenamiento":
-                fragment = new EntrenamientoFragment();
-                break;
-            case "Cerrar sesión":
-                vm.cerrarSesion();
-                intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-                break;
+
+        if(opcionElegida.equals(getString(R.string.menu_entrenamiento))){
+            fragment = new EntrenamientoFragment();
+        }else if(opcionElegida.equals(getString(R.string.menu_cerrar_sesion))){
+            vm.cerrarSesion();
+            intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         }
+
         if(fragment != null){
             getSupportFragmentManager()
                     .beginTransaction()

@@ -1,5 +1,6 @@
 package com.arensis_games.grumpyworld;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 
@@ -47,7 +48,7 @@ public class GestoraGUI {
         return drawable;
     }
 
-    public String getTiempoRestanteBonito(int finEntrenamiento){
+    public String getTiempoRestanteBonito(Context context, int finEntrenamiento){
         String tiempoBonito = "";
         int tiempoEnSegundos = (int)(finEntrenamiento - (System.currentTimeMillis()/1000));
         int segundosEnUnMinuto = 60;
@@ -64,34 +65,34 @@ public class GestoraGUI {
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnAno;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)(((tiempoDecimal-tiempo1)*segundosEnUnAno)/segundosEnUnMes);
-                tiempoBonito = "Quedan "+tiempo1+" años y "+tiempo2+" meses";
+                tiempoBonito = context.getString(R.string.quedan_anos_meses, tiempo1, tiempo2);
             }
             else if(tiempoEnSegundos >= segundosEnUnMes){
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnMes;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)(((tiempoDecimal-tiempo1)*segundosEnUnMes)/segundosEnUnDia);
-                tiempoBonito = "Quedan "+tiempo1+" meses y "+tiempo2+" días";
+                tiempoBonito = context.getString(R.string.quedan_meses_dias, tiempo1, tiempo2);
             }
             else if(tiempoEnSegundos >= segundosEnUnDia){
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnDia;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)(((tiempoDecimal-tiempo1)*segundosEnUnDia)/segundosEnUnaHora);
-                tiempoBonito = "Quedan "+tiempo1+" días y "+tiempo2+" horas";
+                tiempoBonito = context.getString(R.string.quedan_dias_horas, tiempo1, tiempo2);
                 }
             else if(tiempoEnSegundos >= segundosEnUnaHora){
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnaHora;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)(((tiempoDecimal-tiempo1)*segundosEnUnaHora)/segundosEnUnMinuto);
-                tiempoBonito = "Quedan "+tiempo1+" horas y "+tiempo2+" minutos";
+                tiempoBonito = context.getString(R.string.quedan_horas_minutos, tiempo1, tiempo2);
             }
             else if(tiempoEnSegundos >= segundosEnUnMinuto){
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnMinuto;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)((tiempoDecimal-tiempo1)*segundosEnUnMinuto);
-                tiempoBonito = "Quedan "+tiempo1+" minutos y "+tiempo2+" segundos";
+                tiempoBonito = context.getString(R.string.quedan_minutos_segundos, tiempo1, tiempo2);
             }
             else{
-                tiempoBonito = "Quedan "+tiempoEnSegundos+" segundos";
+                tiempoBonito = context.getString(R.string.quedan_segundos, tiempoEnSegundos);
             }
         }
 
@@ -102,42 +103,40 @@ public class GestoraGUI {
         Drawable drawable = null;
 
         if(elemento != null){
-            switch (elemento){
-                case "Entrenamiento":
-                    drawable = resources.getDrawable(R.drawable.icono_entrenamiento);
-                    break;
-                case "Caza":
+            if(elemento.equals(resources.getString(R.string.menu_entrenamiento))) {
+                drawable = resources.getDrawable(R.drawable.icono_entrenamiento);
+                }
+            else if(elemento.equals(resources.getString(R.string.menu_caza))) {
                     drawable = resources.getDrawable(R.drawable.icono_caza);
-                    break;
-                case "Mapa":
+                    }
+            else if(elemento.equals(resources.getString(R.string.menu_mapa))) {
                     drawable = resources.getDrawable(R.drawable.icono_mapa);
-                    break;
-                case "??????":
+                    }
+            else if(elemento.equals(resources.getString(R.string.menu_sello))) {
                     drawable = resources.getDrawable(R.drawable.icono_sello);
-                    break;
-                case "Amigos":
+                    }
+            else if(elemento.equals(resources.getString(R.string.menu_amigos))) {
                     drawable = resources.getDrawable(R.drawable.icono_amigos);
-                    break;
-                case "Duelo":
+                    }
+            else if(elemento.equals(resources.getString(R.string.menu_duelo))) {
                     drawable = resources.getDrawable(R.drawable.icono_duelo);
-                    break;
-                case "Ranking":
+                    }
+            else if(elemento.equals(resources.getString(R.string.menu_ranking))) {
                     drawable = resources.getDrawable(R.drawable.icono_ranking);
-                    break;
-                case "Fabricación":
+                    }
+            else if(elemento.equals(resources.getString(R.string.menu_fabricacion))) {
                     drawable = resources.getDrawable(R.drawable.icono_fabricacion);
-                    break;
-                case "Equipamiento":
+                    }
+            else if(elemento.equals(resources.getString(R.string.menu_equipamiento))) {
                     drawable = resources.getDrawable(R.drawable.icono_equipamiento);
-                    break;
-                case "Historia":
+                    }
+            else if(elemento.equals(resources.getString(R.string.menu_historia))) {
                     drawable = resources.getDrawable(R.drawable.icono_historia);
-                    break;
-                case "Cerrar sesión":
+                    }
+            else if(elemento.equals(resources.getString(R.string.menu_cerrar_sesion))) {
                     drawable = resources.getDrawable(R.drawable.icono_cerrar_sesion);
-                    break;
+                    }
             }
-        }
 
         return drawable;
     }

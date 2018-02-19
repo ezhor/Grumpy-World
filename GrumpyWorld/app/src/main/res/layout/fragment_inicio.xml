@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fondo_oficina"
+        android:background="@drawable/fondo_bano"
         android:id="@+id/relativePrincipal">
 
         <ImageView
@@ -21,7 +21,6 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/tenedor"
             android:adjustViewBounds="true"
             android:layout_centerInParent="true"
             android:id="@+id/ivArma"
@@ -29,7 +28,6 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/casco_obra"
             android:adjustViewBounds="true"
             android:layout_centerInParent="true"
             android:id="@+id/ivSombrero"
