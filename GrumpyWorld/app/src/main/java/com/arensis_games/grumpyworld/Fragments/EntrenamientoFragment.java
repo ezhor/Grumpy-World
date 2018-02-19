@@ -3,6 +3,7 @@ package com.arensis_games.grumpyworld.Fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -56,7 +57,7 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_entrenamiento, container, false);
 
@@ -95,21 +96,24 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
                     }
                     handler.postDelayed(new Runnable(){
                         public void run(){
-                            tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(getContext(), finEntrenamiento));
-                            if(!cargando){
-                                milis = System.currentTimeMillis();
-                                if(finEntrenamiento-(milis/1000) <= 0){
-                                    if(!botonesActivados){
-                                        activarBotones();
-                                    }
-                                }else{
-                                    if(botonesActivados){
-                                        desactivarBotones();
+                            Context context = getContext();
+                            if(context != null){
+                                tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(context, finEntrenamiento));
+                                if(!cargando){
+                                    milis = System.currentTimeMillis();
+                                    if(finEntrenamiento-(milis/1000) <= 0){
+                                        if(!botonesActivados){
+                                            activarBotones();
+                                        }
+                                    }else{
+                                        if(botonesActivados){
+                                            desactivarBotones();
+                                        }
                                     }
                                 }
-                            }
 
-                            handler.postDelayed(this, 500); //Corrección de tiempo de ejecución
+                                handler.postDelayed(this, 500); //Corrección de tiempo de ejecución
+                            }
                         }
                     }, 500);
                 }
