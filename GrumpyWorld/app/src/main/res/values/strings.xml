@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Grumpy World</string>
     <string name="SERVER_URL">https://mirandaserver.ddns.net/</string>
+
     <string name="menu_campana">Campaign</string>
     <string name="menu_entrenamiento">Trainning</string>
     <string name="menu_caza">Hunting</string>
