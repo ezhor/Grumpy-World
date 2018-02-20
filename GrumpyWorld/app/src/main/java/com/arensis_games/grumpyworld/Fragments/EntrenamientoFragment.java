@@ -4,7 +4,6 @@ package com.arensis_games.grumpyworld.Fragments;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -15,11 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.arensis_games.grumpyworld.Activities.LoginActivity;
-import com.arensis_games.grumpyworld.Activities.MainActivity;
-import com.arensis_games.grumpyworld.Activities.SplashActivity;
 import com.arensis_games.grumpyworld.GestoraGUI;
 import com.arensis_games.grumpyworld.Models.Atributos;
 import com.arensis_games.grumpyworld.R;
@@ -112,13 +107,14 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
                                     }
                                 }
 
-                                handler.postDelayed(this, 500); //Corrección de tiempo de ejecución
+                                handler.postDelayed(this, 300); //Corrección de tiempo de ejecución
                             }
                         }
-                    }, 500);
+                    }, 300);
                 }
             }
         };
+        vm.getLdAtributos().observe(this, atributosObserver);
 
         errorObserver = new Observer<Integer>() {
             @Override
@@ -128,8 +124,9 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
                 }
             }
         };
+        vm.getLdError().observe(this, errorObserver);
 
-        vm.getLdAtributos().observe(this, atributosObserver);
+
         vm.obtenerAtributos();
 
         return view;

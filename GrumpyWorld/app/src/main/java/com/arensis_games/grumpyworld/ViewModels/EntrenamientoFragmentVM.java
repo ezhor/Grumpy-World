@@ -38,6 +38,10 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
         return ldAtributos;
     }
 
+    public MutableLiveData<Integer> getLdError() {
+        return ldError;
+    }
+
     public void obtenerAtributos(){
         OkHttpClient client;
         Retrofit retrofit;

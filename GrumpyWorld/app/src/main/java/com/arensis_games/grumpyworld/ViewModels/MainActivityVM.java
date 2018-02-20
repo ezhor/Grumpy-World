@@ -32,7 +32,7 @@ public class MainActivityVM extends AndroidViewModel {
         this.rollo = rollo;
     }
 
-    public MutableLiveData<Integer> getErrorObserver() {
+    public MutableLiveData<Integer> getLdError() {
         return ldError;
     }
 

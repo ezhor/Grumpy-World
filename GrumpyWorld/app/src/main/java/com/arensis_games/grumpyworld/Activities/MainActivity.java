@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -20,7 +19,6 @@ import com.arensis_games.grumpyworld.Fragments.EntrenamientoFragment;
 import com.arensis_games.grumpyworld.Fragments.InicioFragment;
 import com.arensis_games.grumpyworld.Models.Rollo;
 import com.arensis_games.grumpyworld.R;
-import com.arensis_games.grumpyworld.ViewModels.LoginActivityVM;
 import com.arensis_games.grumpyworld.ViewModels.MainActivityVM;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     int error = integer;
                     switch (error){
                         case 401:
-                            intent = new Intent(thisActivity, LoginActivity.class);
+                            intent = new Intent(thisActivity, SplashActivity.class);
                             startActivity(intent);
                             finish();
                             break;
@@ -83,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
         };
+        vm.getLdError().observe(this, errorObserver);
 
         mostrarFragmentInicio();
         rellenarDrawer();
