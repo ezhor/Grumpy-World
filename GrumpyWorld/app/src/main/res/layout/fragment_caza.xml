@@ -1,0 +1,202 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.arensis_games.grumpyworld.Fragments.CazaFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondo_bano">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rollo"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/ivRollo"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cepillo"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/ivEnemigo"
+            />
+
+
+        <ProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/barraVidaEnemigo"
+            android:id="@+id/centro" />
+
+
+        <ProgressBar
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:progress="25"
+            android:secondaryProgress="35"
+            android:progressDrawable="@drawable/barra_vida"
+            android:id="@+id/barraVidaRollo"
+            android:layout_toLeftOf="@id/centro"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="69dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/barraVidaRollo"
+            android:layout_alignStart="@id/barraVidaRollo"
+            android:layout_below="@+id/barraVidaRollo"
+            android:shadowColor="#000"
+            android:shadowDx="2.0"
+            android:shadowDy="2.0"
+            android:shadowRadius="1.5"
+            android:text="ezhor malkavar"
+            android:textColor="#fff" />
+
+        <ProgressBar
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_toRightOf="@id/centro"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:progress="25"
+            android:secondaryProgress="35"
+            android:progressDrawable="@drawable/barra_vida"
+            android:id="@+id/barraVidaEnemigo"
+            android:layout_marginTop="69dp"
+            android:layout_marginRight="5dp"
+            android:scaleX="-1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/barraVidaEnemigo"
+            android:layout_alignEnd="@id/barraVidaEnemigo"
+            android:layout_below="@+id/barraVidaRollo"
+            android:shadowColor="#000"
+            android:shadowDx="2.0"
+            android:shadowDy="2.0"
+            android:shadowRadius="1.5"
+            android:text="cepillo de dientes12"
+            android:textColor="#fff"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="15dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btnAtaque"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/boton"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icono_ataque"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/btnAtaque"
+                    android:shadowColor="#000"
+                    android:shadowDx="2.0"
+                    android:shadowDy="2.0"
+                    android:shadowRadius="1.5"
+                    android:text="@string/ataque"
+                    android:textAlignment="center"
+                    android:textColor="#fff" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btnEspecial"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/boton"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icono_especial" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnEspecial"
+                    android:layout_centerHorizontal="true"
+                    android:shadowColor="#000"
+                    android:shadowDx="2.0"
+                    android:shadowDy="2.0"
+                    android:shadowRadius="1.5"
+                    android:text="@string/especial"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btnContra"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/boton"
+                    android:padding="5dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/icono_contra" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnContra"
+                    android:layout_centerHorizontal="true"
+                    android:shadowColor="#000"
+                    android:shadowDx="2.0"
+                    android:shadowDy="2.0"
+                    android:shadowRadius="1.5"
+                    android:text="@string/especial"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>
+

@@ -42,4 +42,9 @@
     <string name="error_contrasenas_no_coinciden">Passwords don\'t match</string>
     <string name="error_usuario_ya_existe">User already exists</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ataque">Attack</string>
+    <string name="especial">Special</string>
+
 </resources>

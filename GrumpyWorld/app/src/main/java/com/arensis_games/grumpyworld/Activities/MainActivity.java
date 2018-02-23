@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.arensis_games.grumpyworld.Adapters.AdaptadorDrawer;
+import com.arensis_games.grumpyworld.Fragments.CazaFragment;
 import com.arensis_games.grumpyworld.Fragments.EntrenamientoFragment;
 import com.arensis_games.grumpyworld.Fragments.InicioFragment;
 import com.arensis_games.grumpyworld.Models.Rollo;
@@ -117,6 +118,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
+        }else if(opcionElegida.equals(getString(R.string.menu_caza))){
+            fragment = new CazaFragment();
         }
 
         if(fragment != null){
