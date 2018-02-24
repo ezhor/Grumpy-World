@@ -27,9 +27,9 @@ class AtributosHandlerModel
         $prep_query->execute();
         $prep_query->fetch();
 
-        $rollo = new AtributosModel($fuerza, $constitucion, $destreza, $finEntrenamiento);
+        $atributos = new AtributosModel($fuerza, $constitucion, $destreza, $finEntrenamiento);
 
-        return $rollo;
+        return $atributos;
     }
 
     public static function entrenar($id, $atributo){

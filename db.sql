@@ -42,6 +42,7 @@ CREATE TABLE Rollos(
   ID_Zona INT NOT NULL,
   Nivel INT NOT NULL DEFAULT 0,
   Honor INT NOT NULL DEFAULT 0,
+  Pactos TINYINT NOT NULL DEFAULT 0,
   CONSTRAINT FK_Rollos_Usuario FOREIGN KEY(ID_Usuario) REFERENCES Usuarios(ID) ON DELETE CASCADE,
   CONSTRAINT FK_Rollos_Zona FOREIGN KEY (ID_Zona) REFERENCES Zonas(ID) ON DELETE NO ACTION,
   PRIMARY KEY(ID_Usuario)
@@ -50,7 +51,7 @@ CREATE TABLE Rollos(
 CREATE TABLE Duelos(
 	ID_Rollo INT NOT NULL,
     ID_RolloEnemigo INT NOT NULL,
-    Vida TINYINT NOT NULL DEFAULT 100,
+    Vida TINYINT NULL, -- Es NULL cuando un jugador ha decidido su turno pero el otro jugado aún no
     Turno TINYINT NULL,
     Ataque TINYINT NULL,
     Momento INT NULL,
@@ -115,12 +116,11 @@ CREATE TABLE Equipables_Materiales(
 CREATE TABLE Enemigos(
   ID INT NOT NULL AUTO_INCREMENT,
   Nombre NVARCHAR(20) NOT NULL UNIQUE,
-  Fuerza INT NOT NULL,
-  Constitucion INT NOT NULL,
-  Destreza INT NOT NULL,
+  ID_Atributos INT NOT NULL,
   ID_Zona INT NOT NULL,
   EsJefe BIT(1) NOT NULL,
   CONSTRAINT FK_Enemigos_Zona FOREIGN KEY (ID_Zona) REFERENCES Zonas(ID) ON DELETE NO ACTION,
+  CONSTRAINT FK_Enemigos_Atributos FOREIGN KEY (ID_Atributos) REFERENCES Atributos(ID) ON DELETE NO ACTION,
   PRIMARY KEY(ID)
 );
 
@@ -137,16 +137,16 @@ CREATE TABLE Caza(
     VidaRollo TINYINT NOT NULL DEFAULT 100,
     VidaEnemigo TINYINT NOT NULL DEFAULT 100,
     AtaqueRollo TINYINT NULL,
-    AtaqueEnemigos TINYINT NULL,
+    AtaqueEnemigo TINYINT NULL,
     CONSTRAINT FK_Rollos_Enemigos_Rollo FOREIGN KEY (ID_Rollo) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE,
     CONSTRAINT FK_Rollos_Enemigos_Enemigo FOREIGN KEY (ID_Enemigo) REFERENCES Enemigos(ID) ON DELETE CASCADE
 );
 
 
 
--- Funciones y procedimientos
+-- Funciones
 DELIMITER $$
-CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(30)) -- En desuso
+CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(20)) -- En desuso
 RETURNS BIT
 BEGIN
   /*DECLARE existe BIT;
@@ -159,7 +159,24 @@ BEGIN
 	RETURN (SELECT COUNT(*) FROM Usuarios WHERE Usuario = nombre_usuario)>0;
 END $$
 
-CREATE PROCEDURE crearUsuario(IN usuario NVARCHAR(30), IN contrasena NVARCHAR(255), OUT conseguido BIT)
+CREATE FUNCTION enemigoMasRapido(destrezaRollo INT, destrezaEnemigo INT) -- En desuso
+RETURNS BIT
+BEGIN
+	RETURN destrezaEnemigo>destrezaRollo;
+END $$
+
+CREATE FUNCTION rangoRollo(honorRollo INT, idRollo INT)
+RETURNS INT
+BEGIN
+	SET @rango = (SELECT COUNT(*) FROM Rollos WHERE Honor>honorRollo OR (Honor=honorRollo AND ID_Usuario<idRollo) );
+    SET @rango = @rango+1;
+	RETURN @rango;
+END $$
+
+
+-- Procedimientos
+
+CREATE PROCEDURE crearUsuario(IN usuario NVARCHAR(20), IN contrasena NVARCHAR(255), OUT conseguido BIT)
 BEGIN
     INSERT INTO Usuarios (Usuario, Contrasena) VALUE (usuario, contrasena);
     IF(ROW_COUNT()>0) THEN
@@ -212,8 +229,20 @@ BEGIN
         END IF;
 END $$
 
-DELIMITER ;
+CREATE PROCEDURE crearEnemigo(IN nNombre NVARCHAR(20), IN nFuerza INT, IN nConstitucion INT, IN nDestreza INT, IN nEsJefe BIT, IN nNombreZona NVARCHAR(30))
+BEGIN
+	INSERT INTO Atributos (Fuerza, Constitucion, Destreza) VALUE (nFuerza, nConstitucion, nDestreza);
+    INSERT INTO Enemigos (Nombre, ID_Atributos, ID_Zona, Esjefe)
+		SELECT nNombre, LAST_INSERT_ID(), ID, nEsJefe FROM Zonas WHERE Nombre = nNombreZona;
+END $$
 
+CREATE PROCEDURE asignarCaza(IN idRollo INT, IN nombreEnemigo NVARCHAR(20))
+BEGIN
+	INSERT INTO Caza (ID_Rollo, ID_Enemigo)
+		SELECT idRollo, ID FROM Enemigos WHERE Enemigos.Nombre = nombreEnemigo;
+END $$
+
+DELIMITER ;
 -- Datos iniciales
 
 -- Zonas
@@ -225,55 +254,26 @@ INSERT INTO Zonas (Nombre, Nivel) VALUES
     ('cementerio', 5),
     ('infierno', 6);
 
--- Enemigos
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'stripper', 10, 20, 30, 0, ID FROM Zonas WHERE Nombre = 'bano';
+CALL crearEnemigo('stripper', 10, 20, 30, 0, 'bano');
+CALL crearEnemigo('cepillo', 10, 30, 20, 0, 'bano');
+CALL crearEnemigo('cuchilla', 30, 10, 20, 0, 'bano');
+CALL crearEnemigo('champu', 20, 10, 30, 0, 'bano');
+CALL crearEnemigo('vater', 30, 50, 20, 1, 'bano');
 
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'cepillo', 10, 30, 20, 0, ID FROM Zonas WHERE Nombre = 'bano';
+CALL crearEnemigo('leche', 60, 80, 70, 0, 'cocina');
+CALL crearEnemigo('zanahoria', 80, 60, 70, 0, 'cocina');
+CALL crearEnemigo('cuchara', 70, 80, 60, 0, 'cocina');
+CALL crearEnemigo('limon', 70, 60, 80, 0, 'cocina');
+CALL crearEnemigo('calabaza', 80, 100, 70, 1, 'cocina');
 
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'cuchilla', 30, 20, 10, 0, ID FROM Zonas WHERE Nombre = 'bano';
+CALL crearEnemigo('raton', 120, 110, 130, 0, 'oficina');
+CALL crearEnemigo('grapadora', 130, 120, 110, 0, 'oficina');
+CALL crearEnemigo('lapiz', 130, 110, 120, 0, 'oficina');
+CALL crearEnemigo('libro', 110, 130, 120, 0, 'oficina');
+CALL crearEnemigo('pendrive', 110, 150, 120, 1, 'oficina');
 
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'champu', 20, 10, 30, 0, ID FROM Zonas WHERE Nombre = 'bano';
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'vater', 30, 50, 20, 1, ID FROM Zonas WHERE Nombre = 'bano';
-
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'leche', 60, 80, 70, 0, ID FROM Zonas WHERE Nombre = 'cocina';
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'zanahoria', 80, 60, 70, 0, ID FROM Zonas WHERE Nombre = 'cocina';
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'cuchara', 70, 80, 60, 0, ID FROM Zonas WHERE Nombre = 'cocina';
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'limon', 70, 60, 80, 0, ID FROM Zonas WHERE Nombre = 'cocina';
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'calabaza', 80, 100, 70, 1, ID FROM Zonas WHERE Nombre = 'cocina';
-
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'raton', 120, 110, 130, 0, ID FROM Zonas WHERE Nombre = 'oficina';
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'grapadora', 130, 120, 110, 0, ID FROM Zonas WHERE Nombre = 'oficina';
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'lapiz', 130, 110, 120, 0, ID FROM Zonas WHERE Nombre = 'oficina';
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'libro', 110, 130, 120, 0, ID FROM Zonas WHERE Nombre = 'oficina';
-
-INSERT INTO Enemigos (Nombre, Fuerza, Constitucion, Destreza, EsJefe, ID_Zona)
-	SELECT 'pendrive', 110, 150, 120, 1, ID FROM Zonas WHERE Nombre = 'oficina';
-
-
--- Usuario de prueba
+-- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-SELECT * FROM Atributos;
+CALL asignarCaza(1, 'champu');
+
+UPDATE Rollos SET Honor = 1000 WHERE ID_Usuario = 2;

@@ -22,70 +22,33 @@
         <item name="" type="eadb38e5:DatabaseStructure$Root" />
         <item name="GrumpyWorld@localhost" type="e3449647:DbNodeDescriptor" />
       </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="GrumpyWorld@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="GrumpyWorld" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="GrumpyWorld@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="GrumpyWorld" type="e3449647:DbNodeDescriptor" />
+        <item name="" type="fce03ad6:DatabaseStructure$GroupNode" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="GrumpyWorld@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="GrumpyWorld" type="e3449647:DbNodeDescriptor" />
+        <item name="" type="fce03ad6:DatabaseStructure$GroupNode" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GestoraAutenticacion.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GestoraAutenticacion.php">
+      <file leaf-file-name="RolloModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/RolloModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
-              <folding>
-                <marker date="1519490838180" expanded="true" signature="1426:1479" ph="SELECT ID, C... Usuarios" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EnemigoController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/EnemigoController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="121" lean-forward="false" selection-start-line="38" selection-start-column="121" selection-end-line="38" selection-end-column="121" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RolloController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/RolloController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="25" column="113" lean-forward="false" selection-start-line="25" selection-start-column="113" selection-end-line="25" selection-end-column="113" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UsuarioController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/UsuarioController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="20" column="59" lean-forward="false" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AtributosController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controller/AtributosController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="27" />
-              <folding>
-                <element signature="e#7#88#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UsuarioHandlerModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/UsuarioHandlerModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+            <state relative-caret-position="812">
+              <caret line="128" column="35" lean-forward="false" selection-start-line="128" selection-start-column="35" selection-end-line="128" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -95,10 +58,20 @@
         <entry file="file://$PROJECT_DIR$/model/RolloHandlerModel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="442">
-              <caret line="31" column="60" lean-forward="true" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+              <caret line="40" column="72" lean-forward="false" selection-start-line="40" selection-start-column="72" selection-end-line="40" selection-end-column="72" />
               <folding>
-                <marker date="1519492982842" expanded="true" signature="300:1144" ph="SELECT U.Usu... Usuarios" />
+                <marker date="1519513219530" expanded="true" signature="300:1188" ph="SELECT U.Usu... Usuarios" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a1494552-84df-4311-814e-e0a0688972fc/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="55" lean-forward="false" selection-start-line="0" selection-start-column="55" selection-end-line="0" selection-end-column="55" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>enc</find>
       <find>beforevalidexception</find>
       <find>heade</find>
       <find>head</find>
@@ -137,9 +109,11 @@
       <find>-&gt;getUsuario</find>
       <find>getUsua</find>
       <find>&gt;getusuario</find>
+      <find>EnemigoModel</find>
     </findStrings>
     <replaceStrings>
       <replace>atributo</replace>
+      <replace>EnemigoSimplificadoModel</replace>
     </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -151,8 +125,6 @@
         <option value="$PROJECT_DIR$/model/Authentication.php" />
         <option value="$PROJECT_DIR$/model/UsuarioHandlerModel.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/c3468f26-9760-4d9b-830e-d8ed122edcdf/console.sql" />
-        <option value="$PROJECT_DIR$/Request.php" />
-        <option value="$PROJECT_DIR$/model/RolloModel.php" />
         <option value="$PROJECT_DIR$/Authenticacion.php" />
         <option value="$PROJECT_DIR$/jwt/JWT.php" />
         <option value="$PROJECT_DIR$/controller/UnauthorizedController.php" />
@@ -165,13 +137,23 @@
         <option value="$PROJECT_DIR$/Authentication.php" />
         <option value="$PROJECT_DIR$/GestoraAutenticacion.php" />
         <option value="$PROJECT_DIR$/Response.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/63b82bc4-6a6a-432c-b1a3-c49e8e000551/console.sql" />
-        <option value="$PROJECT_DIR$/model/AtributosHandlerModel.php" />
-        <option value="$PROJECT_DIR$/model/RolloHandlerModel.php" />
-        <option value="$PROJECT_DIR$/controller/AtributosController.php" />
         <option value="$PROJECT_DIR$/controller/RolloController.php" />
         <option value="$PROJECT_DIR$/controller/EnemigoController.php" />
         <option value="$PROJECT_DIR$/controller/UsuarioController.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/63b82bc4-6a6a-432c-b1a3-c49e8e000551/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/387de92e-a0b8-4e25-8f52-23b749eb0534/console.sql" />
+        <option value="$PROJECT_DIR$/controller/AtributosController.php" />
+        <option value="$PROJECT_DIR$/model/AtributosHandlerModel.php" />
+        <option value="$PROJECT_DIR$/model/EnemigoSimplificado.php" />
+        <option value="$PROJECT_DIR$/model/CazaHandlerModel.php" />
+        <option value="$PROJECT_DIR$/model/EnemigoSimplificadoModel.php" />
+        <option value="$PROJECT_DIR$/model/EstadoModel.php" />
+        <option value="$PROJECT_DIR$/controller/CazaController.php" />
+        <option value="$PROJECT_DIR$/model/CazaModel.php" />
+        <option value="$PROJECT_DIR$/Request.php" />
+        <option value="$PROJECT_DIR$/model/RolloModel.php" />
+        <option value="$PROJECT_DIR$/model/RolloHandlerModel.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a1494552-84df-4311-814e-e0a0688972fc/console.sql" />
       </list>
     </option>
   </component>
@@ -191,7 +173,7 @@
     </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="27" />
     <option name="width" value="1366" />
     <option name="height" value="741" />
@@ -244,17 +226,17 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/model" />
-      <recent name="$PROJECT_DIR$/controller" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="D:\Code\Grumpy-World\Server\model" />
-      <recent name="D:\Code\Grumpy-World\Server\controller" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Code\Grumpy-World\Server" />
       <recent name="D:\Code\Grumpy-World\Server\controller" />
       <recent name="D:\Code\Grumpy-World\Server\model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Code\Grumpy-World\Server\model" />
+      <recent name="D:\Code\Grumpy-World\Server\controller" />
+      <recent name="$PROJECT_DIR$/model" />
+      <recent name="$PROJECT_DIR$/controller" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -1731,16 +1713,15 @@
       <workItem from="1518632723424" duration="1478000" />
       <workItem from="1518686537874" duration="7965000" />
       <workItem from="1518767966972" duration="2752000" />
-      <workItem from="1519474376135" duration="4392000" />
+      <workItem from="1519474376135" duration="20236000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77912000" />
+    <option name="totallyTimeSpent" value="93756000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1749,7 +1730,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49098623" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3043478" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13385417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18802084" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1781,58 +1762,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/EnemigoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="57" lean-forward="false" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/EnemigoModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2448">
-          <caret line="144" column="7" lean-forward="true" selection-start-line="144" selection-start-column="7" selection-end-line="144" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/EnemigoHandlerModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/NotFoundController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1936,14 +1865,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jwt/SignatureInvalidException.php" />
     <entry file="file://$PROJECT_DIR$/jwt/ExpiredException.php" />
-    <entry file="file://$PROJECT_DIR$/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jwt/BeforeValidException.php" />
     <entry file="file://$PROJECT_DIR$/jwt/JWT.php" />
     <entry file="file://$PROJECT_DIR$/model/DatabaseModel.php">
@@ -1964,14 +1885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/RolloModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="103" column="8" lean-forward="false" selection-start-line="103" selection-start-column="8" selection-end-line="108" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1999,24 +1912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/EnemigoHandlerModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="67" column="46" lean-forward="false" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
-          <folding>
-            <marker date="1519152624859" expanded="true" signature="858:996" ph="SELECT E.ID,... Enemigos" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/63b82bc4-6a6a-432c-b1a3-c49e8e000551/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Authentication.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1343">
@@ -2025,39 +1920,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/AtributosHandlerModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding>
-            <marker date="1519492982794" expanded="true" signature="308:539" ph="SELECT Fuerz... Rollos" />
-            <marker date="1519492982794" expanded="true" signature="1184:1398" ph="SELECT FinEn... Atributos" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/RolloHandlerModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="31" column="60" lean-forward="true" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
-          <folding>
-            <marker date="1519492982842" expanded="true" signature="300:1144" ph="SELECT U.Usu... Usuarios" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/RolloController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="25" column="113" lean-forward="false" selection-start-line="25" selection-start-column="113" selection-end-line="25" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/UsuarioHandlerModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -2088,13 +1954,135 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/UsuarioHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/63b82bc4-6a6a-432c-b1a3-c49e8e000551/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="9" lean-forward="true" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/387de92e-a0b8-4e25-8f52-23b749eb0534/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/AtributosHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="48" column="29" lean-forward="true" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
+          <folding>
+            <marker date="1519503789682" expanded="true" signature="308:539" ph="SELECT Fuerz... Rollos" />
+            <marker date="1519503789682" expanded="true" signature="1192:1406" ph="SELECT FinEn... Atributos" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/EnemigoHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="67" column="46" lean-forward="false" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
+          <folding>
+            <marker date="1519152624859" expanded="true" signature="858:996" ph="SELECT E.ID,... Enemigos" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controller/AtributosController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="27" />
+        <state relative-caret-position="629">
+          <caret line="48" column="93" lean-forward="false" selection-start-line="48" selection-start-column="93" selection-end-line="48" selection-end-column="93" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/CazaHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="83" column="22" lean-forward="false" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
           <folding>
-            <element signature="e#7#88#0#PHP" expanded="true" />
+            <marker date="1519510959946" expanded="true" signature="331:789" ph="SELECT E.Nom... Rollos" />
+            <marker date="1519510959946" expanded="true" signature="1378:1926" ph="SELECT E.Nom... Rollos" />
+            <marker date="1519510959946" expanded="true" signature="2443:2569" ph="SELECT VidaR... Caza" />
+            <marker date="1519510959946" expanded="true" signature="3226:3440" ph="SELECT FinEn... Atributos" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/CazaModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="88" column="54" lean-forward="false" selection-start-line="88" selection-start-column="54" selection-end-line="88" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="948">
+          <caret line="77" column="7" lean-forward="true" selection-start-line="77" selection-start-column="7" selection-end-line="77" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/CazaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/EstadoModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="108" column="26" lean-forward="false" selection-start-line="108" selection-start-column="26" selection-end-line="108" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/EnemigoSimplificadoModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="88" column="47" lean-forward="false" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/RolloModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="812">
+          <caret line="128" column="35" lean-forward="false" selection-start-line="128" selection-start-column="35" selection-end-line="128" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/RolloHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="40" column="72" lean-forward="false" selection-start-line="40" selection-start-column="72" selection-end-line="40" selection-end-column="72" />
+          <folding>
+            <marker date="1519513219530" expanded="true" signature="300:1188" ph="SELECT U.Usu... Usuarios" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a1494552-84df-4311-814e-e0a0688972fc/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="55" lean-forward="false" selection-start-line="0" selection-start-column="55" selection-end-line="0" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -14,7 +14,7 @@ class Request
     //Objeto de autenticación (usuario+contraseña)
     private $authentication;
 
-    public function __construct($verb, $url_elements, $query_string, $body, $content_type, $accept, $authentication)
+    public function __construct($verb, $url_elements, $query_string, $body, $content_type, $accept, Authentication $authentication)
     {
         $this->verb = $verb;
         $this->url_elements = $url_elements;
@@ -176,7 +176,7 @@ class Request
         return $this->authentication;
     }
 
-    public function setAuthentication($authentication)
+    public function setAuthentication(Authentication $authentication)
     {
         $this->authentication = $authentication;
     }
