@@ -11,20 +11,18 @@ require_once "RolloModel.php";
 
 class AtributosHandlerModel
 {
-    public static function getAtributos($usuario){
+    public static function getAtributos($id){
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
         $query = "SELECT Fuerza, Constitucion, Destreza, FinEntrenamiento
-                    FROM Usuarios
-                      INNER JOIN Rollos
-                      ON Usuarios.ID = Rollos.ID_Usuario
-                      INNER JOIN Atributos
-                      ON Atributos.ID = Rollos.ID_Atributos
-                    WHERE Usuario = ?;";
+                    FROM  Rollos AS R
+                      INNER JOIN Atributos AS A
+                      ON A.ID = R.ID_Atributos
+                    WHERE R.ID_Usuario = ?;";
 
         $prep_query = $db_connection->prepare($query);
-        $prep_query->bind_param('s', $usuario);
+        $prep_query->bind_param('i', $id);
         $prep_query->bind_result($fuerza, $constitucion, $destreza, $finEntrenamiento);
         $prep_query->execute();
         $prep_query->fetch();
@@ -34,7 +32,7 @@ class AtributosHandlerModel
         return $rollo;
     }
 
-    public static function entrenar($usuario, $atributo){
+    public static function entrenar($id, $atributo){
         $conseguido = false;
 
         $db = DatabaseModel::getInstance();
@@ -43,10 +41,9 @@ class AtributosHandlerModel
         //Se comprueba si ha pasado tiempo suficiente para volver a entrenar
         $query ='SELECT FinEntrenamiento FROM Atributos
                                               INNER JOIN Rollos ON Atributos.ID = Rollos.ID_Atributos
-                                              INNER JOIN Usuarios ON Rollos.ID_Usuario = Usuarios.ID
-                                              WHERE Usuarios.Usuario = ?;';
+                                              WHERE Rollos.ID_Usuario = ?;';
         $prep_query = $db_connection->prepare($query);
-        $prep_query->bind_param('s', $usuario);
+        $prep_query->bind_param('i', $id);
         $prep_query->bind_result($finEntrenamiento);
         $prep_query->execute();
         $prep_query->fetch();
@@ -56,7 +53,7 @@ class AtributosHandlerModel
             $prep_query->free_result();
             $query = "CALL entrenar(?,?);";
             $prep_query = $db_connection->prepare($query);
-            $prep_query->bind_param('ss', $usuario, $atributo);
+            $prep_query->bind_param('is', $id, $atributo);
 
             $prep_query->execute();
             if($db_connection->affected_rows>0){

@@ -146,7 +146,7 @@ CREATE TABLE Caza(
 
 -- Funciones y procedimientos
 DELIMITER $$
-CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(30))
+CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(30)) -- En desuso
 RETURNS BIT
 BEGIN
   /*DECLARE existe BIT;
@@ -175,18 +175,16 @@ BEGIN
     
 END $$
 
-CREATE PROCEDURE entrenar(IN usuario NVARCHAR(30), IN atributo VARCHAR(15))
+CREATE PROCEDURE entrenar(IN idUsuario INT, IN atributo VARCHAR(15))
 BEGIN
 	IF (atributo = 'fuerza') THEN
 		BEGIN
 			UPDATE Atributos
 				INNER JOIN Rollos
 				ON Atributos.ID = Rollos.ID_Atributos
-				INNER JOIN Usuarios
-				ON Rollos.ID_Usuario = Usuarios.ID
 			SET Atributos.FinEntrenamiento = UNIX_TIMESTAMP()+((Atributos.Fuerza)*(Atributos.Fuerza)),
 				Atributos.Fuerza = Atributos.Fuerza+1
-			WHERE Usuarios.Usuario = usuario;
+			WHERE Rollos.ID_Usuario = idUsuario;
 				
         END;
         ELSE IF (atributo = 'constitucion') THEN
@@ -194,11 +192,9 @@ BEGIN
 				UPDATE Atributos
 					INNER JOIN Rollos
 					ON Atributos.ID = Rollos.ID_Atributos
-					INNER JOIN Usuarios
-					ON Rollos.ID_Usuario = Usuarios.ID
 				SET Atributos.FinEntrenamiento = UNIX_TIMESTAMP()+((Atributos.Constitucion)*(Atributos.Constitucion)),
 					Atributos.Constitucion = Atributos.Constitucion+1
-				WHERE Usuarios.Usuario = usuario;
+				WHERE Rollos.ID_Usuario = idUsuario;
 					
 			END;
             ELSE IF (atributo = 'destreza') THEN
@@ -206,11 +202,9 @@ BEGIN
 					UPDATE Atributos
 						INNER JOIN Rollos
 						ON Atributos.ID = Rollos.ID_Atributos
-						INNER JOIN Usuarios
-						ON Rollos.ID_Usuario = Usuarios.ID
 					SET Atributos.FinEntrenamiento = UNIX_TIMESTAMP()+((Atributos.Destreza)*(Atributos.Destreza)),
 						Atributos.Destreza = Atributos.Destreza+1
-				WHERE Usuarios.Usuario = usuario;
+				WHERE Rollos.ID_Usuario = idUsuario;
 						
 				END;
 				END IF;

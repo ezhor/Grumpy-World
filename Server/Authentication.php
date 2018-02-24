@@ -8,21 +8,43 @@
 
 class Authentication
 {
+    private $id;
     private $usuario;
     private $contrasena;
     private $token;
 
     /**
-     * Authenticacion constructor.
+     * Authentication constructor.
+     * @param $id
      * @param $usuario
      * @param $contrasena
+     * @param $token
      */
-    public function __construct($usuario, $contrasena, $token)
+    public function __construct($id, $usuario, $contrasena, $token)
     {
+        $this->id = $id;
         $this->usuario = $usuario;
         $this->contrasena = $contrasena;
         $this->token = $token;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+
 
 
     /**

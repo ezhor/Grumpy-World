@@ -11,7 +11,7 @@ require_once "RolloModel.php";
 
 class RolloHandlerModel
 {
-    public static function getRollo($usuario){
+    public static function getRollo($id){
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
@@ -27,13 +27,13 @@ class RolloHandlerModel
                         ON RE.ID_Equipable = S.ID
                       LEFT JOIN Zonas AS Z
                         ON R.ID_Zona = Z.ID
-                    WHERE U.Usuario = ? AND
+                    WHERE R.ID_Usuario = ? AND
                           ( RE.Equipada IS NULL OR RE.Equipada='S') AND
                           (A.Tipo IS NULL OR A.Tipo='A') AND
                           (S.Tipo IS NULL OR S.Tipo='S');";
 
         $prep_query = $db_connection->prepare($query);
-        $prep_query->bind_param('s', $usuario);
+        $prep_query->bind_param('i', $id);
         $prep_query->bind_result($nombre, $sombrero, $arma, $zona);
         $prep_query->execute();
         $prep_query->fetch();

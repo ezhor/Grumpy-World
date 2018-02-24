@@ -37,8 +37,8 @@ class GestoraAutenticacion
             try{
                 $jwtDecodificado = JWT::decode($token, $this->key, array('HS256'));
                 $data = $jwtDecodificado->data;
-                $usuario = $data->usuario;
-                $autenticacion->setUsuario($usuario);
+                $id = $data->id;
+                $autenticacion->setId($id);
                 $resultado = true;
             }catch (Exception $e){
 
@@ -52,13 +52,14 @@ class GestoraAutenticacion
                 $db = DatabaseModel::getInstance();
                 $db_connection = $db->getConnection();
 
-                $query = "SELECT Contrasena FROM Usuarios WHERE Usuario = ?";
+                $query = "SELECT ID, Contrasena FROM Usuarios WHERE Usuario = ?";
                 $prep_query = $db_connection->prepare($query);
                 $prep_query->bind_param('s', $usuario);
-                $prep_query->bind_result($contrasena_hash);
+                $prep_query->bind_result($id, $contrasena_hash);
                 $prep_query->execute();
                 $prep_query->fetch();
                 if(password_verify($contrasena, $contrasena_hash)){
+                    $autenticacion->setId($id);
                     $resultado = true;
                 }
 
@@ -68,6 +69,7 @@ class GestoraAutenticacion
     }
 
     public function getAutenticacion(){
+        $id = null;
         $token = null;
         $usuario = null;
         $contrasena = null;
@@ -86,17 +88,17 @@ class GestoraAutenticacion
                 }
             }
         }
-        return new Authentication($usuario, $contrasena, $token);
+        return new Authentication($id, $usuario, $contrasena, $token);
     }
 
-    public function getTokenNuevo($usuario){
+    public function getTokenNuevo($id){
         $time = time();
 
         $token = array(
             'iat' => $time, // Tiempo que inició el token
             'exp' => $time + (60*60), // Tiempo que expirará el token (+1 hora)
             'data' => [ // información del usuario
-                'usuario' => $usuario
+                'id' => $id
             ]
         );
         $jwt = JWT::encode($token, $this->key);

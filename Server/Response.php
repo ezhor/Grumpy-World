@@ -10,25 +10,25 @@ class Response
     private $headers;
     private $body;
     private $format;
-    private $usuario;
+    private $id;
 
     // will receive the response code (200 by default), an associative array with the headers, the data for the body,
     // and the format to output the body (retrieved from the request that the client made)
-    public function __construct($code = '200', $headers = null, $body = null, $format = 'json', $usuario)
+    public function __construct($code = '200', $headers = null, $body = null, $format = 'json', $id)
     {
         $this->code = $code;
         $this->headers = $headers;
         $this->body = $body;
         $this->format = $format;
-        $this->usuario = $usuario;
+        $this->id = $id;
     }
 
     public function generate()
     {
         //Generar Bearer token
-        if(isset($this->usuario)){
+        if(isset($this->id)){
             $gesAuth = new GestoraAutenticacion();
-            $token = $gesAuth->getTokenNuevo($this->usuario);
+            $token = $gesAuth->getTokenNuevo($this->id);
             $this->headers['Authorization'] = "Bearer ".$token;
         }
 

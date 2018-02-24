@@ -19,11 +19,11 @@ class RolloController extends Controller
         if (isset($request->getUrlElements()[2])) {
             $code = '405';
         }else{
-            $rollo = RolloHandlerModel::getRollo($request->getAuthentication()->getUsuario());
+            $rollo = RolloHandlerModel::getRollo($request->getAuthentication()->getId());
             $code = '200';
         }
 
-        $response = new Response($code, null, $rollo, $request->getAccept(), $request->getAuthentication()->getUsuario());
+        $response = new Response($code, null, $rollo, $request->getAccept(), $request->getAuthentication()->getId());
         $response->generate();
     }
 }

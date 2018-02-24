@@ -20,11 +20,11 @@ class AtributosController extends Controller
             $code = '404';
             $atributos = null;
         }else{
-            $atributos = AtributosHandlerModel::getAtributos($request->getAuthentication()->getUsuario());
+            $atributos = AtributosHandlerModel::getAtributos($request->getAuthentication()->getId());
             $code = '200';
         }
 
-        $response = new Response($code, null, $atributos, $request->getAccept(), $request->getAuthentication()->getUsuario());
+        $response = new Response($code, null, $atributos, $request->getAccept(), $request->getAuthentication()->getId());
         $response->generate();
     }
 
@@ -36,11 +36,11 @@ class AtributosController extends Controller
             if(isset($request->getBodyParameters()['atributo'])){
                 $atributo = $request->getBodyParameters()['atributo'];
                 if($atributo == 'fuerza' || $atributo == 'constitucion' || $atributo == 'destreza'){
-                    $usuario = $request->getAuthentication()->getUsuario();
-                    $conseguido = AtributosHandlerModel::entrenar($usuario, $atributo);
+                    $id = $request->getAuthentication()->getId();
+                    $conseguido = AtributosHandlerModel::entrenar($id, $atributo);
                     if($conseguido){
-                        $atributos = AtributosHandlerModel::getAtributos($request->getAuthentication()->getUsuario());
-                        $response = new Response('200', null, $atributos, $request->getAccept(), $request->getAuthentication()->getUsuario());
+                        $atributos = AtributosHandlerModel::getAtributos($request->getAuthentication()->getId());
+                        $response = new Response('200', null, $atributos, $request->getAccept(), $request->getAuthentication()->getId());
 
                     }else{
                         $response = new Response('403', null, null, $request->getAccept(), null);

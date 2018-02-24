@@ -18,10 +18,10 @@ class UsuarioController extends Controller{
             $response->generate();
         }else{
             if(isset($request->getBodyParameters()['usuario']) && isset($request->getBodyParameters()['contrasena'])){
-                $authentication = new Authentication($request->getBodyParameters()['usuario'], $request->getBodyParameters()['contrasena'], null);
+                $authentication = new Authentication(null, $request->getBodyParameters()['usuario'], $request->getBodyParameters()['contrasena'], null);
                 $conseguido = UsuarioHandlerModel::insertarUsuario($authentication);
                 if($conseguido){
-                    $response = new Response('200', null, null, $request->getAccept(), $request->getAuthentication()->getUsuario());
+                    $response = new Response('200', null, null, $request->getAccept(), $request->getAuthentication()->getId());
 
                 }else{
                     $response = new Response('409', null, null, $request->getAccept(), null);
