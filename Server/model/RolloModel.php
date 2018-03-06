@@ -12,6 +12,7 @@ class RolloModel implements JsonSerializable
     private $sombrero;
     private $arma;
     private $zona;
+    private $nivel;
     private $rango;
 
     /**
@@ -21,12 +22,13 @@ class RolloModel implements JsonSerializable
      * @param $arma
      * @param $zona
      */
-    public function __construct($nombre, $sombrero, $arma, $zona, $rango)
+    public function __construct($nombre, $sombrero, $arma, $zona, $nivel, $rango)
     {
         $this->nombre = $nombre;
         $this->sombrero = $sombrero;
         $this->arma = $arma;
         $this->zona = $zona;
+        $this->nivel = $nivel;
         $this->rango = $rango;
     }
 
@@ -110,6 +112,23 @@ class RolloModel implements JsonSerializable
         $this->rango = $rango;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getNivel()
+    {
+        return $this->nivel;
+    }
+
+    /**
+     * @param mixed $nivel
+     */
+    public function setNivel($nivel)
+    {
+        $this->nivel = $nivel;
+    }
+
+
 
 
     /**
@@ -126,6 +145,7 @@ class RolloModel implements JsonSerializable
             'sombrero' => $this->sombrero,
             'arma' => $this->arma,
             'zona' => $this->zona,
+            'nivel' => $this->nivel,
             'rango' => $this->rango
         );
     }

@@ -15,7 +15,7 @@ class RolloHandlerModel
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "SELECT U.Usuario AS Nombre, S.Nombre AS Sombrero, A.Nombre AS Arma, Z.Nombre AS Zona, rangoRollo(R.Honor, R.ID_Usuario) AS Rango
+        $query = "SELECT U.Usuario AS Nombre, S.Nombre AS Sombrero, A.Nombre AS Arma, Z.Nombre AS Zona, R.Nivel, rangoRollo(R.Honor, R.ID_Usuario) AS Rango
                     FROM Usuarios AS U
                       LEFT JOIN Rollos AS R
                         ON U.ID = R.ID_Usuario
@@ -34,11 +34,11 @@ class RolloHandlerModel
 
         $prep_query = $db_connection->prepare($query);
         $prep_query->bind_param('i', $id);
-        $prep_query->bind_result($nombre, $sombrero, $arma, $zona, $rango);
+        $prep_query->bind_result($nombre, $sombrero, $arma, $zona, $nivel, $rango);
         $prep_query->execute();
         $prep_query->fetch();
 
-        $rollo = new RolloModel($nombre, $sombrero, $arma, $zona, $rango);
+        $rollo = new RolloModel($nombre, $sombrero, $arma, $zona, $nivel, $rango);
 
         return $rollo;
     }

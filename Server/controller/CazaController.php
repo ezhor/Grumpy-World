@@ -12,22 +12,23 @@ require_once "Controller.php";
 class CazaController extends Controller
 {
     public function manageGetVerb(Request $request){
+        $idUsuario = $request->getAuthentication()->getId();
         if (isset($request->getUrlElements()[2])) {
-            if($request->getUrlElements()[2] == "estado"){
-                $code = 200;
-            }else{
-                $code = '404';
-                $atributos = null;
-                $response = new Response($code, null, null, $request->getAccept(), $request->getAuthentication()->getId());
-            }
+            $code = '404';
+            $atributos = null;
+            $response = new Response($code, null, null, $request->getAccept(), $idUsuario);
         }else{
-            $rollo = RolloHandlerModel::getRollo($request->getAuthentication()->getId());
-            $enemigo = CazaHandlerModel::getEnemigoEnCaza($request->getAuthentication()->getId());
-            $estado = CazaHandlerModel::getEstadoCaza($request->getAuthentication()->getId());
+            $rollo = RolloHandlerModel::getRollo($idUsuario);
+            $enemigo = CazaHandlerModel::getEnemigoEnCaza($idUsuario);
+            if($enemigo->getNombre() == null){
+                CazaHandlerModel::asignarCaza($idUsuario);
+                $enemigo = CazaHandlerModel::getEnemigoEnCaza($idUsuario);
+            }
+            $estado = CazaHandlerModel::getEstadoCaza($idUsuario);
 
             $caza = new CazaModel($rollo, $enemigo, $estado);
             $code = '200';
-            $response = new Response($code, null, $caza, $request->getAccept(), $request->getAuthentication()->getId());
+            $response = new Response($code, null, $caza, $request->getAccept(), $idUsuario);
         }
 
         $response->generate();

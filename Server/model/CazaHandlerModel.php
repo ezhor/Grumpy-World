@@ -84,34 +84,14 @@ class CazaHandlerModel
         return $estado;
     }
 
-    /*public static function entrenar($id, $atributo){
-        $conseguido = false;
-
+    public static function asignarCaza($idUsuario){
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        //Se comprueba si ha pasado tiempo suficiente para volver a entrenar
-        $query ='SELECT FinEntrenamiento FROM Atributos
-                                              INNER JOIN Rollos ON Atributos.ID = Rollos.ID_Atributos
-                                              WHERE Rollos.ID_Usuario = ?;';
+        $query = "CALL asignarCaza(?)";
+
         $prep_query = $db_connection->prepare($query);
-        $prep_query->bind_param('i', $id);
-        $prep_query->bind_result($finEntrenamiento);
+        $prep_query->bind_param('i', $idUsuario);
         $prep_query->execute();
-        $prep_query->fetch();
-
-        //Si ha pasado tiempo suficiente, se entrena
-        if($finEntrenamiento<=time()){
-            $prep_query->free_result();
-            $query = "CALL entrenar(?,?);";
-            $prep_query = $db_connection->prepare($query);
-            $prep_query->bind_param('is', $id, $atributo);
-
-            $prep_query->execute();
-            if($db_connection->affected_rows>0){
-                $conseguido = true;
-            }
-        }
-        return $conseguido;
-    }*/
+    }
 }

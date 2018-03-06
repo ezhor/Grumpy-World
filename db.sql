@@ -146,6 +146,8 @@ CREATE TABLE Caza(
 
 -- Funciones
 DELIMITER $$
+
+-- Comprueba si existe un usuario
 CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(20)) -- En desuso
 RETURNS BIT
 BEGIN
@@ -159,12 +161,14 @@ BEGIN
 	RETURN (SELECT COUNT(*) FROM Usuarios WHERE Usuario = nombre_usuario)>0;
 END $$
 
-CREATE FUNCTION enemigoMasRapido(destrezaRollo INT, destrezaEnemigo INT) -- En desuso
+-- Comprueba si un rollo es más rápido que su enemigo
+CREATE FUNCTION enemigoMasRapido(destrezaRollo INT, destrezaEnemigo INT)
 RETURNS BIT
 BEGIN
 	RETURN destrezaEnemigo>destrezaRollo;
 END $$
 
+-- Calcula el rango de un rollo
 CREATE FUNCTION rangoRollo(honorRollo INT, idRollo INT)
 RETURNS INT
 BEGIN
@@ -173,9 +177,53 @@ BEGIN
 	RETURN @rango;
 END $$
 
+-- Devuelve el ID de un enemigo aleatorio para un rollo según su zona y los enemigos que ha vencido en esa zona
+CREATE FUNCTION enemigoAleatorio(idRollo INT)
+RETURNS INT
+BEGIN
+	SET @enemigosVencidos = (
+								SELECT COUNT(*)
+								FROM Rollos AS R
+								  INNER JOIN Vencidos AS V
+									ON R.ID_Usuario = V.ID_Rollo
+								  INNER JOIN Enemigos AS E
+									ON V.ID_Enemigo = E.ID
+								WHERE R.ID_Usuario = idRollo AND
+								  R.ID_Zona = E.ID_Zona
+							);
+    IF(@enemigosVencidos >= 4) THEN
+	BEGIN
+		SET @idEnemigo = (SELECT E.ID
+		FROM Rollos AS R
+		INNER JOIN Zonas AS Z
+		ON R.ID_Zona = Z.ID
+		INNER JOIN Enemigos AS E
+		ON Z.ID = E.ID_Zona
+        WHERE R.ID_Usuario = idRollo
+		ORDER BY RAND()
+		LIMIT 1);
+    END;
+    ELSE
+		SET @idEnemigo = (SELECT E.ID
+		FROM Rollos AS R
+		INNER JOIN Zonas AS Z
+		ON R.ID_Zona = Z.ID
+		INNER JOIN Enemigos AS E
+		ON Z.ID = E.ID_Zona
+        WHERE R.ID_Usuario = idRollo AND
+        E.EsJefe = 0
+		ORDER BY RAND()
+		LIMIT 1);
+    BEGIN
+    END;
+    END IF;
+	RETURN @idEnemigo;
+END $$
+
 
 -- Procedimientos
 
+-- Crea un usuario insertando en todas las tablas necesarias
 CREATE PROCEDURE crearUsuario(IN usuario NVARCHAR(20), IN contrasena NVARCHAR(255), OUT conseguido BIT)
 BEGIN
     INSERT INTO Usuarios (Usuario, Contrasena) VALUE (usuario, contrasena);
@@ -192,6 +240,7 @@ BEGIN
     
 END $$
 
+-- Aumenta un atributo y le asigna el tiempo en el que acabará el entrenamiento
 CREATE PROCEDURE entrenar(IN idUsuario INT, IN atributo VARCHAR(15))
 BEGIN
 	IF (atributo = 'fuerza') THEN
@@ -229,6 +278,7 @@ BEGIN
         END IF;
 END $$
 
+-- Crea un enemigo
 CREATE PROCEDURE crearEnemigo(IN nNombre NVARCHAR(20), IN nFuerza INT, IN nConstitucion INT, IN nDestreza INT, IN nEsJefe BIT, IN nNombreZona NVARCHAR(30))
 BEGIN
 	INSERT INTO Atributos (Fuerza, Constitucion, Destreza) VALUE (nFuerza, nConstitucion, nDestreza);
@@ -236,10 +286,10 @@ BEGIN
 		SELECT nNombre, LAST_INSERT_ID(), ID, nEsJefe FROM Zonas WHERE Nombre = nNombreZona;
 END $$
 
-CREATE PROCEDURE asignarCaza(IN idRollo INT, IN nombreEnemigo NVARCHAR(20))
+-- Asigna una caza aleatoria a un rollo según su zona y los enemigos vencidos
+CREATE PROCEDURE asignarCaza(IN idRollo INT)
 BEGIN
-	INSERT INTO Caza (ID_Rollo, ID_Enemigo)
-		SELECT idRollo, ID FROM Enemigos WHERE Enemigos.Nombre = nombreEnemigo;
+	INSERT INTO Caza (ID_Rollo, ID_Enemigo) VALUE (idRollo, enemigoAleatorio(idRollo));
 END $$
 
 DELIMITER ;
@@ -274,6 +324,3 @@ CALL crearEnemigo('pendrive', 110, 150, 120, 1, 'oficina');
 
 -- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL asignarCaza(1, 'champu');
-
-UPDATE Rollos SET Honor = 1000 WHERE ID_Usuario = 2;
