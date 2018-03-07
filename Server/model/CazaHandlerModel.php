@@ -94,4 +94,8 @@ class CazaHandlerModel
         $prep_query->bind_param('i', $idUsuario);
         $prep_query->execute();
     }
+
+    public static function jugarTurno($ataque){
+
+    }
 }

@@ -148,7 +148,7 @@ CREATE TABLE Caza(
 DELIMITER $$
 
 -- Comprueba si existe un usuario
-CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(20)) -- En desuso
+CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(20))
 RETURNS BIT
 BEGIN
   /*DECLARE existe BIT;
@@ -220,6 +220,34 @@ BEGIN
 	RETURN @idEnemigo;
 END $$
 
+-- Genera un ataque aleatorio (entero del 1 al 3 incluidos)
+CREATE FUNCTION ataqueAleatorio()
+RETURNS BIT
+BEGIN
+	RETURN FLOOR(1 + (RAND() * 3));
+END $$
+
+-- Calcula el daño base parcialmente aleatorio de un personaje a otro
+CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
+  RETURNS BIT
+  BEGIN
+    SELECT Fuerza, Constitucion, Destreza INTO @fAtacante, @cAtacante, @dAtacante FROM Atributos WHERE ID = idAtributosAtacante;
+    SELECT Fuerza, Constitucion, Destreza INTO @fVictima, @cVictima, @dVictima FROM Atributos WHERE ID = idAtributosVictima;
+    SET @dano = @fAtacante/@cVictima;
+  END $$
+
+-- Calcula el daño de un ataque de un personaje a otro
+CREATE FUNCTION dano(idAtributosAtacante INT, idAtributosVictima INT, ataqueAtacante INT, ataqueVictima INT)
+RETURNS BIT
+BEGIN
+	IF(ataqueAtacante=1) THEN
+    BEGIN
+    END;
+    ELSE
+    BEGIN
+    END;
+    END IF;
+END $$
 
 -- Procedimientos
 

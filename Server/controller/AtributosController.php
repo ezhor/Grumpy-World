@@ -30,7 +30,7 @@ class AtributosController extends Controller
 
     public function managePostVerb(Request $request){
         if (isset($request->getUrlElements()[2])) {
-            $response = new Response('405', null, null, $request->getAccept());
+            $response = new Response('404', null, null, $request->getAccept());
             $response->generate();
         }else{
             if(isset($request->getBodyParameters()['atributo'])){

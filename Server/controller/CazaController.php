@@ -34,23 +34,23 @@ class CazaController extends Controller
         $response->generate();
     }
 
-    /*public function managePostVerb(Request $request){
+    public function managePostVerb(Request $request){
+        $idUsuario = $request->getAuthentication()->getId();
         if (isset($request->getUrlElements()[2])) {
-            $response = new Response('405', null, null, $request->getAccept());
+            $response = new Response('404', null, null, $request->getAccept());
             $response->generate();
         }else{
-            if(isset($request->getBodyParameters()['atributo'])){
-                $atributo = $request->getBodyParameters()['atributo'];
-                if($atributo == 'fuerza' || $atributo == 'constitucion' || $atributo == 'destreza'){
-                    $id = $request->getAuthentication()->getId();
-                    $conseguido = AtributosHandlerModel::entrenar($id, $atributo);
-                    if($conseguido){
+            if(isset($request->getBodyParameters()['ataque'])){
+                $ataque = $request->getBodyParameters()['atributo'];
+                if($ataque === 1 || $ataque === 2 || $ataque === 3){
+                    $conseguido = CazaHandlerModel::
+                    /*if($conseguido){
                         $atributos = AtributosHandlerModel::getAtributos($request->getAuthentication()->getId());
                         $response = new Response('200', null, $atributos, $request->getAccept(), $request->getAuthentication()->getId());
 
                     }else{
                         $response = new Response('403', null, null, $request->getAccept(), null);
-                    }
+                    }*/
                 }
             }else{
                 $response = new Response('400', null, null, $request->getAccept(), null);
@@ -58,5 +58,5 @@ class CazaController extends Controller
 
             $response->generate();
         }
-    }*/
+    }
 }

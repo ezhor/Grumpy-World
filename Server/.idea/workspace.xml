@@ -40,34 +40,16 @@
         <option name="myItemId" value="GrumpyWorld" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="GrumpyWorld@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="GrumpyWorld" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
     </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CazaController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CazaController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/CazaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-60">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="320">
+              <caret line="45" column="52" lean-forward="false" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -76,22 +58,22 @@
       <file leaf-file-name="CazaHandlerModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/CazaHandlerModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1195">
-              <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+            <state relative-caret-position="409">
+              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding>
-                <marker date="1520342805597" expanded="true" signature="331:789" ph="SELECT E.Nom... Rollos" />
-                <marker date="1520342805597" expanded="true" signature="1378:1926" ph="SELECT E.Nom... Rollos" />
-                <marker date="1520342805597" expanded="true" signature="2443:2569" ph="SELECT VidaR... Caza" />
+                <marker date="1520410443885" expanded="true" signature="331:789" ph="SELECT E.Nom... Rollos" />
+                <marker date="1520410443885" expanded="true" signature="1378:1926" ph="SELECT E.Nom... Rollos" />
+                <marker date="1520410443885" expanded="true" signature="2443:2569" ph="SELECT VidaR... Caza" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+            <state relative-caret-position="60">
+              <caret line="3" column="54" lean-forward="true" selection-start-line="3" selection-start-column="54" selection-end-line="3" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -137,9 +119,6 @@
       <replace>EnemigoSimplificadoModel</replace>
     </replaceStrings>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="dummy://restClient/response45.json" root0="SKIP_INSPECTION" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -166,7 +145,6 @@
         <option value="$PROJECT_DIR$/controller/UsuarioController.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/63b82bc4-6a6a-432c-b1a3-c49e8e000551/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/387de92e-a0b8-4e25-8f52-23b749eb0534/console.sql" />
-        <option value="$PROJECT_DIR$/controller/AtributosController.php" />
         <option value="$PROJECT_DIR$/model/AtributosHandlerModel.php" />
         <option value="$PROJECT_DIR$/model/EnemigoSimplificado.php" />
         <option value="$PROJECT_DIR$/model/EnemigoSimplificadoModel.php" />
@@ -176,9 +154,10 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a1494552-84df-4311-814e-e0a0688972fc/console.sql" />
         <option value="$PROJECT_DIR$/model/RolloHandlerModel.php" />
         <option value="$PROJECT_DIR$/model/RolloModel.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql" />
+        <option value="$PROJECT_DIR$/controller/AtributosController.php" />
         <option value="$PROJECT_DIR$/controller/CazaController.php" />
         <option value="$PROJECT_DIR$/model/CazaHandlerModel.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql" />
       </list>
     </option>
   </component>
@@ -272,17 +251,17 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Code\Grumpy-World\Server" />
+      <recent name="D:\Code\Grumpy-World\Server\controller" />
+      <recent name="D:\Code\Grumpy-World\Server\model" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Code\Grumpy-World\Server\model" />
       <recent name="D:\Code\Grumpy-World\Server\controller" />
       <recent name="$PROJECT_DIR$/model" />
       <recent name="$PROJECT_DIR$/controller" />
       <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Code\Grumpy-World\Server" />
-      <recent name="D:\Code\Grumpy-World\Server\controller" />
-      <recent name="D:\Code\Grumpy-World\Server\model" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -1782,26 +1761,26 @@
       <workItem from="1518767966972" duration="2752000" />
       <workItem from="1519474376135" duration="20236000" />
       <workItem from="1520330844036" duration="8496000" />
+      <workItem from="1520407722166" duration="4716000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102252000" />
+    <option name="totallyTimeSpent" value="106968000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="0" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4322169" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31897926" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50717705" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22767204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17935579" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.50717705" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22767204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17935579" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3939394" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1809,6 +1788,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4322169" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1822,13 +1802,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/model/CazaHandlerModel.php</url>
-          <line>87</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -2052,14 +2025,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/AtributosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="48" column="93" lean-forward="false" selection-start-line="48" selection-start-column="93" selection-end-line="48" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Request.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="948">
@@ -2097,30 +2062,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql">
+    <entry file="file://$PROJECT_DIR$/controller/AtributosController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        <state relative-caret-position="-62">
+          <caret line="32" column="41" lean-forward="false" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/CazaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="45" column="52" lean-forward="false" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/CazaHandlerModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1195">
-          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+        <state relative-caret-position="409">
+          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
-            <marker date="1520342805597" expanded="true" signature="331:789" ph="SELECT E.Nom... Rollos" />
-            <marker date="1520342805597" expanded="true" signature="1378:1926" ph="SELECT E.Nom... Rollos" />
-            <marker date="1520342805597" expanded="true" signature="2443:2569" ph="SELECT VidaR... Caza" />
+            <marker date="1520410443885" expanded="true" signature="331:789" ph="SELECT E.Nom... Rollos" />
+            <marker date="1520410443885" expanded="true" signature="1378:1926" ph="SELECT E.Nom... Rollos" />
+            <marker date="1520410443885" expanded="true" signature="2443:2569" ph="SELECT VidaR... Caza" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/CazaController.php">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="3" column="54" lean-forward="true" selection-start-line="3" selection-start-column="54" selection-end-line="3" selection-end-column="54" />
           <folding />
         </state>
       </provider>
