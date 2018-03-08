@@ -37,20 +37,17 @@ class CazaController extends Controller
     public function managePostVerb(Request $request){
         $idUsuario = $request->getAuthentication()->getId();
         if (isset($request->getUrlElements()[2])) {
-            $response = new Response('404', null, null, $request->getAccept());
+            $response = new Response('404', null, null, $request->getAccept(), null);
             $response->generate();
         }else{
             if(isset($request->getBodyParameters()['ataque'])){
-                $ataque = $request->getBodyParameters()['atributo'];
+                $ataque = $request->getBodyParameters()['ataque'];
                 if($ataque === 1 || $ataque === 2 || $ataque === 3){
-                    $conseguido = CazaHandlerModel::
-                    /*if($conseguido){
-                        $atributos = AtributosHandlerModel::getAtributos($request->getAuthentication()->getId());
-                        $response = new Response('200', null, $atributos, $request->getAccept(), $request->getAuthentication()->getId());
-
-                    }else{
-                        $response = new Response('403', null, null, $request->getAccept(), null);
-                    }*/
+                    CazaHandlerModel::jugarTurno($ataque);
+                    $estado = CazaHandlerModel::getEstadoCaza($idUsuario);
+                    $response = new Response('200', null, $estado, $request->getAccept(), $idUsuario);
+                }else{
+                    $response = new Response('400', null, null, $request->getAccept(), null);
                 }
             }else{
                 $response = new Response('400', null, null, $request->getAccept(), null);

@@ -33,6 +33,7 @@ CREATE TABLE Atributos(
 	Constitucion INT NOT NULL DEFAULT 1,
 	Destreza INT NOT NULL DEFAULT 1,
     FinEntrenamiento INT NULL DEFAULT 0,
+    Pactos TINYINT NOT NULL DEFAULT 0,
     PRIMARY KEY(ID)
 );
 
@@ -42,7 +43,6 @@ CREATE TABLE Rollos(
   ID_Zona INT NOT NULL,
   Nivel INT NOT NULL DEFAULT 0,
   Honor INT NOT NULL DEFAULT 0,
-  Pactos TINYINT NOT NULL DEFAULT 0,
   CONSTRAINT FK_Rollos_Usuario FOREIGN KEY(ID_Usuario) REFERENCES Usuarios(ID) ON DELETE CASCADE,
   CONSTRAINT FK_Rollos_Zona FOREIGN KEY (ID_Zona) REFERENCES Zonas(ID) ON DELETE NO ACTION,
   PRIMARY KEY(ID_Usuario)
@@ -227,17 +227,19 @@ BEGIN
 	RETURN FLOOR(1 + (RAND() * 3));
 END $$
 
--- Calcula el daño base parcialmente aleatorio de un personaje a otro
+-- Calcula el daño base parcialmente aleatorio de un personaje a otro, teniendo en cuenta su fuerza, atributos y pactos
 CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
-  RETURNS BIT
+  RETURNS INT
   BEGIN
-    SELECT Fuerza, Constitucion, Destreza INTO @fAtacante, @cAtacante, @dAtacante FROM Atributos WHERE ID = idAtributosAtacante;
-    SELECT Fuerza, Constitucion, Destreza INTO @fVictima, @cVictima, @dVictima FROM Atributos WHERE ID = idAtributosVictima;
-    SET @dano = @fAtacante/@cVictima;
+    SELECT Fuerza*(1+Pactos/10), Constitucion*(1+Pactos/10) INTO @fAtacante, @cAtacante, @multiplicadorAtacante FROM Atributos WHERE ID = idAtributosAtacante;
+    SELECT Fuerza*(1+Pactos/10), Constitucion*(1+Pactos/10) INTO @fVictima, @cVictima, @multiplicadorVictima FROM Atributos WHERE ID = idAtributosVictima;
+    
+    SET @dano = (0.85*@fAtacante/@cVictima) + (RAND()*0.15*@fAtacante/@cVictima);
+    RETURN @dano;
   END $$
 
 -- Calcula el daño de un ataque de un personaje a otro
-CREATE FUNCTION dano(idAtributosAtacante INT, idAtributosVictima INT, ataqueAtacante INT, ataqueVictima INT)
+/*CREATE FUNCTION dano(idAtributosAtacante INT, idAtributosVictima INT, ataqueAtacante INT, ataqueVictima INT)
 RETURNS BIT
 BEGIN
 	IF(ataqueAtacante=1) THEN
@@ -247,7 +249,7 @@ BEGIN
     BEGIN
     END;
     END IF;
-END $$
+END $$*/
 
 -- Procedimientos
 
@@ -332,6 +334,7 @@ INSERT INTO Zonas (Nombre, Nivel) VALUES
     ('cementerio', 5),
     ('infierno', 6);
 
+-- Enemigo
 CALL crearEnemigo('stripper', 10, 20, 30, 0, 'bano');
 CALL crearEnemigo('cepillo', 10, 30, 20, 0, 'bano');
 CALL crearEnemigo('cuchilla', 30, 10, 20, 0, 'bano');
@@ -352,3 +355,4 @@ CALL crearEnemigo('pendrive', 110, 150, 120, 1, 'oficina');
 
 -- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL asignarCaza(1);
