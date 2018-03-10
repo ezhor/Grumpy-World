@@ -95,7 +95,25 @@ class CazaHandlerModel
         $prep_query->execute();
     }
 
-    public static function jugarTurno($ataque){
+    public static function jugarTurno($idUsuario, $ataque){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
 
+        $query = "CALL jugarTurnoCaza(?,?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('ii', $idUsuario, $ataque);
+        $prep_query->execute();
+    }
+
+    public static function borrarCaza($idUsuario){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "CALL borrarCaza(?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('i', $idUsuario);
+        $prep_query->execute();
     }
 }

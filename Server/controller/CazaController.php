@@ -14,9 +14,18 @@ class CazaController extends Controller
     public function manageGetVerb(Request $request){
         $idUsuario = $request->getAuthentication()->getId();
         if (isset($request->getUrlElements()[2])) {
-            $code = '404';
-            $atributos = null;
-            $response = new Response($code, null, null, $request->getAccept(), $idUsuario);
+            if($request->getUrlElements()[2] == "premio"){
+                $estado = CazaHandlerModel::getEstadoCaza($idUsuario);
+                if($estado->getVidaRollo()<=0 || $estado->getVidaEnemigo()<=0){
+                    CazaHandlerModel::borrarCaza($idUsuario);
+                    $premios = array();
+                    $response = new Response(200, null, $premios, $request->getAccept(), $idUsuario);
+                }else{
+                    $response = new Response(403, null, null, $request->getAccept(), $idUsuario);
+                }
+            }else{
+                $response = new Response(404, null, null, $request->getAccept(), $idUsuario);
+            }
         }else{
             $rollo = RolloHandlerModel::getRollo($idUsuario);
             $enemigo = CazaHandlerModel::getEnemigoEnCaza($idUsuario);
@@ -43,7 +52,7 @@ class CazaController extends Controller
             if(isset($request->getBodyParameters()['ataque'])){
                 $ataque = $request->getBodyParameters()['ataque'];
                 if($ataque === 1 || $ataque === 2 || $ataque === 3){
-                    CazaHandlerModel::jugarTurno($ataque);
+                    CazaHandlerModel::jugarTurno($idUsuario, $ataque);
                     $estado = CazaHandlerModel::getEstadoCaza($idUsuario);
                     $response = new Response('200', null, $estado, $request->getAccept(), $idUsuario);
                 }else{
@@ -52,7 +61,6 @@ class CazaController extends Controller
             }else{
                 $response = new Response('400', null, null, $request->getAccept(), null);
             }
-
             $response->generate();
         }
     }

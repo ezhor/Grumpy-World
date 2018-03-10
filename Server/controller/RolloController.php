@@ -18,6 +18,7 @@ class RolloController extends Controller
         */
         if (isset($request->getUrlElements()[2])) {
             $code = '405';
+            $rollo = null;
         }else{
             $rollo = RolloHandlerModel::getRollo($request->getAuthentication()->getId());
             $code = '200';

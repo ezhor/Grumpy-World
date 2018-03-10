@@ -62,7 +62,7 @@ CREATE TABLE Duelos(
 CREATE TABLE Equipables(
   ID INT NOT NULL AUTO_INCREMENT,
   Nombre NVARCHAR(30) NOT NULL UNIQUE,
-  Tipo CHAR(1),
+  Tipo CHAR(1) NOT NULL,
   Bonus INT NOT NULL,
   DestrezaNecesaria INT NOT NULL,
   NivelNecesario INT NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE Equipables(
 CREATE TABLE Rollos_Equipables(
   ID_Rollo INT NOT NULL,
   ID_Equipable INT NOT NULL,
-  Equipada CHAR(1) NOT NULL DEFAULT 'N',
+  Equipada BIT NOT NULL DEFAULT 0,
   CONSTRAINT FK_Rollos_Equipables_ID_Rollo FOREIGN KEY (ID_Rollo) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE,
   CONSTRAINT FK_Rollos_Equipables_ID_Equipable FOREIGN KEY (ID_Equipable) REFERENCES Equipables(ID) ON DELETE CASCADE,
   PRIMARY KEY(ID_Rollo, ID_Equipable),
@@ -222,7 +222,7 @@ END $$
 
 -- Genera un ataque aleatorio (entero del 1 al 3 incluidos)
 CREATE FUNCTION ataqueAleatorio()
-RETURNS BIT
+RETURNS INT
 BEGIN
 	RETURN FLOOR(1 + (RAND() * 3));
 END $$
@@ -231,25 +231,113 @@ END $$
 CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
   RETURNS INT
   BEGIN
-    SELECT Fuerza*(1+Pactos/10), Constitucion*(1+Pactos/10) INTO @fAtacante, @cAtacante, @multiplicadorAtacante FROM Atributos WHERE ID = idAtributosAtacante;
-    SELECT Fuerza*(1+Pactos/10), Constitucion*(1+Pactos/10) INTO @fVictima, @cVictima, @multiplicadorVictima FROM Atributos WHERE ID = idAtributosVictima;
+	-- Atributos del atacante
+    SELECT Fuerza*(1+Pactos/10), Constitucion*(1+Pactos/10) INTO @fAtacante, @cAtacante FROM Atributos WHERE ID = idAtributosAtacante;
     
-    SET @dano = (0.85*@fAtacante/@cVictima) + (RAND()*0.15*@fAtacante/@cVictima);
+    -- Atributos de la víctima
+    SELECT Fuerza*(1+Pactos/10), Constitucion*(1+Pactos/10) INTO @fVictima, @cVictima FROM Atributos WHERE ID = idAtributosVictima;
+	
+    -- Bonus de equipables del atacante
+	SELECT
+	  IFNULL(
+		  (
+			SELECT e.Bonus
+			FROM Atributos AS A
+			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
+			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
+			  LEFT JOIN Equipables AS E ON RE.ID_Equipable = E.ID
+			WHERE RE.Equipada AND E.Tipo = 'S' AND A.ID = A2.ID
+		  )
+		  , 0),
+	  IFNULL(
+		  (
+			SELECT e.Bonus
+			FROM Atributos AS A
+			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
+			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
+			  LEFT JOIN Equipables AS E ON RE.ID_Equipable = E.ID
+			WHERE RE.Equipada AND E.Tipo = 'A' AND A.ID = A2.ID
+		  )
+		  , 0)
+	INTO @bonusSombreroAtacante, @bonusArmaAtacante
+	FROM Atributos AS A2
+	WHERE A2.ID = idAtributosAtacante;
+		  
+      -- Bonus de equipables de la víctima
+	 SELECT
+	  IFNULL(
+		  (
+			SELECT e.Bonus
+			FROM Atributos AS A
+			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
+			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
+			  LEFT JOIN Equipables AS E ON RE.ID_Equipable = E.ID
+			WHERE RE.Equipada AND E.Tipo = 'S' AND A.ID = A2.ID
+		  )
+		  , 0),
+	  IFNULL(
+		  (
+			SELECT e.Bonus
+			FROM Atributos AS A
+			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
+			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
+			  LEFT JOIN Equipables AS E ON RE.ID_Equipable = E.ID
+			WHERE RE.Equipada AND E.Tipo = 'A' AND A.ID = A2.ID
+		  )
+		  , 0)
+	INTO @bonusSombreroVictima, @bonusArmaVictima
+	FROM Atributos AS A2
+	WHERE A2.ID = idAtributosVictima;
+    
+    -- Fórmula: Daño = 10*(FuerzaAtacante + BonusArmaAtacante) / (ConstituciónVíctima + BonusSombreroVíctima)
+    -- Hasta un 15% de este daño se puede reducir de forma aleatoria
+    SET @dano = 10*(0.85*((@fAtacante+@bonusArmaAtacante)/(@cVictima+@bonusSombreroVictima))) + (RAND()*0.15*((@fAtacante+@bonusArmaAtacante)/(@cVictima+@bonusSombreroVictima)));
     RETURN @dano;
   END $$
 
 -- Calcula el daño de un ataque de un personaje a otro
-/*CREATE FUNCTION dano(idAtributosAtacante INT, idAtributosVictima INT, ataqueAtacante INT, ataqueVictima INT)
-RETURNS BIT
+CREATE FUNCTION dano(idAtributosAtacante INT, idAtributosVictima INT, ataqueAtacante INT, ataqueVictima INT)
+RETURNS INT
 BEGIN
 	IF(ataqueAtacante=1) THEN
     BEGIN
+		SET @dano = danoBase(idAtributosAtacante, idAtributosVictima);
     END;
     ELSE
     BEGIN
+		IF(ataqueAtacante=2) THEN
+        BEGIN
+			IF(ataqueVictima != 3) THEN
+            BEGIN
+				SET @dano = 2*danoBase(idAtributosAtacante, idAtributosVictima);
+            END;
+			ELSE
+            BEGIN
+				SET @dano = 0;
+            END;
+            END IF;
+        END;
+        ELSE
+		BEGIN
+			-- Por eliminación, el ataque del atacante es 3
+            IF(ataqueVictima = 2) THEN
+            BEGIN
+				/*Si el ataque de la víctima rebota,
+                el daño recibido por la víctima va en función de su poder de ataque contra su propio poder de defensa,
+                por eso ambos atributos son el ID de la víctima*/
+				SET @dano = 2*danoBase(idAtributosVictima, idAtributosVictima);
+            END;
+            ELSE
+            BEGIN
+				SET @dano = 0;
+            END;
+            END IF;
+        END;
+        END IF;
     END;
     END IF;
-END $$*/
+    RETURN @dano;
+END $$
 
 -- Procedimientos
 
@@ -322,6 +410,61 @@ BEGIN
 	INSERT INTO Caza (ID_Rollo, ID_Enemigo) VALUE (idRollo, enemigoAleatorio(idRollo));
 END $$
 
+CREATE PROCEDURE jugarTurnoCaza(IN idRollo INT, IN ataqueRollo INT)
+BEGIN
+	SET @ataqueEnemigo = ataqueAleatorio();
+	SELECT VidaRollo, VidaEnemigo, enemigoMasRapido(ID_Rollo, ID_Enemigo) AS enemigoMasRapido, AR.ID AS idAtributosRollo, AE.ID AS idAtributosEnemigo
+	  INTO @vidaRollo, @vidaEnemigo, @enemigoMasRapido, @idAtributosRollo, @idAtributosEnemigo
+	  FROM Caza AS C
+	  INNER JOIN Rollos AS R ON C.ID_Rollo = R.ID_Usuario
+	  INNER JOIN Atributos AS AR ON R.ID_Atributos = AR.ID
+	  INNER JOIN Enemigos AS E ON C.ID_Enemigo = E.ID
+	  INNER JOIN Atributos AS AE ON E.ID_Atributos = AE.ID
+	WHERE C.ID_Rollo = idRollo;
+    IF(@vidaRollo>0 AND @vidaEnemigo>0) THEN
+    BEGIN
+		IF(@enemigoMasRapido) THEN
+        BEGIN
+			SET @vidaRollo = @vidaRollo - dano(@idAtributosEnemigo, @idAtributosRollo, @ataqueEnemigo, ataqueRollo);
+            IF(@vidaRollo>0) THEN
+            BEGIN
+				SET @vidaEnemigo = @vidaEnemigo - dano(@idAtributosRollo, @idAtributosEnemigo, ataqueRollo, @ataqueEnemigo);
+            END;
+            END IF;
+        END;
+        ELSE
+        BEGIN
+			SET @vidaEnemigo = @vidaEnemigo - dano(@idAtributosRollo, @idAtributosEnemigo, ataqueRollo, @ataqueEnemigo);
+            IF(@vidaEnemigo>0)THEN
+            BEGIN
+				SET @vidaRollo = @vidaRollo - dano(@idAtributosEnemigo, @idAtributosRollo, @ataqueEnemigo, ataqueRollo);
+            END;
+            END IF;
+        END;
+        END IF;
+        
+        IF(@vidaRollo<0) THEN
+		BEGIN
+			SET @vidaRollo = 0;
+		END;
+		END IF;
+        
+		IF(@vidaEnemigo<0) THEN
+			BEGIN
+				SET @vidaEnemigo = 0;
+		END;
+		END IF;
+            
+		UPDATE Caza SET VidaRollo = @vidaRollo, VidaEnemigo = @vidaEnemigo, AtaqueRollo = ataqueRollo, AtaqueEnemigo = @ataqueEnemigo WHERE ID_Rollo = idRollo;
+    END;
+    END IF;
+END $$
+
+CREATE PROCEDURE borrarCaza(IN idRollo INT)
+BEGIN
+	DELETE FROM Caza WHERE ID_Rollo = idRollo;
+END$$
+
 DELIMITER ;
 -- Datos iniciales
 
@@ -334,25 +477,29 @@ INSERT INTO Zonas (Nombre, Nivel) VALUES
     ('cementerio', 5),
     ('infierno', 6);
 
--- Enemigo
-CALL crearEnemigo('stripper', 10, 20, 30, 0, 'bano');
-CALL crearEnemigo('cepillo', 10, 30, 20, 0, 'bano');
-CALL crearEnemigo('cuchilla', 30, 10, 20, 0, 'bano');
-CALL crearEnemigo('champu', 20, 10, 30, 0, 'bano');
-CALL crearEnemigo('vater', 30, 50, 20, 1, 'bano');
+-- Enemigos
+CALL crearEnemigo('stripper', 10, 20, 30, FALSE, 'bano');
+CALL crearEnemigo('cepillo', 10, 30, 20, FALSE, 'bano');
+CALL crearEnemigo('cuchilla', 30, 10, 20, FALSE, 'bano');
+CALL crearEnemigo('champu', 20, 10, 30, FALSE, 'bano');
+CALL crearEnemigo('vater', 30, 50, 20, TRUE, 'bano');
 
-CALL crearEnemigo('leche', 60, 80, 70, 0, 'cocina');
-CALL crearEnemigo('zanahoria', 80, 60, 70, 0, 'cocina');
-CALL crearEnemigo('cuchara', 70, 80, 60, 0, 'cocina');
-CALL crearEnemigo('limon', 70, 60, 80, 0, 'cocina');
-CALL crearEnemigo('calabaza', 80, 100, 70, 1, 'cocina');
+CALL crearEnemigo('leche', 60, 80, 70, FALSE, 'cocina');
+CALL crearEnemigo('zanahoria', 80, 60, 70, FALSE, 'cocina');
+CALL crearEnemigo('cuchara', 70, 80, 60, FALSE, 'cocina');
+CALL crearEnemigo('limon', 70, 60, 80, FALSE, 'cocina');
+CALL crearEnemigo('calabaza', 80, 100, 70, TRUE, 'cocina');
 
-CALL crearEnemigo('raton', 120, 110, 130, 0, 'oficina');
-CALL crearEnemigo('grapadora', 130, 120, 110, 0, 'oficina');
-CALL crearEnemigo('lapiz', 130, 110, 120, 0, 'oficina');
-CALL crearEnemigo('libro', 110, 130, 120, 0, 'oficina');
-CALL crearEnemigo('pendrive', 110, 150, 120, 1, 'oficina');
+CALL crearEnemigo('raton', 120, 110, 130, FALSE, 'oficina');
+CALL crearEnemigo('grapadora', 130, 120, 110, FALSE, 'oficina');
+CALL crearEnemigo('lapiz', 130, 110, 120, FALSE, 'oficina');
+CALL crearEnemigo('libro', 110, 130, 120, FALSE, 'oficina');
+CALL crearEnemigo('pendrive', 110, 150, 120, TRUE, 'oficina');
 
 -- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL asignarCaza(1);
+/*INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('armaPrueba', 'A', 200, 0, 0);
+INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUE (1, 1, TRUE);
+INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('sombreroPrueba', 'S', 300, 0, 0);
+INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUE (1, 2, TRUE);
+CALL asignarCaza(1);*/
