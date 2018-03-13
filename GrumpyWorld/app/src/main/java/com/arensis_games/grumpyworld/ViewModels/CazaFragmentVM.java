@@ -6,11 +6,14 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.arensis_games.grumpyworld.Conexion.AtributosInterface;
-import com.arensis_games.grumpyworld.Conexion.BasicAuthInterceptor;
 import com.arensis_games.grumpyworld.Conexion.BearerAuthInterceptor;
+import com.arensis_games.grumpyworld.Conexion.CazaInterface;
 import com.arensis_games.grumpyworld.Conexion.GestoraToken;
 import com.arensis_games.grumpyworld.Models.Atributos;
+import com.arensis_games.grumpyworld.Models.Caza;
 import com.arensis_games.grumpyworld.Models.Entrenamiento;
+import com.arensis_games.grumpyworld.Models.Estado;
+import com.arensis_games.grumpyworld.Models.Turno;
 import com.arensis_games.grumpyworld.R;
 
 import okhttp3.OkHttpClient;
@@ -24,28 +27,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by dparrado on 15/02/18.
  */
 
-public class EntrenamientoFragmentVM extends AndroidViewModel {
-    private MutableLiveData<Atributos> ldAtributos;
+public class CazaFragmentVM extends AndroidViewModel {
+    private MutableLiveData<Caza> ldCaza;
     private MutableLiveData<Integer> ldError;
+    private MutableLiveData<Estado> ldEstado;
 
-    public EntrenamientoFragmentVM(@NonNull Application application) {
+    public CazaFragmentVM(@NonNull Application application) {
         super(application);
-        ldAtributos = new MutableLiveData<>();
-        ldError = new MutableLiveData<>();
+        this.ldCaza = new MutableLiveData<>();
+        this.ldError = new MutableLiveData<>();
+        this.ldEstado = new MutableLiveData<>();
     }
 
-    public MutableLiveData<Atributos> getLdAtributos() {
-        return ldAtributos;
+    public MutableLiveData<Caza> getLdCaza() {
+        return ldCaza;
     }
 
     public MutableLiveData<Integer> getLdError() {
         return ldError;
     }
 
-    public void obtenerAtributos(){
+    public MutableLiveData<Estado> getLdEstado() {
+        return ldEstado;
+    }
+
+    public void obtenerCaza(){
         OkHttpClient client;
         Retrofit retrofit;
-        AtributosInterface atributosInterface;
+        CazaInterface cazaInterface;
 
         /*
             Android puede haber borrado el dato estático si necesita memoria.
@@ -64,13 +73,13 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            atributosInterface = retrofit.create(AtributosInterface.class);
+            cazaInterface = retrofit.create(CazaInterface.class);
 
-            atributosInterface.getAtributos().enqueue(new Callback<Atributos>() {
+            cazaInterface.getCaza().enqueue(new Callback<Caza>() {
                 @Override
-                public void onResponse(Call<Atributos> call, Response<Atributos> response) {
+                public void onResponse(Call<Caza> call, Response<Caza> response) {
                     if(response.isSuccessful()){
-                        ldAtributos.postValue(response.body());
+                        ldCaza.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
                         /*
@@ -85,7 +94,7 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<Atributos> call, Throwable t) {
+                public void onFailure(Call<Caza> call, Throwable t) {
 
                 }
             });
@@ -94,10 +103,10 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
         }
     }
 
-    public void entrenar(Entrenamiento entrenamiento) {
+    public void jugarTurno(Turno turno){
         OkHttpClient client;
         Retrofit retrofit;
-        AtributosInterface atributosInterface;
+        CazaInterface cazaInterface;
 
         if(GestoraToken.getAuthorization() != null){
             client = new OkHttpClient.Builder()
@@ -110,13 +119,13 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            atributosInterface = retrofit.create(AtributosInterface.class);
+            cazaInterface = retrofit.create(CazaInterface.class);
 
-            atributosInterface.postAtributos(entrenamiento).enqueue(new Callback<Atributos>() {
+            cazaInterface.postTurno(turno).enqueue(new Callback<Estado>() {
                 @Override
-                public void onResponse(Call<Atributos> call, Response<Atributos> response) {
+                public void onResponse(Call<Estado> call, Response<Estado> response) {
                     if(response.isSuccessful()){
-                        ldAtributos.postValue(response.body());
+                        ldEstado.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
                         ldError.setValue(response.code());
@@ -124,7 +133,7 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<Atributos> call, Throwable t) {
+                public void onFailure(Call<Estado> call, Throwable t) {
 
                 }
             });

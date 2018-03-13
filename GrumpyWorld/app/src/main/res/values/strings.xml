@@ -41,10 +41,18 @@
     <string name="error_campo_vacio">No field can be empty</string>
     <string name="error_contrasenas_no_coinciden">Passwords don\'t match</string>
     <string name="error_usuario_ya_existe">User already exists</string>
+    <string name="error_sesion_caducada">The session has expired. Restarting session…</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ataque">Attack</string>
     <string name="especial">Special</string>
+    <string name="contra">Counter</string>
+    <string name="nivel">Lv. %1$d</string>
 
+    <string name="enemigo_cepillo_corto">Toothbrush</string>
+    <string name="enemigo_champu_corto">Pirate shampoo</string>
+    <string name="enemigo_cuchilla_corto">Razor blade</string>
+    <string name="enemigo_stripper_corto">Stripper roll</string>
+    <string name="enemigo_vater_corto">Toilet</string>
+
+    <string name="cazar_de_nuevo">Hunt again</string>
 </resources>

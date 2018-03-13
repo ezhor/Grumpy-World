@@ -18,6 +18,7 @@ import com.arensis_games.grumpyworld.Adapters.AdaptadorDrawer;
 import com.arensis_games.grumpyworld.Fragments.CazaFragment;
 import com.arensis_games.grumpyworld.Fragments.EntrenamientoFragment;
 import com.arensis_games.grumpyworld.Fragments.InicioFragment;
+import com.arensis_games.grumpyworld.Fragments.PremioFragment;
 import com.arensis_games.grumpyworld.Models.Rollo;
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.ViewModels.MainActivityVM;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Rollo rollo;
     private String[] elementos;
     private MainActivity thisActivity = this;
+    private Observer<Fragment> fragmentObserver;
 
 
     @Override
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     int error = integer;
                     switch (error){
                         case 401:
+                            Toast.makeText(thisActivity, getString(R.string.error_sesion_caducada), Toast.LENGTH_SHORT).show();
                             intent = new Intent(thisActivity, SplashActivity.class);
                             startActivity(intent);
                             finish();
@@ -83,6 +86,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         };
         vm.getLdError().observe(this, errorObserver);
+
+        fragmentObserver = new Observer<Fragment>() {
+            @Override
+            public void onChanged(@Nullable Fragment fragment) {
+                if(fragment != null){
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.framePrincipal, fragment)
+                            .commit();
+                }
+            }
+        };
+
+        vm.getLdFragment().observe(this, fragmentObserver);
 
         mostrarFragmentInicio();
         rellenarDrawer();

@@ -15,8 +15,9 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.arensis_games.grumpyworld.GestoraGUI;
+import com.arensis_games.grumpyworld.Gestoras.GestoraGUI;
 import com.arensis_games.grumpyworld.Models.Atributos;
+import com.arensis_games.grumpyworld.Models.Entrenamiento;
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.ViewModels.EntrenamientoFragmentVM;
 import com.arensis_games.grumpyworld.ViewModels.MainActivityVM;
@@ -83,7 +84,7 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
                     tvFuerza.setText(String.valueOf(atributos.getFuerza()));
                     tvConstitucion.setText(String.valueOf(atributos.getConstitucion()));
                     tvDestreza.setText(String.valueOf(atributos.getDestreza()));
-                    tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(getContext(), finEntrenamiento));
+                    tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(getResources(), finEntrenamiento));
                     progress.setVisibility(View.GONE);
                     milis = System.currentTimeMillis();
                     if(finEntrenamiento-(milis/1000) <= 0){
@@ -93,7 +94,7 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
                         public void run(){
                             Context context = getContext();
                             if(context != null){
-                                tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(context, finEntrenamiento));
+                                tvTiempoRestante.setText(gesGUI.getTiempoRestanteBonito(getResources(), finEntrenamiento));
                                 if(!cargando){
                                     milis = System.currentTimeMillis();
                                     if(finEntrenamiento-(milis/1000) <= 0){
@@ -139,19 +140,19 @@ public class EntrenamientoFragment extends Fragment implements View.OnClickListe
                 case R.id.ibAumentarFuerza:
                     desactivarBotones();
                     cargando = true;
-                    vm.entrenar("fuerza");
+                    vm.entrenar(new Entrenamiento("fuerza"));
                     break;
 
                 case R.id.ibAumentarConstitucion:
                     desactivarBotones();
                     cargando = true;
-                    vm.entrenar("constitucion");
+                    vm.entrenar(new Entrenamiento("constitucion"));
                     break;
 
                 case R.id.ibAumentarDestreza:
                     desactivarBotones();
                     cargando = true;
-                    vm.entrenar("destreza");
+                    vm.entrenar(new Entrenamiento("destreza"));
                     break;
             }
         }

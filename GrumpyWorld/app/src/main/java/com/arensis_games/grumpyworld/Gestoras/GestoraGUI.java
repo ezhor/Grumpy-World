@@ -1,8 +1,10 @@
-package com.arensis_games.grumpyworld;
+package com.arensis_games.grumpyworld.Gestoras;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+
+import com.arensis_games.grumpyworld.R;
 
 /**
  * Created by ezhor on 13/02/2018.
@@ -48,7 +50,7 @@ public class GestoraGUI {
         return drawable;
     }
 
-    public String getTiempoRestanteBonito(Context context, int finEntrenamiento){
+    public String getTiempoRestanteBonito(Resources resources, int finEntrenamiento){
         String tiempoBonito = "";
         int tiempoEnSegundos = (int)(finEntrenamiento - (System.currentTimeMillis()/1000));
         int segundosEnUnMinuto = 60;
@@ -65,34 +67,34 @@ public class GestoraGUI {
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnAno;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)(((tiempoDecimal-tiempo1)*segundosEnUnAno)/segundosEnUnMes);
-                tiempoBonito = context.getString(R.string.quedan_anos_meses, tiempo1, tiempo2);
+                tiempoBonito = resources.getString(R.string.quedan_anos_meses, tiempo1, tiempo2);
             }
             else if(tiempoEnSegundos >= segundosEnUnMes){
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnMes;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)(((tiempoDecimal-tiempo1)*segundosEnUnMes)/segundosEnUnDia);
-                tiempoBonito = context.getString(R.string.quedan_meses_dias, tiempo1, tiempo2);
+                tiempoBonito = resources.getString(R.string.quedan_meses_dias, tiempo1, tiempo2);
             }
             else if(tiempoEnSegundos >= segundosEnUnDia){
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnDia;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)(((tiempoDecimal-tiempo1)*segundosEnUnDia)/segundosEnUnaHora);
-                tiempoBonito = context.getString(R.string.quedan_dias_horas, tiempo1, tiempo2);
+                tiempoBonito = resources.getString(R.string.quedan_dias_horas, tiempo1, tiempo2);
                 }
             else if(tiempoEnSegundos >= segundosEnUnaHora){
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnaHora;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)(((tiempoDecimal-tiempo1)*segundosEnUnaHora)/segundosEnUnMinuto);
-                tiempoBonito = context.getString(R.string.quedan_horas_minutos, tiempo1, tiempo2);
+                tiempoBonito = resources.getString(R.string.quedan_horas_minutos, tiempo1, tiempo2);
             }
             else if(tiempoEnSegundos >= segundosEnUnMinuto){
                 tiempoDecimal = tiempoEnSegundos/(float)segundosEnUnMinuto;
                 tiempo1 = (int)tiempoDecimal;
                 tiempo2 = (int)((tiempoDecimal-tiempo1)*segundosEnUnMinuto);
-                tiempoBonito = context.getString(R.string.quedan_minutos_segundos, tiempo1, tiempo2);
+                tiempoBonito = resources.getString(R.string.quedan_minutos_segundos, tiempo1, tiempo2);
             }
             else{
-                tiempoBonito = context.getString(R.string.quedan_segundos, tiempoEnSegundos);
+                tiempoBonito = resources.getString(R.string.quedan_segundos, tiempoEnSegundos);
             }
         }
 
@@ -137,7 +139,118 @@ public class GestoraGUI {
                     drawable = resources.getDrawable(R.drawable.icono_cerrar_sesion);
                     }
             }
-
         return drawable;
+    }
+
+    public Drawable getDrawableEnemigo(Resources resources, String enemigo) {
+        Drawable drawable = null;
+        if(enemigo!= null){
+            switch(enemigo){
+                case "cepillo":
+                    drawable = resources.getDrawable(R.drawable.enemigo_cepillo);
+                    break;
+                case "champu":
+                    drawable = resources.getDrawable(R.drawable.enemigo_champu);
+                    break;
+                case "cuchilla":
+                    drawable = resources.getDrawable(R.drawable.enemigo_cuchilla);
+                    break;
+                case "stripper":
+                    drawable = resources.getDrawable(R.drawable.enemigo_stripper);
+                    break;
+                case "vater":
+                    drawable = resources.getDrawable(R.drawable.enemigo_vater);
+                    break;
+            }
+        }
+        return drawable;
+    }
+
+    public Drawable getDrawableRango(Resources resources, int rango){
+        Drawable drawable = null;
+        if(rango<=10){
+            switch (rango){
+                case 1:
+                    drawable = resources.getDrawable(R.drawable.rango1);
+                    break;
+                case 2:
+                    drawable = resources.getDrawable(R.drawable.rango2);
+                    break;
+                case 3:
+                    drawable = resources.getDrawable(R.drawable.rango3);
+                    break;
+                case 4:
+                    drawable = resources.getDrawable(R.drawable.rango4);
+                    break;
+                case 5:
+                    drawable = resources.getDrawable(R.drawable.rango5);
+                    break;
+                case 6:
+                    drawable = resources.getDrawable(R.drawable.rango6);
+                    break;
+                case 7:
+                    drawable = resources.getDrawable(R.drawable.rango7);
+                    break;
+                case 8:
+                    drawable = resources.getDrawable(R.drawable.rango8);
+                    break;
+                case 9:
+                    drawable = resources.getDrawable(R.drawable.rango9);
+                    break;
+                case 10:
+                    drawable = resources.getDrawable(R.drawable.rango10);
+                    break;
+            }
+        }
+        return drawable;
+    }
+
+    public Drawable getDrawableRango(Resources resources, boolean esJefe){
+        Drawable drawable = null;
+        if(esJefe) {
+            drawable = resources.getDrawable(R.drawable.icono_jefe);
+        }
+        return drawable;
+    }
+
+    public Drawable getDrawableAtaque(Resources resources, byte ataque){
+        Drawable drawable = null;
+        if(ataque == 1 || ataque == 2 || ataque == 3){
+            switch(ataque){
+                case 1:
+                    drawable = resources.getDrawable(R.drawable.icono_ataque);
+                    break;
+                case 2:
+                    drawable = resources.getDrawable(R.drawable.icono_especial);
+                    break;
+                case 3:
+                    drawable = resources.getDrawable(R.drawable.icono_contra);
+                    break;
+            }
+        }
+        return drawable;
+    }
+
+    public String getNombreCortoEnemigo(Resources resources, String enemigo){
+        String nombreCorto = "";
+
+        switch(enemigo){
+            case "cepillo":
+                nombreCorto = resources.getString(R.string.enemigo_cepillo_corto);
+                break;
+            case "champu":
+                nombreCorto = resources.getString(R.string.enemigo_champu_corto);
+                break;
+            case "cuchilla":
+                nombreCorto = resources.getString(R.string.enemigo_cuchilla_corto);
+                break;
+            case "stripper":
+                nombreCorto = resources.getString(R.string.enemigo_stripper_corto);
+                break;
+            case "vater":
+                nombreCorto = resources.getString(R.string.enemigo_vater_corto);
+                break;
+        }
+        return nombreCorto;
     }
 }

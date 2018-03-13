@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.arensis_games.grumpyworld.GestoraGUI;
+import com.arensis_games.grumpyworld.Gestoras.GestoraGUI;
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.ViewModels.MainActivityVM;
 

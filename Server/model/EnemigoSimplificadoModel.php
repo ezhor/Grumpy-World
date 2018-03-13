@@ -6,21 +6,31 @@
  * Time: 21:31
  */
 
+
+/*
+    INFO: ESTA CLASE ES UNA VERSIÓN SIMPLIFICADA DEL ENEMIGO.
+    SE USARÁ CUANDO SE ENVÍEN LOS DATOS DEL ENEMIGO AL JUGADOR.
+    NO INTERESA QUE EL JUGADOR CONOZCA TODOS LOS DATOS DEL ENEMIGO, SOLO QUIÉN ES, SU NIVEL Y SI ES JEFE O NO.
+    LA PROPIEDAD esMasRapido LA USARÁ LA GUI DE LA CAZA Y EL JUGADOR LA SABRÁ DE FORMA IMPLÍCITA.
+ */
 class EnemigoSimplificadoModel implements JsonSerializable
 {
     private $nombre;
+    private $nivel;
     private $esJefe;
     private $esMasRapido;
 
     /**
      * EnemigoSimplificadoModel constructor.
      * @param $nombre
+     * @param $nivel
      * @param $esJefe
      * @param $esMasRapido
      */
-    public function __construct($nombre, $esJefe, $esMasRapido)
+    public function __construct($nombre, $nivel, $esJefe, $esMasRapido)
     {
         $this->nombre = $nombre;
+        $this->nivel = $nivel;
         $this->esJefe = $esJefe;
         $this->esMasRapido = $esMasRapido;
     }
@@ -39,6 +49,22 @@ class EnemigoSimplificadoModel implements JsonSerializable
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNivel()
+    {
+        return $this->nivel;
+    }
+
+    /**
+     * @param mixed $nivel
+     */
+    public function setNivel($nivel)
+    {
+        $this->nivel = $nivel;
     }
 
     /**
@@ -74,19 +100,14 @@ class EnemigoSimplificadoModel implements JsonSerializable
     }
 
 
-    /**
-     * Specify data which should be serialized to JSON
-     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
-     * @since 5.4.0
-     */
+
     public function jsonSerialize()
     {
         return array(
             'nombre' => $this->nombre,
-            'esJefe' => $this->esJefe,
-            'esMasRapido' => $this->esMasRapido
+            'nivel' => $this->nivel,
+            'jefe' => $this->esJefe,
+            'masRapido' => $this->esMasRapido
         );
     }
 }

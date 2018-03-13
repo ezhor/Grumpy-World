@@ -7,7 +7,7 @@ USE GrumpyWorld;
 -- Tablas
 CREATE TABLE Usuarios(
   ID INT NOT NULL AUTO_INCREMENT,
-  Usuario NVARCHAR(20) NOT NULL UNIQUE,
+  Usuario NVARCHAR(15) NOT NULL UNIQUE,
   Contrasena NVARCHAR(255) NOT NULL,
   PRIMARY KEY(ID)
 );
@@ -41,7 +41,7 @@ CREATE TABLE Rollos(
   ID_Usuario INT,
   ID_Atributos INT NOT NULL,
   ID_Zona INT NOT NULL,
-  Nivel INT NOT NULL DEFAULT 0,
+  Nivel INT NOT NULL DEFAULT 1,
   Honor INT NOT NULL DEFAULT 0,
   CONSTRAINT FK_Rollos_Usuario FOREIGN KEY(ID_Usuario) REFERENCES Usuarios(ID) ON DELETE CASCADE,
   CONSTRAINT FK_Rollos_Zona FOREIGN KEY (ID_Zona) REFERENCES Zonas(ID) ON DELETE NO ACTION,
@@ -115,7 +115,7 @@ CREATE TABLE Equipables_Materiales(
 
 CREATE TABLE Enemigos(
   ID INT NOT NULL AUTO_INCREMENT,
-  Nombre NVARCHAR(20) NOT NULL UNIQUE,
+  Nombre NVARCHAR(15) NOT NULL UNIQUE,
   ID_Atributos INT NOT NULL,
   ID_Zona INT NOT NULL,
   EsJefe BIT(1) NOT NULL,
@@ -148,7 +148,7 @@ CREATE TABLE Caza(
 DELIMITER $$
 
 -- Comprueba si existe un usuario
-CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(20))
+CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(15))
 RETURNS BIT
 BEGIN
   /*DECLARE existe BIT;
@@ -342,7 +342,7 @@ END $$
 -- Procedimientos
 
 -- Crea un usuario insertando en todas las tablas necesarias
-CREATE PROCEDURE crearUsuario(IN usuario NVARCHAR(20), IN contrasena NVARCHAR(255), OUT conseguido BIT)
+CREATE PROCEDURE crearUsuario(IN usuario NVARCHAR(15), IN contrasena NVARCHAR(255), OUT conseguido BIT)
 BEGIN
     INSERT INTO Usuarios (Usuario, Contrasena) VALUE (usuario, contrasena);
     IF(ROW_COUNT()>0) THEN
@@ -397,7 +397,7 @@ BEGIN
 END $$
 
 -- Crea un enemigo
-CREATE PROCEDURE crearEnemigo(IN nNombre NVARCHAR(20), IN nFuerza INT, IN nConstitucion INT, IN nDestreza INT, IN nEsJefe BIT, IN nNombreZona NVARCHAR(30))
+CREATE PROCEDURE crearEnemigo(IN nNombre NVARCHAR(15), IN nFuerza INT, IN nConstitucion INT, IN nDestreza INT, IN nEsJefe BIT, IN nNombreZona NVARCHAR(30))
 BEGIN
 	INSERT INTO Atributos (Fuerza, Constitucion, Destreza) VALUE (nFuerza, nConstitucion, nDestreza);
     INSERT INTO Enemigos (Nombre, ID_Atributos, ID_Zona, Esjefe)
@@ -413,7 +413,7 @@ END $$
 CREATE PROCEDURE jugarTurnoCaza(IN idRollo INT, IN ataqueRollo INT)
 BEGIN
 	SET @ataqueEnemigo = ataqueAleatorio();
-	SELECT VidaRollo, VidaEnemigo, enemigoMasRapido(ID_Rollo, ID_Enemigo) AS enemigoMasRapido, AR.ID AS idAtributosRollo, AE.ID AS idAtributosEnemigo
+	SELECT VidaRollo, VidaEnemigo, enemigoMasRapido(AR.Destreza, AE.Destreza) AS enemigoMasRapido, AR.ID AS idAtributosRollo, AE.ID AS idAtributosEnemigo
 	  INTO @vidaRollo, @vidaEnemigo, @enemigoMasRapido, @idAtributosRollo, @idAtributosEnemigo
 	  FROM Caza AS C
 	  INNER JOIN Rollos AS R ON C.ID_Rollo = R.ID_Usuario
@@ -498,6 +498,7 @@ CALL crearEnemigo('pendrive', 110, 150, 120, TRUE, 'oficina');
 
 -- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+-- UPDATE Atributos SET Fuerza = 200, Constitucion = 1, Destreza = 200 WHERE ID = 16;
 /*INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('armaPrueba', 'A', 200, 0, 0);
 INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUE (1, 1, TRUE);
 INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('sombreroPrueba', 'S', 300, 0, 0);

@@ -15,24 +15,26 @@ class CazaHandlerModel
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "SELECT E.Nombre, E.EsJefe, enemigoMasRapido(RA.Destreza, EA.Destreza) AS esMasRapido
+        $query = "SELECT E.Nombre, Z.Nivel, E.EsJefe, enemigoMasRapido(RA.Destreza, EA.Destreza) AS esMasRapido
                     FROM Rollos AS R
                       INNER JOIN Atributos AS RA
                         ON R.ID_Atributos = RA.ID
+                      INNER JOIN Zonas AS Z
+                        ON R.ID_Zona = Z.ID 
                       INNER JOIN Enemigos AS E
-                        ON R.ID_Zona = E.ID_Zona
+                        ON Z.ID = E.ID_Zona
                       INNER JOIN Atributos AS EA
                         ON E.ID_Atributos = EA.ID
                     WHERE R.ID_Usuario = ?;";
 
         $prep_query = $db_connection->prepare($query);
         $prep_query->bind_param('i', $idUsuario);
-        $prep_query->bind_result($nombre, $esJefe, $esMasRapido);
+        $prep_query->bind_result($nombre, $nivel, $esJefe, $esMasRapido);
         $prep_query->execute();
 
         $listaEnemigos = array();
         while($prep_query->fetch()){
-            $listaEnemigos[] = new EnemigoSimplificadoModel($nombre, $esJefe, $esMasRapido);
+            $listaEnemigos[] = new EnemigoSimplificadoModel($nombre, $nivel, $esJefe, $esMasRapido);
         }
 
         return $listaEnemigos;
@@ -42,7 +44,7 @@ class CazaHandlerModel
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "SELECT E.Nombre, E.EsJefe, enemigoMasRapido(RA.Destreza, EA.Destreza) AS masRapido
+        $query = "SELECT E.Nombre, Z.Nivel, E.EsJefe, enemigoMasRapido(RA.Destreza, EA.Destreza) AS masRapido
                     FROM Rollos AS R
                       INNER JOIN Atributos AS RA
                         ON R.ID_Atributos = RA.ID
@@ -50,17 +52,31 @@ class CazaHandlerModel
                       ON R.ID_Usuario = C.ID_Rollo
                       INNER JOIN Enemigos AS E
                         ON C.ID_Enemigo = E.ID
+                      INNER JOIN Zonas AS Z
+                        ON E.ID_Zona = Z.ID
                       INNER JOIN Atributos AS EA
                         ON E.ID_Atributos = EA.ID
                     WHERE R.ID_Usuario = ?;";
 
         $prep_query = $db_connection->prepare($query);
         $prep_query->bind_param('i', $idUsuario);
-        $prep_query->bind_result($nombre, $esJefe, $esMasRapido);
+        $prep_query->bind_result($nombre, $nivel, $esJefe, $esMasRapido);
         $prep_query->execute();
         $prep_query->fetch();
 
-        $enemigo = new EnemigoSimplificadoModel($nombre, $esJefe, $esMasRapido);
+        if($esJefe == 1){
+            $esJefe = true;
+        }else{
+            $esJefe = false;
+        }
+
+        if($esMasRapido == 1){
+            $esMasRapido = true;
+        }else{
+            $esMasRapido = false;
+        }
+
+        $enemigo = new EnemigoSimplificadoModel($nombre, $nivel, $esJefe, $esMasRapido);
 
         return $enemigo;
     }

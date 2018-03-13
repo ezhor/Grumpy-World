@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.arensis_games.grumpyworld.GestoraGUI;
+import com.arensis_games.grumpyworld.Gestoras.GestoraGUI;
 import com.arensis_games.grumpyworld.R;
 
 /**

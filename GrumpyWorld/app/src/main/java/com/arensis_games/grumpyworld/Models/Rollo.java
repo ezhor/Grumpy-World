@@ -12,16 +12,20 @@ public class Rollo implements Parcelable {
     private String sombrero;
     private String arma;
     private String zona;
+    private int nivel;
+    private int rango;
 
     public Rollo(){
 
     }
 
-    public Rollo(String nombre, String sombrero, String arma, String zona) {
+    public Rollo(String nombre, String sombrero, String arma, String zona, int nivel, int rango) {
         this.nombre = nombre;
         this.sombrero = sombrero;
         this.arma = arma;
         this.zona = zona;
+        this.nivel = nivel;
+        this.rango = rango;
     }
 
     public String getNombre() {
@@ -54,6 +58,22 @@ public class Rollo implements Parcelable {
 
     public void setZona(String zona) {
         this.zona = zona;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public int getRango() {
+        return rango;
+    }
+
+    public void setRango(int rango) {
+        this.rango = rango;
     }
 
     @Override

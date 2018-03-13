@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.arensis_games.grumpyworld.Fragments.PremioFragment"
+    android:background="@color/colorPrimaryLight">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/cazar_de_nuevo"
+            android:background="@drawable/boton"
+            android:textColor="@color/colorLetra"
+            android:padding="10dp"
+            android:id="@+id/btnCazarDeNuevo"
+            />
+    </RelativeLayout>
+
+</FrameLayout>
