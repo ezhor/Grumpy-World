@@ -53,5 +53,12 @@
     <string name="enemigo_cuchilla_corto">Cuchilla</string>
     <string name="enemigo_stripper_corto">Rollo stripper</string>
     <string name="enemigo_vater_corto">Váter</string>
+
+    <string name="enemigo_calabaza_corto">Calabaza malvada</string>
+    <string name="enemigo_cuchara_corto">Cuchara molona</string>
+    <string name="enemigo_leche_corto">Leche sospechosa</string>
+    <string name="enemigo_limon_corto">Lee Mong</string>
+    <string name="enemigo_zanahoria_corto">Zanarejo</string>
+
     <string name="cazar_de_nuevo">Cazar de nuevo</string>
 </resources>

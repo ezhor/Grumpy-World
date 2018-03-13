@@ -54,5 +54,11 @@
     <string name="enemigo_stripper_corto">Stripper roll</string>
     <string name="enemigo_vater_corto">Toilet</string>
 
+    <string name="enemigo_calabaza_corto">Evil pumpkin</string>
+    <string name="enemigo_cuchara_corto">Cool spoon</string>
+    <string name="enemigo_leche_corto">Suspicious milk</string>
+    <string name="enemigo_limon_corto">Lee Mong</string>
+    <string name="enemigo_zanahoria_corto">Carrobbit</string>
+
     <string name="cazar_de_nuevo">Hunt again</string>
 </resources>

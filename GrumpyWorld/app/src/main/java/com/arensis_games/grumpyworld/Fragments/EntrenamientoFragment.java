@@ -22,7 +22,7 @@ import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.ViewModels.EntrenamientoFragmentVM;
 import com.arensis_games.grumpyworld.ViewModels.MainActivityVM;
 
-public class EntrenamientoFragment extends Fragment implements View.OnClickListener {
+public class  EntrenamientoFragment extends Fragment implements View.OnClickListener {
 
     private TextView tvTiempoRestante;
     private TextView tvFuerza;

@@ -1,6 +1,5 @@
 package com.arensis_games.grumpyworld.Gestoras;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 
@@ -41,6 +40,9 @@ public class GestoraGUI {
             switch (nombre){
                 case "bano":
                     drawable = resources.getDrawable(R.drawable.fondo_bano);
+                    break;
+                case "cocina":
+                    drawable = resources.getDrawable(R.drawable.fondo_cocina);
                     break;
                 case "oficina":
                     drawable = resources.getDrawable(R.drawable.fondo_oficina);
@@ -115,7 +117,7 @@ public class GestoraGUI {
                     drawable = resources.getDrawable(R.drawable.icono_mapa);
                     }
             else if(elemento.equals(resources.getString(R.string.menu_sello))) {
-                    drawable = resources.getDrawable(R.drawable.icono_sello);
+                    drawable = resources.getDrawable(R.drawable.icono_pacto);
                     }
             else if(elemento.equals(resources.getString(R.string.menu_amigos))) {
                     drawable = resources.getDrawable(R.drawable.icono_amigos);
@@ -160,6 +162,22 @@ public class GestoraGUI {
                     break;
                 case "vater":
                     drawable = resources.getDrawable(R.drawable.enemigo_vater);
+                    break;
+
+                case "calabaza":
+                    drawable = resources.getDrawable(R.drawable.enemigo_calabaza);
+                    break;
+                case "cuchara":
+                    drawable = resources.getDrawable(R.drawable.enemigo_cuchara);
+                    break;
+                case "leche":
+                    drawable = resources.getDrawable(R.drawable.enemigo_leche);
+                    break;
+                case "limon":
+                    drawable = resources.getDrawable(R.drawable.enemigo_limon);
+                    break;
+                case "zanahoria":
+                    drawable = resources.getDrawable(R.drawable.enemigo_zanahoria);
                     break;
             }
         }
@@ -249,6 +267,22 @@ public class GestoraGUI {
                 break;
             case "vater":
                 nombreCorto = resources.getString(R.string.enemigo_vater_corto);
+                break;
+
+            case "calabaza":
+                nombreCorto = resources.getString(R.string.enemigo_calabaza_corto);
+                break;
+            case "cuchara":
+                nombreCorto = resources.getString(R.string.enemigo_cuchara_corto);
+                break;
+            case "leche":
+                nombreCorto = resources.getString(R.string.enemigo_leche_corto);
+                break;
+            case "limon":
+                nombreCorto = resources.getString(R.string.enemigo_limon_corto);
+                break;
+            case "zanahoria":
+                nombreCorto = resources.getString(R.string.enemigo_zanahoria_corto);
                 break;
         }
         return nombreCorto;

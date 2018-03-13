@@ -42,17 +42,19 @@ public class PremioFragment extends Fragment implements View.OnClickListener {
         premioObserver = new Observer<Void>() {
             @Override
             public void onChanged(@Nullable Void premio) {
-                ViewModelProviders.of(getActivity()).get(MainActivityVM.class).cambiarFragment(new CazaFragment());
+
             }
         };
 
         vm.getLdPremio().observe(this, premioObserver);
+
+        vm.obtenerPremio();
 
         return view;
     }
 
     @Override
     public void onClick(View view) {
-        vm.obtenerPremio();
+        ViewModelProviders.of(getActivity()).get(MainActivityVM.class).cambiarFragment(new CazaFragment());
     }
 }

@@ -410,11 +410,12 @@ BEGIN
 	INSERT INTO Caza (ID_Rollo, ID_Enemigo) VALUE (idRollo, enemigoAleatorio(idRollo));
 END $$
 
+-- Genera un ataque aleatorio de un enemigo y calcula el resultado del turno
 CREATE PROCEDURE jugarTurnoCaza(IN idRollo INT, IN ataqueRollo INT)
 BEGIN
 	SET @ataqueEnemigo = ataqueAleatorio();
-	SELECT VidaRollo, VidaEnemigo, enemigoMasRapido(AR.Destreza, AE.Destreza) AS enemigoMasRapido, AR.ID AS idAtributosRollo, AE.ID AS idAtributosEnemigo
-	  INTO @vidaRollo, @vidaEnemigo, @enemigoMasRapido, @idAtributosRollo, @idAtributosEnemigo
+	SELECT VidaRollo, VidaEnemigo, enemigoMasRapido(AR.Destreza, AE.Destreza) AS enemigoMasRapido, AR.ID AS idAtributosRollo, AE.ID AS idAtributosEnemigo, E.ID
+	  INTO @vidaRollo, @vidaEnemigo, @enemigoMasRapido, @idAtributosRollo, @idAtributosEnemigo, @idEnemigo
 	  FROM Caza AS C
 	  INNER JOIN Rollos AS R ON C.ID_Rollo = R.ID_Usuario
 	  INNER JOIN Atributos AS AR ON R.ID_Atributos = AR.ID
@@ -454,16 +455,57 @@ BEGIN
 				SET @vidaEnemigo = 0;
 		END;
 		END IF;
-            
-		UPDATE Caza SET VidaRollo = @vidaRollo, VidaEnemigo = @vidaEnemigo, AtaqueRollo = ataqueRollo, AtaqueEnemigo = @ataqueEnemigo WHERE ID_Rollo = idRollo;
+        
+        IF(@vidaRollo>0 AND @vidaEnemigo = 0) THEN
+        BEGIN
+			CALL marcarVictoria(idRollo, @idEnemigo);
+            CALL revisarNivel(idRollo);
+        END;
+        END IF;
+        
+		UPDATE Caza SET VidaRollo = @vidaRollo, VidaEnemigo = @vidaEnemigo, AtaqueRollo = ataqueRollo, AtaqueEnemigo = @ataqueEnemigo WHERE ID_Rollo = idRollo;        
     END;
     END IF;
 END $$
 
+-- Borra la caza activa del rollo
 CREATE PROCEDURE borrarCaza(IN idRollo INT)
 BEGIN
 	DELETE FROM Caza WHERE ID_Rollo = idRollo;
 END$$
+
+-- Mueve un rollo de zona
+CREATE PROCEDURE cambiarZona(IN idRollo INT, IN nombreZona NVARCHAR(15))
+BEGIN
+	UPDATE Rollos AS R
+		SET ID_Zona = (SELECT ID FROM Zonas WHERE Nombre = nombreZona)
+		WHERE R.ID_Usuario = idRollo;
+END $$
+
+-- Marca un enemigo como vencido por un rollo (siempre que no haya sido previamente marcado)
+CREATE PROCEDURE marcarVictoria(IN idRollo INT, IN idEnemigo INT)
+BEGIN
+	IF((SELECT COUNT(*) FROM Vencidos WHERE ID_Rollo = idRollo AND ID_Enemigo = idEnemigo) = 0) THEN
+    BEGIN
+		INSERT INTO Vencidos VALUE (idRollo, idEnemigo);
+    END;
+    END IF;
+END $$
+
+-- Sube de nivel un rollo si ya ha vencido al jefe de su zona
+CREATE PROCEDURE revisarNivel(IN idRollo INT)
+BEGIN
+	SET @nivel = (SELECT COUNT(*)+1
+			 FROM Rollos AS R
+			   INNER JOIN Vencidos AS V
+				 ON R.ID_Usuario = V.ID_Rollo
+			   INNER JOIN Enemigos AS E
+				 ON V.ID_Enemigo = E.ID
+			 WHERE R.ID_Usuario = 1 AND E.EsJefe);
+	
+    UPDATE Rollos AS R SET Nivel = @nivel
+		WHERE R.ID_Usuario = idRollo;
+END $$
 
 DELIMITER ;
 -- Datos iniciales
@@ -498,7 +540,7 @@ CALL crearEnemigo('pendrive', 110, 150, 120, TRUE, 'oficina');
 
 -- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
--- UPDATE Atributos SET Fuerza = 200, Constitucion = 1, Destreza = 200 WHERE ID = 16;
+UPDATE Atributos SET Fuerza = 2000, Constitucion = 2000, Destreza = 2000 WHERE ID = 16;
 /*INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('armaPrueba', 'A', 200, 0, 0);
 INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUE (1, 1, TRUE);
 INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('sombreroPrueba', 'S', 300, 0, 0);
