@@ -57,7 +57,7 @@ public class RegistroActivityVM extends AndroidViewModel{
                     editor.putString("contrasena", authentication.getContrasena());
                     editor.commit();
                 }
-                ldCodigo.setValue(response.code());
+                ldCodigo.postValue(response.code());
             }
 
             @Override

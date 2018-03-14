@@ -71,9 +71,9 @@ public class InicioFragment extends Fragment {
         ImageView ivArma = view.findViewById(R.id.ivArma);
         RelativeLayout relativePrincipal = view.findViewById(R.id.relativePrincipal);
 
-        ivSombrero.setImageDrawable(gesGUI.getDrawableSombreroByNombre(getResources(),  vmMain.getRollo().getSombrero()));
-        ivArma.setImageDrawable(gesGUI.getDrawableArmaByNombre(getResources(), vmMain.getRollo().getArma()));
-        relativePrincipal.setBackgroundDrawable(gesGUI.getDrawableZonaByNombre(getResources(), vmMain.getRollo().getZona()));
+        ivSombrero.setImageDrawable(gesGUI.getDrawableSombrero(getResources(),  vmMain.getRollo().getSombrero()));
+        ivArma.setImageDrawable(gesGUI.getDrawableArma(getResources(), vmMain.getRollo().getArma()));
+        relativePrincipal.setBackgroundDrawable(gesGUI.getDrawableZona(getResources(), vmMain.getRollo().getZona()));
 
         return view;
     }

@@ -18,7 +18,7 @@ import com.arensis_games.grumpyworld.Adapters.AdaptadorDrawer;
 import com.arensis_games.grumpyworld.Fragments.CazaFragment;
 import com.arensis_games.grumpyworld.Fragments.EntrenamientoFragment;
 import com.arensis_games.grumpyworld.Fragments.InicioFragment;
-import com.arensis_games.grumpyworld.Fragments.PremioFragment;
+import com.arensis_games.grumpyworld.Fragments.MapaFragment;
 import com.arensis_games.grumpyworld.Models.Rollo;
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.ViewModels.MainActivityVM;
@@ -137,6 +137,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             finish();
         }else if(opcionElegida.equals(getString(R.string.menu_caza))){
             fragment = new CazaFragment();
+        }else if(opcionElegida.equals(getString(R.string.menu_mapa))){
+            fragment = new MapaFragment();
         }
 
         if(fragment != null){

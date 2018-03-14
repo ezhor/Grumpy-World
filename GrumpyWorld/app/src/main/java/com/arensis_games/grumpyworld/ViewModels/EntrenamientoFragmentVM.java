@@ -80,7 +80,7 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
                             En ese caso se manda al usuario a la pantalla de inicio para que
                             el sistema inicie sesión de nuevo.
                          */
-                        ldError.setValue(response.code());
+                        ldError.postValue(response.code());
                     }
                 }
 

@@ -10,7 +10,7 @@ import com.arensis_games.grumpyworld.R;
  */
 
 public class GestoraGUI {
-    public Drawable getDrawableSombreroByNombre(Resources resources, String nombre){
+    public Drawable getDrawableSombrero(Resources resources, String nombre){
         Drawable drawable = null;
         if(nombre != null){
             switch (nombre){
@@ -22,7 +22,7 @@ public class GestoraGUI {
         return drawable;
     }
 
-    public Drawable getDrawableArmaByNombre(Resources resources, String nombre) {
+    public Drawable getDrawableArma(Resources resources, String nombre) {
         Drawable drawable = null;
         if(nombre != null){
             switch (nombre){
@@ -34,7 +34,7 @@ public class GestoraGUI {
         return drawable;
     }
 
-    public Drawable getDrawableZonaByNombre(Resources resources, String nombre) {
+    public Drawable getDrawableZona(Resources resources, String nombre) {
         Drawable drawable = null;
         if(nombre != null){
             switch (nombre){
@@ -284,6 +284,34 @@ public class GestoraGUI {
             case "zanahoria":
                 nombreCorto = resources.getString(R.string.enemigo_zanahoria_corto);
                 break;
+        }
+        return nombreCorto;
+    }
+
+    public String getNombreZona(Resources resources, String nombre) {
+        String nombreCorto = null;
+        if(nombre != null){
+            switch (nombre){
+                case "bano":
+                    nombreCorto = resources.getString(R.string.zona_bano);
+                    break;
+                case "cocina":
+                    nombreCorto = resources.getString(R.string.zona_cocina);
+                    break;
+                case "oficina":
+                    nombreCorto = resources.getString(R.string.zona_oficina);
+                    break;
+                case "parque":
+                    nombreCorto = resources.getString(R.string.zona_parque);
+                    break;
+                case "cementerio":
+                    nombreCorto = resources.getString(R.string.zona_cementerio);
+                    break;
+                case "infierno":
+                    nombreCorto = resources.getString(R.string.zona_infierno);
+                    break;
+
+            }
         }
         return nombreCorto;
     }

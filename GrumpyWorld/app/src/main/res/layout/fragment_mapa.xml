@@ -1,0 +1,34 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.arensis_games.grumpyworld.Fragments.MapaFragment"
+    android:background="@color/colorPrimaryLight">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/texto"
+            android:textColor="@color/colorLetra"
+            android:text="Zonas desbloqueadas:\n1 de 6"
+            android:gravity="end"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            />
+
+        <ListView
+            android:layout_marginTop="20dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/lista"
+            android:layout_below="@id/texto"
+            />
+
+    </RelativeLayout>
+</FrameLayout>

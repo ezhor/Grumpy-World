@@ -61,4 +61,14 @@
     <string name="enemigo_zanahoria_corto">Zanarejo</string>
 
     <string name="cazar_de_nuevo">Cazar de nuevo</string>
+
+    <string name="zona_bano">Baño</string>
+    <string name="zona_cocina">Cocina</string>
+    <string name="zona_oficina">Oficina</string>
+    <string name="zona_parque">Parque</string>
+    <string name="zona_cementerio">Cementerio</string>
+    <string name="zona_infierno">Infierno</string>
+
+    <string name="zonas_desbloqueadas">Zonas desbloqueadas:\n%1$d of 6</string>
+    <string name="zona_cambiada">Te has movido a %1$s</string>
 </resources>

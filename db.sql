@@ -477,6 +477,7 @@ END$$
 -- Mueve un rollo de zona
 CREATE PROCEDURE cambiarZona(IN idRollo INT, IN nombreZona NVARCHAR(15))
 BEGIN
+	CALL borrarCaza(idRollo);
 	UPDATE Rollos AS R
 		SET ID_Zona = (SELECT ID FROM Zonas WHERE Nombre = nombreZona)
 		WHERE R.ID_Usuario = idRollo;
@@ -513,11 +514,11 @@ DELIMITER ;
 -- Zonas
 INSERT INTO Zonas (Nombre, Nivel) VALUES
 	('bano', 1),
-	('cocina', 2),
-    ('oficina', 3),
-    ('parque', 4),
-    ('cementerio', 5),
-    ('infierno', 6);
+	('cocina', 2);
+    -- ('oficina', 3)
+    -- ('parque', 4),
+    -- ('cementerio', 5),
+    -- ('infierno', 6);
 
 -- Enemigos
 CALL crearEnemigo('stripper', 10, 20, 30, FALSE, 'bano');

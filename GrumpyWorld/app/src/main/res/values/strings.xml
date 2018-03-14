@@ -61,4 +61,14 @@
     <string name="enemigo_zanahoria_corto">Carrobbit</string>
 
     <string name="cazar_de_nuevo">Hunt again</string>
+
+    <string name="zona_bano">Bathroom</string>
+    <string name="zona_cocina">Kitchen</string>
+    <string name="zona_oficina">Office</string>
+    <string name="zona_parque">Park</string>
+    <string name="zona_cementerio">Cementery</string>
+    <string name="zona_infierno">Hell</string>
+
+    <string name="zonas_desbloqueadas">Unlocked areas:\n%1$d of 6</string>
+    <string name="zona_cambiada">You have moved to %1$s</string>
 </resources>

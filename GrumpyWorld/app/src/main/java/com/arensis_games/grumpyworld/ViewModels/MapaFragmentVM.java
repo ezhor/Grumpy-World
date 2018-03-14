@@ -7,13 +7,11 @@ import android.support.annotation.NonNull;
 
 import com.arensis_games.grumpyworld.Conexion.AtributosInterface;
 import com.arensis_games.grumpyworld.Conexion.BearerAuthInterceptor;
-import com.arensis_games.grumpyworld.Conexion.CazaInterface;
 import com.arensis_games.grumpyworld.Conexion.GestoraToken;
+import com.arensis_games.grumpyworld.Conexion.ZonaInterface;
 import com.arensis_games.grumpyworld.Models.Atributos;
-import com.arensis_games.grumpyworld.Models.Caza;
 import com.arensis_games.grumpyworld.Models.Entrenamiento;
-import com.arensis_games.grumpyworld.Models.Estado;
-import com.arensis_games.grumpyworld.Models.Turno;
+import com.arensis_games.grumpyworld.Models.Zona;
 import com.arensis_games.grumpyworld.R;
 
 import okhttp3.OkHttpClient;
@@ -27,34 +25,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by dparrado on 15/02/18.
  */
 
-public class CazaFragmentVM extends AndroidViewModel {
-    private MutableLiveData<Caza> ldCaza;
+public class MapaFragmentVM extends AndroidViewModel {
+    private MutableLiveData<Zona[]> ldZona;
     private MutableLiveData<Integer> ldError;
-    private MutableLiveData<Estado> ldEstado;
+    private MutableLiveData<Zona> ldZonaCambiada;
 
-    public CazaFragmentVM(@NonNull Application application) {
+    public MapaFragmentVM(@NonNull Application application) {
         super(application);
-        this.ldCaza = new MutableLiveData<>();
-        this.ldError = new MutableLiveData<>();
-        this.ldEstado = new MutableLiveData<>();
+        ldZona = new MutableLiveData<>();
+        ldError = new MutableLiveData<>();
+        ldZonaCambiada = new MutableLiveData<>();
     }
 
-    public MutableLiveData<Caza> getLdCaza() {
-        return ldCaza;
+    public MutableLiveData<Zona[]> getLdZona() {
+        return ldZona;
     }
 
     public MutableLiveData<Integer> getLdError() {
         return ldError;
     }
 
-    public MutableLiveData<Estado> getLdEstado() {
-        return ldEstado;
+    public MutableLiveData<Zona> getLdZonaCambiada() {
+        return ldZonaCambiada;
     }
 
-    public void obtenerCaza(){
+    public void obtenerZonasDisponibles(){
         OkHttpClient client;
         Retrofit retrofit;
-        CazaInterface cazaInterface;
+        ZonaInterface zonaInterface;
 
         /*
             Android puede haber borrado el dato estático si necesita memoria.
@@ -73,13 +71,13 @@ public class CazaFragmentVM extends AndroidViewModel {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            cazaInterface = retrofit.create(CazaInterface.class);
+            zonaInterface = retrofit.create(ZonaInterface.class);
 
-            cazaInterface.getCaza().enqueue(new Callback<Caza>() {
+            zonaInterface.getZonasDisponibles().enqueue(new Callback<Zona[]>() {
                 @Override
-                public void onResponse(Call<Caza> call, Response<Caza> response) {
+                public void onResponse(Call<Zona[]> call, Response<Zona[]> response) {
                     if(response.isSuccessful()){
-                        ldCaza.postValue(response.body());
+                        ldZona.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
                         /*
@@ -89,12 +87,12 @@ public class CazaFragmentVM extends AndroidViewModel {
                             En ese caso se manda al usuario a la pantalla de inicio para que
                             el sistema inicie sesión de nuevo.
                          */
-                        ldError.postValue(response.code());
+                        ldError.setValue(response.code());
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Caza> call, Throwable t) {
+                public void onFailure(Call<Zona[]> call, Throwable t) {
 
                 }
             });
@@ -103,10 +101,10 @@ public class CazaFragmentVM extends AndroidViewModel {
         }
     }
 
-    public void jugarTurno(Turno turno){
+    public void cambiarZona(final Zona zona) {
         OkHttpClient client;
         Retrofit retrofit;
-        CazaInterface cazaInterface;
+        ZonaInterface zonaInterface;
 
         if(GestoraToken.getAuthorization() != null){
             client = new OkHttpClient.Builder()
@@ -119,21 +117,21 @@ public class CazaFragmentVM extends AndroidViewModel {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            cazaInterface = retrofit.create(CazaInterface.class);
+            zonaInterface = retrofit.create(ZonaInterface.class);
 
-            cazaInterface.postTurno(turno).enqueue(new Callback<Estado>() {
+            zonaInterface.postZona(zona).enqueue(new Callback<Void>() {
                 @Override
-                public void onResponse(Call<Estado> call, Response<Estado> response) {
+                public void onResponse(Call<Void> call, Response<Void> response) {
                     if(response.isSuccessful()){
-                        ldEstado.postValue(response.body());
+                        ldZonaCambiada.postValue(zona);
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
-                        ldError.setValue(response.code());
+                        ldError.postValue(response.code());
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Estado> call, Throwable t) {
+                public void onFailure(Call<Void> call, Throwable t) {
 
                 }
             });

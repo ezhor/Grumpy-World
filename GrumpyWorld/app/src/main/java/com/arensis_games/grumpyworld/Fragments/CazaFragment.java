@@ -219,7 +219,7 @@ public class CazaFragment extends Fragment implements View.OnClickListener {
         Enemigo enemigo = caza.getEnemigo();
         Estado estado = caza.getEstado();
 
-        rlFondo.setBackgroundDrawable(gesGUI.getDrawableZonaByNombre(getResources(), rollo.getZona()));
+        rlFondo.setBackgroundDrawable(gesGUI.getDrawableZona(getResources(), rollo.getZona()));
 
         tvNombreRollo.setText(rollo.getNombre());
         ivRangoRollo.setImageDrawable(gesGUI.getDrawableRango(getResources(), rollo.getRango()));
@@ -229,8 +229,8 @@ public class CazaFragment extends Fragment implements View.OnClickListener {
         ivRangoEnemigo.setImageDrawable(gesGUI.getDrawableRango(getResources(), enemigo.isJefe()));
         tvNivelEnemigo.setText(getString(R.string.nivel, enemigo.getNivel()));
 
-        ivSombreroRollo.setImageDrawable(gesGUI.getDrawableSombreroByNombre(getResources(), rollo.getSombrero()));
-        ivArmaRollo.setImageDrawable(gesGUI.getDrawableArmaByNombre(getResources(), rollo.getArma()));
+        ivSombreroRollo.setImageDrawable(gesGUI.getDrawableSombrero(getResources(), rollo.getSombrero()));
+        ivArmaRollo.setImageDrawable(gesGUI.getDrawableArma(getResources(), rollo.getArma()));
 
         ivEnemigo.setImageDrawable(gesGUI.getDrawableEnemigo(getResources(), enemigo.getNombre()));
 
