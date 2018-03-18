@@ -241,7 +241,7 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 	SELECT
 	  IFNULL(
 		  (
-			SELECT e.Bonus
+			SELECT E.Bonus
 			FROM Atributos AS A
 			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
 			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
@@ -251,7 +251,7 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 		  , 0),
 	  IFNULL(
 		  (
-			SELECT e.Bonus
+			SELECT E.Bonus
 			FROM Atributos AS A
 			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
 			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
@@ -267,7 +267,7 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 	 SELECT
 	  IFNULL(
 		  (
-			SELECT e.Bonus
+			SELECT E.Bonus
 			FROM Atributos AS A
 			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
 			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
@@ -277,7 +277,7 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 		  , 0),
 	  IFNULL(
 		  (
-			SELECT e.Bonus
+			SELECT E.Bonus
 			FROM Atributos AS A
 			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
 			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
