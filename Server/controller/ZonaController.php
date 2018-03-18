@@ -38,7 +38,7 @@ class ZonaController extends Controller
                 $idUsuario = $request->getAuthentication()->getId();
                 if(ZonaHandlerModel::puedeCambiarZona($idUsuario, $nombreZona)){
                     ZonaHandlerModel::cambiarZona($idUsuario, $nombreZona);
-                    $response = new Response('204', null, null, $request->getAccept(), null);
+                    $response = new Response('204', null, null, $request->getAccept(), $request->getAuthentication()->getId());
                 }else{
                     $response = new Response('403', null, null, $request->getAccept(), null);
                 }

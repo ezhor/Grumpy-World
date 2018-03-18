@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Grumpy World</string>
-    <string name="SERVER_URL">http://192.168.0.27/</string>
+    <string name="SERVER_URL">https://mirandaserver.ddns.net/</string>
 
     <string name="menu_campana">Campaña</string>
     <string name="menu_entrenamiento">Entrenamiento</string>
@@ -69,6 +69,6 @@
     <string name="zona_cementerio">Cementerio</string>
     <string name="zona_infierno">Infierno</string>
 
-    <string name="zonas_desbloqueadas">Zonas desbloqueadas:\n%1$d of 6</string>
+    <string name="zonas_desbloqueadas">Zonas desbloqueadas:\n%1$d de 6</string>
     <string name="zona_cambiada">Te has movido a %1$s</string>
 </resources>
