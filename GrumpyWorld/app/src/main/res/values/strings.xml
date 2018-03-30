@@ -41,6 +41,7 @@
     <string name="error_campo_vacio">No field can be empty</string>
     <string name="error_contrasenas_no_coinciden">Passwords don\'t match</string>
     <string name="error_usuario_ya_existe">User already exists</string>
+    <string name="error_usuario_demasiado_largo">Username can\'t be longer than 15 characters</string>
     <string name="error_sesion_caducada">The session has expired. Restarting session…</string>
 
     <string name="ataque">Attack</string>
@@ -71,4 +72,10 @@
 
     <string name="zonas_desbloqueadas">Unlocked areas:\n%1$d of 6</string>
     <string name="zona_cambiada">You have moved to %1$s</string>
+
+    <string name="material_buen_rollo">Rock\'n\'roll</string>
+    <string name="material_plastico">Plastic</string>
+
+    <string name="victoria">¡Victory!</string>
+    <string name="derrota">Defeat :(</string>
 </resources>

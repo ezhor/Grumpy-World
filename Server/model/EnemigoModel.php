@@ -3,7 +3,6 @@
 
 class EnemigoModel implements JsonSerializable
 {
-    private $id;
     private $nombre;
     private $fuerza;
     private $constitucion;
@@ -11,16 +10,14 @@ class EnemigoModel implements JsonSerializable
     private $zona;
     /**
      * Model constructor.
-     * @param $id
      * @param $nombre
      * @param $fuerza
      * @param $constitucion
      * @param $destreza
      * @param $zona
      */
-    public function __construct($id, $nombre, $fuerza, $constitucion, $destreza, $zona)
+    public function __construct($nombre, $fuerza, $constitucion, $destreza, $zona)
     {
-        $this->id = $id;
         $this->nombre = $nombre;
         $this->fuerza = $fuerza;
         $this->constitucion = $constitucion;
@@ -41,7 +38,6 @@ class EnemigoModel implements JsonSerializable
     function jsonSerialize()
     {
         return array(
-            'id' => $this->id,
             'nombre' => $this->nombre,
             'fuerza' => $this->fuerza,
             'constitucion' => $this->constitucion,
@@ -50,25 +46,6 @@ class EnemigoModel implements JsonSerializable
         );
     }
 
-    public function __sleep(){
-        return array('id', 'nombre', 'fuerza', 'constitucion', 'destreza', 'zona');
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return mixed

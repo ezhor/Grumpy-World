@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Grumpy World</string>
-    <string name="SERVER_URL">https://mirandaserver.ddns.net/</string>
+    <!--string name="SERVER_URL">https://mirandaserver.ddns.net/</string-->
+    <string name="SERVER_URL">http://192.168.0.27</string>
 
     <string name="menu_campana">Campaña</string>
     <string name="menu_entrenamiento">Entrenamiento</string>
@@ -41,6 +42,7 @@
     <string name="error_campo_vacio">Ningún campo puede quedar vacío</string>
     <string name="error_contrasenas_no_coinciden">Las contraseñas no coinciden</string>
     <string name="error_usuario_ya_existe">El usuario ya existe</string>
+    <string name="error_usuario_demasiado_largo">El usuario no puede tener más de 15 caracteres</string>
     <string name="error_sesion_caducada">La sesión ha caducado. Reiniciando sesión…</string>
 
     <string name="ataque">Ataque</string>
@@ -71,4 +73,10 @@
 
     <string name="zonas_desbloqueadas">Zonas desbloqueadas:\n%1$d de 6</string>
     <string name="zona_cambiada">Te has movido a %1$s</string>
+
+    <string name="material_buen_rollo">Buen rollo</string>
+    <string name="material_plastico">Plástico</string>
+
+    <string name="victoria">¡Victoria!</string>
+    <string name="derrota">Derrota :(</string>
 </resources>

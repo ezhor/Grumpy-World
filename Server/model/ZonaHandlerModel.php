@@ -14,6 +14,7 @@ class ZonaHandlerModel
     public static function getZonasDisponibles($id){
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
+        $zonas = array();
 
         $query = "SELECT Z.Nombre, Z.Nivel
                     FROM Zonas AS Z

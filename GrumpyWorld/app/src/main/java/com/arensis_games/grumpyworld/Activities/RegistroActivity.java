@@ -78,7 +78,9 @@ public class RegistroActivity extends AppCompatActivity {
             Toast.makeText(RegistroActivity.this, getString(R.string.error_campo_vacio), Toast.LENGTH_SHORT).show();
         }else if(!etContrasena.getText().toString().equals(etRepetirContrasena.getText().toString())){
             Toast.makeText(RegistroActivity.this, getString(R.string.error_contrasenas_no_coinciden), Toast.LENGTH_SHORT).show();
-        }else{
+        }else if(etUsuario.getText().toString().length() > 15){
+            Toast.makeText(RegistroActivity.this, getString(R.string.error_contrasenas_no_coinciden), Toast.LENGTH_SHORT).show();
+        }else {
             authentication.setUsuario(etUsuario.getText().toString());
             authentication.setContrasena(etContrasena.getText().toString());
 

@@ -45,6 +45,7 @@ CREATE TABLE Rollos(
   Honor INT NOT NULL DEFAULT 0,
   CONSTRAINT FK_Rollos_Usuario FOREIGN KEY(ID_Usuario) REFERENCES Usuarios(ID) ON DELETE CASCADE,
   CONSTRAINT FK_Rollos_Zona FOREIGN KEY (ID_Zona) REFERENCES Zonas(ID) ON DELETE NO ACTION,
+  CONSTRAINT FK_Rollos_Atributos FOREIGN KEY (ID_Atributos) REFERENCES Atributos(ID) ON DELETE NO ACTION,
   PRIMARY KEY(ID_Usuario)
 );
 
@@ -65,6 +66,7 @@ CREATE TABLE Equipables(
   Tipo CHAR(1) NOT NULL,
   Bonus INT NOT NULL,
   DestrezaNecesaria INT NOT NULL,
+  FuerzaNecesaria INT NOT NULL,
   NivelNecesario INT NOT NULL,
   PRIMARY KEY(ID),
   CHECK (Tipo='S' OR Tipo='A')
@@ -124,6 +126,16 @@ CREATE TABLE Enemigos(
   PRIMARY KEY(ID)
 );
 
+CREATE TABLE Enemigos_Materiales(
+	ID_Enemigo INT NOT NULL,
+    ID_Material INT NOT NULL,
+    Cantidad INT NOT NULL,
+    Probabilidad TINYINT NOT NULL,
+    CONSTRAINT FK_Enemigos_Materiales_ID_Enemigo FOREIGN KEY (ID_Enemigo) REFERENCES Enemigos(ID) ON DELETE CASCADE,
+	CONSTRAINT FK_Enemigos_Materiales_ID_Material FOREIGN KEY (ID_Material) REFERENCES Materiales(ID) ON DELETE CASCADE,
+    PRIMARY KEY (ID_Enemigo, ID_Material)
+);
+
 CREATE TABLE Vencidos(
 	ID_Rollo INT NOT NULL,
     ID_Enemigo INT NOT NULL,
@@ -151,13 +163,6 @@ DELIMITER $$
 CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(15))
 RETURNS BIT
 BEGIN
-  /*DECLARE existe BIT;
-  SET existe = FALSE;
-    IF((SELECT COUNT(*) FROM Usuarios WHERE Usuario = nombre_usuario)>0) THEN
-    BEGIN
-		SET existe = TRUE;
-    END;
-    END IF;*/
 	RETURN (SELECT COUNT(*) FROM Usuarios WHERE Usuario = nombre_usuario)>0;
 END $$
 
@@ -227,7 +232,12 @@ BEGIN
 	RETURN FLOOR(1 + (RAND() * 3));
 END $$
 
--- Calcula el daño base parcialmente aleatorio de un personaje a otro, teniendo en cuenta su fuerza, atributos y pactos
+/*
+Calcula el daño base parcialmente aleatorio de un personaje a otro, teniendo en cuenta su fuerza, atributos y pactos
+	Fórmula base: Daño = 10*(FuerzaAtacante + BonusArmaAtacante) / (ConstituciónVíctima + BonusSombreroVíctima)
+	Todos los atributos de un personaje se multiplica por su número de pactos divididos entre 10
+	Hasta un 15% de este daño se puede reducir de forma aleatoria
+*/
 CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
   RETURNS INT
   BEGIN
@@ -289,8 +299,6 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 	FROM Atributos AS A2
 	WHERE A2.ID = idAtributosVictima;
     
-    -- Fórmula: Daño = 10*(FuerzaAtacante + BonusArmaAtacante) / (ConstituciónVíctima + BonusSombreroVíctima)
-    -- Hasta un 15% de este daño se puede reducir de forma aleatoria
     SET @dano = 10*(0.85*((@fAtacante+@bonusArmaAtacante)/(@cVictima+@bonusSombreroVictima))) + (RAND()*0.15*((@fAtacante+@bonusArmaAtacante)/(@cVictima+@bonusSombreroVictima)));
     RETURN @dano;
   END $$
@@ -502,10 +510,41 @@ BEGIN
 				 ON R.ID_Usuario = V.ID_Rollo
 			   INNER JOIN Enemigos AS E
 				 ON V.ID_Enemigo = E.ID
-			 WHERE R.ID_Usuario = 1 AND E.EsJefe);
+			 WHERE R.ID_Usuario = idRollo AND E.EsJefe);
 	
     UPDATE Rollos AS R SET Nivel = @nivel
 		WHERE R.ID_Usuario = idRollo;
+END $$
+
+CREATE PROCEDURE asociarEnemigoMaterial(IN nombreEnemigo VARCHAR(15), IN nombreMaterial VARCHAR(30), IN cantidad INT, IN probabilidad INT)
+BEGIN
+	SET @idEnemigo = (SELECT ID FROM Enemigos WHERE Nombre = nombreEnemigo);
+    SET @idMaterial = (SELECT ID FROM Materiales WHERE Nombre = nombreMaterial);
+    INSERT INTO Enemigos_Materiales (ID_Enemigo, ID_Material, Cantidad, Probabilidad) VALUE (@idEnemigo, @idMaterial, cantidad, probabilidad);
+END $$
+
+CREATE PROCEDURE concederPremio(IN idRollo INT, IN nombreMaterial VARCHAR(30), IN cantidadAnadida INT)
+BEGIN
+	SET @idMaterial = (SELECT ID FROM Materiales WHERE Nombre = nombreMaterial);
+	IF EXISTS (SELECT * FROM Rollos_Materiales WHERE ID_Rollo = idRollo AND ID_Material = @idMaterial) THEN
+    BEGIN
+		START TRANSACTION;
+			SET @cantidadOriginal = (SELECT Cantidad FROM Rollos_Materiales  WHERE ID_Rollo = idRollo AND ID_Material = @idMaterial);
+            UPDATE Rollos_Materiales SET Cantidad = (@cantidadOriginal + cantidadAnadida) WHERE ID_Rollo = idRollo AND ID_Material = @idMaterial;
+        COMMIT;
+    END;
+    ELSE
+    BEGIN
+		INSERT INTO Rollos_Materiales(ID_Rollo, ID_Material, Cantidad) VALUE (idRollo, @idMaterial, cantidadAnadida);
+    END;
+    END IF;
+END $$
+
+CREATE PROCEDURE asociarEquipableMaterial(IN nombreEquipable VARCHAR(30), IN nombreMaterial VARCHAR(30), IN cantidad INT)
+BEGIN
+	SET @idEquipable = (SELECT ID FROM Equipables WHERE Nombre = nombreEquipable);
+    SET @idMaterial = (SELECT ID FROM Materiales WHERE Nombre = nombreMaterial);
+    INSERT INTO Equipables_Materiales (ID_Equipable, ID_Material, Cantidad) VALUE (@idEquipable, @idMaterial, cantidad);
 END $$
 
 DELIMITER ;
@@ -514,8 +553,8 @@ DELIMITER ;
 -- Zonas
 INSERT INTO Zonas (Nombre, Nivel) VALUES
 	('bano', 1),
-	('cocina', 2);
-    -- ('oficina', 3)
+	('cocina', 2),
+    ('oficina', 3);
     -- ('parque', 4),
     -- ('cementerio', 5),
     -- ('infierno', 6);
@@ -539,10 +578,61 @@ CALL crearEnemigo('lapiz', 130, 110, 120, FALSE, 'oficina');
 CALL crearEnemigo('libro', 110, 130, 120, FALSE, 'oficina');
 CALL crearEnemigo('pendrive', 110, 150, 120, TRUE, 'oficina');
 
+-- Materiales
+INSERT INTO Materiales (Nombre) VALUES ('buen_rollo');
+INSERT INTO Materiales (Nombre) VALUES ('plastico');
+INSERT INTO Materiales (Nombre) VALUES ('madera');
+INSERT INTO Materiales (Nombre) VALUES ('trozo_calabaza');
+
+-- Enemigos_Materiales
+CALL asociarEnemigoMaterial('stripper', 'buen_rollo', 1, 100);
+CALL asociarEnemigoMaterial('cepillo', 'buen_rollo', 1, 100);
+CALL asociarEnemigoMaterial('cuchilla', 'buen_rollo', 1, 100);
+CALL asociarEnemigoMaterial('champu', 'buen_rollo', 1, 100);
+CALL asociarEnemigoMaterial('vater', 'buen_rollo', 1, 100);
+
+CALL asociarEnemigoMaterial('leche', 'buen_rollo', 2, 100);
+CALL asociarEnemigoMaterial('zanahoria', 'buen_rollo', 2, 100);
+CALL asociarEnemigoMaterial('cuchara', 'buen_rollo', 2, 100);
+CALL asociarEnemigoMaterial('limon', 'buen_rollo', 2, 100);
+CALL asociarEnemigoMaterial('calabaza', 'buen_rollo', 2, 100);
+
+CALL asociarEnemigoMaterial('raton', 'buen_rollo', 3, 100);
+CALL asociarEnemigoMaterial('grapadora', 'buen_rollo', 3, 100);
+CALL asociarEnemigoMaterial('lapiz', 'buen_rollo', 3, 100);
+CALL asociarEnemigoMaterial('libro', 'buen_rollo', 3, 100);
+CALL asociarEnemigoMaterial('pendrive', 'buen_rollo', 3, 100);
+
+CALL asociarEnemigoMaterial('cepillo', 'plastico', 1, 50);
+CALL asociarEnemigoMaterial('champu', 'plastico', 2, 50);
+
+CALL asociarEnemigoMaterial('cuchara', 'madera', 1, 50);
+CALL asociarEnemigoMaterial('calabaza', 'trozo_calabaza', 1, 5);
+
+-- Equipables
+INSERT INTO Equipables(Nombre, Tipo, Bonus , DestrezaNecesaria, FuerzaNecesaria, NivelNecesario) VALUES
+	('tenedor', 'A', 2, 20, 0, 1),
+    ('casco_obra', 'S', 2, 0, 20, 1),
+    ('mazo_juez', 'A', 4, 40, 0, 2),
+    ('casco_calabaza', 'S', 4, 0, 40, 2);
+    
+-- Equipables_Materiales
+CALL asociarEquipableMaterial('tenedor', 'buen_rollo', 100);
+CALL asociarEquipableMaterial('tenedor', 'plastico', 10);
+
+CALL asociarEquipableMaterial('casco_obra', 'buen_rollo', 100);
+CALL asociarEquipableMaterial('casco_obra', 'plastico', 30);
+
+CALL asociarEquipableMaterial('mazo_juez', 'buen_rollo', 300);
+CALL asociarEquipableMaterial('mazo_juez', 'madera', 20);
+
+CALL asociarEquipableMaterial('casco_calabaza', 'buen_rollo', 300);
+CALL asociarEquipableMaterial('casco_calabaza', 'trozo_calabaza', 1);
+
 -- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-/*UPDATE Atributos SET Fuerza = 2000, Constitucion = 2000, Destreza = 2000 WHERE ID = 16;
-INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('armaPrueba', 'A', 200, 0, 0);
+UPDATE Atributos SET Fuerza = 20, Constitucion = 20, Destreza = 20 WHERE ID = 16;
+/*INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('armaPrueba', 'A', 200, 0, 0);
 INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUE (1, 1, TRUE);
 INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('sombreroPrueba', 'S', 300, 0, 0);
 INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUE (1, 2, TRUE);

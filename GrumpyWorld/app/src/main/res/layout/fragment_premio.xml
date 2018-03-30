@@ -8,10 +8,58 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="¡Victoria!"
+            android:textSize="40sp"
+            android:textColor="@color/colorLetra"
+            android:layout_marginTop="20dp"
+            android:id="@+id/tvVictoriaDerrota"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Premios obtenidos:"
+            android:textSize="20sp"
+            android:textColor="@color/colorLetra"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/tvVictoriaDerrota"
+            android:id="@+id/tvPremiosObtenidos"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lista"
+            android:layout_below="@id/tvPremiosObtenidos"
+            android:layout_above="@+id/btnCazarDeNuevo"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Montones de nada."
+            android:textSize="20sp"
+            android:textColor="@color/colorLetra"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/tvPremiosObtenidos"
+            android:layout_above="@+id/btnCazarDeNuevo"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:id="@+id/tvMontonesDeNada"
+            android:visibility="invisible"
+            />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
             android:text="@string/cazar_de_nuevo"
             android:background="@drawable/boton"
             android:textColor="@color/colorLetra"

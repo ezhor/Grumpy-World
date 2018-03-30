@@ -2,6 +2,7 @@ package com.arensis_games.grumpyworld.Conexion;
 
 import com.arensis_games.grumpyworld.Models.Atributos;
 import com.arensis_games.grumpyworld.Models.Entrenamiento;
+import com.arensis_games.grumpyworld.Models.Material;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -15,5 +16,5 @@ import retrofit2.http.POST;
 
 public interface PremioInterface {
     @GET("/caza/premio")
-    Call<Void> getPremio();
+    Call<Material[]> getPremio();
 }

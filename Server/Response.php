@@ -34,8 +34,7 @@ class Response
 
         switch ($this->format) {
             case 'json':
-
-                if (!empty($this->body)) {
+                if (isset($this->body)) { //empty() sustituido por isset para los arrays vacíos
                     $this->headers['Content-Type'] = "application/json";
                     $this->body = json_encode($this->body);
                 }

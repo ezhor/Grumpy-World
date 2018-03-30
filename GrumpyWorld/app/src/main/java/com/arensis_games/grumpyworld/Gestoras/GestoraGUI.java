@@ -315,4 +315,19 @@ public class GestoraGUI {
         }
         return nombreCorto;
     }
+
+    public String getNombreMaterial(Resources resources, String nombre) {
+        String nombreBonito = null;
+        if(nombre != null){
+            switch (nombre){
+                case "buen_rollo":
+                    nombreBonito = resources.getString(R.string.material_buen_rollo);
+                    break;
+                case "plastico":
+                    nombreBonito = resources.getString(R.string.material_plastico);
+                    break;
+            }
+        }
+        return nombreBonito;
+    }
 }

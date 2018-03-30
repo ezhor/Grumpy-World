@@ -15,13 +15,19 @@ class CazaController extends Controller
         $idUsuario = $request->getAuthentication()->getId();
         if (isset($request->getUrlElements()[2])) {
             if($request->getUrlElements()[2] == "premio"){
-                $estado = CazaHandlerModel::getEstadoCaza($idUsuario);
-                if($estado->getVidaRollo()<=0 || $estado->getVidaEnemigo()<=0){
+                $merecePremio = PremioCazaHandlerModel::merecePremio($idUsuario);
+                if($merecePremio == 1){
+                    $premios = PremioCazaHandlerModel::asignarPremios($idUsuario);
                     CazaHandlerModel::borrarCaza($idUsuario);
-                    $premios = array();
                     $response = new Response(200, null, $premios, $request->getAccept(), $idUsuario);
                 }else{
-                    $response = new Response(403, null, null, $request->getAccept(), $idUsuario);
+                    if($merecePremio == 0){
+                        $premios = array();
+                        CazaHandlerModel::borrarCaza($idUsuario);
+                        $response = new Response(200, null, $premios, $request->getAccept(), $idUsuario);
+                    }else{
+                        $response = new Response(403, null, null, $request->getAccept(), $idUsuario);
+                    }
                 }
             }else{
                 $response = new Response(404, null, null, $request->getAccept(), $idUsuario);

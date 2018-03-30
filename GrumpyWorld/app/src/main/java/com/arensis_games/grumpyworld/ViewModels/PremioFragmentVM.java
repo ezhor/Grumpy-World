@@ -11,6 +11,7 @@ import com.arensis_games.grumpyworld.Conexion.GestoraToken;
 import com.arensis_games.grumpyworld.Conexion.PremioInterface;
 import com.arensis_games.grumpyworld.Models.Caza;
 import com.arensis_games.grumpyworld.Models.Estado;
+import com.arensis_games.grumpyworld.Models.Material;
 import com.arensis_games.grumpyworld.Models.Turno;
 import com.arensis_games.grumpyworld.R;
 
@@ -26,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class PremioFragmentVM extends AndroidViewModel {
-    private MutableLiveData<Void> ldPremio;
+    private MutableLiveData<Material[]> ldPremio;
     private MutableLiveData<Integer> ldError;
 
     public PremioFragmentVM(@NonNull Application application) {
@@ -35,7 +36,7 @@ public class PremioFragmentVM extends AndroidViewModel {
         this.ldError = new MutableLiveData<>();
     }
 
-    public MutableLiveData<Void> getLdPremio() {
+    public MutableLiveData<Material[]> getLdPremio() {
         return ldPremio;
     }
 
@@ -57,7 +58,6 @@ public class PremioFragmentVM extends AndroidViewModel {
         if(GestoraToken.getAuthorization() != null){
             client = new OkHttpClient.Builder()
                     .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
-                    //.addInterceptor(new BasicAuthInterceptor("dani", "hola"))
                     .build();
 
             retrofit = new Retrofit.Builder()
@@ -68,9 +68,9 @@ public class PremioFragmentVM extends AndroidViewModel {
 
             premioInterface = retrofit.create(PremioInterface.class);
 
-            premioInterface.getPremio().enqueue(new Callback<Void>() {
+            premioInterface.getPremio().enqueue(new Callback<Material[]>() {
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
+                public void onResponse(Call<Material[]> call, Response<Material[]> response) {
                     if(response.isSuccessful()){
                         ldPremio.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
@@ -87,7 +87,7 @@ public class PremioFragmentVM extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<Void> call, Throwable t) {
+                public void onFailure(Call<Material[]> call, Throwable t) {
 
                 }
             });
