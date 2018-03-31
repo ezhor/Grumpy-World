@@ -10,7 +10,7 @@ class MaterialNecesarioModel implements JsonSerializable
 {
     private $id;
     private $nombre;
-    private $cantidadActual;
+    private $cantidad;
     private $cantidadNecesaria;
 
     /**
@@ -24,7 +24,7 @@ class MaterialNecesarioModel implements JsonSerializable
     {
         $this->id = $id;
         $this->nombre = $nombre;
-        $this->cantidadActual = $cantidadActual;
+        $this->cantidad = $cantidadActual;
         $this->cantidadNecesaria = $cantidadNecesaria;
     }
 
@@ -63,17 +63,17 @@ class MaterialNecesarioModel implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getCantidadActual()
+    public function getCantidad()
     {
-        return $this->cantidadActual;
+        return $this->cantidad;
     }
 
     /**
-     * @param mixed $cantidadActual
+     * @param mixed $cantidad
      */
-    public function setCantidadActual($cantidadActual)
+    public function setCantidad($cantidad)
     {
-        $this->cantidadActual = $cantidadActual;
+        $this->cantidad = $cantidad;
     }
 
     /**
@@ -106,7 +106,7 @@ class MaterialNecesarioModel implements JsonSerializable
         return array(
             'id' => $this->id,
             'nombre' => $this->nombre,
-            'cantidadActual' => $this->cantidadActual,
+            'cantidad' => $this->cantidad,
             'cantidadNecesaria' => $this->cantidadNecesaria
         );
     }

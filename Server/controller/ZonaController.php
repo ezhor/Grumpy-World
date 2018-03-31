@@ -12,10 +12,6 @@ require_once "Controller.php";
 class ZonaController extends Controller
 {
     public function manageGetVerb(Request $request){
-        /*
-        Los rollos se obtienen según la autenticación, no según el URL ID
-        No tiene sentido que alguien pida un ID concreto en la URL
-        */
         if (isset($request->getUrlElements()[2])) {
             $code = '404';
             $zonas = null;

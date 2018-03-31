@@ -75,7 +75,15 @@
 
     <string name="material_buen_rollo">Rock\'n\'roll</string>
     <string name="material_plastico">Plastic</string>
+    <string name="material_madera">Wood</string>
+    <string name="material_trozo_calabaza">Piece of pumpkin</string>
 
     <string name="victoria">¡Victory!</string>
     <string name="derrota">Defeat :(</string>
+
+    <string name="equipable_tenedor">Plastic fork</string>
+    <string name="equipable_casco_obra">Construction helmet</string>
+    <string name="equipable_mazo_juez">Gavel</string>
+    <string name="equipable_casco_calabaza">Pumpkin helmet</string>
+
 </resources>

@@ -59,26 +59,50 @@ class FabricacionHandlerModel
         $db_connection = $db->getConnection();
         $materialesNecesarios = array();
 
-        $query = "SELECT M.ID, M.Nombre, RM.Cantidad AS CantidadActual, EM.Cantidad AS CantidadNecesaria
-                      FROM Equipables AS E
-                        INNER JOIN Equipables_Materiales AS EM
-                          ON E.ID = EM.ID_Equipable
-                        INNER JOIN Materiales AS M
-                          ON EM.ID_Material = M.ID
-                        INNER JOIN Rollos_Materiales AS RM
-                          ON M.ID = RM.ID_Material
-                        WHERE RM.ID_Rollo = ? AND E.ID = ?;";
+        $query = "SELECT
+                    M.ID,
+                    M.Nombre,
+                    IFNULL((SELECT Cantidad FROM Rollos_Materiales AS RM WHERE ID_Rollo = ? AND RM.ID_Material = EM.ID_Material), 0) AS CantidadActual,
+                    EM.Cantidad AS CantidadNecesaria
+                  FROM Equipables AS E
+                    LEFT JOIN Equipables_Materiales AS EM
+                      ON E.ID = EM.ID_Equipable
+                    LEFT JOIN Materiales AS M
+                      ON EM.ID_Material = M.ID
+                    WHERE E.ID = ?;";
 
         $prep_query = $db_connection->prepare($query);
-        echo mysqli_error($db_connection);
         $prep_query->bind_param('ii', $idRollo, $idEquipable);
         $prep_query->bind_result($id, $nombre, $cantidadActual, $cantidadNecesaria);
         $prep_query->execute();
+
         while($prep_query->fetch()){
             $materialesNecesarios[] = new MaterialNecesarioModel($id, $nombre, $cantidadActual, $cantidadNecesaria);
         }
 
         return $materialesNecesarios;
+    }
+
+    public static function puedeFabricar($idRollo, $idEquipable){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "SELECT (SELECT Nivel FROM Rollos WHERE ID_Usuario = ?) >=
+       (SELECT NivelNecesario FROM Equipables WHERE ID = ?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('ii', $idRollo, $idEquipable);
+        $prep_query->bind_result($puede);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        if($puede == 1){
+            $puede = true;
+        }else{
+            $puede = false;
+        }
+
+        return $puede;
     }
 
     /*public static function cambiarZona($id, $zona){

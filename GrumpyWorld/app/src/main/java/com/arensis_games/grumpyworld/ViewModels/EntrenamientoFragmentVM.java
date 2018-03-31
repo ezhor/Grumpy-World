@@ -55,7 +55,6 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
         if(GestoraToken.getAuthorization() != null){
             client = new OkHttpClient.Builder()
                     .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
-                    //.addInterceptor(new BasicAuthInterceptor("dani", "hola"))
                     .build();
 
             retrofit = new Retrofit.Builder()
@@ -86,7 +85,7 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
 
                 @Override
                 public void onFailure(Call<Atributos> call, Throwable t) {
-
+                    ldError.postValue(0);
                 }
             });
         }else{
@@ -125,7 +124,7 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
 
                 @Override
                 public void onFailure(Call<Atributos> call, Throwable t) {
-
+                    ldError.postValue(0);
                 }
             });
         }else{

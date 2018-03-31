@@ -15,26 +15,28 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arensis_games.grumpyworld.Adapters.AdaptadorFabricacion;
 import com.arensis_games.grumpyworld.Adapters.AdaptadorMapa;
 import com.arensis_games.grumpyworld.Gestoras.GestoraGUI;
+import com.arensis_games.grumpyworld.Models.Equipable;
 import com.arensis_games.grumpyworld.Models.Zona;
 import com.arensis_games.grumpyworld.R;
+import com.arensis_games.grumpyworld.ViewModels.FabricacionFragmentVM;
 import com.arensis_games.grumpyworld.ViewModels.MainActivityVM;
 import com.arensis_games.grumpyworld.ViewModels.MapaFragmentVM;
 
-public class MapaFragment extends Fragment implements AdapterView.OnItemClickListener{
+public class FabricacionFragment extends Fragment implements AdapterView.OnItemClickListener{
 
-    private MapaFragmentVM vm;
-    private Observer<Zona[]> zonaObserver;
+    private FabricacionFragmentVM vm;
+    private Observer<Equipable[]> equipablesObserver;
     private Observer<Integer> errorObserver;
-    private Observer<Zona> zonaCambiadaObserver;
     private ListView lista;
     private TextView texto;
-    private MapaFragment thisFragment = this;
+    private FabricacionFragment thisFragment = this;
     private GestoraGUI gesGUI = new GestoraGUI();
     private ProgressBar progress;
 
-    public MapaFragment() {
+    public FabricacionFragment() {
         // Required empty public constructor
     }
 
@@ -53,21 +55,20 @@ public class MapaFragment extends Fragment implements AdapterView.OnItemClickLis
         texto = view.findViewById(R.id.texto);
         progress = view.findViewById(R.id.progress);
 
-        vm = ViewModelProviders.of(this).get(MapaFragmentVM.class);
+        vm = ViewModelProviders.of(this).get(FabricacionFragmentVM.class);
 
-        zonaObserver = new Observer<Zona[]>() {
+        equipablesObserver = new Observer<Equipable[]>() {
             @Override
-            public void onChanged(@Nullable Zona[] zonas) {
-                if(zonas != null){
-                    texto.setText(getString(R.string.zonas_desbloqueadas, zonas.length));
-                    lista.setAdapter(new AdaptadorMapa(getContext(),
-                            R.layout.fila_mapa, R.id.tvNombre, zonas));
-                    lista.setOnItemClickListener(thisFragment);
+            public void onChanged(@Nullable Equipable[] equipables) {
+                if(equipables != null){
                     progress.setVisibility(View.GONE);
+                    lista.setAdapter(new AdaptadorFabricacion<Equipable>(getContext(),
+                            R.layout.fila_mapa, R.id.tvNombre, equipables));
+                    lista.setOnItemClickListener(thisFragment);
                 }
             }
         };
-        vm.getLdZona().observe(this, zonaObserver);
+        vm.getLdEquipables().observe(this, equipablesObserver);
 
         errorObserver = new Observer<Integer>() {
             @Override
@@ -79,27 +80,19 @@ public class MapaFragment extends Fragment implements AdapterView.OnItemClickLis
         };
         vm.getLdError().observe(this, errorObserver);
 
-        zonaCambiadaObserver = new Observer<Zona>() {
-            @Override
-            public void onChanged(@Nullable Zona zona) {
-                if(zona != null){
-                    Toast.makeText(getContext(), getString(R.string.zona_cambiada,
-                            gesGUI.getNombreZona(getResources(), zona.getNombre())),
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
 
-        vm.getLdZonaCambiada().observe(this, zonaCambiadaObserver);
-
-        vm.obtenerZonasDisponibles();
+        vm.obtenerEquipablesDisponibles();
 
         return view;
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        AdaptadorMapa.ViewHolder holder = (AdaptadorMapa.ViewHolder) view.getTag();
-        vm.cambiarZona(holder.getZona());
+        AdaptadorFabricacion.ViewHolder holder = (AdaptadorFabricacion.ViewHolder) view.getTag();
+        Fragment fragment = new FabricacionDetalleFragment();
+        Bundle args = new Bundle();
+        args.putInt("id", holder.getEquipable().getId());
+        fragment.setArguments(args);
+        ViewModelProviders.of(getActivity()).get(MainActivityVM.class).cambiarFragment(fragment);
     }
 }

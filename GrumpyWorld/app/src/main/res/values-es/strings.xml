@@ -76,7 +76,14 @@
 
     <string name="material_buen_rollo">Buen rollo</string>
     <string name="material_plastico">Plástico</string>
+    <string name="material_madera">Madera</string>
+    <string name="material_trozo_calabaza">Trozo de calabaza</string>
 
     <string name="victoria">¡Victoria!</string>
     <string name="derrota">Derrota :(</string>
+
+    <string name="equipable_tenedor">Tenedor de plástico</string>
+    <string name="equipable_casco_obra">Casco de obra</string>
+    <string name="equipable_mazo_juez">Mazo de juez</string>
+    <string name="equipable_casco_calabaza">Casco de calabaza</string>
 </resources>

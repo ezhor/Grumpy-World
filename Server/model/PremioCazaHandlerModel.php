@@ -89,6 +89,9 @@ class PremioCazaHandlerModel
             $aleatorio = rand(0,100);
             if($aleatorio < $premiosPosibles[$i]->getProbabilidad()){
                 $cantidad = ceil($aleatorio/($premiosPosibles[$i]->getProbabilidad()/$premiosPosibles[$i]->getCantidad()));
+                if($cantidad == 0){
+                    $cantidad = 1; //Corrección de coma flotante
+                }
                 $prep_query->bind_param('isi', $idUsuario, $premiosPosibles[$i]->getNombre(), $cantidad);
                 $prep_query->execute();
                 $premiosCondecidos[] = new PremioModel($premiosPosibles[$i]->getNombre(), $cantidad);

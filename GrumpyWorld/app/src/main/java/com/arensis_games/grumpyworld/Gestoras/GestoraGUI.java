@@ -326,7 +326,47 @@ public class GestoraGUI {
                 case "plastico":
                     nombreBonito = resources.getString(R.string.material_plastico);
                     break;
+                case "madera":
+                    nombreBonito = resources.getString(R.string.material_madera);
+                    break;
+                case "trozo_calabaza":
+                    nombreBonito = resources.getString(R.string.material_trozo_calabaza);
+                    break;
+
             }
+        }
+        return nombreBonito;
+    }
+
+    public Drawable getDrawableIconoEquipable(Resources resources, char tipo) {
+        Drawable drawable = null;
+        switch (tipo){
+            case 'A':
+                drawable = resources.getDrawable(R.drawable.icono_arma);
+                break;
+            case 'S':
+                drawable = resources.getDrawable(R.drawable.icono_sombrero);
+                break;
+        }
+        return drawable;
+    }
+
+    public String getNombreEquipable(Resources resources, String nombre) {
+        String nombreBonito = "";
+        switch (nombre){
+            case "tenedor":
+                nombreBonito = resources.getString(R.string.equipable_tenedor);
+                break;
+            case "casco_obra":
+                nombreBonito = resources.getString(R.string.equipable_casco_obra);
+                break;
+            case "mazo_juez":
+                nombreBonito = resources.getString(R.string.equipable_mazo_juez);
+                break;
+            case "casco_calabaza":
+                nombreBonito = resources.getString(R.string.equipable_casco_calabaza);
+                break;
+
         }
         return nombreBonito;
     }

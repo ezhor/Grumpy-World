@@ -6,13 +6,11 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.arensis_games.grumpyworld.Conexion.BearerAuthInterceptor;
-import com.arensis_games.grumpyworld.Conexion.CazaInterface;
+import com.arensis_games.grumpyworld.Conexion.FabricacionInterface;
 import com.arensis_games.grumpyworld.Conexion.GestoraToken;
-import com.arensis_games.grumpyworld.Conexion.PremioInterface;
-import com.arensis_games.grumpyworld.Models.Caza;
-import com.arensis_games.grumpyworld.Models.Estado;
-import com.arensis_games.grumpyworld.Models.Material;
-import com.arensis_games.grumpyworld.Models.Turno;
+import com.arensis_games.grumpyworld.Conexion.ZonaInterface;
+import com.arensis_games.grumpyworld.Models.Equipable;
+import com.arensis_games.grumpyworld.Models.Zona;
 import com.arensis_games.grumpyworld.R;
 
 import okhttp3.OkHttpClient;
@@ -26,18 +24,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by dparrado on 15/02/18.
  */
 
-public class PremioFragmentVM extends AndroidViewModel {
-    private MutableLiveData<Material[]> ldPremio;
+public class FabricacionFragmentVM extends AndroidViewModel {
+    private MutableLiveData<Equipable[]> ldEquipables;
     private MutableLiveData<Integer> ldError;
 
-    public PremioFragmentVM(@NonNull Application application) {
+    public FabricacionFragmentVM(@NonNull Application application) {
         super(application);
-        this.ldPremio = new MutableLiveData<>();
-        this.ldError = new MutableLiveData<>();
+        ldEquipables = new MutableLiveData<>();
+        ldError = new MutableLiveData<>();
     }
 
-    public MutableLiveData<Material[]> getLdPremio() {
-        return ldPremio;
+    public MutableLiveData<Equipable[]> getLdEquipables() {
+        return ldEquipables;
     }
 
     public MutableLiveData<Integer> getLdError() {
@@ -45,10 +43,10 @@ public class PremioFragmentVM extends AndroidViewModel {
     }
 
 
-    public void obtenerPremio(){
+    public void obtenerEquipablesDisponibles(){
         OkHttpClient client;
         Retrofit retrofit;
-        PremioInterface premioInterface;
+        FabricacionInterface fabricacionInterface;
 
         /*
             Android puede haber borrado el dato estático si necesita memoria.
@@ -66,13 +64,13 @@ public class PremioFragmentVM extends AndroidViewModel {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            premioInterface = retrofit.create(PremioInterface.class);
+            fabricacionInterface = retrofit.create(FabricacionInterface.class);
 
-            premioInterface.getPremio().enqueue(new Callback<Material[]>() {
+            fabricacionInterface.getEquipablesDisponibles().enqueue(new Callback<Equipable[]>() {
                 @Override
-                public void onResponse(Call<Material[]> call, Response<Material[]> response) {
+                public void onResponse(Call<Equipable[]> call, Response<Equipable[]> response) {
                     if(response.isSuccessful()){
-                        ldPremio.postValue(response.body());
+                        ldEquipables.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
                         /*
@@ -87,7 +85,7 @@ public class PremioFragmentVM extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<Material[]> call, Throwable t) {
+                public void onFailure(Call<Equipable[]> call, Throwable t) {
                     ldError.postValue(0);
                 }
             });
@@ -95,5 +93,4 @@ public class PremioFragmentVM extends AndroidViewModel {
             ldError.setValue(401);
         }
     }
-
 }

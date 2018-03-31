@@ -38,59 +38,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql">
+      <file leaf-file-name="CazaController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/CazaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="13" selection-end-column="13" />
+            <state relative-caret-position="238">
+              <caret line="19" column="62" lean-forward="true" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FabricacionHandlerModel.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/model/FabricacionHandlerModel.php">
+      <file leaf-file-name="PremioCazaHandlerModel.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/PremioCazaHandlerModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+            <state relative-caret-position="422">
+              <caret line="92" column="64" lean-forward="false" selection-start-line="92" selection-start-column="64" selection-end-line="92" selection-end-column="64" />
               <folding>
-                <marker date="1522440740531" expanded="true" signature="358:574" ph="SELECT Nombr... Rollos" />
-                <marker date="1522440740531" expanded="true" signature="1119:1266" ph="SELECT ID, N... Rollos" />
-                <marker date="1522440740531" expanded="true" signature="2123:2638" ph="SELECT M.Nom... Equipables" />
-                <marker date="1522440740531" expanded="true" signature="3708:3850" ph="SELECT ( (SE... " />
-                <marker date="1522440740531" expanded="true" signature="3738:3783" ph="SELECT Nivel... Rollos" />
-                <marker date="1522440740531" expanded="true" signature="3789:3829" ph="SELECT Nivel... Zonas" />
+                <marker date="1522504534048" expanded="true" signature="547:752" ph="SELECT VidaR... Rollos" />
+                <marker date="1522504534048" expanded="true" signature="1492:2012" ph="SELECT M.Nom... Rollos" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FabricacionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/FabricacionController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaterialNecesarioModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/MaterialNecesarioModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-737">
-              <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EquipableModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/EquipableModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -99,8 +65,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ar_</find>
-      <find>a</find>
       <find>atribu</find>
       <find>v</find>
       <find>valor</find>
@@ -129,6 +93,8 @@
       <find>//des</find>
       <find>var_d</find>
       <find>fabricable</find>
+      <find>urlele</find>
+      <find>url_ele</find>
     </findStrings>
     <replaceStrings>
       <replace>atributo</replace>
@@ -169,26 +135,26 @@
         <option value="$PROJECT_DIR$/model/CazaHandlerModel.php" />
         <option value="$PROJECT_DIR$/model/ZonaModel.php" />
         <option value="$PROJECT_DIR$/model/CazaModel.php" />
-        <option value="$PROJECT_DIR$/controller/ZonaController.php" />
         <option value="$PROJECT_DIR$/model/PremioHandlerModel.php" />
         <option value="$PROJECT_DIR$/controller/PremioController.php" />
         <option value="$PROJECT_DIR$/model/PremioModel.php" />
         <option value="$PROJECT_DIR$/model/PremioPosibleModel.php" />
         <option value="$PROJECT_DIR$/controller/CazaController.php" />
         <option value="$PROJECT_DIR$/Response.php" />
-        <option value="$PROJECT_DIR$/model/PremioCazaHandlerModel.php" />
         <option value="$PROJECT_DIR$/model/EquipableSimplificado.php" />
         <option value="$PROJECT_DIR$/model/ZonaHandlerModel.php" />
         <option value="$PROJECT_DIR$/model/Equipable.php" />
         <option value="$PROJECT_DIR$/info.php" />
-        <option value="$PROJECT_DIR$/model/MaterialNecesarioModel.php" />
         <option value="$PROJECT_DIR$/model/EnemigoSimplificadoModel.php" />
         <option value="$PROJECT_DIR$/model/EnemigoModel.php" />
         <option value="$PROJECT_DIR$/model/EquipableModel.php" />
         <option value="$PROJECT_DIR$/model/EquipableDetalleModel.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql" />
-        <option value="$PROJECT_DIR$/controller/FabricacionController.php" />
         <option value="$PROJECT_DIR$/model/FabricacionHandlerModel.php" />
+        <option value="$PROJECT_DIR$/controller/ZonaController.php" />
+        <option value="$PROJECT_DIR$/controller/FabricacionController.php" />
+        <option value="$PROJECT_DIR$/model/MaterialNecesarioModel.php" />
+        <option value="$PROJECT_DIR$/model/PremioCazaHandlerModel.php" />
       </list>
     </option>
   </component>
@@ -229,6 +195,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,8 +223,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1819,11 +1785,12 @@
       <workItem from="1521893630526" duration="8596000" />
       <workItem from="1521916172106" duration="1484000" />
       <workItem from="1522404142146" duration="15800000" />
+      <workItem from="1522492795340" duration="4587000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177561000" />
+    <option name="totallyTimeSpent" value="182148000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1836,9 +1803,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23117709" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19895834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19895834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12552084" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39342523" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1848,6 +1814,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4793213" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1877,13 +1844,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ConsLibrosModel.php" />
     <entry file="file://$PROJECT_DIR$/model/LibroHandlerModel.php" />
-    <entry file="file://$PROJECT_DIR$/controller/Controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c3468f26-9760-4d9b-830e-d8ed122edcdf/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1895,20 +1855,6 @@
     <entry file="file://$PROJECT_DIR$/jwt/ExpiredException.php" />
     <entry file="file://$PROJECT_DIR$/jwt/BeforeValidException.php" />
     <entry file="file://$PROJECT_DIR$/jwt/JWT.php" />
-    <entry file="file://$PROJECT_DIR$/controller/NotFoundController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/UnauthorizedController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Authentication.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1343">
@@ -1922,13 +1868,6 @@
         <state relative-caret-position="298">
           <caret line="47" column="38" lean-forward="false" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/UsuarioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="59" lean-forward="false" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -1956,42 +1895,10 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a1494552-84df-4311-814e-e0a0688972fc/console.sql" />
-    <entry file="file://$PROJECT_DIR$/controller/RolloController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/EstadoModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="17" column="24" lean-forward="false" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/EnemigoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="38" column="121" lean-forward="false" selection-start-line="38" selection-start-column="121" selection-end-line="38" selection-end-column="121" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/AtributosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/ZonaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="40" column="125" lean-forward="false" selection-start-line="40" selection-start-column="125" selection-end-line="40" selection-end-column="125" />
           <folding />
         </state>
       </provider>
@@ -2011,22 +1918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/CazaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="25" column="65" lean-forward="false" selection-start-line="25" selection-start-column="65" selection-end-line="25" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Response.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
@@ -2035,38 +1926,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/PremioCazaHandlerModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="95" column="9" lean-forward="false" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
-          <folding>
-            <marker date="1522409033120" expanded="true" signature="547:752" ph="SELECT VidaR... Rollos" />
-            <marker date="1522409033120" expanded="true" signature="1492:2012" ph="SELECT M.Nom... Rollos" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/ZonaHandlerModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding>
-            <marker date="1522411799492" expanded="true" signature="336:522" ph="SELECT Z.Nom... Zonas" />
-            <marker date="1522411799492" expanded="true" signature="1416:1558" ph="SELECT ( (SE... " />
-            <marker date="1522411799492" expanded="true" signature="1446:1491" ph="SELECT Nivel... Rollos" />
-            <marker date="1522411799492" expanded="true" signature="1497:1537" ph="SELECT Nivel... Zonas" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/info.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="8" column="10" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/info.php" />
     <entry file="file://$PROJECT_DIR$/model/AtributosHandlerModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
@@ -2152,14 +2012,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/EquipableModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/DatabaseModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1139">
@@ -2180,22 +2032,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/FabricacionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/EquipableDetalleModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -2204,25 +2040,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/MaterialNecesarioModel.php">
+    <entry file="file://$PROJECT_DIR$/model/EquipableModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-737">
-          <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+        <state relative-caret-position="561">
+          <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="23" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ZonaHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding>
+            <marker date="1522411799492" expanded="true" signature="336:522" ph="SELECT Z.Nom... Zonas" />
+            <marker date="1522411799492" expanded="true" signature="1416:1558" ph="SELECT ( (SE... " />
+            <marker date="1522411799492" expanded="true" signature="1446:1491" ph="SELECT Nivel... Rollos" />
+            <marker date="1522411799492" expanded="true" signature="1497:1537" ph="SELECT Nivel... Zonas" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/NotFoundController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/RolloController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/UnauthorizedController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/UsuarioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="59" lean-forward="false" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/ZonaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="52" lean-forward="false" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/AtributosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="33" column="34" lean-forward="true" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="30" lean-forward="false" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/EnemigoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="121" lean-forward="false" selection-start-line="38" selection-start-column="121" selection-end-line="38" selection-end-column="121" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="75" column="34" lean-forward="false" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/FabricacionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="52" lean-forward="true" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/FabricacionHandlerModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="275">
+          <caret line="78" column="36" lean-forward="true" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
           <folding>
-            <marker date="1522440740531" expanded="true" signature="358:574" ph="SELECT Nombr... Rollos" />
-            <marker date="1522440740531" expanded="true" signature="1119:1266" ph="SELECT ID, N... Rollos" />
-            <marker date="1522440740531" expanded="true" signature="2123:2638" ph="SELECT M.Nom... Equipables" />
-            <marker date="1522440740531" expanded="true" signature="3708:3850" ph="SELECT ( (SE... " />
-            <marker date="1522440740531" expanded="true" signature="3738:3783" ph="SELECT Nivel... Rollos" />
-            <marker date="1522440740531" expanded="true" signature="3789:3829" ph="SELECT Nivel... Zonas" />
+            <marker date="1522495105413" expanded="true" signature="358:574" ph="SELECT Nombr... Rollos" />
+            <marker date="1522495105413" expanded="true" signature="1119:1266" ph="SELECT ID, N... Rollos" />
+            <marker date="1522495105413" expanded="true" signature="2123:2156" ph="SELECT M.Nom... Equipables" />
+            <marker date="1522495105413" expanded="true" signature="2123:2663" ph="SELECT M.ID,... Equipables" />
+            <marker date="1522495105413" expanded="true" signature="2214:2313" ph="SELECT Canti... Rollos_Materiales" />
+            <marker date="1522495105413" expanded="true" signature="3290:3407" ph="SELECT (SELE... " />
+            <marker date="1522495105413" expanded="true" signature="3298:3343" ph="SELECT Nivel... Rollos" />
+            <marker date="1522495105413" expanded="true" signature="3356:3406" ph="SELECT Nivel... Equipables" />
+            <marker date="1522495105413" expanded="true" signature="4348:4490" ph="SELECT ( (SE... " />
+            <marker date="1522495105413" expanded="true" signature="4378:4423" ph="SELECT Nivel... Rollos" />
+            <marker date="1522495105413" expanded="true" signature="4429:4469" ph="SELECT Nivel... Zonas" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/MaterialNecesarioModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="111" column="5" lean-forward="true" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/CazaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="62" lean-forward="true" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/PremioCazaHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="92" column="64" lean-forward="false" selection-start-line="92" selection-start-column="64" selection-end-line="92" selection-end-column="64" />
+          <folding>
+            <marker date="1522504534048" expanded="true" signature="547:752" ph="SELECT VidaR... Rollos" />
+            <marker date="1522504534048" expanded="true" signature="1492:2012" ph="SELECT M.Nom... Rollos" />
           </folding>
         </state>
       </provider>

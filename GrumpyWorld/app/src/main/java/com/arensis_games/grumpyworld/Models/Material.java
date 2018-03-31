@@ -11,6 +11,10 @@ public class Material implements Serializable{
     private String nombre;
     private int cantidad;
 
+    public Material(){
+
+    }
+
     public Material(int id, String nombre, int cantidad) {
         this.id = id;
         this.nombre = nombre;

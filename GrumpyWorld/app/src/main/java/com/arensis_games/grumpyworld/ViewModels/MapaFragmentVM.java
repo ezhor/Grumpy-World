@@ -62,7 +62,6 @@ public class MapaFragmentVM extends AndroidViewModel {
         if(GestoraToken.getAuthorization() != null){
             client = new OkHttpClient.Builder()
                     .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
-                    //.addInterceptor(new BasicAuthInterceptor("dani", "hola"))
                     .build();
 
             retrofit = new Retrofit.Builder()
@@ -93,7 +92,7 @@ public class MapaFragmentVM extends AndroidViewModel {
 
                 @Override
                 public void onFailure(Call<Zona[]> call, Throwable t) {
-
+                    ldError.postValue(0);
                 }
             });
         }else{
@@ -132,7 +131,7 @@ public class MapaFragmentVM extends AndroidViewModel {
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-
+                    ldError.postValue(0);
                 }
             });
         }else{

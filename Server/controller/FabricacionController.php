@@ -13,15 +13,16 @@ class FabricacionController extends Controller
 {
     public function manageGetVerb(Request $request){
         $idRollo = $request->getAuthentication()->getId();
-        /*
-        Los rollos se obtienen según la autenticación, no según el URL ID
-        No tiene sentido que alguien pida un ID concreto en la URL
-        */
+
         if (isset($request->getUrlElements()[2])) {
             $idEquipable = $request->getUrlElements()[2];
             if(is_numeric($idEquipable)){
-                $equipableDetalle = FabricacionHandlerModel::getEquipableDetalle($idRollo, $idEquipable);
-                $response = new Response(200, null, $equipableDetalle, $request->getAccept(), $idRollo);
+                if(FabricacionHandlerModel::puedeFabricar($idRollo, $idEquipable)){
+                    $equipableDetalle = FabricacionHandlerModel::getEquipableDetalle($idRollo, $idEquipable);
+                    $response = new Response(200, null, $equipableDetalle, $request->getAccept(), $idRollo);
+                }else{
+                    $response = new Response(403, null, null, $request->getAccept(), $idRollo);
+                }
             }else{
                 $response = new Response(400, null, null, $request->getAccept(), $idRollo);
             }

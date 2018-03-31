@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.arensis_games.grumpyworld.Adapters.AdaptadorDrawer;
 import com.arensis_games.grumpyworld.Fragments.CazaFragment;
 import com.arensis_games.grumpyworld.Fragments.EntrenamientoFragment;
+import com.arensis_games.grumpyworld.Fragments.FabricacionFragment;
 import com.arensis_games.grumpyworld.Fragments.InicioFragment;
 import com.arensis_games.grumpyworld.Fragments.MapaFragment;
 import com.arensis_games.grumpyworld.Models.Rollo;
@@ -139,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             fragment = new CazaFragment();
         }else if(opcionElegida.equals(getString(R.string.menu_mapa))){
             fragment = new MapaFragment();
+        }else if(opcionElegida.equals(getString(R.string.menu_fabricacion))){
+            fragment = new FabricacionFragment();
         }
 
         if(fragment != null){

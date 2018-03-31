@@ -62,7 +62,6 @@ public class RegistroActivityVM extends AndroidViewModel{
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
             }
         });
     }
