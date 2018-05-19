@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight"
-    tools:context="com.arensis_games.grumpyworld.Activities.LoginActivity">
+    tools:context="com.arensis_games.grumpyworld.activity.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

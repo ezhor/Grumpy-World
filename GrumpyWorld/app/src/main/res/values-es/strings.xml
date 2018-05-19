@@ -1,17 +1,11 @@
 <resources>
-    <string name="app_name">Grumpy World</string>
-    <!--string name="SERVER_URL">https://mirandaserver.ddns.net/</string-->
-    <string name="SERVER_URL">http://192.168.0.27</string>
-
     <string name="menu_campana">Campaña</string>
     <string name="menu_entrenamiento">Entrenamiento</string>
     <string name="menu_caza">Caza</string>
     <string name="menu_mapa">Mapa</string>
-    <string name="menu_sello">\??????</string>
     <string name="menu_multijugador">Multijugador</string>
     <string name="menu_amigos">Amigos</string>
     <string name="menu_duelo">Duelo</string>
-    <string name="menu_ranking">Ranking</string>
     <string name="menu_inventario">Inventario</string>
     <string name="menu_fabricacion">Fabricación</string>
     <string name="menu_equipamiento">Equipamiento</string>
@@ -59,8 +53,12 @@
     <string name="enemigo_calabaza_corto">Calabaza malvada</string>
     <string name="enemigo_cuchara_corto">Cuchara molona</string>
     <string name="enemigo_leche_corto">Leche sospechosa</string>
-    <string name="enemigo_limon_corto">Lee Mong</string>
     <string name="enemigo_zanahoria_corto">Zanarejo</string>
+
+    <string name="enemigo_raton_corto">Ratón</string>
+    <string name="enemigo_grapadora_corto">Grapadora</string>
+    <string name="enemigo_lapiz_corto">Lápiz</string>
+    <string name="enemigo_libro_corto">Libro</string>
 
     <string name="cazar_de_nuevo">Cazar de nuevo</string>
 
@@ -78,6 +76,13 @@
     <string name="material_plastico">Plástico</string>
     <string name="material_madera">Madera</string>
     <string name="material_trozo_calabaza">Trozo de calabaza</string>
+    <string name="material_zumo_limon">Zumo de limón</string>
+    <string name="material_grapa">Grapa</string>
+    <string name="material_zinc">Zinc</string>
+    <string name="material_cable">Cable</string>
+    <string name="material_cobre">Cobre</string>
+    <string name="material_bateria">Batería</string>
+    <string name="material_papel">Papel</string>
 
     <string name="victoria">¡Victoria!</string>
     <string name="derrota">Derrota :(</string>
@@ -86,4 +91,20 @@
     <string name="equipable_casco_obra">Casco de obra</string>
     <string name="equipable_mazo_juez">Mazo de juez</string>
     <string name="equipable_casco_calabaza">Casco de calabaza</string>
+    <string name="equipable_pistola_airsoft">Pistola de airsoft</string>
+    <string name="equipable_sombrero_papel">Sombrero de papel</string>
+
+    <string name="bonus_ataque">Ataque +%1$d</string>
+    <string name="bonus_defensa">Defensa +%1$d</string>
+    <string name="fuerza_requerida">Fuerza requerida: %1$d</string>
+    <string name="destreza_requerida">Destreza requerida: %1$d</string>
+    <string name="materiales_necesarios">Submateriales necesarios:</string>
+    <string name="fabricar">Fabricar</string>
+    <string name="objeto_ya_poseido">Ya tienes este objeto.</string>
+
+    <string name="tienes">Tienes: %1$d</string>
+    <string name="no_submateriales">Este es un material básico, puedes obtenerlo cazando criaturas.</string>
+    <string name="pista_material">Pulsa cualquier material para ver si es un material compuesto.</string>
+
+    <string name="nivel_requerido_7">Necesitas ser nivel 7 para ver esto.</string>
 </resources>

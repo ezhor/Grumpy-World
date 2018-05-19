@@ -2,6 +2,162 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.arensis_games.grumpyworld.Fragments.FabricacionDetalleFragment">
+    tools:context="com.arensis_games.grumpyworld.fragment.FabricacionDetalleFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLight">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/progress"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible"/>
+
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_below="@id/progress">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLetra"
+                android:text="@string/pista_material"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="70dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="italic"
+                android:gravity="right"
+                android:id="@+id/tvPistaMaterial"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/llTitulo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icono_arma"
+                    android:id="@+id/ivIcono"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvNombre"
+                    android:textColor="@color/colorLetra"
+                    android:text="@string/equipable_tenedor"
+                    android:textSize="25sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvBonus"
+                android:textColor="@color/colorLetra"
+                android:text="Ataque +1"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/llTitulo"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvFuerza"
+                android:textColor="@color/colorLetra"
+                android:text="Fuerza necesaria: 10"
+                android:textSize="15sp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tvBonus"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDestreza"
+                android:textColor="@color/colorLetra"
+                android:text="Destreza necesaria: 10"
+                android:textSize="15sp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tvFuerza"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTituloEnemigos"
+                android:textColor="@color/colorLetra"
+                android:text="@string/materiales_necesarios"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tvDestreza"
+                android:layout_marginTop="10dp"
+                />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTituloEnemigos"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/lista"
+                android:layout_above="@id/btnFabricar"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton"
+                android:layout_margin="30dp"
+                android:text="@string/fabricar"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorLetra"
+                android:id="@+id/btnFabricar"
+                android:layout_alignParentBottom="true"
+                android:visibility="invisible"
+                />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progress2"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/btnFabricar"
+                android:layout_alignBottom="@id/btnFabricar"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/objeto_ya_poseido"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorLetra"
+                android:id="@+id/tvPoseido"
+                android:visibility="invisible"
+                android:textStyle="italic"
+                android:gravity="center"
+                android:layout_alignTop="@+id/btnFabricar"
+                android:layout_alignBottom="@id/btnFabricar"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
 
 </FrameLayout>

@@ -1,0 +1,143 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.arensis_games.grumpyworld.fragment.FabricacionDetalleFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLight">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/progress"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible"/>
+
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_below="@id/progress">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorLetra"
+                android:text="@string/pista_material"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="70dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="italic"
+                android:gravity="right"
+                android:id="@+id/tvPistaMaterial"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/llTitulo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icono_material"
+                    android:id="@+id/ivIcono"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvNombre"
+                    android:textColor="@color/colorLetra"
+                    android:text="@string/material_plastico"
+                    android:textSize="25sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTienes"
+                android:text="Tienes: 27"
+                android:textSize="20sp"
+                android:textColor="@color/colorLetra"
+                android:layout_below="@id/llTitulo"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="15dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTituloMaterialesRequeridos"
+                android:textColor="@color/colorLetra"
+                android:text="@string/materiales_necesarios"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tvTienes"
+                />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTituloMaterialesRequeridos"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/lista"
+                android:layout_above="@id/btnFabricar"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvNoSubmateriales"
+                android:text="@string/no_submateriales"
+                android:textStyle="italic"
+                android:textColor="@color/colorLetra"
+                android:layout_alignBottom="@id/lista"
+                android:layout_alignTop="@id/lista"
+                android:layout_alignLeft="@id/lista"
+                android:layout_alignStart="@id/lista"
+                android:layout_alignRight="@id/lista"
+                android:layout_alignEnd="@id/lista"
+                android:gravity="center"
+                android:visibility="gone"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton"
+                android:layout_margin="30dp"
+                android:layout_below="@id/etContrasena"
+                android:text="@string/fabricar"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorLetra"
+                android:id="@+id/btnFabricar"
+                android:layout_alignParentBottom="true"
+                android:visibility="invisible"
+                />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progress2"
+                android:layout_centerHorizontal="true"
+                android:layout_alignTop="@+id/btnFabricar"
+                android:layout_alignBottom="@id/btnFabricar"
+                android:visibility="invisible"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+</FrameLayout>

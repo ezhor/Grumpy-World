@@ -96,46 +96,53 @@ class FabricacionHandlerModel
         $prep_query->execute();
         $prep_query->fetch();
 
-        if($puede == 1){
-            $puede = true;
-        }else{
-            $puede = false;
-        }
+        $puede = $puede == 1 ? true : false;
 
         return $puede;
     }
 
-    /*public static function cambiarZona($id, $zona){
-        $db = DatabaseModel::getInstance();
-        $db_connection = $db->getConnection();
-
-        //Se comprueba si ha pasado tiempo suficiente para volver a entrenar
-        $query ='CALL cambiarZona(?,?);';
-        $prep_query = $db_connection->prepare($query);
-        $prep_query->bind_param('is', $id, $zona);
-        $prep_query->execute();
+    public static function puedePermitirseFabricar($idRollo, $idEquipable){
+        $materialesNecesarios = self::materialesNecesarios($idRollo, $idEquipable);
+        $puedePermitirse = true;
+        for($i=0; $i<count($materialesNecesarios) && $puedePermitirse; $i++){
+            if($materialesNecesarios[$i]->getCantidad() < $materialesNecesarios[$i]->getCantidadNecesaria()){
+                $puedePermitirse = false;
+            }
+        }
+        return $puedePermitirse;
     }
 
-    public static function puedeCambiarZona($id, $zona){
+    public static function gastarMaterialesNecesarios($idRollo, $materialesNecesarios){
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "SELECT (
-                    (SELECT Nivel FROM Rollos WHERE ID_Usuario = ?) >= (SELECT Nivel FROM Zonas WHERE Nombre = ?)
-                  );";
-
+        $query = "CALL gastarMaterial(?,?,?)";
         $prep_query = $db_connection->prepare($query);
-        $prep_query->bind_param('is', $id, $zona);
-        $prep_query->bind_result($puede);
-        $prep_query->execute();
-        $prep_query->fetch();
-
-        if($puede == 1){
-            $puede = true;
-        }else{
-            $puede = false;
+        for($i=0; $i<count($materialesNecesarios); $i++) {
+            $idMaterial = $materialesNecesarios[$i]->getId();
+            $cantidadNecesaria = $materialesNecesarios[$i]->getCantidadNecesaria();
+            $prep_query->bind_param('iii', $idRollo, $idMaterial, $cantidadNecesaria);
+            $prep_query->execute();
+            echo mysqli_error($db_connection);
         }
+    }
 
-        return $puede;
-    }*/
+    public static function fabricar($idRollo, $idEquipable){
+        $fabricacionExitosa = false;
+        if(self::puedeFabricar($idRollo, $idEquipable) && self::puedePermitirseFabricar($idRollo, $idEquipable)){
+
+            self::gastarMaterialesNecesarios($idRollo, self::materialesNecesarios($idRollo, $idEquipable));
+
+            $db = DatabaseModel::getInstance();
+            $db_connection = $db->getConnection();
+
+            $query = "CALL anadirEquipable(?,?)";
+
+            $prep_query = $db_connection->prepare($query);
+            $prep_query->bind_param('ii', $idRollo, $idEquipable);
+            $prep_query->execute();
+            $fabricacionExitosa = true;
+        }
+        return $fabricacionExitosa;
+    }
 }

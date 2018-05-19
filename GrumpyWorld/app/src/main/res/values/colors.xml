@@ -8,4 +8,7 @@
 
     <color name="colorAccent">#1976d2</color>
     <color name="colorLetra">#FFF</color>
+
+    <color name="rojo">#d50000</color>
+    <color name="verde">#43a047</color>
 </resources>

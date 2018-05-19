@@ -154,8 +154,6 @@ CREATE TABLE Caza(
     CONSTRAINT FK_Rollos_Enemigos_Enemigo FOREIGN KEY (ID_Enemigo) REFERENCES Enemigos(ID) ON DELETE CASCADE
 );
 
-
-
 -- Funciones
 DELIMITER $$
 
@@ -547,6 +545,26 @@ BEGIN
     INSERT INTO Equipables_Materiales (ID_Equipable, ID_Material, Cantidad) VALUE (@idEquipable, @idMaterial, cantidad);
 END $$
 
+CREATE PROCEDURE asociarMaterialSubmaterial(IN nombreMaterial VARCHAR(30), IN nombreSubmaterial VARCHAR(30), IN cantidad INT)
+BEGIN
+	SET @idMaterial = (SELECT ID FROM Materiales WHERE Nombre = nombreMaterial);
+    SET @idSubmaterial = (SELECT ID FROM Materiales WHERE Nombre = nombreSubmaterial);
+    INSERT INTO Materiales_Materiales (ID_Material, ID_Submaterial, Cantidad) VALUE (@idMaterial, @idSubmaterial, cantidad);
+END $$
+
+CREATE PROCEDURE gastarMaterial(IN idRollo INT, IN idMaterial INT, IN cantidadGastada INT)
+BEGIN
+	START TRANSACTION;
+		SET @cantidadOriginal = (SELECT Cantidad FROM Rollos_Materiales  WHERE ID_Rollo = idRollo AND ID_Material = idMaterial);
+		UPDATE Rollos_Materiales SET Cantidad = (@cantidadOriginal - cantidadGastada) WHERE ID_Rollo = idRollo AND ID_Material = idMaterial;
+	COMMIT;
+END $$
+
+CREATE PROCEDURE anadirEquipable(IN idRollo INT, IN idEquipable INT)
+BEGIN
+	INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUES (idRollo, idEquipable, 0);
+END $$
+
 DELIMITER ;
 -- Datos iniciales
 
@@ -579,10 +597,17 @@ CALL crearEnemigo('libro', 110, 130, 120, FALSE, 'oficina');
 CALL crearEnemigo('pendrive', 110, 150, 120, TRUE, 'oficina');
 
 -- Materiales
-INSERT INTO Materiales (Nombre) VALUES ('buen_rollo');
-INSERT INTO Materiales (Nombre) VALUES ('plastico');
-INSERT INTO Materiales (Nombre) VALUES ('madera');
-INSERT INTO Materiales (Nombre) VALUES ('trozo_calabaza');
+INSERT INTO Materiales (Nombre) VALUES ('buen_rollo'),
+	('plastico'),
+	('madera'),
+	('trozo_calabaza'),
+	('zumo_limon'),
+	('grapa'),
+	('zinc'),
+	('cable'),
+	('cobre'),
+	('bateria'),
+	('papel');
 
 -- Enemigos_Materiales
 CALL asociarEnemigoMaterial('stripper', 'buen_rollo', 1, 100);
@@ -607,14 +632,20 @@ CALL asociarEnemigoMaterial('cepillo', 'plastico', 1, 50);
 CALL asociarEnemigoMaterial('champu', 'plastico', 2, 50);
 
 CALL asociarEnemigoMaterial('cuchara', 'madera', 1, 50);
-CALL asociarEnemigoMaterial('calabaza', 'trozo_calabaza', 1, 5);
+CALL asociarEnemigoMaterial('calabaza', 'trozo_calabaza', 1, 50);
+CALL asociarEnemigoMaterial('limon', 'zumo_limon', 1, 25);
+
+CALL asociarEnemigoMaterial('raton', 'cable', 1, 25);
+CALL asociarEnemigoMaterial('grapadora', 'grapa', 10, 25);
 
 -- Equipables
 INSERT INTO Equipables(Nombre, Tipo, Bonus , DestrezaNecesaria, FuerzaNecesaria, NivelNecesario) VALUES
 	('tenedor', 'A', 2, 20, 0, 1),
     ('casco_obra', 'S', 2, 0, 20, 1),
     ('mazo_juez', 'A', 4, 40, 0, 2),
-    ('casco_calabaza', 'S', 4, 0, 40, 2);
+    ('casco_calabaza', 'S', 4, 0, 40, 2),
+    ('pistola_airsoft', 'A', 8, 80, 0, 3),
+    ('sombrero_papel', 'S', 8, 0, 80, 3);
     
 -- Equipables_Materiales
 CALL asociarEquipableMaterial('tenedor', 'buen_rollo', 100);
@@ -629,9 +660,29 @@ CALL asociarEquipableMaterial('mazo_juez', 'madera', 20);
 CALL asociarEquipableMaterial('casco_calabaza', 'buen_rollo', 300);
 CALL asociarEquipableMaterial('casco_calabaza', 'trozo_calabaza', 1);
 
+CALL asociarEquipableMaterial('pistola_airsoft', 'buen_rollo', 600);
+CALL asociarEquipableMaterial('pistola_airsoft', 'plastico', 40);
+CALL asociarEquipableMaterial('pistola_airsoft', 'bateria', 1);
+
+CALL asociarEquipableMaterial('sombrero_papel', 'buen_rollo', 600);
+CALL asociarEquipableMaterial('sombrero_papel', 'papel', 10);
+
+-- Materiales_Materiales
+
+CALL asociarMaterialSubmaterial('bateria', 'zinc', 10);
+CALL asociarMaterialSubmaterial('bateria', 'cobre', 10);
+CALL asociarMaterialSubmaterial('bateria', 'zumo_limon', 10);
+
+CALL asociarMaterialSubmaterial('zinc', 'grapa', 10);
+
+CALL asociarMaterialSubmaterial('cobre', 'cable', 1);
+
 -- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
 UPDATE Atributos SET Fuerza = 2000, Constitucion = 2000, Destreza = 2000 WHERE ID = 16;
+UPDATE Rollos SET Nivel = 7 WHERE ID_Usuario = 1;
+CALL concederPremio(1, 'buen_rollo', 5000);
+CALL concederPremio(1, 'plastico', 5000);
 /*INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('armaPrueba', 'A', 200, 0, 0);
 INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUE (1, 1, TRUE);
 INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('sombreroPrueba', 'S', 300, 0, 0);

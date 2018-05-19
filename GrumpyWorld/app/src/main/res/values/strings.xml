@@ -1,16 +1,18 @@
 <resources>
-    <string name="app_name">Grumpy World</string>
-    <string name="SERVER_URL">https://mirandaserver.ddns.net/</string>
+    <string name="app_name" translatable="false">Grumpy World</string>
+
+    <!--string name="SERVER_URL" translatable="false">https://mirandaserver.ddns.net/</string-->
+    <string name="SERVER_URL" translatable="false">http://192.168.0.27</string>
 
     <string name="menu_campana">Campaign</string>
     <string name="menu_entrenamiento">Trainning</string>
     <string name="menu_caza">Hunting</string>
     <string name="menu_mapa">Map</string>
-    <string name="menu_sello">\??????</string>
+    <string name="menu_sello" translatable="false">\??????</string>
     <string name="menu_multijugador">Multiplayer</string>
     <string name="menu_amigos">Friends</string>
     <string name="menu_duelo">Duel</string>
-    <string name="menu_ranking">Ranking</string>
+    <string name="menu_ranking" translatable="false">Ranking</string>
     <string name="menu_inventario">Inventory</string>
     <string name="menu_fabricacion">Crafting</string>
     <string name="menu_equipamiento">Equipment</string>
@@ -55,11 +57,17 @@
     <string name="enemigo_stripper_corto">Stripper roll</string>
     <string name="enemigo_vater_corto">Toilet</string>
 
-    <string name="enemigo_calabaza_corto">Evil pumpkin</string>
     <string name="enemigo_cuchara_corto">Cool spoon</string>
     <string name="enemigo_leche_corto">Suspicious milk</string>
-    <string name="enemigo_limon_corto">Lee Mong</string>
+    <string name="enemigo_limon_corto" translatable="false">Lee Mong</string>
     <string name="enemigo_zanahoria_corto">Carrobbit</string>
+    <string name="enemigo_calabaza_corto">Evil pumpkin</string>
+
+    <string name="enemigo_raton_corto">Mouse</string>
+    <string name="enemigo_grapadora_corto">Stapler</string>
+    <string name="enemigo_lapiz_corto">Pencil</string>
+    <string name="enemigo_libro_corto">Book</string>
+    <string name="enemigo_pendrive_corto" translatable="false">¯\\_(ツ)_/¯</string>
 
     <string name="cazar_de_nuevo">Hunt again</string>
 
@@ -77,13 +85,36 @@
     <string name="material_plastico">Plastic</string>
     <string name="material_madera">Wood</string>
     <string name="material_trozo_calabaza">Piece of pumpkin</string>
+    <string name="material_zumo_limon">Lemon juice</string>
+    <string name="material_grapa">Staple</string>
+    <string name="material_zinc">Zinc</string>
+    <string name="material_cable">Cable</string>
+    <string name="material_cobre">Copper</string>
+    <string name="material_bateria">Battery</string>
+    <string name="material_papel">Paper</string>
 
-    <string name="victoria">¡Victory!</string>
+
+    <string name="victoria">Victory!</string>
     <string name="derrota">Defeat :(</string>
 
     <string name="equipable_tenedor">Plastic fork</string>
     <string name="equipable_casco_obra">Construction helmet</string>
     <string name="equipable_mazo_juez">Gavel</string>
     <string name="equipable_casco_calabaza">Pumpkin helmet</string>
+    <string name="equipable_pistola_airsoft">Airsoft pistol</string>
+    <string name="equipable_sombrero_papel">Paper hat</string>
 
+    <string name="bonus_ataque">Attack +%1$d</string>
+    <string name="bonus_defensa">Defense +%1$d</string>
+    <string name="fuerza_requerida">Required strength: %1$d</string>
+    <string name="destreza_requerida">Required dexterity: %1$d</string>
+    <string name="materiales_necesarios">Required submaterials:</string>
+    <string name="fabricar">Craft</string>
+    <string name="objeto_ya_poseido">You already have this item.</string>
+
+    <string name="tienes">You have: %1$d</string>
+    <string name="no_submateriales">This is a basic material, you can obtain it by hunting creatures.</string>
+    <string name="pista_material">Tap any material to see if it\'s a composite material.</string>
+
+    <string name="nivel_requerido_7">You need to be level 7 to see this.</string>
 </resources>

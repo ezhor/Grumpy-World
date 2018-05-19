@@ -10,6 +10,9 @@
           <option name="port" value="27" />
         </fileTransfer>
       </webServer>
+      <webServer id="8258e2d3-e3b4-4090-b3fc-6299c8a54113" name="XAMPP" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="D:\xampp\htdocs\gw-api" accessType="MOUNT" />
+      </webServer>
     </option>
   </component>
 </project>
