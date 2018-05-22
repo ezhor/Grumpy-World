@@ -9,7 +9,7 @@
 
 require_once "Controller.php";
 
-class FabricacionController extends Controller
+class EquipamientoController extends Controller
 {
     public function manageGetVerb(Request $request){
         $idRollo = $request->getAuthentication()->getId();
@@ -17,8 +17,9 @@ class FabricacionController extends Controller
         if (isset($request->getUrlElements()[2])) {
             $idEquipable = $request->getUrlElements()[2];
             if(is_numeric($idEquipable)){
-                if(FabricacionHandlerModel::puedeFabricar($idRollo, $idEquipable)){
-                    $equipableDetalle = FabricacionHandlerModel::getEquipableDetalle($idRollo, $idEquipable);
+                if(EquipamientoHandlerModel::tieneEquipable($idRollo, $idEquipable)){
+                    // MÉTODO getEquipablePoseidoDetalle SIN TERMINAR
+                    $equipableDetalle = EquipamientoHandlerModel::getEquipablePoseidoDetalle($idRollo, $idEquipable);
                     $response = new Response(200, null, $equipableDetalle, $request->getAccept(), $idRollo);
                 }else{
                     $response = new Response(403, null, null, $request->getAccept(), $idRollo);
@@ -28,7 +29,7 @@ class FabricacionController extends Controller
             }
 
         }else{
-            $equipables = FabricacionHandlerModel::getEquipablesDisponibles($idRollo);
+            $equipables = EquipamientoHandlerModel::getEquipablesPoseidos($idRollo);
             $response = new Response(200, null, $equipables, $request->getAccept(), $idRollo);
         }
         $response->generate();
@@ -38,10 +39,9 @@ class FabricacionController extends Controller
         if (isset($request->getUrlElements()[2])) {
             $idRollo = $request->getAuthentication()->getId();
             $idEquipable = $request->getUrlElements()[2];
-            $conseguido = FabricacionHandlerModel::fabricar($idRollo, $idEquipable);
-            $equipableDetalle = FabricacionHandlerModel::getEquipableDetalle($idRollo, $idEquipable);
-            if($conseguido){
-                $response = new Response(200, null, $equipableDetalle, $request->getAccept(), $idRollo);
+            if(EquipamientoHandlerModel::tieneEquipable($idRollo, $idEquipable) && EquipamientoHandlerModel::puedeEquipar($idRollo, $idEquipable)){
+                EquipamientoHandlerModel::equipar($idRollo, $idEquipable);
+                $response = new Response(204, null, null, $request->getAccept(), $idRollo);
             }else{
                 $response = new Response(403, null, null, $request->getAccept(), $idRollo);
             }

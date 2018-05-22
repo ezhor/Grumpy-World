@@ -75,11 +75,10 @@ CREATE TABLE Equipables(
 CREATE TABLE Rollos_Equipables(
   ID_Rollo INT NOT NULL,
   ID_Equipable INT NOT NULL,
-  Equipada BIT NOT NULL DEFAULT 0,
+  Equipado BIT NOT NULL DEFAULT 0,
   CONSTRAINT FK_Rollos_Equipables_ID_Rollo FOREIGN KEY (ID_Rollo) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE,
   CONSTRAINT FK_Rollos_Equipables_ID_Equipable FOREIGN KEY (ID_Equipable) REFERENCES Equipables(ID) ON DELETE CASCADE,
-  PRIMARY KEY(ID_Rollo, ID_Equipable),
-  CHECK (Equipada='S' OR Tipo='N')
+  PRIMARY KEY(ID_Rollo, ID_Equipable)
 );
 
 CREATE TABLE Materiales(
@@ -254,7 +253,7 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
 			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
 			  LEFT JOIN Equipables AS E ON RE.ID_Equipable = E.ID
-			WHERE RE.Equipada AND E.Tipo = 'S' AND A.ID = A2.ID
+			WHERE RE.Equipado AND E.Tipo = 'S' AND A.ID = A2.ID
 		  )
 		  , 0),
 	  IFNULL(
@@ -264,7 +263,7 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
 			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
 			  LEFT JOIN Equipables AS E ON RE.ID_Equipable = E.ID
-			WHERE RE.Equipada AND E.Tipo = 'A' AND A.ID = A2.ID
+			WHERE RE.Equipado AND E.Tipo = 'A' AND A.ID = A2.ID
 		  )
 		  , 0)
 	INTO @bonusSombreroAtacante, @bonusArmaAtacante
@@ -280,7 +279,7 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
 			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
 			  LEFT JOIN Equipables AS E ON RE.ID_Equipable = E.ID
-			WHERE RE.Equipada AND E.Tipo = 'S' AND A.ID = A2.ID
+			WHERE RE.Equipado AND E.Tipo = 'S' AND A.ID = A2.ID
 		  )
 		  , 0),
 	  IFNULL(
@@ -290,7 +289,7 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 			  LEFT JOIN Rollos AS R ON A.ID = R.ID_Atributos
 			  LEFT JOIN Rollos_Equipables AS RE ON R.ID_Usuario = RE.ID_Rollo
 			  LEFT JOIN Equipables AS E ON RE.ID_Equipable = E.ID
-			WHERE RE.Equipada AND E.Tipo = 'A' AND A.ID = A2.ID
+			WHERE RE.Equipado AND E.Tipo = 'A' AND A.ID = A2.ID
 		  )
 		  , 0)
 	INTO @bonusSombreroVictima, @bonusArmaVictima
@@ -562,7 +561,22 @@ END $$
 
 CREATE PROCEDURE anadirEquipable(IN idRollo INT, IN idEquipable INT)
 BEGIN
-	INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUES (idRollo, idEquipable, 0);
+	INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipado) VALUES (idRollo, idEquipable, 0);
+END $$
+
+CREATE PROCEDURE anadirSupermaterial(IN idRollo INT, IN idMaterial INT)
+BEGIN
+	SET @nombreMaterial = (SELECT Nombre FROM Materiales WHERE ID = idMaterial);
+    CALL concederPremio(idRollo, @nombreMaterial, 1);
+END $$
+
+CREATE PROCEDURE equipar(IN idRollo INT, IN idEquipable INT)
+BEGIN
+	START TRANSACTION;
+		SET @tipoEquipable = (SELECT Tipo FROM Equipables WHERE ID = idEquipable);
+		UPDATE Rollos_Equipables AS RE INNER JOIN Equipables AS E ON RE.ID_Equipable = E.ID SET Equipado = 0 WHERE RE.ID_Rollo = idRollo AND E.Tipo = @tipoEquipable;
+        UPDATE Rollos_Equipables SET Equipado = 1 WHERE ID_Rollo = idRollo AND ID_Equipable = idEquipable;
+	COMMIT;
 END $$
 
 DELIMITER ;
@@ -637,6 +651,7 @@ CALL asociarEnemigoMaterial('limon', 'zumo_limon', 1, 25);
 
 CALL asociarEnemigoMaterial('raton', 'cable', 1, 25);
 CALL asociarEnemigoMaterial('grapadora', 'grapa', 10, 25);
+CALL asociarEnemigoMaterial('libro', 'papel', 10, 25);
 
 -- Equipables
 INSERT INTO Equipables(Nombre, Tipo, Bonus , DestrezaNecesaria, FuerzaNecesaria, NivelNecesario) VALUES
@@ -679,12 +694,10 @@ CALL asociarMaterialSubmaterial('cobre', 'cable', 1);
 
 -- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-UPDATE Atributos SET Fuerza = 2000, Constitucion = 2000, Destreza = 2000 WHERE ID = 16;
+UPDATE Atributos SET Fuerza = 100, Constitucion = 100, Destreza = 100 WHERE ID = 16;
 UPDATE Rollos SET Nivel = 7 WHERE ID_Usuario = 1;
 CALL concederPremio(1, 'buen_rollo', 5000);
 CALL concederPremio(1, 'plastico', 5000);
-/*INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('armaPrueba', 'A', 200, 0, 0);
-INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUE (1, 1, TRUE);
-INSERT INTO Equipables (Nombre, Tipo, Bonus, DestrezaNecesaria, NivelNecesario) VALUE ('sombreroPrueba', 'S', 300, 0, 0);
-INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipada) VALUE (1, 2, TRUE);
-CALL asignarCaza(1);*/
+CALL concederPremio(1, 'zumo_limon', 5000);
+CALL concederPremio(1, 'cable', 5000);
+CALL concederPremio(1, 'zinc', 5000);

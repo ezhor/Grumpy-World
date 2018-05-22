@@ -12,6 +12,7 @@ class EquipableDetalleModel extends EquipableModel implements JsonSerializable
     private $fuerzaNecesaria;
     private $nivelNecesario;
     private $materialesNecesarios;
+    private $poseido;
 
     /**
      * EquipableDetalleModel constructor.
@@ -23,13 +24,14 @@ class EquipableDetalleModel extends EquipableModel implements JsonSerializable
      * @param $nivelNecesario
      * @param $materialesNecesarios
      */
-    public function __construct($id, $nombre, $tipo, $bonus, $destrezaNecesaria, $fuerzaNecesaria, $nivelNecesario, $materialesNecesarios)
+    public function __construct($id, $nombre, $tipo, $bonus, $destrezaNecesaria, $fuerzaNecesaria, $nivelNecesario, $materialesNecesarios, $poseido)
     {
         parent::__construct($id, $nombre, $tipo, $bonus);
         $this->destrezaNecesaria = $destrezaNecesaria;
         $this->fuerzaNecesaria = $fuerzaNecesaria;
         $this->nivelNecesario = $nivelNecesario;
         $this->materialesNecesarios = $materialesNecesarios;
+        $this->poseido = $poseido;
     }
 
     /**
@@ -96,12 +98,31 @@ class EquipableDetalleModel extends EquipableModel implements JsonSerializable
         $this->materialesNecesarios = $materialesNecesarios;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getposeido()
+    {
+        return $this->poseido;
+    }
+
+    /**
+     * @param mixed $poseido
+     */
+    public function setposeido($poseido)
+    {
+        $this->poseido = $poseido;
+    }
+
+
+
     public function jsonSerialize()
     {
         $array = parent::jsonSerialize();
         $array['destrezaNecesaria'] = $this->destrezaNecesaria;
         $array['fuerzaNecesaria'] = $this->fuerzaNecesaria;
         $array['nivelNecesario'] = $this->nivelNecesario;
+        $array['poseido'] = $this->poseido;
         $array['materialesNecesarios'] = $this->materialesNecesarios;
         return $array;
     }

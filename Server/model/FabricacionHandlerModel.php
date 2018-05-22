@@ -37,21 +37,24 @@ class FabricacionHandlerModel
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "SELECT Nombre, Tipo, Bonus, DestrezaNecesaria, FuerzaNecesaria, NivelNecesario
-                    FROM Equipables
-                    WHERE ID = ?;";
+        $query = "SELECT
+                      E.Nombre, E.Tipo, E.Bonus, E.DestrezaNecesaria, E.FuerzaNecesaria, E.NivelNecesario,
+                      (SELECT EXISTS(SELECT * FROM Rollos_Equipables WHERE ID_Rollo = ? AND ID_Equipable = E.ID)) AS poseido
+                    FROM Equipables AS E
+                    WHERE E.ID = ?;";
 
         $prep_query = $db_connection->prepare($query);
-        $prep_query->bind_param('i', $idEquipable);
-        $prep_query->bind_result($nombre, $tipo, $bonus, $destrezaNecesaria, $fuerzaNecesaria, $nivelNecesario);
+        $prep_query->bind_param('ii', $idRollo, $idEquipable);
+        $prep_query->bind_result($nombre, $tipo, $bonus, $destrezaNecesaria, $fuerzaNecesaria, $nivelNecesario, $poseido);
         $prep_query->execute();
         $prep_query->fetch();
-        $equipablesDetalle = new EquipableDetalleModel($idEquipable, $nombre, $tipo, $bonus, $destrezaNecesaria,
-            $fuerzaNecesaria, $nivelNecesario, null);
+        $poseido = $poseido == 1;
+        $equipableDetalle = new EquipableDetalleModel($idEquipable, $nombre, $tipo, $bonus, $destrezaNecesaria,
+            $fuerzaNecesaria, $nivelNecesario, null, $poseido);
         $prep_query->close();
-        $equipablesDetalle->setMaterialesNecesarios(self::materialesNecesarios($idRollo, $idEquipable));
+        $equipableDetalle->setMaterialesNecesarios(self::materialesNecesarios($idRollo, $idEquipable));
 
-        return $equipablesDetalle;
+        return $equipableDetalle;
     }
 
     private static function materialesNecesarios($idRollo, $idEquipable){

@@ -25,43 +25,54 @@
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="GrumpyWorld@localhost" type="feb32156:DbDataSourceImpl" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="GrumpyWorld@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="GrumpyWorld@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="GrumpyWorld: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FabricacionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/FabricacionController.php">
+      <file leaf-file-name="EquipamientoController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/EquipamientoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+            <state relative-caret-position="239">
+              <caret line="20" column="56" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FabricacionHandlerModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/FabricacionHandlerModel.php">
+      <file leaf-file-name="EquipablePoseidoModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/EquipablePoseidoModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="61" column="18" selection-start-line="61" selection-start-column="18" selection-end-line="71" selection-end-column="35" />
+            <state relative-caret-position="1632">
+              <caret line="104" column="20" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ddefe772-45a2-4ecf-8f50-86201b7caccc/console.sql">
+      <file leaf-file-name="EquipablePoseidoDetalleModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/EquipablePoseidoDetalleModel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+              <caret line="26" column="127" selection-start-line="26" selection-start-column="127" selection-end-line="26" selection-end-column="127" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZonaHandlerModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/ZonaHandlerModel.php">
+      <file leaf-file-name="EquipamientoHandlerModel.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/EquipamientoHandlerModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="22" selection-end-column="42" />
+            <state relative-caret-position="442">
+              <caret line="64" column="49" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -70,12 +81,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>entrenamient</find>
-      <find>entrenamiento</find>
-      <find>$entrenamiento</find>
-      <find>gettoken</find>
-      <find>response</find>
-      <find>getto</find>
       <find>existeu</find>
       <find>$usua</find>
       <find>$usuario</find>
@@ -100,12 +105,20 @@
       <find>CALL</find>
       <find>call</find>
       <find>materialesnecesar</find>
+      <find>$poseida</find>
+      <find>poseida</find>
+      <find>close</find>
+      <find>equipada</find>
+      <find>detall</find>
+      <find>detalle</find>
     </findStrings>
     <replaceStrings>
       <replace>atributo</replace>
       <replace>EnemigoSimplificadoModel</replace>
       <replace>$response = new Response('405', null, null, $request-&gt;getAccept(), $request-&gt;getAuthentication()-&gt;getId());</replace>
       <replace />
+      <replace>$poseido</replace>
+      <replace>poseido</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\Code\Grumpy-World\Server\model</dir>
@@ -114,14 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Authenticacion.php" />
-        <option value="$PROJECT_DIR$/jwt/JWT.php" />
-        <option value="$PROJECT_DIR$/controller/UnauthorizedController.php" />
-        <option value="$PROJECT_DIR$/controller/NotFoundController.php" />
-        <option value="$PROJECT_DIR$/model/EnemigoHandlerModel.php" />
-        <option value="$PROJECT_DIR$/model/EntrenamientoModel.php" />
-        <option value="$PROJECT_DIR$/controller/EntrenamientoController.php" />
-        <option value="$PROJECT_DIR$/model/EntrenamientoHandlerModel.php" />
         <option value="$PROJECT_DIR$/Authentication.php" />
         <option value="$PROJECT_DIR$/GestoraAutenticacion.php" />
         <option value="$PROJECT_DIR$/controller/EnemigoController.php" />
@@ -135,7 +140,6 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a1494552-84df-4311-814e-e0a0688972fc/console.sql" />
         <option value="$PROJECT_DIR$/model/RolloModel.php" />
         <option value="$PROJECT_DIR$/controller/AtributosController.php" />
-        <option value="$PROJECT_DIR$/model/RolloHandlerModel.php" />
         <option value="$PROJECT_DIR$/controller/RolloController.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/model/CazaHandlerModel.php" />
@@ -153,18 +157,27 @@
         <option value="$PROJECT_DIR$/info.php" />
         <option value="$PROJECT_DIR$/model/EnemigoSimplificadoModel.php" />
         <option value="$PROJECT_DIR$/model/EnemigoModel.php" />
-        <option value="$PROJECT_DIR$/model/EquipableModel.php" />
-        <option value="$PROJECT_DIR$/model/EquipableDetalleModel.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql" />
         <option value="$PROJECT_DIR$/controller/ZonaController.php" />
         <option value="$PROJECT_DIR$/model/MaterialNecesarioModel.php" />
-        <option value="$PROJECT_DIR$/model/MaterialCompuestoModel.php" />
         <option value="$PROJECT_DIR$/model/PremioCazaHandlerModel.php" />
-        <option value="$PROJECT_DIR$/controller/MaterialController.php" />
         <option value="$PROJECT_DIR$/controller/Controller.php" />
-        <option value="$PROJECT_DIR$/controller/FabricacionController.php" />
-        <option value="$PROJECT_DIR$/model/FabricacionHandlerModel.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/ddefe772-45a2-4ecf-8f50-86201b7caccc/console.sql" />
+        <option value="$PROJECT_DIR$/model/MaterialCompuestoModel.php" />
+        <option value="$PROJECT_DIR$/model/EquipableModel.php" />
+        <option value="$PROJECT_DIR$/model/MaterialHandlerModel.php" />
+        <option value="$PROJECT_DIR$/controller/MaterialController.php" />
+        <option value="$PROJECT_DIR$/controller/FabricacionController.php" />
+        <option value="$PROJECT_DIR$/model/EquipableDetalleModel.php" />
+        <option value="$PROJECT_DIR$/model/SupermaterialModel.php" />
+        <option value="$PROJECT_DIR$/model/RolloHandlerModel.php" />
+        <option value="$PROJECT_DIR$/model/EquipablePoseidoModel.php" />
+        <option value="$PROJECT_DIR$/controller/EquipamientoController.php" />
+        <option value="$PROJECT_DIR$/model/EquipablepPoseidoDetalleModel.php" />
+        <option value="$PROJECT_DIR$/model/FabricacionHandlerModel.php" />
+        <option value="$PROJECT_DIR$/model/EquipablePoseidoDetalleModel.php" />
+        <option value="$PROJECT_DIR$/model/EquipamientoHandlerModel.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2b5bb8a0-3e52-4e35-b39d-35a954e3ddc1/console.sql" />
       </list>
     </option>
   </component>
@@ -187,8 +200,8 @@
     </servers>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="-89" />
+    <option name="y" value="-15" />
     <option name="width" value="1366" />
     <option name="height" value="741" />
   </component>
@@ -197,6 +210,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -218,7 +232,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -230,17 +243,17 @@
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Code\Grumpy-World\Server\model" />
+      <recent name="D:\Code\Grumpy-World\Server\controller" />
+      <recent name="$PROJECT_DIR$/model" />
+      <recent name="$PROJECT_DIR$/controller" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Code\Grumpy-World\Server" />
       <recent name="D:\Code\Grumpy-World\Server\controller" />
       <recent name="D:\Code\Grumpy-World\Server\model" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Code\Grumpy-World\Server\controller" />
-      <recent name="D:\Code\Grumpy-World\Server\model" />
-      <recent name="$PROJECT_DIR$/model" />
-      <recent name="$PROJECT_DIR$/controller" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -1788,23 +1801,28 @@
       <workItem from="1525613460457" duration="388000" />
       <workItem from="1526131701683" duration="4166000" />
       <workItem from="1526208483857" duration="2122000" />
+      <workItem from="1526463492422" duration="943000" />
+      <workItem from="1526634577634" duration="2721000" />
+      <workItem from="1526746446721" duration="8302000" />
+      <workItem from="1527013534332" duration="9754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="194454000" />
+    <option name="totallyTimeSpent" value="216174000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5005208" side_tool="true" weight="0.33368757" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="File Transfer" order="10" weight="0.31562167" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32837406" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32837406" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="11" visible="true" weight="0.33368757" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="13" sideWeight="0.49947917" visible="true" weight="0.33368757" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19895834" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" visible="true" weight="0.17864583" />
@@ -1816,10 +1834,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="REST Client" order="12" weight="0.4793213" />
+      <window_info anchor="bottom" id="REST Client" order="14" weight="0.4793213" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="File Transfer" order="9" weight="0.3177471" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1837,12 +1854,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/model/LibroHandlerModel.php" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/c3468f26-9760-4d9b-830e-d8ed122edcdf/console.sql" />
-    <entry file="file://$PROJECT_DIR$/jwt/SignatureInvalidException.php" />
-    <entry file="file://$PROJECT_DIR$/jwt/ExpiredException.php" />
-    <entry file="file://$PROJECT_DIR$/jwt/BeforeValidException.php" />
-    <entry file="file://$PROJECT_DIR$/jwt/JWT.php" />
     <entry file="file://$PROJECT_DIR$/Authentication.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1343">
@@ -1875,13 +1886,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/PremioController.php" />
-    <entry file="file://$PROJECT_DIR$/model/RolloHandlerModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Response.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
@@ -1967,32 +1971,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/EquipableDetalleModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="25" column="116" selection-start-line="25" selection-start-column="116" selection-end-line="25" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/EquipableModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f672ab48-a367-418d-90c2-b0c34240b24f/console.sql" />
     <entry file="file://$PROJECT_DIR$/controller/NotFoundController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/RolloController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -2038,20 +2021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/MaterialCompuestoModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/MaterialController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -2077,10 +2046,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
           <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-          <folding>
-            <marker date="1523103367638" expanded="true" signature="547:752" ph="SELECT VidaR... Rollos" />
-            <marker date="1523103367638" expanded="true" signature="1492:2012" ph="SELECT M.Nom... Rollos" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2091,13 +2056,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/FabricacionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/MaterialNecesarioModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -2105,24 +2063,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/FabricacionHandlerModel.php">
+    <entry file="file://$PROJECT_DIR$/controller/RolloController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="61" column="18" selection-start-line="61" selection-start-column="18" selection-end-line="71" selection-end-column="35" />
+        <state relative-caret-position="289">
+          <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/ZonaHandlerModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="22" selection-end-column="42" />
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="22" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ddefe772-45a2-4ecf-8f50-86201b7caccc/console.sql">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/MaterialController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="37" column="97" selection-start-line="37" selection-start-column="97" selection-end-line="37" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/MaterialHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1513">
+          <caret line="94" column="47" selection-start-line="94" selection-start-column="47" selection-end-line="94" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/SupermaterialModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="78" column="7" lean-forward="true" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/FabricacionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="43" column="69" selection-start-line="43" selection-start-column="69" selection-end-line="43" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/RolloHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="30" column="47" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/EquipableModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1511">
+          <caret line="95" column="7" lean-forward="true" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/EquipableDetalleModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/FabricacionHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="56" column="32" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/EquipamientoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="20" column="56" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/EquipablePoseidoModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="104" column="20" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/EquipablePoseidoDetalleModel.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <caret line="26" column="127" selection-start-line="26" selection-start-column="127" selection-end-line="26" selection-end-column="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2b5bb8a0-3e52-4e35-b39d-35a954e3ddc1/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" selection-start-line="28" selection-end-line="28" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/EquipamientoHandlerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="64" column="49" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
         </state>
       </provider>
     </entry>
