@@ -694,6 +694,24 @@ CALL asociarMaterialSubmaterial('cobre', 'cable', 1);
 
 -- Pruebas
 CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani2', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani3', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani4', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani5', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani6', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani7', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani8', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani9', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani10', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani11', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('dani12', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+
+UPDATE Rollos SET Honor = 1000 WHERE ID_Usuario = 1;
+UPDATE Rollos SET Honor = 800 WHERE ID_Usuario = 2;
+UPDATE Rollos SET Honor = 600 WHERE ID_Usuario = 3;
+UPDATE Rollos SET Honor = 550 WHERE ID_Usuario = 4;
+UPDATE Rollos SET Honor = 200 WHERE ID_Usuario = 5;
+
 UPDATE Atributos SET Fuerza = 100, Constitucion = 100, Destreza = 100 WHERE ID = 16;
 UPDATE Rollos SET Nivel = 7 WHERE ID_Usuario = 1;
 CALL concederPremio(1, 'buen_rollo', 5000);
