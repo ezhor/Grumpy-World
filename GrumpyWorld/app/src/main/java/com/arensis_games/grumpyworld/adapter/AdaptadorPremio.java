@@ -30,11 +30,6 @@ public class AdaptadorPremio<T> extends ArrayAdapter<T> {
         this.context = context;
     }
 
-    public AdaptadorPremio(Context context, int resource, int textViewResourceId, Zona[] zonas) {
-        super(context, resource, textViewResourceId, (T[])zonas);
-        this.context = context;
-    }
-
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent){
         View view;

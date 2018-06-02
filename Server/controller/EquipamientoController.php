@@ -18,7 +18,6 @@ class EquipamientoController extends Controller
             $idEquipable = $request->getUrlElements()[2];
             if(is_numeric($idEquipable)){
                 if(EquipamientoHandlerModel::tieneEquipable($idRollo, $idEquipable)){
-                    // MÉTODO getEquipablePoseidoDetalle SIN TERMINAR
                     $equipableDetalle = EquipamientoHandlerModel::getEquipablePoseidoDetalle($idRollo, $idEquipable);
                     $response = new Response(200, null, $equipableDetalle, $request->getAccept(), $idRollo);
                 }else{
@@ -36,8 +35,8 @@ class EquipamientoController extends Controller
     }
 
     public function managePostVerb(Request $request){
+        $idRollo = $request->getAuthentication()->getId();
         if (isset($request->getUrlElements()[2])) {
-            $idRollo = $request->getAuthentication()->getId();
             $idEquipable = $request->getUrlElements()[2];
             if(EquipamientoHandlerModel::tieneEquipable($idRollo, $idEquipable) && EquipamientoHandlerModel::puedeEquipar($idRollo, $idEquipable)){
                 EquipamientoHandlerModel::equipar($idRollo, $idEquipable);
@@ -46,7 +45,7 @@ class EquipamientoController extends Controller
                 $response = new Response(403, null, null, $request->getAccept(), $idRollo);
             }
         }else{
-            $response = new Response(404, null, null, $request->getAccept());
+            $response = new Response(404, null, null, $request->getAccept(), $idRollo);
 
         }
         $response->generate();

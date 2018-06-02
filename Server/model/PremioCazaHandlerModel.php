@@ -86,8 +86,8 @@ class PremioCazaHandlerModel
         $prep_query = $db_connection->prepare($query);
 
         for($i=0; $i<count($premiosPosibles); $i++){
-            $aleatorio = rand(0,100);
-            if($aleatorio < $premiosPosibles[$i]->getProbabilidad()){
+            $aleatorio = rand(1,100);
+            if($aleatorio <= $premiosPosibles[$i]->getProbabilidad()){
                 $cantidad = rand(1, $premiosPosibles[$i]->getCantidad());
                 $prep_query->bind_param('isi', $idUsuario, $premiosPosibles[$i]->getNombre(), $cantidad);
                 $prep_query->execute();

@@ -5,9 +5,9 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.arensis_games.grumpyworld.conection.BearerAuthInterceptor;
-import com.arensis_games.grumpyworld.conection.FabricacionInterface;
-import com.arensis_games.grumpyworld.conection.GestoraToken;
+import com.arensis_games.grumpyworld.connection.BearerAuthInterceptor;
+import com.arensis_games.grumpyworld.connection.FabricacionInterface;
+import com.arensis_games.grumpyworld.connection.GestoraToken;
 import com.arensis_games.grumpyworld.model.Equipable;
 import com.arensis_games.grumpyworld.R;
 
@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FabricacionFragmentVM extends AndroidViewModel {
     private MutableLiveData<Equipable[]> ldEquipables;
-    private MutableLiveData<Integer> ldError;
+    private MutableLiveData<String> ldError;
 
     public FabricacionFragmentVM(@NonNull Application application) {
         super(application);
@@ -36,7 +36,7 @@ public class FabricacionFragmentVM extends AndroidViewModel {
         return ldEquipables;
     }
 
-    public MutableLiveData<Integer> getLdError() {
+    public MutableLiveData<String> getLdError() {
         return ldError;
     }
 
@@ -78,17 +78,17 @@ public class FabricacionFragmentVM extends AndroidViewModel {
                             En ese caso se manda al usuario a la pantalla de inicio para que
                             el sistema inicie sesión de nuevo.
                          */
-                        ldError.setValue(response.code());
+                        ldError.setValue(String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Equipable[]> call, Throwable t) {
-                    ldError.postValue(0);
+                    ldError.postValue(t.getMessage());
                 }
             });
         }else{
-            ldError.setValue(401);
+            ldError.setValue("401");
         }
     }
 }

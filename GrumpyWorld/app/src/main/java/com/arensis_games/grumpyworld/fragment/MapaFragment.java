@@ -26,7 +26,7 @@ public class MapaFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private MapaFragmentVM vm;
     private Observer<Zona[]> zonaObserver;
-    private Observer<Integer> errorObserver;
+    private Observer<String> errorObserver;
     private Observer<Zona> zonaCambiadaObserver;
     private ListView lista;
     private TextView texto;
@@ -69,9 +69,9 @@ public class MapaFragment extends Fragment implements AdapterView.OnItemClickLis
         };
         vm.getLdZona().observe(this, zonaObserver);
 
-        errorObserver = new Observer<Integer>() {
+        errorObserver = new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Integer error) {
+            public void onChanged(@Nullable String error) {
                 if(error != null){
                     ViewModelProviders.of(getActivity()).get(MainActivityVM.class).emitirErrorGlobal(error);
                 }

@@ -11,7 +11,6 @@ class EquipablePoseidoDetalleModel extends EquipablePoseidoModel implements Json
     private $fuerzaNecesaria;
     private $destrezaNecesaria;
     private $nivelNecesario;
-    private $equipado;
     private $fuerzaSuficiente;
     private $destrezaSuficiente;
 
@@ -30,7 +29,6 @@ class EquipablePoseidoDetalleModel extends EquipablePoseidoModel implements Json
         $this->fuerzaNecesaria = $fuerzaNecesaria;
         $this->destrezaNecesaria = $destrezaNecesaria;
         $this->nivelNecesario = $nivelNecesario;
-        $this->equipado = $equipado;
         $this->fuerzaSuficiente = $fuerzaSuficiente;
         $this->destrezaSuficiente = $destrezaSuficiente;
     }
@@ -87,22 +85,6 @@ class EquipablePoseidoDetalleModel extends EquipablePoseidoModel implements Json
     /**
      * @return mixed
      */
-    public function getEquipado()
-    {
-        return $this->equipado;
-    }
-
-    /**
-     * @param mixed $equipado
-     */
-    public function setEquipado($equipado)
-    {
-        $this->equipado = $equipado;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFuerzaSuficiente()
     {
         return $this->fuerzaSuficiente;
@@ -140,7 +122,6 @@ class EquipablePoseidoDetalleModel extends EquipablePoseidoModel implements Json
         $array['fuerzaNecesaria'] = $this->fuerzaNecesaria;
         $array['destrezaNecesaria'] = $this->destrezaNecesaria;
         $array['nivelNecesario'] = $this->nivelNecesario;
-        $array['equipado'] = $this->equipado;
         $array['fuerzaSuficiente'] = $this->fuerzaSuficiente;
         $array['destrezaSuficiente'] = $this->destrezaSuficiente;
         return $array;

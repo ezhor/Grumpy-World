@@ -17,6 +17,13 @@ public class GestoraGUI {
                 case "casco_obra":
                     drawable = resources.getDrawable(R.drawable.casco_obra);
                     break;
+                case "casco_calabaza":
+                    drawable = resources.getDrawable(R.drawable.casco_calabaza);
+                    break;
+                case "sombrero_papel":
+                    drawable = resources.getDrawable(R.drawable.sombrero_papel);
+                    break;
+
             }
         }
         return drawable;
@@ -29,6 +36,13 @@ public class GestoraGUI {
                 case "tenedor":
                     drawable = resources.getDrawable(R.drawable.tenedor);
                     break;
+                case "mazo_juez":
+                    drawable = resources.getDrawable(R.drawable.mazo_juez);
+                    break;
+                case "pistola_airsoft":
+                    drawable = resources.getDrawable(R.drawable.pistola_airsoft);
+                    break;
+
             }
         }
         return drawable;
@@ -235,6 +249,8 @@ public class GestoraGUI {
                     drawable = resources.getDrawable(R.drawable.rango10);
                     break;
             }
+        }else{
+            drawable = resources.getDrawable(R.drawable.rango0);
         }
         return drawable;
     }

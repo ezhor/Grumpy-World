@@ -30,7 +30,9 @@ class EquipamientoHandlerModel
         $prep_query->bind_param('i', $idRollo);
         $prep_query->bind_result($id, $nombre, $tipo, $bonus, $equipado);
         $prep_query->execute();
+
         while($prep_query->fetch()){
+            $equipado = $equipado == 1;
             $equipables[] = new EquipablePoseidoModel($id, $nombre, $tipo, $bonus, $equipado);
         }
 
@@ -60,9 +62,9 @@ class EquipamientoHandlerModel
         $prep_query->execute();
         $prep_query->fetch();
 
-        $equipado = $equipado == 1 ? true : false;
-        $fuerzaSuficiente = $fuerzaSuficiente == 1 ? true : false;
-        $destrezaSuficiente = $destrezaSuficiente == 1 ? true : false;
+        $equipado = $equipado == 1;
+        $fuerzaSuficiente = $fuerzaSuficiente == 1;
+        $destrezaSuficiente = $destrezaSuficiente == 1;
 
         $equipableDetalle = new EquipablePoseidoDetalleModel($idEquipable, $nombre, $tipo, $bonus, $equipado,
             $fuerzaNecesaria, $destrezaNecesaria, $nivelNecesario, $fuerzaSuficiente, $destrezaSuficiente);
@@ -82,7 +84,7 @@ class EquipamientoHandlerModel
         $prep_query->execute();
         $prep_query->fetch();
 
-        $tiene = $tiene == 1 ? true : false;
+        $tiene = $tiene == 1;
 
         return $tiene;
     }
@@ -107,8 +109,8 @@ class EquipamientoHandlerModel
         $prep_query->execute();
         $prep_query->fetch();
 
-        $fuerzaSuficiente = $fuerzaSuficiente == 1 ? true : false;
-        $destrezaSuficiente = $destrezaSuficiente == 1 ? true : false;
+        $fuerzaSuficiente = $fuerzaSuficiente == 1;
+        $destrezaSuficiente = $destrezaSuficiente == 1;
 
         return $fuerzaSuficiente && $destrezaSuficiente;
     }
@@ -117,7 +119,7 @@ class EquipamientoHandlerModel
             $db = DatabaseModel::getInstance();
             $db_connection = $db->getConnection();
 
-            $query = "CALL equipar(?,?)";
+            $query = "CALL equipar(?,?);";
 
             $prep_query = $db_connection->prepare($query);
             $prep_query->bind_param('ii', $idRollo, $idEquipable);

@@ -15,7 +15,7 @@ class RankingHandlerModel
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "SELECT U.Usuario, rangoRollo(R.Honor, R.ID_Usuario) AS Rango, Honor
+        $query = "SELECT U.ID, U.Usuario, rangoRollo(R.Honor, R.ID_Usuario) AS Rango, Honor, Nivel
                     FROM Usuarios AS U
                       INNER JOIN Rollos AS R
                         ON U.ID = R.ID_Usuario
@@ -23,18 +23,18 @@ class RankingHandlerModel
 
         $prep_query = $db_connection->prepare($query);
         $prep_query->bind_param('i', $id);
-        $prep_query->bind_result($nombre, $rango, $honor);
+        $prep_query->bind_result($id,$nombre, $rango, $honor, $nivel);
         $prep_query->execute();
         $prep_query->fetch();
 
-        return new RolloRankedModel($nombre, $rango, $honor);
+        return new AmigoModel($id, $nombre, $rango, $honor, $nivel);
     }
 
     public static function getTopRanking(){
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "SELECT U.Usuario, Honor
+        $query = "SELECT U.ID, U.Usuario, Honor, Nivel
                     FROM Usuarios AS U
                       INNER JOIN Rollos AS R
                         ON U.ID = R.ID_Usuario
@@ -42,12 +42,12 @@ class RankingHandlerModel
                     LIMIT 10;";
 
         $prep_query = $db_connection->prepare($query);
-        $prep_query->bind_result($nombre, $honor);
+        $prep_query->bind_result($id,$nombre, $honor, $nivel);
         $prep_query->execute();
 
         $rango = 1;
         while($prep_query->fetch()){
-            $ranking[] = new RolloRankedModel($nombre, $rango, $honor);
+            $ranking[] = new AmigoModel($id, $nombre, $rango, $honor, $nivel);
             $rango++;
         }
 

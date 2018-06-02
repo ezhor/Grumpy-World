@@ -31,7 +31,7 @@
     <string name="enviar">Enviar</string>
     <string name="registrate">¿No tienes cuenta? Regístrate</string>
 
-    <string name="error_desconocido">Error desconocido (%1$d)</string>
+    <string name="error_desconocido">Error desconocido (%1$s)</string>
     <string name="error_usuario_contrasena_incorrectos">Usuario y/o contraseña incorrectos</string>
     <string name="error_campo_vacio">Ningún campo puede quedar vacío</string>
     <string name="error_contrasenas_no_coinciden">Las contraseñas no coinciden</string>
@@ -107,4 +107,13 @@
     <string name="pista_material">Pulsa cualquier material para ver si es un material compuesto.</string>
 
     <string name="nivel_requerido_7">Necesitas ser nivel 7 para ver esto.</string>
+
+    <string name="equipar">Equipar</string>
+    <string name="no_has_fabricado_nada">No has fabricado nada aún.</string>
+
+    <string name="anadir_amigo">Añadir amigo</string>
+    <string name="titulo_peticiones_amistad">Peticiones de amistad</string>
+    <string name="titulo_amigos">Amigos</string>
+    <string name="amigo_no_encontrado">Amigo no encontrado</string>
+    <string name="amigo_anadido">%1$s añadido.</string>
 </resources>

@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.arensis_games.grumpyworld.conection.Authentication;
+import com.arensis_games.grumpyworld.connection.Authentication;
 import com.arensis_games.grumpyworld.model.Rollo;
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.viewmodel.LoginActivityVM;
@@ -19,7 +19,7 @@ import com.arensis_games.grumpyworld.viewmodel.LoginActivityVM;
 public class SplashActivity extends AppCompatActivity {
     private SharedPreferences sharedPref;
     private Observer<Rollo> rolloObserver;
-    private Observer<Integer> errorObserver;
+    private Observer<String> errorObserver;
     private LoginActivityVM vm;
     private SplashActivity thisActivity = this;
 
@@ -46,14 +46,13 @@ public class SplashActivity extends AppCompatActivity {
             };
             vm.getRolloLiveData().observe(this, rolloObserver);
 
-            errorObserver = new Observer<Integer>() {
+            errorObserver = new Observer<String>() {
                 @Override
-                public void onChanged(@Nullable Integer integer) {
+                public void onChanged(@Nullable String error) {
                     Intent intent;
-                    if(integer != null){
-                        int error = integer;
+                    if(error != null){
                         switch (error){
-                            case 401:
+                            case "401":
                                 intent = new Intent(thisActivity, LoginActivity.class);
                                 startActivity(intent);
                                 finish();

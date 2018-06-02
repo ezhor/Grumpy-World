@@ -25,9 +25,8 @@ public class FabricacionFragment extends Fragment implements AdapterView.OnItemC
 
     private FabricacionFragmentVM vm;
     private Observer<Equipable[]> equipablesObserver;
-    private Observer<Integer> errorObserver;
+    private Observer<String> errorObserver;
     private ListView lista;
-    private TextView texto;
     private FabricacionFragment thisFragment = this;
     private GestoraGUI gesGUI = new GestoraGUI();
     private ProgressBar progress;
@@ -48,7 +47,6 @@ public class FabricacionFragment extends Fragment implements AdapterView.OnItemC
         View view = inflater.inflate(R.layout.fragment_fabricacion, container, false);
 
         lista = view.findViewById(R.id.lista);
-        texto = view.findViewById(R.id.texto);
         progress = view.findViewById(R.id.progress);
 
         vm = ViewModelProviders.of(this).get(FabricacionFragmentVM.class);
@@ -66,9 +64,9 @@ public class FabricacionFragment extends Fragment implements AdapterView.OnItemC
         };
         vm.getLdEquipables().observe(this, equipablesObserver);
 
-        errorObserver = new Observer<Integer>() {
+        errorObserver = new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Integer error) {
+            public void onChanged(@Nullable String error) {
                 if(error != null){
                     ViewModelProviders.of(getActivity()).get(MainActivityVM.class).emitirErrorGlobal(error);
                 }

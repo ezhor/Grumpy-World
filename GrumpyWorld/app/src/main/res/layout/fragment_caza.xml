@@ -13,6 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
+            android:visibility="visible"
             />
 
         <RelativeLayout
@@ -136,7 +137,12 @@
                 android:layout_alignEnd="@id/barraVidaRollo"
                 android:layout_alignRight="@id/barraVidaRollo"
                 android:layout_below="@id/barraVidaRollo"
-                android:src="@drawable/icono_ataque" />
+                android:src="@drawable/icono_ataque"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/fondo_icono_barra_vida"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:visibility="invisible"/>
 
             <ImageView
                 android:id="@+id/ivRangoRollo"
@@ -145,7 +151,10 @@
                 android:layout_below="@+id/barraVidaRollo"
                 android:layout_toLeftOf="@+id/ivAtaqueRollo"
                 android:layout_toStartOf="@+id/ivAtaqueRollo"
-                android:src="@drawable/rango4"/>
+                android:src="@drawable/rango4"
+                android:background="@drawable/fondo_icono_barra_vida"
+                android:layout_marginTop="5dp"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/tvNombreEnemigo"
@@ -202,7 +211,12 @@
                 android:layout_alignLeft="@id/barraVidaEnemigo"
                 android:layout_alignStart="@id/barraVidaEnemigo"
                 android:layout_below="@id/barraVidaEnemigo"
-                android:src="@drawable/icono_especial" />
+                android:src="@drawable/icono_especial"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/fondo_icono_barra_vida"
+                android:visibility="invisible"/>
 
             <ImageView
                 android:id="@+id/ivRangoEnemigo"
@@ -211,7 +225,9 @@
                 android:layout_alignTop="@id/ivAtaqueEnemigo"
                 android:layout_toEndOf="@id/ivAtaqueEnemigo"
                 android:layout_toRightOf="@id/ivAtaqueEnemigo"
-                android:src="@drawable/icono_jefe" />
+                android:src="@drawable/icono_jefe"
+                android:background="@drawable/fondo_icono_barra_vida"
+                android:visibility="invisible"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout2"

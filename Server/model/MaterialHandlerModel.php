@@ -52,7 +52,7 @@ class MaterialHandlerModel
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "CALL gastarMaterial(?,?,?)";
+        $query = "CALL gastarMaterial(?,?,?);";
         $prep_query = $db_connection->prepare($query);
         for($i=0; $i<count($materialesNecesarios); $i++) {
             $idMaterial = $materialesNecesarios[$i]->getId();
@@ -95,7 +95,7 @@ class MaterialHandlerModel
             $db = DatabaseModel::getInstance();
             $db_connection = $db->getConnection();
 
-            $query = "CALL anadirSupermaterial(?,?)";
+            $query = "CALL anadirSupermaterial(?,?);";
 
             $prep_query = $db_connection->prepare($query);
             $prep_query->bind_param('ii', $idRollo, $idSupermaterial);

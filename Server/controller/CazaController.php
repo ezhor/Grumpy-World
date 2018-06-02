@@ -42,8 +42,7 @@ class CazaController extends Controller
             $estado = CazaHandlerModel::getEstadoCaza($idUsuario);
 
             $caza = new CazaModel($rollo, $enemigo, $estado);
-            $code = '200';
-            $response = new Response($code, null, $caza, $request->getAccept(), $idUsuario);
+            $response = new Response(200, null, $caza, $request->getAccept(), $idUsuario);
         }
 
         $response->generate();

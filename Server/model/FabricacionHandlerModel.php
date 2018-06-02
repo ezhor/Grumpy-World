@@ -99,7 +99,7 @@ class FabricacionHandlerModel
         $prep_query->execute();
         $prep_query->fetch();
 
-        $puede = $puede == 1 ? true : false;
+        $puede = $puede == 1;
 
         return $puede;
     }

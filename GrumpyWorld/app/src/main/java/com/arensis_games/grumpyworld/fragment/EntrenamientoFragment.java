@@ -31,7 +31,7 @@ public class  EntrenamientoFragment extends Fragment implements View.OnClickList
     private ProgressBar progress;
     private EntrenamientoFragmentVM vm;
     private Observer<Atributos> atributosObserver;
-    private Observer<Integer> errorObserver;
+    private Observer<String> errorObserver;
     private GestoraGUI gesGUI = new GestoraGUI();
     private int finEntrenamiento;
     private Handler handler = new Handler();
@@ -117,9 +117,9 @@ public class  EntrenamientoFragment extends Fragment implements View.OnClickList
         };
         vm.getLdAtributos().observe(this, atributosObserver);
 
-        errorObserver = new Observer<Integer>() {
+        errorObserver = new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Integer error) {
+            public void onChanged(@Nullable String error) {
                 if(error != null){
                     ViewModelProviders.of(getActivity()).get(MainActivityVM.class).emitirErrorGlobal(error);
                 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    >
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/rango2"
+        android:id="@+id/ivRango"
+        android:layout_margin="5dp"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorLetra"
+        android:text="supremmaer"
+        android:textSize="15sp"
+        android:id="@+id/tvNombre"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toRightOf="@id/ivRango"
+        android:layout_toEndOf="@id/ivRango"
+        android:layout_toLeftOf="@+id/tvNivel"
+        android:layout_toStartOf="@id/tvNivel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorLetra"
+        android:text="327"
+        android:textSize="15sp"
+        android:id="@+id/tvHonor"
+        android:layout_below="@id/tvNombre"
+        android:layout_alignLeft="@id/tvNombre"
+        android:layout_alignStart="@id/tvNombre"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorLetra"
+        android:text="Nv. 3"
+        android:layout_gravity="center"
+        android:textSize="15sp"
+        android:id="@id/tvNivel"
+        android:layout_margin="5dp"
+        android:layout_toLeftOf="@id/ibAceptar"
+        android:layout_toStartOf="@id/ibAceptar"
+        android:layout_centerVertical="true"
+         />
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/ibAceptar"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/ibRechazar"
+        android:layout_toStartOf="@id/ibRechazar"
+        android:background="@drawable/icono_aceptar"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp" />
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/ibRechazar"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/icono_borrar"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp" />
+
+</RelativeLayout>

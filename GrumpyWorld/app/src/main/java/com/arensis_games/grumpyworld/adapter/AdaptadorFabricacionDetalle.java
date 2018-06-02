@@ -33,11 +33,6 @@ public class AdaptadorFabricacionDetalle<T> extends ArrayAdapter<T> {
         this.context = context;
     }
 
-    public AdaptadorFabricacionDetalle(Context context, int resource, int textViewResourceId, Zona[] zonas) {
-        super(context, resource, textViewResourceId, (T[])zonas);
-        this.context = context;
-    }
-
 
     @NonNull
     @Override

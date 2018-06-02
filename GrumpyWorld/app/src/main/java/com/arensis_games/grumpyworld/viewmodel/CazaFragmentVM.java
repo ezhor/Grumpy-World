@@ -5,9 +5,9 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.arensis_games.grumpyworld.conection.BearerAuthInterceptor;
-import com.arensis_games.grumpyworld.conection.CazaInterface;
-import com.arensis_games.grumpyworld.conection.GestoraToken;
+import com.arensis_games.grumpyworld.connection.BearerAuthInterceptor;
+import com.arensis_games.grumpyworld.connection.CazaInterface;
+import com.arensis_games.grumpyworld.connection.GestoraToken;
 import com.arensis_games.grumpyworld.model.Caza;
 import com.arensis_games.grumpyworld.model.Estado;
 import com.arensis_games.grumpyworld.model.Turno;
@@ -26,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CazaFragmentVM extends AndroidViewModel {
     private MutableLiveData<Caza> ldCaza;
-    private MutableLiveData<Integer> ldError;
+    private MutableLiveData<String> ldError;
     private MutableLiveData<Estado> ldEstado;
 
     public CazaFragmentVM(@NonNull Application application) {
@@ -40,7 +40,7 @@ public class CazaFragmentVM extends AndroidViewModel {
         return ldCaza;
     }
 
-    public MutableLiveData<Integer> getLdError() {
+    public MutableLiveData<String> getLdError() {
         return ldError;
     }
 
@@ -85,17 +85,17 @@ public class CazaFragmentVM extends AndroidViewModel {
                             En ese caso se manda al usuario a la pantalla de inicio para que
                             el sistema inicie sesión de nuevo.
                          */
-                        ldError.postValue(response.code());
+                        ldError.setValue(String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Caza> call, Throwable t) {
-                    ldError.postValue(0);
+                    ldError.postValue(t.getMessage());
                 }
             });
         }else{
-            ldError.setValue(401);
+            ldError.setValue("401");
         }
     }
 
@@ -124,17 +124,17 @@ public class CazaFragmentVM extends AndroidViewModel {
                         ldEstado.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
-                        ldError.setValue(response.code());
+                        ldError.setValue(String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Estado> call, Throwable t) {
-                    ldError.postValue(0);
+                    ldError.postValue(t.getMessage());
                 }
             });
         }else{
-            ldError.setValue(401);
+            ldError.setValue("401");
         }
     }
 }

@@ -37,7 +37,7 @@ public class MaterialFragment extends Fragment implements AdapterView.OnItemClic
     private ProgressBar progress;
     private MaterialFragment thisFragment = this;
     private GestoraGUI gesGUI = new GestoraGUI();
-    private Observer<Integer> errorObserver;
+    private Observer<String> errorObserver;
     private Button btnFabricar;
     private ProgressBar progress2;
     private int id;
@@ -90,9 +90,9 @@ public class MaterialFragment extends Fragment implements AdapterView.OnItemClic
             }
         };
 
-        errorObserver = new Observer<Integer>() {
+        errorObserver = new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Integer error) {
+            public void onChanged(@Nullable String error) {
                 if(error != null){
                     ViewModelProviders.of(getActivity()).get(MainActivityVM.class).emitirErrorGlobal(error);
                 }

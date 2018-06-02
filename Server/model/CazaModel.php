@@ -18,7 +18,7 @@ class CazaModel implements JsonSerializable
      * @param EnemigoSimplificadoModel $enemigo
      * @param EstadoModel $estado
      */
-    public function __construct(RolloModel $rollo, EnemigoSimplificadoModel $enemigo, EstadoModel $estado)
+    public function __construct(RolloModel $rollo, EnemigoSimplificadoModel $enemigo, EstadoCazaModel $estado)
     {
         $this->rollo = $rollo;
         $this->enemigo = $enemigo;

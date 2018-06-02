@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.arensis_games.grumpyworld.conection.Authentication;
+import com.arensis_games.grumpyworld.connection.Authentication;
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.viewmodel.RegistroActivityVM;
 

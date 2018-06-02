@@ -5,9 +5,9 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.arensis_games.grumpyworld.conection.BearerAuthInterceptor;
-import com.arensis_games.grumpyworld.conection.GestoraToken;
-import com.arensis_games.grumpyworld.conection.ZonaInterface;
+import com.arensis_games.grumpyworld.connection.BearerAuthInterceptor;
+import com.arensis_games.grumpyworld.connection.GestoraToken;
+import com.arensis_games.grumpyworld.connection.ZonaInterface;
 import com.arensis_games.grumpyworld.model.Zona;
 import com.arensis_games.grumpyworld.R;
 
@@ -24,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MapaFragmentVM extends AndroidViewModel {
     private MutableLiveData<Zona[]> ldZona;
-    private MutableLiveData<Integer> ldError;
+    private MutableLiveData<String> ldError;
     private MutableLiveData<Zona> ldZonaCambiada;
 
     public MapaFragmentVM(@NonNull Application application) {
@@ -38,7 +38,7 @@ public class MapaFragmentVM extends AndroidViewModel {
         return ldZona;
     }
 
-    public MutableLiveData<Integer> getLdError() {
+    public MutableLiveData<String> getLdError() {
         return ldError;
     }
 
@@ -83,17 +83,17 @@ public class MapaFragmentVM extends AndroidViewModel {
                             En ese caso se manda al usuario a la pantalla de inicio para que
                             el sistema inicie sesión de nuevo.
                          */
-                        ldError.setValue(response.code());
+                        ldError.setValue(String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Zona[]> call, Throwable t) {
-                    ldError.postValue(0);
+                    ldError.postValue(t.getMessage());
                 }
             });
         }else{
-            ldError.setValue(401);
+            ldError.setValue("401");
         }
     }
 
@@ -122,17 +122,17 @@ public class MapaFragmentVM extends AndroidViewModel {
                         ldZonaCambiada.postValue(zona);
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
-                        ldError.postValue(response.code());
+                        ldError.setValue(String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-                    ldError.postValue(0);
+                    ldError.postValue(t.getMessage());
                 }
             });
         }else{
-            ldError.setValue(401);
+            ldError.setValue("401");
         }
     }
 }

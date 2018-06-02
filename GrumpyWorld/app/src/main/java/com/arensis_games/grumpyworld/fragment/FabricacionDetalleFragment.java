@@ -42,7 +42,7 @@ public class FabricacionDetalleFragment extends Fragment implements AdapterView.
     private ProgressBar progress;
     private FabricacionDetalleFragment thisFragment = this;
     private GestoraGUI gesGUI = new GestoraGUI();
-    private Observer<Integer> errorObserver;
+    private Observer<String> errorObserver;
     private Button btnFabricar;
     private ProgressBar progress2;
     private int id;
@@ -104,9 +104,9 @@ public class FabricacionDetalleFragment extends Fragment implements AdapterView.
             }
         };
 
-        errorObserver = new Observer<Integer>() {
+        errorObserver = new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Integer error) {
+            public void onChanged(@Nullable String error) {
                 if(error != null){
                     ViewModelProviders.of(getActivity()).get(MainActivityVM.class).emitirErrorGlobal(error);
                 }

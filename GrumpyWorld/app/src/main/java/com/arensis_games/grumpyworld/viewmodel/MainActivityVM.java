@@ -18,7 +18,7 @@ public class MainActivityVM extends AndroidViewModel {
     private Rollo rollo;
     private SharedPreferences sharedPref = getApplication().getSharedPreferences("login", Context.MODE_PRIVATE);
     private SharedPreferences.Editor editor = sharedPref.edit();
-    private MutableLiveData<Integer> ldError;
+    private MutableLiveData<String> ldError;
     private MutableLiveData<Fragment> ldFragment;
 
     public MainActivityVM(@NonNull Application application) {
@@ -35,7 +35,7 @@ public class MainActivityVM extends AndroidViewModel {
         this.rollo = rollo;
     }
 
-    public MutableLiveData<Integer> getLdError() {
+    public MutableLiveData<String> getLdError() {
         return ldError;
     }
 
@@ -49,7 +49,7 @@ public class MainActivityVM extends AndroidViewModel {
         editor.commit();
     }
 
-    public void emitirErrorGlobal(int codigoError){
+    public void emitirErrorGlobal(String codigoError){
         this.ldError.setValue(codigoError);
     }
 

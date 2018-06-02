@@ -51,13 +51,14 @@ CREATE TABLE Rollos(
 
 CREATE TABLE Duelos(
 	ID_Rollo INT NOT NULL,
-    ID_RolloEnemigo INT NOT NULL,
-    Vida TINYINT NULL, -- Es NULL cuando un jugador ha decidido su turno pero el otro jugado aún no
-    Turno TINYINT NULL,
+    ID_Oponente INT NOT NULL,
+    Turno TINYINT NOT NULL,
+    Vida TINYINT NULL,
     Ataque TINYINT NULL,
     Momento INT NULL,
     CONSTRAINT FK_Duelos_ID_Rollo FOREIGN KEY (ID_Rollo) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE,
-    CONSTRAINT FK_Duelos_RolloEnemigo FOREIGN KEY (ID_RolloEnemigo) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE
+    CONSTRAINT FK_Duelos_RolloEnemigo FOREIGN KEY (ID_Oponente) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE,
+    PRIMARY KEY(ID_Rollo, ID_Oponente, Turno)
 );
 
 CREATE TABLE Equipables(
@@ -239,10 +240,10 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
   RETURNS INT
   BEGIN
 	-- Atributos del atacante
-    SELECT Fuerza*(1+Pactos/10), Constitucion*(1+Pactos/10) INTO @fAtacante, @cAtacante FROM Atributos WHERE ID = idAtributosAtacante;
+    SELECT Fuerza*(1+(Pactos/10)), Constitucion*(1+(Pactos/10)) INTO @fAtacante, @cAtacante FROM Atributos WHERE ID = idAtributosAtacante;
     
     -- Atributos de la víctima
-    SELECT Fuerza*(1+Pactos/10), Constitucion*(1+Pactos/10) INTO @fVictima, @cVictima FROM Atributos WHERE ID = idAtributosVictima;
+    SELECT Fuerza*(1+(Pactos/10)), Constitucion*(1+(Pactos/10)) INTO @fVictima, @cVictima FROM Atributos WHERE ID = idAtributosVictima;
 	
     -- Bonus de equipables del atacante
 	SELECT
@@ -329,7 +330,7 @@ BEGIN
             BEGIN
 				/*Si el ataque de la víctima rebota,
                 el daño recibido por la víctima va en función de su poder de ataque contra su propio poder de defensa,
-                por eso ambos atributos son el ID de la víctima*/
+                por eso ambos atributos son del ID de la víctima*/
 				SET @dano = 2*danoBase(idAtributosVictima, idAtributosVictima);
             END;
             ELSE
@@ -342,6 +343,17 @@ BEGIN
     END;
     END IF;
     RETURN @dano;
+END $$
+
+-- Comprueba si dos usuarios han jugado un duelo hace menos de un día.
+CREATE FUNCTION dueloHaceMenosDeUnDia(idRollo INT, idOponente INT)
+RETURNS BIT
+BEGIN
+	
+	RETURN EXISTS(SELECT 1
+					FROM Duelos
+					WHERE ID_Rollo = idRollo AND ID_Oponente = idOponente AND
+						Momento > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 day)));
 END $$
 
 -- Procedimientos
@@ -513,6 +525,7 @@ BEGIN
 		WHERE R.ID_Usuario = idRollo;
 END $$
 
+-- Asocia un material a un enemigo de forma que pueda darlo como premio al vencerle
 CREATE PROCEDURE asociarEnemigoMaterial(IN nombreEnemigo VARCHAR(15), IN nombreMaterial VARCHAR(30), IN cantidad INT, IN probabilidad INT)
 BEGIN
 	SET @idEnemigo = (SELECT ID FROM Enemigos WHERE Nombre = nombreEnemigo);
@@ -520,6 +533,7 @@ BEGIN
     INSERT INTO Enemigos_Materiales (ID_Enemigo, ID_Material, Cantidad, Probabilidad) VALUE (@idEnemigo, @idMaterial, cantidad, probabilidad);
 END $$
 
+-- Concede una cantidad de material a un rollo
 CREATE PROCEDURE concederPremio(IN idRollo INT, IN nombreMaterial VARCHAR(30), IN cantidadAnadida INT)
 BEGIN
 	SET @idMaterial = (SELECT ID FROM Materiales WHERE Nombre = nombreMaterial);
@@ -537,6 +551,7 @@ BEGIN
     END IF;
 END $$
 
+-- Asocia una cantidad de material a un equipable de forma que sea necesaria dicha cantidad para fabricarlo
 CREATE PROCEDURE asociarEquipableMaterial(IN nombreEquipable VARCHAR(30), IN nombreMaterial VARCHAR(30), IN cantidad INT)
 BEGIN
 	SET @idEquipable = (SELECT ID FROM Equipables WHERE Nombre = nombreEquipable);
@@ -544,6 +559,7 @@ BEGIN
     INSERT INTO Equipables_Materiales (ID_Equipable, ID_Material, Cantidad) VALUE (@idEquipable, @idMaterial, cantidad);
 END $$
 
+-- Asocia una cantidad de un submaterial a un material compuesto de forma que sea necesaria dicha cantidad para fabricarlo
 CREATE PROCEDURE asociarMaterialSubmaterial(IN nombreMaterial VARCHAR(30), IN nombreSubmaterial VARCHAR(30), IN cantidad INT)
 BEGIN
 	SET @idMaterial = (SELECT ID FROM Materiales WHERE Nombre = nombreMaterial);
@@ -551,6 +567,7 @@ BEGIN
     INSERT INTO Materiales_Materiales (ID_Material, ID_Submaterial, Cantidad) VALUE (@idMaterial, @idSubmaterial, cantidad);
 END $$
 
+-- Gasta una cantidad de material en de un rollo
 CREATE PROCEDURE gastarMaterial(IN idRollo INT, IN idMaterial INT, IN cantidadGastada INT)
 BEGIN
 	START TRANSACTION;
@@ -559,17 +576,20 @@ BEGIN
 	COMMIT;
 END $$
 
+-- Añade un equipable a un rollo de forma que pueda equiparlo más tarde
 CREATE PROCEDURE anadirEquipable(IN idRollo INT, IN idEquipable INT)
 BEGIN
 	INSERT INTO Rollos_Equipables (ID_Rollo, ID_Equipable, Equipado) VALUES (idRollo, idEquipable, 0);
 END $$
 
+-- Añade una unidad de un material compuesto al ser fabricado
 CREATE PROCEDURE anadirSupermaterial(IN idRollo INT, IN idMaterial INT)
 BEGIN
 	SET @nombreMaterial = (SELECT Nombre FROM Materiales WHERE ID = idMaterial);
     CALL concederPremio(idRollo, @nombreMaterial, 1);
 END $$
 
+-- Equipa un arma o sombrero para que pueda ser usado durante la caza o el duelo
 CREATE PROCEDURE equipar(IN idRollo INT, IN idEquipable INT)
 BEGIN
 	START TRANSACTION;
@@ -577,6 +597,30 @@ BEGIN
 		UPDATE Rollos_Equipables AS RE INNER JOIN Equipables AS E ON RE.ID_Equipable = E.ID SET Equipado = 0 WHERE RE.ID_Rollo = idRollo AND E.Tipo = @tipoEquipable;
         UPDATE Rollos_Equipables SET Equipado = 1 WHERE ID_Rollo = idRollo AND ID_Equipable = idEquipable;
 	COMMIT;
+END $$
+
+-- Agrega a un amigo unidireccionalmente. Más tarde, el usuario amigo tendrá que agregar al primer usuario para aceptar su solicitud.
+CREATE PROCEDURE agregarAmigo(IN idUsuario INT, IN idAmigo INT)
+BEGIN
+	INSERT INTO Amigos (ID_Usuario1, ID_Usuario2) VALUES (idUsuario, idAmigo);
+END $$
+
+-- Borra a un amigo. También puede usarse para rechazar una petición de amistad.
+CREATE PROCEDURE borrarAmigo(IN idUsuario INT, IN idAmigo INT)
+BEGIN
+	DELETE FROM Amigos WHERE (ID_Usuario1 = idUsuario AND ID_Usuario2 = idAmigo) OR (ID_Usuario1 = idAmigo AND ID_Usuario2 = idUsuario);
+END $$
+
+-- Reta a un amigo a un duelo. Más tarde, el usuario amigo tendrá que retar al primer usuario para aceptar su reto.
+CREATE PROCEDURE retarADuelo(IN idRollo INT, IN idOponente INT)
+BEGIN
+	INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUE (idRollo, idOponente, 0, 100, NULL, NULL);
+END $$
+
+-- Rechaza un reto a duelo. También puede usarse para cancelar un reto a un amigo.
+CREATE PROCEDURE rechazarDuelo(IN idRollo INT, IN idOponente INT)
+BEGIN
+	DELETE FROM Duelos WHERE ((ID_Rollo = idRollo AND ID_Oponente = idOponente) OR (ID_Oponente = idRollo AND ID_Rollo = idOponente)) AND Turno = 0;
 END $$
 
 DELIMITER ;
@@ -705,6 +749,7 @@ CALL crearUsuario('dani9', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RTh
 CALL crearUsuario('dani10', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
 CALL crearUsuario('dani11', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
 CALL crearUsuario('dani12', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
+CALL crearUsuario('supremmaer', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
 
 UPDATE Rollos SET Honor = 1000 WHERE ID_Usuario = 1;
 UPDATE Rollos SET Honor = 800 WHERE ID_Usuario = 2;
@@ -712,10 +757,20 @@ UPDATE Rollos SET Honor = 600 WHERE ID_Usuario = 3;
 UPDATE Rollos SET Honor = 550 WHERE ID_Usuario = 4;
 UPDATE Rollos SET Honor = 200 WHERE ID_Usuario = 5;
 
+
+
 UPDATE Atributos SET Fuerza = 100, Constitucion = 100, Destreza = 100 WHERE ID = 16;
 UPDATE Rollos SET Nivel = 7 WHERE ID_Usuario = 1;
+
 CALL concederPremio(1, 'buen_rollo', 5000);
 CALL concederPremio(1, 'plastico', 5000);
 CALL concederPremio(1, 'zumo_limon', 5000);
 CALL concederPremio(1, 'cable', 5000);
 CALL concederPremio(1, 'zinc', 5000);
+CALL concederPremio(1, 'trozo_calabaza', 5000);
+CALL concederPremio(1, 'madera', 5000);
+CALL concederPremio(1, 'papel', 5000);
+
+INSERT INTO Amigos VALUES  (1,2), (2,1), (1,3), (4,1);
+
+-- INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUE (1, 2, 9, 0, 3, UNIX_TIMESTAMP());

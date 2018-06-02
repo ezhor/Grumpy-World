@@ -6,10 +6,9 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.arensis_games.grumpyworld.R;
-import com.arensis_games.grumpyworld.conection.BearerAuthInterceptor;
-import com.arensis_games.grumpyworld.conection.FabricacionInterface;
-import com.arensis_games.grumpyworld.conection.GestoraToken;
-import com.arensis_games.grumpyworld.model.EquipableDetalle;
+import com.arensis_games.grumpyworld.connection.BearerAuthInterceptor;
+import com.arensis_games.grumpyworld.connection.FabricacionInterface;
+import com.arensis_games.grumpyworld.connection.GestoraToken;
 import com.arensis_games.grumpyworld.model.Supermaterial;
 
 import okhttp3.OkHttpClient;
@@ -25,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MaterialFragmentVM extends AndroidViewModel {
     private MutableLiveData<Supermaterial> ldSupermaterial;
-    private MutableLiveData<Integer> ldError;
+    private MutableLiveData<String> ldError;
 
     public MaterialFragmentVM(@NonNull Application application) {
         super(application);
@@ -37,7 +36,7 @@ public class MaterialFragmentVM extends AndroidViewModel {
         return ldSupermaterial;
     }
 
-    public MutableLiveData<Integer> getLdError() {
+    public MutableLiveData<String> getLdError() {
         return ldError;
     }
 
@@ -78,17 +77,17 @@ public class MaterialFragmentVM extends AndroidViewModel {
                             En ese caso se manda al usuario a la pantalla de inicio para que
                             el sistema inicie sesión de nuevo.
                          */
-                        ldError.setValue(response.code());
+                        ldError.setValue(String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Supermaterial> call, Throwable t) {
-                    ldError.postValue(0);
+                    ldError.postValue(t.getMessage());
                 }
             });
         }else{
-            ldError.setValue(401);
+            ldError.setValue("401");
         }
     }
 
@@ -117,17 +116,17 @@ public class MaterialFragmentVM extends AndroidViewModel {
                         ldSupermaterial.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
-                        ldError.setValue(response.code());
+                        ldError.setValue(String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Supermaterial> call, Throwable t) {
-                    ldError.postValue(0);
+                    ldError.postValue(t.getMessage());
                 }
             });
         }else{
-            ldError.setValue(401);
+            ldError.setValue("401");
         }
     }
 }

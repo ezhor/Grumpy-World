@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    tools:context="com.arensis_games.grumpyworld.fragment.MapaFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/progress">
+
+            <TextView
+                android:id="@+id/texto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:gravity="end"
+                android:text="@string/menu_equipamiento"
+                android:textColor="@color/colorLetra"
+                android:textSize="30sp" />
+
+            <ListView
+                android:id="@+id/lista"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/texto" />
+
+            <TextView
+                android:id="@+id/tvNadaFabricado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/no_has_fabricado_nada"
+                android:layout_margin="15dp"
+                android:textColor="@color/colorLetra"
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:textStyle="italic"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</FrameLayout>

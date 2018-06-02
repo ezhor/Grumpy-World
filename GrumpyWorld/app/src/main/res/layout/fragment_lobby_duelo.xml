@@ -1,0 +1,133 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    tools:context="com.arensis_games.grumpyworld.fragment.MapaFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/progress">
+
+            <TextView
+                android:id="@+id/tvTituloDuelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="end"
+                android:layout_gravity="center"
+                android:text="@string/menu_duelo"
+                android:textColor="@color/colorLetra"
+                android:textSize="20sp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="70dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:id="@+id/llRetos">
+                        <TextView
+                            android:id="@+id/tvRetos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/titulo_peticiones_amistad"
+                            android:textColor="@color/colorLetra"
+                            android:textSize="20sp"
+                            android:clickable="false"/>
+
+                        <ListView
+                            android:id="@+id/listaRetos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:orientation="vertical"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:id="@+id/llRanked">
+                        <TextView
+                            android:id="@+id/tvRanked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/titulo_amigos"
+                            android:textColor="@color/colorLetra"
+                            android:textSize="20sp"
+                            android:layout_marginTop="10dp"/>
+
+                        <ListView
+                            android:id="@+id/listaRanked"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:clickable="false"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:id="@+id/llAmistoso">
+                        <TextView
+                            android:id="@+id/tvAmistoso"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/titulo_amigos"
+                            android:textColor="@color/colorLetra"
+                            android:textSize="20sp"
+                            android:layout_marginTop="10dp"/>
+
+                        <ListView
+                            android:id="@+id/listaAmistoso"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:clickable="false"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</FrameLayout>

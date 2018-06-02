@@ -29,43 +29,43 @@ import com.arensis_games.grumpyworld.viewmodel.MainActivityVM;
  * A simple {@link Fragment} subclass.
  */
 public class CazaFragment extends Fragment implements View.OnClickListener {
-    CazaFragmentVM vm;
-    Observer<Caza> cazaObserver;
-    Observer<Estado> estadoObserver;
-    Observer<Integer> errorObserver;
-    GestoraGUI gesGUI = new GestoraGUI();
+    private CazaFragmentVM vm;
+    private Observer<Caza> cazaObserver;
+    private Observer<Estado> estadoObserver;
+    private Observer<String> errorObserver;
+    private GestoraGUI gesGUI = new GestoraGUI();
 
-    RelativeLayout rlFondo;
+    private RelativeLayout rlFondo;
 
-    ProgressBar progress;
-    ProgressBar progress2;
+    private ProgressBar progress;
+    private ProgressBar progress2;
 
-    TextView tvNombreRollo;
-    ProgressBar barraVidaRollo;
-    ImageView ivRangoRollo;
-    TextView tvNivelRollo;
-    ImageView ivAtaqueRollo;
+    private TextView tvNombreRollo;
+    private ProgressBar barraVidaRollo;
+    private ImageView ivRangoRollo;
+    private TextView tvNivelRollo;
+    private ImageView ivAtaqueRollo;
 
-    TextView tvNombreEnemigo;
-    ProgressBar barraVidaEnemigo;
-    ImageView ivRangoEnemigo;
-    TextView tvNivelEnemigo;
-    ImageView ivAtaqueEnemigo;
+    private TextView tvNombreEnemigo;
+    private ProgressBar barraVidaEnemigo;
+    private ImageView ivRangoEnemigo;
+    private TextView tvNivelEnemigo;
+    private ImageView ivAtaqueEnemigo;
 
-    ImageView ivSombreroRollo;
-    ImageView ivArmaRollo;
+    private ImageView ivSombreroRollo;
+    private ImageView ivArmaRollo;
 
-    ImageView ivEnemigo;
+    private ImageView ivEnemigo;
 
-    ImageView btnAtaque;
-    ImageView btnEspecial;
-    ImageView btnContra;
+    private ImageView btnAtaque;
+    private ImageView btnEspecial;
+    private ImageView btnContra;
 
-    Caza cazaActual;
-    boolean enemigoEsMasRapido;
+    private Caza cazaActual;
+    private boolean enemigoEsMasRapido;
     private Handler handler = new Handler();
-    boolean cargando = true;
-    boolean botonesActivos = true;
+    private boolean cargando = true;
+    private boolean botonesActivos = true;
 
     public CazaFragment() {
         // Required empty public constructor
@@ -141,9 +141,9 @@ public class CazaFragment extends Fragment implements View.OnClickListener {
 
         vm.getLdEstado().observe(this, estadoObserver);
 
-        errorObserver = new Observer<Integer>() {
+        errorObserver = new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Integer error) {
+            public void onChanged(@Nullable String error) {
                 if(error != null){
                     ViewModelProviders.of(getActivity()).get(MainActivityVM.class).emitirErrorGlobal(error);
                 }
@@ -222,11 +222,18 @@ public class CazaFragment extends Fragment implements View.OnClickListener {
         rlFondo.setBackgroundDrawable(gesGUI.getDrawableZona(getResources(), rollo.getZona()));
 
         tvNombreRollo.setText(rollo.getNombre());
-        ivRangoRollo.setImageDrawable(gesGUI.getDrawableRango(getResources(), rollo.getRango()));
+        if(rollo.getRango() <= 10){
+            ivRangoRollo.setImageDrawable(gesGUI.getDrawableRango(getResources(), rollo.getRango()));
+            ivRangoRollo.setVisibility(View.VISIBLE);
+        }
+
         tvNivelRollo.setText(getString(R.string.nivel, rollo.getNivel()));
 
         tvNombreEnemigo.setText(gesGUI.getNombreCortoEnemigo(getResources(), enemigo.getNombre()));
-        ivRangoEnemigo.setImageDrawable(gesGUI.getDrawableRango(getResources(), enemigo.isJefe()));
+        if(enemigo.isJefe()){
+            ivRangoEnemigo.setImageDrawable(gesGUI.getDrawableRango(getResources(), enemigo.isJefe()));
+            ivRangoEnemigo.setVisibility(View.VISIBLE);
+        }
         tvNivelEnemigo.setText(getString(R.string.nivel, enemigo.getNivel()));
 
         ivSombreroRollo.setImageDrawable(gesGUI.getDrawableSombrero(getResources(), rollo.getSombrero()));

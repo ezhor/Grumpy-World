@@ -5,9 +5,9 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.arensis_games.grumpyworld.conection.AtributosInterface;
-import com.arensis_games.grumpyworld.conection.BearerAuthInterceptor;
-import com.arensis_games.grumpyworld.conection.GestoraToken;
+import com.arensis_games.grumpyworld.connection.AtributosInterface;
+import com.arensis_games.grumpyworld.connection.BearerAuthInterceptor;
+import com.arensis_games.grumpyworld.connection.GestoraToken;
 import com.arensis_games.grumpyworld.model.Atributos;
 import com.arensis_games.grumpyworld.model.Entrenamiento;
 import com.arensis_games.grumpyworld.R;
@@ -25,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EntrenamientoFragmentVM extends AndroidViewModel {
     private MutableLiveData<Atributos> ldAtributos;
-    private MutableLiveData<Integer> ldError;
+    private MutableLiveData<String> ldError;
 
     public EntrenamientoFragmentVM(@NonNull Application application) {
         super(application);
@@ -37,7 +37,7 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
         return ldAtributos;
     }
 
-    public MutableLiveData<Integer> getLdError() {
+    public MutableLiveData<String> getLdError() {
         return ldError;
     }
 
@@ -78,17 +78,17 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
                             En ese caso se manda al usuario a la pantalla de inicio para que
                             el sistema inicie sesión de nuevo.
                          */
-                        ldError.postValue(response.code());
+                        ldError.setValue(String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Atributos> call, Throwable t) {
-                    ldError.postValue(0);
+                    ldError.postValue(t.getMessage());
                 }
             });
         }else{
-            ldError.setValue(401);
+            ldError.setValue("401");
         }
     }
 
@@ -117,17 +117,17 @@ public class EntrenamientoFragmentVM extends AndroidViewModel {
                         ldAtributos.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
-                        ldError.setValue(response.code());
+                        ldError.setValue(String.valueOf(response.code()));
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Atributos> call, Throwable t) {
-                    ldError.postValue(0);
+                    ldError.postValue(t.getMessage());
                 }
             });
         }else{
-            ldError.setValue(401);
+            ldError.setValue("401");
         }
     }
 }

@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.arensis_games.grumpyworld.conection.Authentication;
+import com.arensis_games.grumpyworld.connection.Authentication;
 import com.arensis_games.grumpyworld.viewmodel.LoginActivityVM;
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.model.Rollo;
@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etContrasena;
     private LoginActivityVM vm;
     private Observer<Rollo> observerRollo;
-    private Observer<Integer> observerError;
+    private Observer<String> observerError;
     private LoginActivity thisActivity = this;
     private Button btnEnviar;
     private ProgressBar progress;
@@ -54,16 +54,15 @@ public class LoginActivity extends AppCompatActivity {
         };
         vm.getRolloLiveData().observe(this, observerRollo);
 
-        observerError = new Observer<Integer>() {
+        observerError = new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Integer integer) {
+            public void onChanged(@Nullable String error) {
 
-                if(integer != null){
+                if(error != null){
                     btnEnviar.setVisibility(View.VISIBLE);
                     progress.setVisibility(View.GONE);
-                    int error = integer;
                     switch (error){
-                        case 401:
+                        case "401":
                             Toast.makeText(LoginActivity.this, getString(R.string.error_usuario_contrasena_incorrectos), Toast.LENGTH_SHORT).show();
                             break;
                         default:

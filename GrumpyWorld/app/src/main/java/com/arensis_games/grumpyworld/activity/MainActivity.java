@@ -15,11 +15,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.arensis_games.grumpyworld.adapter.AdaptadorDrawer;
+import com.arensis_games.grumpyworld.fragment.AmigosFragment;
 import com.arensis_games.grumpyworld.fragment.CazaFragment;
 import com.arensis_games.grumpyworld.fragment.EntrenamientoFragment;
+import com.arensis_games.grumpyworld.fragment.EquipamientoFragment;
 import com.arensis_games.grumpyworld.fragment.FabricacionFragment;
 import com.arensis_games.grumpyworld.fragment.InicioFragment;
 import com.arensis_games.grumpyworld.fragment.MapaFragment;
+import com.arensis_games.grumpyworld.fragment.RankingFragment;
 import com.arensis_games.grumpyworld.fragment.SelloFragment;
 import com.arensis_games.grumpyworld.model.Rollo;
 import com.arensis_games.grumpyworld.R;
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ListView lvDrawer;
     private DrawerLayout drawerLayout;
     private MainActivityVM vm;
-    private Observer<Integer> errorObserver;
+    private Observer<String> errorObserver;
     private Rollo rollo;
     private String[] elementos;
     private MainActivity thisActivity = this;
@@ -69,21 +72,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         drawerLayout = findViewById(R.id.drawerLayout);
         lvDrawer = findViewById(R.id.lvDrawer);
 
-        errorObserver = new Observer<Integer>() {
+        errorObserver = new Observer<String>() {
             @Override
-            public void onChanged(@Nullable Integer integer) {
+            public void onChanged(@Nullable String error) {
                 Intent intent;
-                if(integer != null){
-                    int error = integer;
+                if(error != null){
                     switch (error){
-                        case 401:
+                        case "401":
                             Toast.makeText(thisActivity, getString(R.string.error_sesion_caducada), Toast.LENGTH_SHORT).show();
                             intent = new Intent(thisActivity, SplashActivity.class);
                             startActivity(intent);
                             finish();
                             break;
                         default:
-                            Toast.makeText(MainActivity.this, getString(R.string.error_desconocido, error), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, getString(R.string.error_desconocido, error), Toast.LENGTH_LONG).show();
                             break;
                     }
                 }
@@ -147,6 +149,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             fragment = new FabricacionFragment();
         }else if(opcionElegida.equals(getString(R.string.menu_sello))){
             fragment = new SelloFragment();
+        }else if(opcionElegida.equals(getString(R.string.menu_equipamiento))){
+            fragment = new EquipamientoFragment();
+        }else if(opcionElegida.equals(getString(R.string.menu_amigos))){
+            fragment = new AmigosFragment();
+        }else if(opcionElegida.equals(getString(R.string.menu_ranking))){
+            fragment = new RankingFragment();
         }
 
         if(fragment != null){

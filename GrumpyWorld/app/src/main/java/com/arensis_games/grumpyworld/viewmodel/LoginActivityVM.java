@@ -9,10 +9,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
-import com.arensis_games.grumpyworld.conection.Authentication;
-import com.arensis_games.grumpyworld.conection.BasicAuthInterceptor;
-import com.arensis_games.grumpyworld.conection.GestoraToken;
-import com.arensis_games.grumpyworld.conection.RolloInterface;
+import com.arensis_games.grumpyworld.connection.Authentication;
+import com.arensis_games.grumpyworld.connection.BasicAuthInterceptor;
+import com.arensis_games.grumpyworld.connection.GestoraToken;
+import com.arensis_games.grumpyworld.connection.RolloInterface;
 import com.arensis_games.grumpyworld.model.Rollo;
 import com.arensis_games.grumpyworld.R;
 
@@ -29,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivityVM extends AndroidViewModel {
     private final MutableLiveData<Rollo> rolloLiveData;
-    private final MutableLiveData<Integer> errorLiveData;
+    private final MutableLiveData<String> errorLiveData;
     private SharedPreferences sharedPref = getApplication().getSharedPreferences("login", Context.MODE_PRIVATE);
     private SharedPreferences.Editor editor = sharedPref.edit();
 
@@ -42,7 +42,7 @@ public class LoginActivityVM extends AndroidViewModel {
     public LiveData<Rollo> getRolloLiveData(){
         return this.rolloLiveData;
     }
-    public MutableLiveData<Integer> getErrorLiveData() {
+    public MutableLiveData<String> getErrorLiveData() {
         return errorLiveData;
     }
 
@@ -74,7 +74,7 @@ public class LoginActivityVM extends AndroidViewModel {
                     rolloLiveData.postValue(response.body());
                     GestoraToken.setAuthorization(response.headers().get("Authorization"));
                 }else{
-                    errorLiveData.postValue(response.code());
+                    errorLiveData.postValue(String.valueOf(response.code()));
                 }
             }
 

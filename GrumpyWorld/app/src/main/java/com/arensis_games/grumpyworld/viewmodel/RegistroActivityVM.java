@@ -7,8 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
-import com.arensis_games.grumpyworld.conection.Authentication;
-import com.arensis_games.grumpyworld.conection.UsuarioInterface;
+import com.arensis_games.grumpyworld.connection.Authentication;
+import com.arensis_games.grumpyworld.connection.UsuarioInterface;
 import com.arensis_games.grumpyworld.R;
 
 import retrofit2.Call;

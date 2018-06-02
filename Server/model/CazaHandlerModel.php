@@ -95,7 +95,7 @@ class CazaHandlerModel
         $prep_query->execute();
         $prep_query->fetch();
 
-        $estado = new EstadoModel($vidaRollo, $vidaEnemigo, $ataqueRollo, $ataqueEnemigo);
+        $estado = new EstadoCazaModel($vidaRollo, $ataqueRollo, $vidaEnemigo, $ataqueEnemigo);
 
         return $estado;
     }
