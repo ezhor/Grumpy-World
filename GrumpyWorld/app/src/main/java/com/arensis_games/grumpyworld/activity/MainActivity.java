@@ -21,6 +21,7 @@ import com.arensis_games.grumpyworld.fragment.EntrenamientoFragment;
 import com.arensis_games.grumpyworld.fragment.EquipamientoFragment;
 import com.arensis_games.grumpyworld.fragment.FabricacionFragment;
 import com.arensis_games.grumpyworld.fragment.InicioFragment;
+import com.arensis_games.grumpyworld.fragment.LobbyDueloFragment;
 import com.arensis_games.grumpyworld.fragment.MapaFragment;
 import com.arensis_games.grumpyworld.fragment.RankingFragment;
 import com.arensis_games.grumpyworld.fragment.SelloFragment;
@@ -155,6 +156,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             fragment = new AmigosFragment();
         }else if(opcionElegida.equals(getString(R.string.menu_ranking))){
             fragment = new RankingFragment();
+        }else if(opcionElegida.equals(getString(R.string.menu_duelo))){
+            fragment = new LobbyDueloFragment();
         }
 
         if(fragment != null){

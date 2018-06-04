@@ -103,16 +103,20 @@ public class BusquedaAmigosFragment extends Fragment implements AdapterView.OnIt
 
     @Override
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-        String nombre = textView.getText().toString();
-        vm.buscarUsuario(nombre);
-        progress.setVisibility(View.VISIBLE);
+        buscarAmigo();
         return true;
     }
 
     @Override
     public void onClick(View view) {
+        buscarAmigo();
+    }
+
+    private void buscarAmigo(){
         String nombre = etBuscar.getText().toString();
-        vm.buscarUsuario(nombre);
-        progress.setVisibility(View.VISIBLE);
+        if(nombre.length()>0){
+            vm.buscarUsuario(nombre);
+            progress.setVisibility(View.VISIBLE);
+        }
     }
 }

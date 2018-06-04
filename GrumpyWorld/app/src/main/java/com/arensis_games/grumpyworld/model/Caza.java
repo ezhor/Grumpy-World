@@ -7,9 +7,9 @@ package com.arensis_games.grumpyworld.model;
 public class Caza {
     private Rollo rollo;
     private Enemigo enemigo;
-    private Estado estado;
+    private EstadoCaza estado;
 
-    public Caza(Rollo rollo, Enemigo enemigo, Estado estado) {
+    public Caza(Rollo rollo, Enemigo enemigo, EstadoCaza estado) {
         this.rollo = rollo;
         this.enemigo = enemigo;
         this.estado = estado;
@@ -31,11 +31,11 @@ public class Caza {
         this.enemigo = enemigo;
     }
 
-    public Estado getEstado() {
+    public EstadoCaza getEstado() {
         return estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstado(EstadoCaza estado) {
         this.estado = estado;
     }
 }

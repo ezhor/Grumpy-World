@@ -1,29 +1,27 @@
 package com.arensis_games.grumpyworld.model;
 
-import java.util.List;
-
 public class ListadoAmigosCompleto {
-    private List<Amigo> peticionesAmistad;
-    private List<Amigo> amigosMutuos;
+    private Amigo[] peticionesAmistad;
+    private Amigo[] amigosMutuos;
 
-    public ListadoAmigosCompleto(List<Amigo> peticionesAmistad, List<Amigo> amigosMutuos) {
+    public ListadoAmigosCompleto(Amigo[] peticionesAmistad, Amigo[] amigosMutuos) {
         this.peticionesAmistad = peticionesAmistad;
         this.amigosMutuos = amigosMutuos;
     }
 
-    public List<Amigo> getPeticionesAmistad() {
+    public Amigo[] getPeticionesAmistad() {
         return peticionesAmistad;
     }
 
-    public void setPeticionesAmistad(List<Amigo> peticionesAmistad) {
+    public void setPeticionesAmistad(Amigo[] peticionesAmistad) {
         this.peticionesAmistad = peticionesAmistad;
     }
 
-    public List<Amigo> getAmigosMutuos() {
+    public Amigo[] getAmigosMutuos() {
         return amigosMutuos;
     }
 
-    public void setAmigosMutuos(List<Amigo> amigosMutuos) {
+    public void setAmigosMutuos(Amigo[] amigosMutuos) {
         this.amigosMutuos = amigosMutuos;
     }
 }

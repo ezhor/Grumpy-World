@@ -6,11 +6,12 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.arensis_games.grumpyworld.R;
-import com.arensis_games.grumpyworld.connection.AmigoInterface;
 import com.arensis_games.grumpyworld.connection.BearerAuthInterceptor;
+import com.arensis_games.grumpyworld.connection.DueloInterface;
 import com.arensis_games.grumpyworld.connection.GestoraToken;
-import com.arensis_games.grumpyworld.model.Amigo;
-import com.arensis_games.grumpyworld.model.ListadoAmigosCompleto;
+import com.arensis_games.grumpyworld.model.Duelo;
+import com.arensis_games.grumpyworld.model.EstadoDuelo;
+import com.arensis_games.grumpyworld.model.LobbyDuelo;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -23,35 +24,40 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by dparrado on 15/02/18.
  */
 
-public class AmigosFragmentVM extends AndroidViewModel {
-    private MutableLiveData<ListadoAmigosCompleto> ldListadoAmigosCompleto;
-    private MutableLiveData<Amigo[]> ldListadoUsuariosBusqueda;
+public class DueloFragmentVM extends AndroidViewModel {
+    private MutableLiveData<LobbyDuelo> ldLobbyDuelo;
+    private MutableLiveData<Duelo> ldDuelo;
+    private MutableLiveData<EstadoDuelo> ldEstado;
     private MutableLiveData<String> ldError;
 
-    public AmigosFragmentVM(@NonNull Application application) {
+    public DueloFragmentVM(@NonNull Application application) {
         super(application);
-        ldListadoAmigosCompleto = new MutableLiveData<>();
-        ldListadoUsuariosBusqueda = new MutableLiveData<>();
+        ldLobbyDuelo = new MutableLiveData<>();
+        ldDuelo = new MutableLiveData<>();
+        ldEstado = new MutableLiveData<>();
         ldError = new MutableLiveData<>();
     }
 
-    public MutableLiveData<ListadoAmigosCompleto> getLdListadoAmigosCompleto() {
-        return ldListadoAmigosCompleto;
+    public MutableLiveData<LobbyDuelo> getLdLobbyDuelo() {
+        return ldLobbyDuelo;
     }
 
-    public MutableLiveData<Amigo[]> getLdListadoUsuariosBusqueda() {
-        return ldListadoUsuariosBusqueda;
+    public MutableLiveData<Duelo> getLdDuelo() {
+        return ldDuelo;
+    }
+
+    public MutableLiveData<EstadoDuelo> getLdEstado() {
+        return ldEstado;
     }
 
     public MutableLiveData<String> getLdError() {
         return ldError;
     }
 
-
-    public void obtenerListadoAmigosCompleto(){
+    public void obtenerLobbyDuelo(){
         OkHttpClient client;
         Retrofit retrofit;
-        AmigoInterface amigoInterface;
+        DueloInterface dueloInterface;
 
         /*
             Android puede haber borrado el dato estático si necesita memoria.
@@ -69,13 +75,13 @@ public class AmigosFragmentVM extends AndroidViewModel {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            amigoInterface = retrofit.create(AmigoInterface.class);
+            dueloInterface = retrofit.create(DueloInterface.class);
 
-            amigoInterface.getListadoAmigosCompleto().enqueue(new Callback<ListadoAmigosCompleto>() {
+            dueloInterface.getLobbyDuelo().enqueue(new Callback<LobbyDuelo>() {
                 @Override
-                public void onResponse(Call<ListadoAmigosCompleto> call, Response<ListadoAmigosCompleto> response) {
+                public void onResponse(Call<LobbyDuelo> call, Response<LobbyDuelo> response) {
                     if(response.isSuccessful()){
-                        ldListadoAmigosCompleto.postValue(response.body());
+                        ldLobbyDuelo.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
                         /*
@@ -90,7 +96,7 @@ public class AmigosFragmentVM extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<ListadoAmigosCompleto> call, Throwable t) {
+                public void onFailure(Call<LobbyDuelo> call, Throwable t) {
                     ldError.postValue(t.getMessage());
                 }
             });
@@ -99,10 +105,10 @@ public class AmigosFragmentVM extends AndroidViewModel {
         }
     }
 
-    public void buscarUsuario(String nombre){
+    public void retarADuelo(int id){
         OkHttpClient client;
         Retrofit retrofit;
-        AmigoInterface amigoInterface;
+        DueloInterface dueloInterface;
 
         /*
             Android puede haber borrado el dato estático si necesita memoria.
@@ -120,13 +126,13 @@ public class AmigosFragmentVM extends AndroidViewModel {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            amigoInterface = retrofit.create(AmigoInterface.class);
+            dueloInterface = retrofit.create(DueloInterface.class);
 
-            amigoInterface.buscarUsuario(nombre).enqueue(new Callback<Amigo[]>() {
+            dueloInterface.retarADuelo(id).enqueue(new Callback<LobbyDuelo>() {
                 @Override
-                public void onResponse(Call<Amigo[]> call, Response<Amigo[]> response) {
+                public void onResponse(Call<LobbyDuelo> call, Response<LobbyDuelo> response) {
                     if(response.isSuccessful()){
-                        ldListadoUsuariosBusqueda.postValue(response.body());
+                        ldLobbyDuelo.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
                         /*
@@ -141,7 +147,7 @@ public class AmigosFragmentVM extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<Amigo[]> call, Throwable t) {
+                public void onFailure(Call<LobbyDuelo> call, Throwable t) {
                     ldError.postValue(t.getMessage());
                 }
             });
@@ -150,10 +156,10 @@ public class AmigosFragmentVM extends AndroidViewModel {
         }
     }
 
-    public void agregarAmigo(int id){
+    public void rechazarDuelo(int id){
         OkHttpClient client;
         Retrofit retrofit;
-        AmigoInterface amigoInterface;
+        DueloInterface dueloInterface;
 
         /*
             Android puede haber borrado el dato estático si necesita memoria.
@@ -171,13 +177,13 @@ public class AmigosFragmentVM extends AndroidViewModel {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            amigoInterface = retrofit.create(AmigoInterface.class);
+            dueloInterface = retrofit.create(DueloInterface.class);
 
-            amigoInterface.agregarAmigo(id).enqueue(new Callback<ListadoAmigosCompleto>() {
+            dueloInterface.rechazarDuelo(id).enqueue(new Callback<LobbyDuelo>() {
                 @Override
-                public void onResponse(Call<ListadoAmigosCompleto> call, Response<ListadoAmigosCompleto> response) {
+                public void onResponse(Call<LobbyDuelo> call, Response<LobbyDuelo> response) {
                     if(response.isSuccessful()){
-                        ldListadoAmigosCompleto.postValue(response.body());
+                        ldLobbyDuelo.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
                         /*
@@ -192,7 +198,7 @@ public class AmigosFragmentVM extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<ListadoAmigosCompleto> call, Throwable t) {
+                public void onFailure(Call<LobbyDuelo> call, Throwable t) {
                     ldError.postValue(t.getMessage());
                 }
             });
@@ -201,10 +207,10 @@ public class AmigosFragmentVM extends AndroidViewModel {
         }
     }
 
-    public void borrarAmigo(int id){
+    public void obtenerDuelo(int id){
         OkHttpClient client;
         Retrofit retrofit;
-        AmigoInterface amigoInterface;
+        DueloInterface dueloInterface;
 
         /*
             Android puede haber borrado el dato estático si necesita memoria.
@@ -222,13 +228,13 @@ public class AmigosFragmentVM extends AndroidViewModel {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            amigoInterface = retrofit.create(AmigoInterface.class);
+            dueloInterface = retrofit.create(DueloInterface.class);
 
-            amigoInterface.borrarAmigo(id).enqueue(new Callback<ListadoAmigosCompleto>() {
+            dueloInterface.getDuelo(id).enqueue(new Callback<Duelo>() {
                 @Override
-                public void onResponse(Call<ListadoAmigosCompleto> call, Response<ListadoAmigosCompleto> response) {
+                public void onResponse(Call<Duelo> call, Response<Duelo> response) {
                     if(response.isSuccessful()){
-                        ldListadoAmigosCompleto.postValue(response.body());
+                        ldDuelo.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
                     }else{
                         /*
@@ -243,7 +249,7 @@ public class AmigosFragmentVM extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<ListadoAmigosCompleto> call, Throwable t) {
+                public void onFailure(Call<Duelo> call, Throwable t) {
                     ldError.postValue(t.getMessage());
                 }
             });

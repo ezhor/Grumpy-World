@@ -1,50 +1,37 @@
 package com.arensis_games.grumpyworld.model;
 
 public class Duelo {
-    private Integer enDueloCon;
-    private Amigo[] retosDuelo;
-    private Amigo[] amigosRanked;
-    private Amigo[] amigosAmistoso;
+    private Rollo rollo;
+    private RolloOponente oponente;
+    private EstadoDuelo estado;
 
-    public Duelo() {
+    public Duelo(Rollo rollo, RolloOponente oponente, EstadoDuelo estado) {
+        this.rollo = rollo;
+        this.oponente = oponente;
+        this.estado = estado;
     }
 
-    public Duelo(Integer enDueloCon, Amigo[] retosDuelo, Amigo[] amigosRanked, Amigo[] amigosAmistoso) {
-        this.enDueloCon = enDueloCon;
-        this.retosDuelo = retosDuelo;
-        this.amigosRanked = amigosRanked;
-        this.amigosAmistoso = amigosAmistoso;
+    public Rollo getRollo() {
+        return rollo;
     }
 
-    public Integer getEnDueloCon() {
-        return enDueloCon;
+    public void setRollo(Rollo rollo) {
+        this.rollo = rollo;
     }
 
-    public void setEnDueloCon(Integer enDueloCon) {
-        this.enDueloCon = enDueloCon;
+    public RolloOponente getOponente() {
+        return oponente;
     }
 
-    public Amigo[] getRetosDuelo() {
-        return retosDuelo;
+    public void setOponente(RolloOponente oponente) {
+        this.oponente = oponente;
     }
 
-    public void setRetosDuelo(Amigo[] retosDuelo) {
-        this.retosDuelo = retosDuelo;
+    public EstadoDuelo getEstado() {
+        return estado;
     }
 
-    public Amigo[] getAmigosRanked() {
-        return amigosRanked;
-    }
-
-    public void setAmigosRanked(Amigo[] amigosRanked) {
-        this.amigosRanked = amigosRanked;
-    }
-
-    public Amigo[] getAmigosAmistoso() {
-        return amigosAmistoso;
-    }
-
-    public void setAmigosAmistoso(Amigo[] amigosAmistoso) {
-        this.amigosAmistoso = amigosAmistoso;
+    public void setEstado(EstadoDuelo estado) {
+        this.estado = estado;
     }
 }

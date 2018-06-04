@@ -116,4 +116,9 @@
     <string name="titulo_amigos">Amigos</string>
     <string name="amigo_no_encontrado">Amigo no encontrado</string>
     <string name="amigo_anadido">%1$s añadido.</string>
+
+    <string name="retos">Retos</string>
+    <string name="duelos_clasificatorios">Duelos clasificatorios</string>
+    <string name="duelos_amistosos">Duelos amistosos</string>
+    <string name="has_retado_a">Has retado a %1$s</string>
 </resources>

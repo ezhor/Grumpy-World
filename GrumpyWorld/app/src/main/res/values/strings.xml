@@ -126,4 +126,9 @@
     <string name="titulo_amigos">Friends</string>
     <string name="amigo_no_encontrado">Friend not found.</string>
     <string name="amigo_anadido">%1$s add.</string>
+
+    <string name="retos">Challenges</string>
+    <string name="duelos_clasificatorios">Ranked duels</string>
+    <string name="duelos_amistosos">Friendly duels</string>
+    <string name="has_retado_a">You have challenged %1$s</string>
 </resources>

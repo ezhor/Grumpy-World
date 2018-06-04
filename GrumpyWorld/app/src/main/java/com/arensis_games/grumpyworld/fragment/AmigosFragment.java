@@ -67,24 +67,24 @@ public class AmigosFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onChanged(@Nullable ListadoAmigosCompleto listadoAmigosCompleto) {
                 if(listadoAmigosCompleto != null){
-                    if(listadoAmigosCompleto.getPeticionesAmistad() == null || listadoAmigosCompleto.getPeticionesAmistad().size() == 0){
+                    if(listadoAmigosCompleto.getPeticionesAmistad() == null || listadoAmigosCompleto.getPeticionesAmistad().length == 0){
                         tvPeticiones.setVisibility(View.GONE);
                         listaPeticiones.setVisibility(View.GONE);
                     }else{
                         tvPeticiones.setVisibility(View.VISIBLE);
                         listaPeticiones.setVisibility(View.VISIBLE);
                         listaPeticiones.setAdapter(new AdaptadorPeticionesAmistad<>(getContext(),R.layout.fila_amigo,
-                                R.id.tvNombre, listadoAmigosCompleto.getPeticionesAmistad().toArray(),
+                                R.id.tvNombre, listadoAmigosCompleto.getPeticionesAmistad(),
                                 thisFragment));
                     }
-                    if(listadoAmigosCompleto.getAmigosMutuos() == null || listadoAmigosCompleto.getAmigosMutuos().size() == 0){
+                    if(listadoAmigosCompleto.getAmigosMutuos() == null || listadoAmigosCompleto.getAmigosMutuos().length == 0){
                         tvAmigos.setVisibility(View.GONE);
                         listaAmigos.setVisibility(View.GONE);
                     }else{
                         tvAmigos.setVisibility(View.VISIBLE);
                         listaAmigos.setVisibility(View.VISIBLE);
                         listaAmigos.setAdapter(new AdaptadorAmigos<>(getContext(),R.layout.fila_amigo,
-                                R.id.tvNombre, listadoAmigosCompleto.getAmigosMutuos().toArray(),
+                                R.id.tvNombre, listadoAmigosCompleto.getAmigosMutuos(),
                                 thisFragment));
                     }
                     progress.setVisibility(View.GONE);

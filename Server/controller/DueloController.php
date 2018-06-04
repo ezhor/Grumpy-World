@@ -16,11 +16,20 @@ class DueloController extends Controller
         if (isset($request->getUrlElements()[2])) {
             $idOponente = $request->getUrlElements()[2];
             if(is_numeric($idOponente)){
-                $duelo = DueloHandlerModel::getDuelo($idUsuario, $idOponente);
-                if($duelo != null){
-                    $response = new Response(200, null, $duelo, $request->getAccept(), $idUsuario);
+                if (isset($request->getUrlElements()[3])) {
+                    if($request->getUrlElements()[3] == "estado"){
+                        $estado = DueloHandlerModel::getEstado($idUsuario, $idOponente);
+                        $response = new Response(200, null, $estado, $request->getAccept(), $idUsuario);
+                    }else{
+                        $response = new Response(400, null, null, $request->getAccept(), $idUsuario);
+                    }
                 }else{
-                    $response = new Response(403, null, null, $request->getAccept(), $idUsuario);
+                    $duelo = DueloHandlerModel::getDuelo($idUsuario, $idOponente);
+                    if($duelo != null){
+                        $response = new Response(200, null, $duelo, $request->getAccept(), $idUsuario);
+                    }else{
+                        $response = new Response(403, null, null, $request->getAccept(), $idUsuario);
+                    }
                 }
             }else{
                 $response = new Response(400, null, null, $request->getAccept(), $idUsuario);
@@ -39,7 +48,7 @@ class DueloController extends Controller
             $idOponente = $request->getUrlElements()[2];
             DueloHandlerModel::retarADuelo($idUsuario, $idOponente);
             $lobbyDueloModel = DueloHandlerModel::getLobbyDuelo($idUsuario);
-            $response = new Response(200, null, $lobbyDueloModel, $request->getAccept(), null);
+            $response = new Response(200, null, $lobbyDueloModel, $request->getAccept(), $idUsuario);
         }else{
             if(isset($request->getBodyParameters()['ataque'])){
                 $ataque = $request->getBodyParameters()['ataque'];
@@ -48,10 +57,10 @@ class DueloController extends Controller
                     $estado = CazaHandlerModel::getEstadoCaza($idUsuario);
                     $response = new Response(200, null, $estado, $request->getAccept(), $idUsuario);
                 }else{
-                    $response = new Response(400, null, null, $request->getAccept(), null);
+                    $response = new Response(400, null, null, $request->getAccept(), $idUsuario);
                 }
             }else{
-                $response = new Response(400, null, null, $request->getAccept(), null);
+                $response = new Response(400, null, null, $request->getAccept(), $idUsuario);
             }
 
         }
@@ -63,9 +72,10 @@ class DueloController extends Controller
         $idOponente = $request->getUrlElements()[2];
         if (isset($idOponente) && is_numeric($idOponente)) {
             DueloHandlerModel::rechazarDuelo($idUsuario, $idOponente);
-            $response = new Response(200, null, null, $request->getAccept(), null);
+            $lobbyDueloModel = DueloHandlerModel::getLobbyDuelo($idUsuario);
+            $response = new Response(200, null, $lobbyDueloModel, $request->getAccept(), $idUsuario);
         }else{
-            $response = new Response(400, null, null, $request->getAccept(), null);
+            $response = new Response(400, null, null, $request->getAccept(), $idUsuario);
         }
         $response->generate();
     }

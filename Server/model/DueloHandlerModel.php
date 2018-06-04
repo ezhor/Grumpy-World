@@ -9,8 +9,10 @@
 
 require_once "EnemigoSimplificadoModel.php";
 
-class DueloHandlerModel{
-    private static function getAmigosRanked($idUsuario){
+class DueloHandlerModel
+{
+    private static function getAmigosRanked($idUsuario)
+    {
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
@@ -29,14 +31,15 @@ class DueloHandlerModel{
         $prep_query->bind_result($id, $usuario, $rango, $honor, $nivel);
         $prep_query->execute();
 
-        $listaAmigosRanked = null;
-        while($prep_query->fetch()){
+        $listaAmigosRanked = array();
+        while ($prep_query->fetch()) {
             $listaAmigosRanked[] = new AmigoModel($id, $usuario, $rango, $honor, $nivel);
         }
         return $listaAmigosRanked;
     }
 
-    private static function getAmigosAmistoso($idUsuario){
+    private static function getAmigosAmistoso($idUsuario)
+    {
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
@@ -55,14 +58,15 @@ class DueloHandlerModel{
         $prep_query->bind_result($id, $usuario, $rango, $honor, $nivel);
         $prep_query->execute();
 
-        $listaAmigosRanked = null;
-        while($prep_query->fetch()){
+        $listaAmigosRanked = array();
+        while ($prep_query->fetch()) {
             $listaAmigosRanked[] = new AmigoModel($id, $usuario, $rango, $honor, $nivel);
         }
         return $listaAmigosRanked;
     }
 
-    private static function getRetosDuelo($idUsuario){
+    private static function getRetosDuelo($idUsuario)
+    {
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
@@ -81,14 +85,15 @@ class DueloHandlerModel{
         $prep_query->bind_result($id, $usuario, $rango, $honor, $nivel);
         $prep_query->execute();
 
-        $listaRetosDuelo = null;
-        while($prep_query->fetch()){
+        $listaRetosDuelo = array();
+        while ($prep_query->fetch()) {
             $listaRetosDuelo[] = new AmigoModel($id, $usuario, $rango, $honor, $nivel);
         }
         return $listaRetosDuelo;
     }
 
-    private static function enDueloCon($idUsuario){
+    private static function enDueloCon($idUsuario)
+    {
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
@@ -112,19 +117,25 @@ class DueloHandlerModel{
         return $id;
     }
 
-    public static function getLobbyDuelo($id){
+    public static function getLobbyDuelo($id)
+    {
         $enDueloCon = self::enDueloCon($id);
         //Si está en duelo con alguien, no necesita saber la información de a quién puede retar o quién le ha retado
-        if($enDueloCon == null){
+        if ($enDueloCon == null) {
             $retosDuelo = self::getRetosDuelo($id);
             $amigosRanked = self::getAmigosRanked($id);
             $amigosAmistoso = self::getAmigosAmistoso($id);
+        } else {
+            $retosDuelo = array();
+            $amigosRanked = array();
+            $amigosAmistoso = array();
         }
         $lobbyDueloModel = new LobbyDueloModel($enDueloCon, $retosDuelo, $amigosRanked, $amigosAmistoso);
         return $lobbyDueloModel;
     }
 
-    public static function esAmigoMutuo($idRollo, $idOponente){
+    public static function esAmigoMutuo($idRollo, $idOponente)
+    {
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
@@ -147,8 +158,9 @@ class DueloHandlerModel{
         return $existe;
     }
 
-    public static function retarADuelo($idRollo, $idOponente){
-        if(self::esAmigoMutuo($idRollo, $idOponente)){
+    public static function retarADuelo($idRollo, $idOponente)
+    {
+        if (self::esAmigoMutuo($idRollo, $idOponente)) {
             $db = DatabaseModel::getInstance();
             $db_connection = $db->getConnection();
 
@@ -160,7 +172,8 @@ class DueloHandlerModel{
         }
     }
 
-    public static function rechazarDuelo($idRollo, $idOponente){
+    public static function rechazarDuelo($idRollo, $idOponente)
+    {
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
@@ -171,7 +184,8 @@ class DueloHandlerModel{
         $prep_query->execute();
     }
 
-    public static function getEstadoRollo($idRollo){
+    public static function getEstadoRollo($idRollo)
+    {
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
@@ -190,26 +204,58 @@ class DueloHandlerModel{
         return new EstadoRolloModel($vida, $ataque);
     }
 
-    public static function getEstado($idRollo, $idOponente){
+    public static function getEstado($idRollo, $idOponente)
+    {
         $estado = null;
-        $estadoOponente = self::getEstadoRollo($idOponente);
-        if($estadoOponente->getVidaRollo() != null){
-            $estadoRollo = self::getEstadoRollo($idRollo);
-            $estado = new EstadoDueloModel($estadoRollo->getVidaRollo(), $estadoRollo->getAtaqueRollo(),
-                $estadoOponente->getVidaRollo(), $estadoOponente->getAtaqueRollo(), null);
+        if ($idRollo != $idOponente) {
+            $estadoOponente = self::getEstadoRollo($idOponente);
+            if ($estadoOponente->getVidaRollo() != null) {
+                $estadoRollo = self::getEstadoRollo($idRollo);
+                $estado = new EstadoDueloModel($estadoRollo->getVidaRollo(), $estadoRollo->getAtaqueRollo(),
+                    $estadoOponente->getVidaRollo(), $estadoOponente->getAtaqueRollo(), null);
+            }
         }
         return $estado;
     }
 
-    public static function getDuelo($idRollo, $idOponente){
+    private static function oponenteMasRapido($idRollo, $idOponente){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "SELECT enemigoMasRapido(A1.Destreza, A2.Destreza)
+                    FROM Duelos AS D
+                      INNER JOIN Rollos AS R1
+                        ON D.ID_Rollo = R1.ID_Usuario
+                      INNER JOIN Atributos AS A1
+                        ON R1.ID_Atributos = A1.ID
+                      INNER JOIN Rollos AS R2
+                        ON D.ID_Oponente = R2.ID_Usuario
+                      INNER JOIN Atributos AS A2
+                        ON R2.ID_Atributos = A2.ID
+                    WHERE ID_Rollo = ? AND ID_Oponente = ?;";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('ii', $idRollo, $idOponente);
+        $prep_query->bind_result($esMasRapido);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        $esMasRapido = $esMasRapido == 1;
+
+        return $esMasRapido;
+    }
+
+    public static function getDuelo($idRollo, $idOponente)
+    {
         $duelo = null;
-        if($idRollo != $idOponente){
-            $estado = self::getEstado($idRollo, $idOponente);
-            if($estado != null){
-                $rollo = RolloHandlerModel::getRollo($idRollo);
-                $oponente = RolloHandlerModel::getRollo($idOponente);
-                $duelo = new DueloModel($rollo, $oponente, $estado);
-            }
+        $estado = self::getEstado($idRollo, $idOponente);
+        if ($estado != null) {
+            $rollo = RolloHandlerModel::getRollo($idRollo);
+            $oponenteSimple = RolloHandlerModel::getRollo($idOponente);
+            $oponente = new RolloOponenteModel($oponenteSimple->getNombre(), $oponenteSimple->getSombrero(),
+                $oponenteSimple->getArma(), $oponenteSimple->getZona(), $oponenteSimple->getNivel(),
+                $oponenteSimple->getRango(), self::oponenteMasRapido($idRollo, $idOponente));
+            $duelo = new DueloModel($rollo, $oponente, $estado);
         }
         return $duelo;
     }

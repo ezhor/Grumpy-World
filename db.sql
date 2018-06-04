@@ -61,6 +61,15 @@ CREATE TABLE Duelos(
     PRIMARY KEY(ID_Rollo, ID_Oponente, Turno)
 );
 
+CREATE TABLE Ultimos_Duelos(
+	ID_Rollo INT NOT NULL,
+    ID_Oponente INT NOT NULL,
+    Momento INT NULL,
+    CONSTRAINT FK_Ultimos_Duelos_ID_Rollo FOREIGN KEY (ID_Rollo) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE,
+    CONSTRAINT FK_Ultimos_Duelos_RolloEnemigo FOREIGN KEY (ID_Oponente) REFERENCES Rollos(ID_Usuario) ON DELETE CASCADE,
+    PRIMARY KEY(ID_Rollo, ID_Oponente)
+);
+
 CREATE TABLE Equipables(
   ID INT NOT NULL AUTO_INCREMENT,
   Nombre NVARCHAR(30) NOT NULL UNIQUE,
@@ -351,7 +360,7 @@ RETURNS BIT
 BEGIN
 	
 	RETURN EXISTS(SELECT 1
-					FROM Duelos
+					FROM Ultimos_Duelos
 					WHERE ID_Rollo = idRollo AND ID_Oponente = idOponente AND
 						Momento > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 day)));
 END $$
@@ -623,6 +632,103 @@ BEGIN
 	DELETE FROM Duelos WHERE ((ID_Rollo = idRollo AND ID_Oponente = idOponente) OR (ID_Oponente = idRollo AND ID_Rollo = idOponente)) AND Turno = 0;
 END $$
 
+-- Cacula el resultado del turno de duelo dado el ID de un jugador y su ataque.
+-- El jugador debe estar jugando un duelo con otro jugador. Dicho jugador debe haber elegido ya su turno.
+-- En caso de que no lo haya elegido, se le asignará uno aleatorio.
+CREATE PROCEDURE jugarTurnoDuelo(IN idRollo INT, IN ataqueRollo INT)
+BEGIN
+	SELECT D1.Vida, enemigoMasRapido(A1.Destreza, A2.Destreza), A1.ID, A2.ID, D1.ID_Oponente, D1.Turno
+		INTO @vidaRollo, @enemigoMasRapido, @idAtributosRollo, @idAtributosEnemigo, @idEnemigo, @turno
+		FROM Duelos AS D1
+		  INNER JOIN Rollos AS R1
+			ON D1.ID_Rollo = R1.ID_Usuario
+		  INNER JOIN Atributos AS A1
+			ON R1.ID_Atributos = A1.ID
+		  INNER JOIN Rollos AS R2
+			ON D1.ID_Oponente = R2.ID_Usuario
+		  INNER JOIN Atributos AS A2
+			ON R2.ID_Atributos = A2.ID
+		WHERE D1.ID_Rollo = 1
+		ORDER BY D1.Turno DESC
+		LIMIT 1;
+        
+	SET @ataqueEnemigo = (SELECT Ataque FROM Duelos WHERE ID_Oponente = idRollo ORDER BY Turno DESC LIMIT 1);
+    SET @vidaEnemigo = (SELECT Vida FROM Duelos WHERE ID_Oponente = 1 AND Turno = @turno LIMIT 1);
+	    
+	SET @habiaElegidoAtaque = TRUE;
+	IF(@ataqueEnemigo IS NULL) THEN
+	BEGIN
+		SET @habiaElegidoAtaque = FALSE;
+        SET @ataqueEnemigo = ataqueAleatorio();
+    END;
+    END IF;
+	
+	IF(@enemigoMasRapido) THEN
+	BEGIN
+		SET @vidaRollo = @vidaRollo - dano(@idAtributosEnemigo, @idAtributosRollo, @ataqueEnemigo, ataqueRollo);
+		IF(@vidaRollo>0) THEN
+		BEGIN
+			SET @vidaEnemigo = @vidaEnemigo - dano(@idAtributosRollo, @idAtributosEnemigo, ataqueRollo, @ataqueEnemigo);
+		END;
+		END IF;
+	END;
+	ELSE
+	BEGIN
+		SET @vidaEnemigo = @vidaEnemigo - dano(@idAtributosRollo, @idAtributosEnemigo, ataqueRollo, @ataqueEnemigo);
+		IF(@vidaEnemigo>0)THEN
+		BEGIN
+			SET @vidaRollo = @vidaRollo - dano(@idAtributosEnemigo, @idAtributosRollo, @ataqueEnemigo, ataqueRollo);
+		END;
+		END IF;
+	END;
+	END IF;
+	
+	IF(@vidaRollo<0) THEN
+	BEGIN
+		SET @vidaRollo = 0;
+	END;
+	END IF;
+	
+	IF(@vidaEnemigo<0) THEN
+		BEGIN
+			SET @vidaEnemigo = 0;
+	END;
+	END IF;
+	
+	IF(@vidaRollo>0 AND @vidaEnemigo = 0) THEN
+	BEGIN
+		-- IF vacío para posible condición de victoria
+		-- CALL marcarVictoria(idRollo, @idEnemigo);
+		-- CALL revisarNivel(idRollo);
+	END;
+	END IF;
+	
+    SET @momento = UNIX_TIMESTAMP();
+    
+	IF(@habiaElegidoAtaque) THEN
+	BEGIN
+		INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUE (idRollo, @idEnemigo, (@turno+1), @vidaRollo, ataqueRollo, @momento);
+		UPDATE Duelos SET Vida = @vidaEnemigo, Momento = @momento WHERE ID_Rollo = @idEnemigo AND ID_Oponente = idRollo AND Turno = (@turno+1);
+	END;
+	ELSE
+	BEGIN
+		INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUES
+				(idRollo, @idEnemigo, (@turno+1), @vidaRollo, ataqueRollo, @momento),
+				(@idEnemigo, idRollo, (@turno+1), @vidaEnemigo, @ataqueEnemigo, @momento);
+	END;
+	END IF;
+END $$
+
+CREATE PROCEDURE elegirTurnoDuelo(IN idRollo INT, IN ataqueRollo INT)
+BEGIN
+	SELECT ID_Oponente, Turno
+    INTO @idOponente, @turno
+    FROM Duelos WHERE ID_Rollo = idRollo
+    ORDER BY Turno DESC
+    LIMIT 1;
+	INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUE (idRollo, @idOponente, (@turno+1), NULL, ataqueRollo, NULL);
+END $$
+
 DELIMITER ;
 -- Datos iniciales
 
@@ -757,10 +863,10 @@ UPDATE Rollos SET Honor = 600 WHERE ID_Usuario = 3;
 UPDATE Rollos SET Honor = 550 WHERE ID_Usuario = 4;
 UPDATE Rollos SET Honor = 200 WHERE ID_Usuario = 5;
 
-
-
 UPDATE Atributos SET Fuerza = 100, Constitucion = 100, Destreza = 100 WHERE ID = 16;
+UPDATE Atributos SET Fuerza = 50, Constitucion = 50, Destreza = 50 WHERE ID = 17;
 UPDATE Rollos SET Nivel = 7 WHERE ID_Usuario = 1;
+UPDATE Rollos SET Nivel = 7 WHERE ID_Usuario = 2;
 
 CALL concederPremio(1, 'buen_rollo', 5000);
 CALL concederPremio(1, 'plastico', 5000);
@@ -771,6 +877,15 @@ CALL concederPremio(1, 'trozo_calabaza', 5000);
 CALL concederPremio(1, 'madera', 5000);
 CALL concederPremio(1, 'papel', 5000);
 
+CALL concederPremio(2, 'buen_rollo', 5000);
+CALL concederPremio(2, 'plastico', 5000);
+CALL concederPremio(2, 'zumo_limon', 5000);
+CALL concederPremio(2, 'cable', 5000);
+CALL concederPremio(2, 'zinc', 5000);
+CALL concederPremio(2, 'trozo_calabaza', 5000);
+CALL concederPremio(2, 'madera', 5000);
+CALL concederPremio(2, 'papel', 5000);
+
 INSERT INTO Amigos VALUES  (1,2), (2,1), (1,3), (4,1);
 
--- INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUE (1, 2, 9, 0, 3, UNIX_TIMESTAMP());
+INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUES (1, 2, 0, 100, NULL, NULL), (2, 1, 0, 100, NULL, NULL), (2, 1, 1, NULL, 1, NULL);

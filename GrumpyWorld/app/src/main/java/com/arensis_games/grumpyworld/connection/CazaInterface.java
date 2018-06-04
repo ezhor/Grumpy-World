@@ -1,7 +1,7 @@
 package com.arensis_games.grumpyworld.connection;
 
 import com.arensis_games.grumpyworld.model.Caza;
-import com.arensis_games.grumpyworld.model.Estado;
+import com.arensis_games.grumpyworld.model.EstadoCaza;
 import com.arensis_games.grumpyworld.model.Turno;
 
 import retrofit2.Call;
@@ -20,5 +20,5 @@ public interface CazaInterface {
 
     @POST("/caza")
     @Headers("Content-Type: application/json")
-    Call<Estado> postTurno(@Body Turno turno);
+    Call<EstadoCaza> postTurno(@Body Turno turno);
 }

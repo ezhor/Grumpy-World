@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,9 +32,10 @@
                 android:layout_gravity="center"
                 android:text="@string/menu_duelo"
                 android:textColor="@color/colorLetra"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -60,16 +61,16 @@
                             android:id="@+id/tvRetos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/titulo_peticiones_amistad"
+                            android:text="@string/retos"
                             android:textColor="@color/colorLetra"
                             android:textSize="20sp"
-                            android:clickable="false"/>
+                            android:clickable="false"
+                            android:textStyle="bold"/>
 
                         <ListView
                             android:id="@+id/listaRetos"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="false"
                             android:orientation="vertical"/>
                     </LinearLayout>
 
@@ -83,16 +84,16 @@
                             android:id="@+id/tvRanked"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/titulo_amigos"
+                            android:text="@string/duelos_clasificatorios"
                             android:textColor="@color/colorLetra"
                             android:textSize="20sp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"/>
 
                         <ListView
                             android:id="@+id/listaRanked"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:clickable="false"/>
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -105,16 +106,16 @@
                             android:id="@+id/tvAmistoso"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/titulo_amigos"
+                            android:text="@string/duelos_amistosos"
                             android:textColor="@color/colorLetra"
                             android:textSize="20sp"
-                            android:layout_marginTop="10dp"/>
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"/>
 
                         <ListView
                             android:id="@+id/listaAmistoso"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:clickable="false"/>
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
 
                 </LinearLayout>

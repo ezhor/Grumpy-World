@@ -9,7 +9,7 @@ import com.arensis_games.grumpyworld.connection.BearerAuthInterceptor;
 import com.arensis_games.grumpyworld.connection.CazaInterface;
 import com.arensis_games.grumpyworld.connection.GestoraToken;
 import com.arensis_games.grumpyworld.model.Caza;
-import com.arensis_games.grumpyworld.model.Estado;
+import com.arensis_games.grumpyworld.model.EstadoCaza;
 import com.arensis_games.grumpyworld.model.Turno;
 import com.arensis_games.grumpyworld.R;
 
@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CazaFragmentVM extends AndroidViewModel {
     private MutableLiveData<Caza> ldCaza;
     private MutableLiveData<String> ldError;
-    private MutableLiveData<Estado> ldEstado;
+    private MutableLiveData<EstadoCaza> ldEstado;
 
     public CazaFragmentVM(@NonNull Application application) {
         super(application);
@@ -44,7 +44,7 @@ public class CazaFragmentVM extends AndroidViewModel {
         return ldError;
     }
 
-    public MutableLiveData<Estado> getLdEstado() {
+    public MutableLiveData<EstadoCaza> getLdEstado() {
         return ldEstado;
     }
 
@@ -117,9 +117,9 @@ public class CazaFragmentVM extends AndroidViewModel {
 
             cazaInterface = retrofit.create(CazaInterface.class);
 
-            cazaInterface.postTurno(turno).enqueue(new Callback<Estado>() {
+            cazaInterface.postTurno(turno).enqueue(new Callback<EstadoCaza>() {
                 @Override
-                public void onResponse(Call<Estado> call, Response<Estado> response) {
+                public void onResponse(Call<EstadoCaza> call, Response<EstadoCaza> response) {
                     if(response.isSuccessful()){
                         ldEstado.postValue(response.body());
                         GestoraToken.setAuthorization(response.headers().get("Authorization"));
@@ -129,7 +129,7 @@ public class CazaFragmentVM extends AndroidViewModel {
                 }
 
                 @Override
-                public void onFailure(Call<Estado> call, Throwable t) {
+                public void onFailure(Call<EstadoCaza> call, Throwable t) {
                     ldError.postValue(t.getMessage());
                 }
             });
