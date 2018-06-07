@@ -9,8 +9,9 @@
 
 require_once "EnemigoSimplificadoModel.php";
 
-class DueloHandlerModel
-{
+class DueloHandlerModel{
+    const TIEMPO_TURNO = 20;
+
     private static function getAmigosRanked($idUsuario)
     {
         $db = DatabaseModel::getInstance();
@@ -184,8 +185,7 @@ class DueloHandlerModel
         $prep_query->execute();
     }
 
-    public static function getEstadoRollo($idRollo)
-    {
+    /*public static function getEstadoRollo($idRollo){
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
@@ -202,20 +202,29 @@ class DueloHandlerModel
         $prep_query->fetch();
 
         return new EstadoRolloModel($vida, $ataque);
-    }
+    }*/
 
-    public static function getEstado($idRollo, $idOponente)
-    {
-        $estado = null;
-        if ($idRollo != $idOponente) {
-            $estadoOponente = self::getEstadoRollo($idOponente);
-            if ($estadoOponente->getVidaRollo() != null) {
-                $estadoRollo = self::getEstadoRollo($idRollo);
-                $estado = new EstadoDueloModel($estadoRollo->getVidaRollo(), $estadoRollo->getAtaqueRollo(),
-                    $estadoOponente->getVidaRollo(), $estadoOponente->getAtaqueRollo(), null);
-            }
-        }
-        return $estado;
+    public static function getEstado($idRollo){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "SELECT D1.Vida, D1.Ataque, D2.Vida, D2.Ataque, D1.Momento
+                    FROM Duelos AS D1
+                      INNER JOIN Duelos AS D2
+                        ON D1.ID_Rollo = D2.ID_Oponente AND D1.Turno = D2.Turno
+                    WHERE D1.ID_Rollo = ?
+                    ORDER BY D1.Turno DESC
+                    LIMIT 1;";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('i', $idRollo);
+        $prep_query->bind_result($vidaRollo, $ataqueRollo, $vidaOponente, $ataqueOponente, $momento);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        $tiempoLimiteTurno = $momento + self::TIEMPO_TURNO;
+
+        return new EstadoDueloModel($vidaRollo, $ataqueRollo, $vidaOponente, $ataqueOponente, $tiempoLimiteTurno);
     }
 
     private static function oponenteMasRapido($idRollo, $idOponente){
@@ -248,7 +257,7 @@ class DueloHandlerModel
     public static function getDuelo($idRollo, $idOponente)
     {
         $duelo = null;
-        $estado = self::getEstado($idRollo, $idOponente);
+        $estado = self::getEstado($idRollo);
         if ($estado != null) {
             $rollo = RolloHandlerModel::getRollo($idRollo);
             $oponenteSimple = RolloHandlerModel::getRollo($idOponente);
@@ -258,5 +267,78 @@ class DueloHandlerModel
             $duelo = new DueloModel($rollo, $oponente, $estado);
         }
         return $duelo;
+    }
+
+    public static function oponenteHaElegidoEsteTurno($idRollo){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "SELECT oponenteHaElegidoEsteTurno(?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('i', $idRollo);
+        $prep_query->bind_result($haElegidoTurno);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        $haElegidoTurno = $haElegidoTurno == 1;
+
+        return $haElegidoTurno;
+    }
+
+    public static function oponenteHaElegidoSiguienteTurno($idRollo){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "SELECT oponenteHaElegidoSiguienteTurno(?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('i', $idRollo);
+        $prep_query->bind_result($haElegidoTurno);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        $haElegidoTurno = $haElegidoTurno == 1;
+
+        return $haElegidoTurno;
+    }
+
+    public static function elegirTurno($idRollo, $ataque){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "CALL elegirTurnoDuelo(?,?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('ii', $idRollo, $ataque);
+        $prep_query->execute();
+    }
+
+    public static function jugarTurno($idRollo, $ataque){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "CALL jugarTurnoDuelo(?,?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('ii', $idRollo, $ataque);
+        $prep_query->execute();
+    }
+
+    public static function yaHaJugadoTurno($idRollo){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "SELECT EXISTS(SELECT 1 FROM Duelos WHERE ID_Rollo = ? AND Vida IS NULL);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('i', $idRollo);
+        $prep_query->bind_result($yaHaJugadoTurno);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        $yaHaJugadoTurno = $yaHaJugadoTurno == 1;
+
+        return $yaHaJugadoTurno;
     }
 }

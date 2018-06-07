@@ -358,11 +358,44 @@ END $$
 CREATE FUNCTION dueloHaceMenosDeUnDia(idRollo INT, idOponente INT)
 RETURNS BIT
 BEGIN
-	
 	RETURN EXISTS(SELECT 1
 					FROM Ultimos_Duelos
 					WHERE ID_Rollo = idRollo AND ID_Oponente = idOponente AND
 						Momento > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 day)));
+END $$
+
+-- Comprueba si el otro jugador ya ha elegido turno una vez el primero ya lo ha elegido (Y por tanto ya ha calculado el resultado)
+-- Esta función sería la contraposición de oponenteHaElegidoEsteTurno
+CREATE FUNCTION oponenteHaElegidoEsteTurno(idRollo INT)
+RETURNS BIT
+BEGIN
+	SELECT ID_Oponente, Turno
+		INTO @idOponente, @turno
+		FROM Duelos
+		WHERE ID_Rollo = idRollo
+        ORDER BY Turno DESC
+        LIMIT 1;
+        
+	RETURN EXISTS(SELECT 1
+					FROM Duelos
+					WHERE ID_Rollo = @idOponente AND ID_Oponente = idRollo AND Turno = @turno);
+END $$
+
+-- Comprueba si el otro jugador ya ha elegido turno antes que el primero (Y por tanto está esperando a que sea calculado)
+-- Esta función sería la contraposición de oponenteHaElegidoEsteTurno
+CREATE FUNCTION oponenteHaElegidoSiguienteTurno(idRollo INT)
+RETURNS BIT
+BEGIN
+	SELECT ID_Oponente, Turno
+		INTO @idOponente, @turno
+		FROM Duelos
+		WHERE ID_Rollo = idRollo
+        ORDER BY Turno DESC
+        LIMIT 1;
+        
+	RETURN EXISTS(SELECT 1
+					FROM Duelos
+					WHERE ID_Rollo = @idOponente AND ID_Oponente = idRollo AND Turno = (@turno+1));
 END $$
 
 -- Procedimientos
@@ -648,12 +681,12 @@ BEGIN
 			ON D1.ID_Oponente = R2.ID_Usuario
 		  INNER JOIN Atributos AS A2
 			ON R2.ID_Atributos = A2.ID
-		WHERE D1.ID_Rollo = 1
+		WHERE D1.ID_Rollo = idRollo
 		ORDER BY D1.Turno DESC
 		LIMIT 1;
         
 	SET @ataqueEnemigo = (SELECT Ataque FROM Duelos WHERE ID_Oponente = idRollo ORDER BY Turno DESC LIMIT 1);
-    SET @vidaEnemigo = (SELECT Vida FROM Duelos WHERE ID_Oponente = 1 AND Turno = @turno LIMIT 1);
+    SET @vidaEnemigo = (SELECT Vida FROM Duelos WHERE ID_Oponente = idRollo AND Turno = @turno LIMIT 1);
 	    
 	SET @habiaElegidoAtaque = TRUE;
 	IF(@ataqueEnemigo IS NULL) THEN

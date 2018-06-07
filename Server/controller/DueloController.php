@@ -18,8 +18,12 @@ class DueloController extends Controller
             if(is_numeric($idOponente)){
                 if (isset($request->getUrlElements()[3])) {
                     if($request->getUrlElements()[3] == "estado"){
-                        $estado = DueloHandlerModel::getEstado($idUsuario, $idOponente);
-                        $response = new Response(200, null, $estado, $request->getAccept(), $idUsuario);
+                        if(DueloHandlerModel::oponenteHaElegidoEsteTurno($idUsuario)){
+                            $estado = DueloHandlerModel::getEstado($idUsuario);
+                            $response = new Response(200, null, $estado, $request->getAccept(), $idUsuario);
+                        }else{
+                            $response = new Response(204, null, null, $request->getAccept(), $idUsuario);
+                        }
                     }else{
                         $response = new Response(400, null, null, $request->getAccept(), $idUsuario);
                     }
@@ -48,14 +52,27 @@ class DueloController extends Controller
             $idOponente = $request->getUrlElements()[2];
             DueloHandlerModel::retarADuelo($idUsuario, $idOponente);
             $lobbyDueloModel = DueloHandlerModel::getLobbyDuelo($idUsuario);
-            $response = new Response(200, null, $lobbyDueloModel, $request->getAccept(), $idUsuario);
+            if($lobbyDueloModel != null){
+                $response = new Response(200, null, $lobbyDueloModel, $request->getAccept(), $idUsuario);
+            }else{
+                $response = new Response(204, null, null, $request->getAccept(), $idUsuario);
+            }
         }else{
             if(isset($request->getBodyParameters()['ataque'])){
                 $ataque = $request->getBodyParameters()['ataque'];
                 if($ataque === 1 || $ataque === 2 || $ataque === 3){
-                    CazaHandlerModel::jugarTurno($idUsuario, $ataque);
-                    $estado = CazaHandlerModel::getEstadoCaza($idUsuario);
-                    $response = new Response(200, null, $estado, $request->getAccept(), $idUsuario);
+                    if(!DueloHandlerModel::yaHaJugadoTurno($idUsuario)){
+                        if(DueloHandlerModel::oponenteHaElegidoSiguienteTurno($idUsuario)){
+                            DueloHandlerModel::jugarTurno($idUsuario, $ataque);
+                            $estado = DueloHandlerModel::getEstado($idUsuario);
+                            $response = new Response(200, null, $estado, $request->getAccept(), $idUsuario);
+                        }else{
+                            DueloHandlerModel::elegirTurno($idUsuario, $ataque);
+                            $response = new Response(204, null, null, $request->getAccept(), $idUsuario);
+                        }
+                    }else{
+                        $response = new Response(403, null, null, $request->getAccept(), $idUsuario);
+                    }
                 }else{
                     $response = new Response(400, null, null, $request->getAccept(), $idUsuario);
                 }
