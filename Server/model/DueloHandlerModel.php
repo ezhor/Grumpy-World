@@ -329,7 +329,7 @@ class DueloHandlerModel{
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "SELECT EXISTS(SELECT 1 FROM Duelos WHERE ID_Rollo = ? AND Vida IS NULL);";
+        $query = "SELECT EXISTS(SELECT 1 FROM Duelos WHERE ID_Rollo = ? AND Vida IS NULL AND Ataque IS NOT NULL);";
 
         $prep_query = $db_connection->prepare($query);
         $prep_query->bind_param('i', $idRollo);
@@ -340,5 +340,31 @@ class DueloHandlerModel{
         $yaHaJugadoTurno = $yaHaJugadoTurno == 1;
 
         return $yaHaJugadoTurno;
+    }
+
+    public static function calcularPremioDuelo($idRollo){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "SELECT calcularPremioDuelo(?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('i', $idRollo);
+        $prep_query->bind_result($premio);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        return $premio;
+    }
+
+    public static function concederPremioDuelo($idRollo, $premio){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "CALL concederPremioDuelo(?,?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('ii', $idRollo, $premio);
+        $prep_query->execute();
     }
 }

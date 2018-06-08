@@ -24,6 +24,14 @@ class DueloController extends Controller
                         }else{
                             $response = new Response(204, null, null, $request->getAccept(), $idUsuario);
                         }
+                    }else if($request->getUrlElements()[3] == "premio"){
+                        $premio = DueloHandlerModel::calcularPremioDuelo($idUsuario);
+                        if($premio > 0){
+                            DueloHandlerModel::concederPremioDuelo($idUsuario, $premio);
+                            $response = new Response(200, null, $premio, $request->getAccept(), $idUsuario);
+                        }else{
+                            $response = new Response(403, null, null, $request->getAccept(), $idUsuario);
+                        }
                     }else{
                         $response = new Response(400, null, null, $request->getAccept(), $idUsuario);
                     }

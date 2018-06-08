@@ -8,7 +8,7 @@
       </database-info>
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper" />
       <secret-storage>master_key</secret-storage>
-      <user-name>daniel</user-name>
+      <user-name>root</user-name>
       <introspection-schemas>*:GrumpyWorld</introspection-schemas>
     </data-source>
   </component>
