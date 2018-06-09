@@ -229,6 +229,25 @@
                 android:background="@drawable/fondo_icono_barra_vida"
                 android:visibility="invisible"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorLetra"
+                android:shadowColor="#000"
+                android:shadowDx="2.0"
+                android:shadowDy="2.0"
+                android:shadowRadius="1.5"
+                android:layout_toRightOf="@id/barraVidaRollo"
+                android:layout_toEndOf="@id/barraVidaRollo"
+                android:layout_toLeftOf="@id/barraVidaEnemigo"
+                android:layout_toStartOf="@id/barraVidaEnemigo"
+                android:visibility="gone"
+                android:id="@+id/tvContadorTiempo"/>
+
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"

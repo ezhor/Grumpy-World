@@ -185,11 +185,11 @@ class DueloHandlerModel{
         $prep_query->execute();
     }
 
-    /*public static function getEstadoRollo($idRollo){
+    public static function getEstadoRollo($idRollo){
         $db = DatabaseModel::getInstance();
         $db_connection = $db->getConnection();
 
-        $query = "SELECT Vida, Ataque
+        $query = "SELECT Vida, Ataque, Momento
                     FROM Duelos
                     WHERE ID_Rollo = ?
                     ORDER BY Turno DESC
@@ -197,12 +197,14 @@ class DueloHandlerModel{
 
         $prep_query = $db_connection->prepare($query);
         $prep_query->bind_param('i', $idRollo);
-        $prep_query->bind_result($vida, $ataque);
+        $prep_query->bind_result($vidaRollo, $ataqueRollo, $momento);
         $prep_query->execute();
         $prep_query->fetch();
 
-        return new EstadoRolloModel($vida, $ataque);
-    }*/
+        $tiempoLimiteTurno = $momento + self::TIEMPO_TURNO;
+
+        return new EstadoDueloModel($vidaRollo, $ataqueRollo, null, null, $tiempoLimiteTurno);
+    }
 
     public static function getEstado($idRollo){
         $db = DatabaseModel::getInstance();
@@ -223,6 +225,10 @@ class DueloHandlerModel{
         $prep_query->fetch();
 
         $tiempoLimiteTurno = $momento + self::TIEMPO_TURNO;
+        if(is_null($vidaRollo) || is_null($vidaOponente)){
+            $vidaRollo = 100;
+            $vidaOponente = 100;
+        }
 
         return new EstadoDueloModel($vidaRollo, $ataqueRollo, $vidaOponente, $ataqueOponente, $tiempoLimiteTurno);
     }
@@ -267,6 +273,29 @@ class DueloHandlerModel{
             $duelo = new DueloModel($rollo, $oponente, $estado);
         }
         return $duelo;
+    }
+
+    public static function oponenteHaCogidoSuPremio($idRollo){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "SELECT NOT EXISTS(
+                        SELECT 1
+                        FROM Duelos AS D1
+                          INNER JOIN Duelos AS D2
+                            ON D1.ID_Oponente = D2.ID_Rollo
+                        WHERE D1.ID_Rollo = ?
+                    );";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('i', $idRollo);
+        $prep_query->bind_result($haCogidoSuPremio);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        $haCogidoSuPremio = $haCogidoSuPremio == 1;
+
+        return $haCogidoSuPremio;
     }
 
     public static function oponenteHaElegidoEsteTurno($idRollo){
@@ -366,5 +395,37 @@ class DueloHandlerModel{
         $prep_query = $db_connection->prepare($query);
         $prep_query->bind_param('ii', $idRollo, $premio);
         $prep_query->execute();
+    }
+
+    public static function tiempoAcabado($idRollo){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+        $tiempoAcabado = false;
+
+        $query = "SELECT Momento
+                    FROM Duelos
+                    WHERE ID_Oponente = ?
+                    ORDER BY TURNO DESC
+                    LIMIT 1;";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('i', $idRollo);
+        $prep_query->bind_result($momento);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        if(time() > $momento+self::TIEMPO_TURNO){
+            $tiempoAcabado = true;
+        }
+
+        return $tiempoAcabado;
+    }
+
+    public static function jugarTurnoOponente($idOponente){
+        self::jugarTurno($idOponente, self::ataqueAleatorio());
+    }
+
+    private static function ataqueAleatorio(){
+        return rand(1,3);
     }
 }

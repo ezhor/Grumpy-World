@@ -32,7 +32,10 @@ public interface DueloInterface {
     Call<Duelo> getDuelo(@Path("id") int id);
 
     @GET("/duelo/{id}/estado")
-    Call<Duelo> getEstado(@Path("id") int id);
+    Call<EstadoDuelo> getEstado(@Path("id") int id);
+
+    @GET("/duelo/{id}/premio")
+    Call<Integer> getPremio(@Path("id") int id);
 
     @POST("/duelo")
     @Headers("Content-Type: application/json")

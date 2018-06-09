@@ -23,11 +23,18 @@ public class AdaptadorPremio<T> extends ArrayAdapter<T> {
     private ViewHolder holder;
     private Material material;
     private GestoraGUI gesGUI = new GestoraGUI();
+    private boolean honor;
 
 
     public AdaptadorPremio(Context context, int resource, int textViewResourceId, T[] objects) {
         super(context, resource, textViewResourceId, objects);
         this.context = context;
+        this.honor = false;
+    }
+    public AdaptadorPremio(Context context, int resource, int textViewResourceId, T[] objects, boolean honor) {
+        super(context, resource, textViewResourceId, objects);
+        this.context = context;
+        this.honor = honor;
     }
 
     @Override
@@ -39,7 +46,11 @@ public class AdaptadorPremio<T> extends ArrayAdapter<T> {
         material = (Material) getItem(position);
 
         if(view==null){
-            view = inflater.inflate(R.layout.fila_material, null);
+            if(honor){
+                view = inflater.inflate(R.layout.fila_honor, null);
+            }else{
+                view = inflater.inflate(R.layout.fila_material, null);
+            }
             holder = new ViewHolder(view, R.id.tvNombre, R.id.tvCantidad, material);
             view.setTag(holder);
             view.setEnabled(false);

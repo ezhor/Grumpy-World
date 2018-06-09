@@ -401,6 +401,9 @@ public class GestoraGUI {
                 case "papel":
                     nombreBonito = resources.getString(R.string.material_papel);
                     break;
+                case "honor":
+                    nombreBonito = resources.getString(R.string.material_honor);
+                    break;
             }
         }
         return nombreBonito;

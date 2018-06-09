@@ -274,7 +274,7 @@ public class CazaFragment extends Fragment implements View.OnClickListener {
     }
 
     private void mostrarPremios(){
-        ViewModelProviders.of(getActivity()).get(MainActivityVM.class).cambiarFragment(new PremioFragment());
+        ViewModelProviders.of(getActivity()).get(MainActivityVM.class).cambiarFragment(new PremioCazaFragment());
     }
 
     private void desactivarBotones(){

@@ -18,21 +18,21 @@ import com.arensis_games.grumpyworld.adapter.AdaptadorPremio;
 import com.arensis_games.grumpyworld.model.Material;
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.viewmodel.MainActivityVM;
-import com.arensis_games.grumpyworld.viewmodel.PremioFragmentVM;
+import com.arensis_games.grumpyworld.viewmodel.PremioCazaFragmentVM;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PremioFragment extends Fragment implements View.OnClickListener {
+public class PremioCazaFragment extends Fragment implements View.OnClickListener {
     Button btnCazarDeNuevo;
     TextView tvVictoriaDerrota;
     ListView lista;
     TextView tvMontonesDeNada;
-    PremioFragmentVM vm;
+    PremioCazaFragmentVM vm;
     Observer<Material[]> premioObserver;
     ProgressBar progress;
 
-    public PremioFragment() {
+    public PremioCazaFragment() {
         // Required empty public constructor
     }
 
@@ -50,7 +50,7 @@ public class PremioFragment extends Fragment implements View.OnClickListener {
 
         btnCazarDeNuevo.setOnClickListener(this);
 
-        vm = ViewModelProviders.of(this).get(PremioFragmentVM.class);
+        vm = ViewModelProviders.of(this).get(PremioCazaFragmentVM.class);
 
         premioObserver = new Observer<Material[]>() {
             @Override

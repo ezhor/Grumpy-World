@@ -51,8 +51,8 @@
       <file leaf-file-name="DueloController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/DueloController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="32" column="56" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
+            <state relative-caret-position="289">
+              <caret line="28" column="60" lean-forward="true" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -60,8 +60,8 @@
       <file leaf-file-name="DueloHandlerModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/DueloHandlerModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="356" column="23" lean-forward="true" selection-start-line="356" selection-start-column="23" selection-end-line="356" selection-end-column="23" />
+            <state relative-caret-position="262">
+              <caret line="414" column="29" selection-start-line="414" selection-start-column="29" selection-end-line="414" selection-end-column="29" />
               <folding>
                 <element signature="e#7#88#0#PHP" expanded="true" />
               </folding>
@@ -72,8 +72,8 @@
       <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2b5bb8a0-3e52-4e35-b39d-35a954e3ddc1/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="8" selection-end-column="21" />
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -82,41 +82,41 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>urlele</find>
-      <find>url_ele</find>
-      <find>__cons</find>
-      <find>/*</find>
-      <find />
-      <find>call</find>
-      <find>materialesnecesar</find>
-      <find>$poseida</find>
       <find>poseida</find>
       <find>close</find>
       <find>equipada</find>
       <find>detall</find>
       <find>detalle</find>
-      <find />
+      <find>[] =</find>
       <find>punt</find>
       <find>puntu</find>
       <find>estad</find>
       <find>'estado'</find>
       <find>query</find>
       <find>true</find>
-      <find />
+      <find>true : false</find>
       <find>CALL</find>
-      <find />
-      <find>getduelo</find>
+      <find>$request-&gt;getAccept(), null);</find>
       <find>GETESTADO</find>
       <find>getesta</find>
       <find>into</find>
       <find>material</find>
       <find>fabricar</find>
+      <find>duelo</find>
+      <find>getduelo</find>
+      <find>get</find>
+      <find>getestado</find>
+      <find>tiempoli</find>
+      <find>asd</find>
       <find>premio</find>
+      <find>cogi</find>
+      <find>time(</find>
+      <find>echo</find>
     </findStrings>
     <replaceStrings>
       <replace>atributo</replace>
       <replace>EnemigoSimplificadoModel</replace>
-      <replace />
+      <replace>$response = new Response('405', null, null, $request-&gt;getAccept(), $request-&gt;getAuthentication()-&gt;getId());</replace>
       <replace>$poseido</replace>
       <replace>poseido</replace>
       <replace />
@@ -202,7 +202,7 @@
     </servers>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="215" />
+    <option name="x" value="-2182" />
     <option name="y" value="-8" />
     <option name="width" value="1366" />
     <option name="height" value="741" />
@@ -1825,16 +1825,16 @@
       <workItem from="1528035601939" duration="3240000" />
       <workItem from="1528118923532" duration="10092000" />
       <workItem from="1528395717186" duration="8312000" />
-      <workItem from="1528439432377" duration="16384000" />
+      <workItem from="1528439432377" duration="17711000" />
+      <workItem from="1528543907020" duration="15687000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313018000" />
+    <option name="totallyTimeSpent" value="330032000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5005208" side_tool="true" weight="0.33368757" />
@@ -1844,10 +1844,11 @@
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32837406" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="13" sideWeight="0.49947917" visible="true" weight="0.46333688" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="13" sideWeight="0.49947917" visible="true" weight="0.38150904" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.159375" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" visible="true" weight="0.2140625" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32979852" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39342523" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -1858,7 +1859,6 @@
       <window_info anchor="bottom" id="REST Client" order="14" weight="0.4793213" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32979852" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -2152,13 +2152,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/EstadoDueloModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="108" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/FabricacionHandlerModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="599">
@@ -2194,17 +2187,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/EstadoDueloModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="108" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controller/DueloController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="32" column="56" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
+        <state relative-caret-position="289">
+          <caret line="28" column="60" lean-forward="true" selection-start-line="28" selection-start-column="60" selection-end-line="28" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/DueloHandlerModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="356" column="23" lean-forward="true" selection-start-line="356" selection-start-column="23" selection-end-line="356" selection-end-column="23" />
+        <state relative-caret-position="262">
+          <caret line="414" column="29" selection-start-line="414" selection-start-column="29" selection-end-line="414" selection-end-column="29" />
           <folding>
             <element signature="e#7#88#0#PHP" expanded="true" />
           </folding>
@@ -2213,8 +2213,8 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2b5bb8a0-3e52-4e35-b39d-35a954e3ddc1/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="8" selection-end-column="21" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="30" />
         </state>
       </provider>
     </entry>

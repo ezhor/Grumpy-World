@@ -22,11 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by dparrado on 15/02/18.
  */
 
-public class PremioFragmentVM extends AndroidViewModel {
+public class PremioCazaFragmentVM extends AndroidViewModel {
     private MutableLiveData<Material[]> ldPremio;
     private MutableLiveData<String> ldError;
 
-    public PremioFragmentVM(@NonNull Application application) {
+    public PremioCazaFragmentVM(@NonNull Application application) {
         super(application);
         this.ldPremio = new MutableLiveData<>();
         this.ldError = new MutableLiveData<>();

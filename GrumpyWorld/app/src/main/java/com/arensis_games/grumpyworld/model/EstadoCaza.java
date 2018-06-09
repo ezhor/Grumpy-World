@@ -5,20 +5,20 @@ package com.arensis_games.grumpyworld.model;
  */
 
 public class EstadoCaza extends Estado{
-    private int vidaEnemigo;
+    private Integer vidaEnemigo;
     private byte ataqueEnemigo;
 
-    public EstadoCaza(int vidaRollo, byte ataqueRollo, int vidaEnemigo, byte ataqueEnemigo) {
+    public EstadoCaza(Integer vidaRollo, byte ataqueRollo, Integer vidaEnemigo, byte ataqueEnemigo) {
         super(vidaRollo, ataqueRollo);
         this.vidaEnemigo = vidaEnemigo;
         this.ataqueEnemigo = ataqueEnemigo;
     }
 
-    public int getVidaEnemigo() {
+    public Integer getVidaEnemigo() {
         return vidaEnemigo;
     }
 
-    public void setVidaEnemigo(int vidaEnemigo) {
+    public void setVidaEnemigo(Integer vidaEnemigo) {
         this.vidaEnemigo = vidaEnemigo;
     }
 

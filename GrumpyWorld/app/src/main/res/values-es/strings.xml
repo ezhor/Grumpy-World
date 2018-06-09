@@ -121,4 +121,6 @@
     <string name="duelos_clasificatorios">Duelos clasificatorios</string>
     <string name="duelos_amistosos">Duelos amistosos</string>
     <string name="has_retado_a">Has retado a %1$s</string>
+    <string name="material_honor">Honor</string>
+    <string name="duelo_de_nuevo">Batirse en duelo de nuevo</string>
 </resources>

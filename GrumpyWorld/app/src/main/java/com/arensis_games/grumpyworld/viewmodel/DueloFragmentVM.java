@@ -12,6 +12,7 @@ import com.arensis_games.grumpyworld.connection.GestoraToken;
 import com.arensis_games.grumpyworld.model.Duelo;
 import com.arensis_games.grumpyworld.model.EstadoDuelo;
 import com.arensis_games.grumpyworld.model.LobbyDuelo;
+import com.arensis_games.grumpyworld.model.Turno;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -250,6 +251,116 @@ public class DueloFragmentVM extends AndroidViewModel {
 
                 @Override
                 public void onFailure(Call<Duelo> call, Throwable t) {
+                    ldError.postValue(t.getMessage());
+                }
+            });
+        }else{
+            ldError.setValue("401");
+        }
+    }
+
+    public void elegirTurno(Turno turno){
+        OkHttpClient client;
+        Retrofit retrofit;
+        DueloInterface dueloInterface;
+
+        /*
+            Android puede haber borrado el dato estático si necesita memoria.
+            En ese caso se manda al usuario a la pantalla de inicio para que
+            el sistema inicie sesión de nuevo.
+        */
+        if(GestoraToken.getAuthorization() != null){
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
+                    .build();
+
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(getApplication().getString(R.string.SERVER_URL))
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            dueloInterface = retrofit.create(DueloInterface.class);
+
+            dueloInterface.elegirTurno(turno).enqueue(new Callback<EstadoDuelo>() {
+                @Override
+                public void onResponse(Call<EstadoDuelo> call, Response<EstadoDuelo> response) {
+                    if(response.isSuccessful()){
+                        ldEstado.postValue(response.body());
+                        GestoraToken.setAuthorization(response.headers().get("Authorization"));
+                    }else{
+                        /*
+                            Puede haber pasado una hora desde que el usuario uso la app por última
+                            vez y que Android aún no haya borrado el token de memoria por lo que
+                            dejaría de ser válido (401 Unauthorized)
+                            En ese caso se manda al usuario a la pantalla de inicio para que
+                            el sistema inicie sesión de nuevo.
+
+
+                        En este caso concreto, el 403 es un error conocido que indica que el jugador
+                        ya había elegido su turno.
+                        */
+                        if(response.code() == 403){
+                            ldEstado.postValue(null);
+                        }else{
+                            ldError.setValue(String.valueOf(response.code()));
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<EstadoDuelo> call, Throwable t) {
+                    ldError.postValue(t.getMessage());
+                }
+            });
+        }else{
+            ldError.setValue("401");
+        }
+    }
+
+    public void obtenerEstado(int id){
+        OkHttpClient client;
+        Retrofit retrofit;
+        DueloInterface dueloInterface;
+
+        /*
+            Android puede haber borrado el dato estático si necesita memoria.
+            En ese caso se manda al usuario a la pantalla de inicio para que
+            el sistema inicie sesión de nuevo.
+        */
+        if(GestoraToken.getAuthorization() != null){
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
+                    .build();
+
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(getApplication().getString(R.string.SERVER_URL))
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            dueloInterface = retrofit.create(DueloInterface.class);
+
+            dueloInterface.getEstado(id).enqueue(new Callback<EstadoDuelo>() {
+                @Override
+                public void onResponse(Call<EstadoDuelo> call, Response<EstadoDuelo> response) {
+                    if(response.isSuccessful()){
+                        ldEstado.postValue(response.body());
+                        GestoraToken.setAuthorization(response.headers().get("Authorization"));
+                    }else{
+                        /*
+                            Puede haber pasado una hora desde que el usuario uso la app por última
+                            vez y que Android aún no haya borrado el token de memoria por lo que
+                            dejaría de ser válido (401 Unauthorized)
+                            En ese caso se manda al usuario a la pantalla de inicio para que
+                            el sistema inicie sesión de nuevo.
+                        */
+                        ldError.setValue(String.valueOf(response.code()));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<EstadoDuelo> call, Throwable t) {
                     ldError.postValue(t.getMessage());
                 }
             });

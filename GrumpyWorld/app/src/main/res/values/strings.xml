@@ -131,4 +131,6 @@
     <string name="duelos_clasificatorios">Ranked duels</string>
     <string name="duelos_amistosos">Friendly duels</string>
     <string name="has_retado_a">You have challenged %1$s</string>
+    <string name="material_honor">Honor</string>
+    <string name="duelo_de_nuevo">Duel again</string>
 </resources>

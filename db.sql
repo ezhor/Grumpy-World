@@ -446,7 +446,7 @@ BEGIN
             BEGIN
 				IF(vidaRollo > 0) THEN
 				BEGIN
-					SET premio = 10 * ( (fuerzaOponente + constitucionOponente + destrezaOponente) * (1+(pactosOponente/10)) )/( (fuerzaRollo + constitucionRollo + destrezaRollo) * (1+(pactosRollo)));
+					SET premio = CEIL(10 * ( (fuerzaOponente + constitucionOponente + destrezaOponente) * (1+(pactosOponente/10)) )/( (fuerzaRollo + constitucionRollo + destrezaRollo) * (1+(pactosRollo))));
 				END;
 				ELSE
 					SET premio = 1;
@@ -479,7 +479,7 @@ BEGIN
         BEGIN
 			IF(vidaRollo >0)THEN
             BEGIN
-				SET premio = 10 * ( (fuerzaOponente + constitucionOponente + destrezaOponente) * (1+(pactosOponente/10)) )/( (fuerzaRollo + constitucionRollo + destrezaRollo) * (1+(pactosRollo)));
+				SET premio = CEIL(10 * ( (fuerzaOponente + constitucionOponente + destrezaOponente) * (1+(pactosOponente/10)) )/( (fuerzaRollo + constitucionRollo + destrezaRollo) * (1+(pactosRollo))));
             END;
             ELSE
             BEGIN
@@ -772,7 +772,25 @@ CREATE PROCEDURE borrarAmigo(IN idUsuario INT, IN idAmigo INT)
 -- Reta a un amigo a un duelo. Más tarde, el usuario amigo tendrá que retar al primer usuario para aceptar su reto.
 CREATE PROCEDURE retarADuelo(IN idRollo INT, IN idOponente INT)
   BEGIN
-    INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUE (idRollo, idOponente, 0, NULL, NULL, NULL);
+	DECLARE _previamenteRetado BIT;
+    DECLARE _momento INT;
+    
+	START TRANSACTION;
+	DELETE FROM Duelos WHERE ID_Rollo = idRollo;
+    IF (EXISTS(SELECT 1 FROM Duelos WHERE ID_Rollo = idOponente AND ID_Oponente = idRollo)) THEN
+    BEGIN
+		SET _momento = UNIX_TIMESTAMP();
+        UPDATE Duelos SET Momento = _momento WHERE ID_Rollo = idOponente AND ID_Oponente = idRollo;
+		INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUE (idRollo, idOponente, 0, NULL, NULL, _momento);
+    END;
+    ELSE
+    BEGIN
+		INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUE (idRollo, idOponente, 0, NULL, NULL, NULL);
+    END;
+    END IF;
+    
+    
+    COMMIT;
   END $$
 
 -- Rechaza un reto a duelo. También puede usarse para cancelar un reto a un amigo.
@@ -891,6 +909,7 @@ CREATE PROCEDURE elegirTurnoDuelo(IN idRollo INT, IN ataqueRollo INT)
   
 CREATE PROCEDURE concederPremioDuelo(IN _idRollo INT, IN _cantidad INT)
   BEGIN
+	DELETE FROM Duelos WHERE ID_Rollo = _idRollo;
     UPDATE Rollos SET Honor = Honor + _cantidad WHERE ID_Usuario = _idRollo;
   END $$
 

@@ -5,22 +5,22 @@ package com.arensis_games.grumpyworld.model;
  */
 
 public class EstadoDuelo extends Estado{
-    private int vidaOponente;
+    private Integer vidaOponente;
     private byte ataqueOponente;
     private int tiempoLimiteTurno;
 
-    public EstadoDuelo(int vidaRollo, byte ataqueRollo, int vidaOponente, byte ataqueOponente, int tiempoLimiteTurno) {
+    public EstadoDuelo(Integer vidaRollo, byte ataqueRollo, Integer vidaOponente, byte ataqueOponente, int tiempoLimiteTurno) {
         super(vidaRollo, ataqueRollo);
         this.vidaOponente = vidaOponente;
         this.ataqueOponente = ataqueOponente;
         this.tiempoLimiteTurno = tiempoLimiteTurno;
     }
 
-    public int getVidaOponente() {
+    public Integer getVidaOponente() {
         return vidaOponente;
     }
 
-    public void setVidaOponente(int vidaOponente) {
+    public void setVidaOponente(Integer vidaOponente) {
         this.vidaOponente = vidaOponente;
     }
 

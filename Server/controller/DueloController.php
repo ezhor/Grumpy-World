@@ -22,7 +22,18 @@ class DueloController extends Controller
                             $estado = DueloHandlerModel::getEstado($idUsuario);
                             $response = new Response(200, null, $estado, $request->getAccept(), $idUsuario);
                         }else{
-                            $response = new Response(204, null, null, $request->getAccept(), $idUsuario);
+                            if(DueloHandlerModel::oponenteHaCogidoSuPremio($idUsuario)){
+                                $estado = DueloHandlerModel::getEstadoRollo($idUsuario);
+                                $response = new Response(200, null, $estado, $request->getAccept(), $idUsuario);
+                            }else{
+                                if(DueloHandlerModel::tiempoAcabado($idUsuario)){
+                                    DueloHandlerModel::jugarTurnoOponente($idOponente);
+                                    $estado = DueloHandlerModel::getEstado($idUsuario);
+                                    $response = new Response(200, null, $estado, $request->getAccept(), $idUsuario);
+                                }else{
+                                    $response = new Response(204, null, null, $request->getAccept(), $idUsuario);
+                                }
+                            }
                         }
                     }else if($request->getUrlElements()[3] == "premio"){
                         $premio = DueloHandlerModel::calcularPremioDuelo($idUsuario);

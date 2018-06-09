@@ -16,13 +16,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.arensis_games.grumpyworld.R;
-import com.arensis_games.grumpyworld.adapter.AdaptadorAmigos;
 import com.arensis_games.grumpyworld.adapter.AdaptadorBusquedaAmigos;
 import com.arensis_games.grumpyworld.adapter.AdaptadorPeticionesAmistad;
 import com.arensis_games.grumpyworld.model.LobbyDuelo;
-import com.arensis_games.grumpyworld.viewmodel.AmigosFragmentVM;
 import com.arensis_games.grumpyworld.viewmodel.DueloFragmentVM;
 import com.arensis_games.grumpyworld.viewmodel.MainActivityVM;
+import android.os.Handler;
 
 public class LobbyDueloFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -37,6 +36,7 @@ public class LobbyDueloFragment extends Fragment implements View.OnClickListener
     private ListView listaAmistoso;
     private LobbyDueloFragment thisFragment = this;
     private ProgressBar progress;
+    private Handler handler = new Handler();
 
     public LobbyDueloFragment() {
         // Required empty public constructor
@@ -116,8 +116,15 @@ public class LobbyDueloFragment extends Fragment implements View.OnClickListener
         };
         vm.getLdError().observe(this, errorObserver);
 
-
-        vm.obtenerLobbyDuelo();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                vm.obtenerLobbyDuelo();
+                if(handler != null){
+                    handler.postDelayed(this, 2000);
+                }
+            }
+        });
 
         return view;
     }

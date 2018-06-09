@@ -5,19 +5,19 @@ package com.arensis_games.grumpyworld.model;
  */
 
 public abstract class Estado {
-    private int vidaRollo;
+    private Integer vidaRollo;
     private byte ataqueRollo;
 
-    public Estado(int vidaRollo, byte ataqueRollo) {
+    public Estado(Integer vidaRollo, byte ataqueRollo) {
         this.vidaRollo = vidaRollo;
         this.ataqueRollo = ataqueRollo;
     }
 
-    public int getVidaRollo() {
+    public Integer getVidaRollo() {
         return vidaRollo;
     }
 
-    public void setVidaRollo(int vidaRollo) {
+    public void setVidaRollo(Integer vidaRollo) {
         this.vidaRollo = vidaRollo;
     }
 
