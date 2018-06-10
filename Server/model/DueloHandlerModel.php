@@ -115,6 +115,10 @@ class DueloHandlerModel{
         $prep_query->execute();
         $prep_query->fetch();
 
+        if($id == 0){
+            $id = null;
+        }
+
         return $id;
     }
 
