@@ -428,4 +428,32 @@ class DueloHandlerModel{
     private static function ataqueAleatorio(){
         return rand(1,3);
     }
+
+    public static function marcarUltimoDuelo($idRollo, $idOponente){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "CALL marcarUltimoDuelo(?,?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('ii', $idRollo, $idOponente);
+        $prep_query->execute();
+    }
+
+    public static function dueloHaceMenosDeUnDia($idRollo, $idOponente){
+        $db = DatabaseModel::getInstance();
+        $db_connection = $db->getConnection();
+
+        $query = "SELECT dueloHaceMenosDeUnDia(?,?);";
+
+        $prep_query = $db_connection->prepare($query);
+        $prep_query->bind_param('ii', $idRollo, $idOponente);
+        $prep_query->bind_result($dueloHaceMenosDeUnDia);
+        $prep_query->execute();
+        $prep_query->fetch();
+
+        $dueloHaceMenosDeUnDia = $dueloHaceMenosDeUnDia == 1;
+
+        return $dueloHaceMenosDeUnDia;
+    }
 }

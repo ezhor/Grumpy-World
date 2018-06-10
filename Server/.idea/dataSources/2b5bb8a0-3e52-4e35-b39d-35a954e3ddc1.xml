@@ -1020,1172 +1020,1194 @@
     <routine id="271" parent="2" name="concederPremio">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="272" parent="2" name="crearEnemigo">
+    <routine id="272" parent="2" name="concederPremioDuelo">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="273" parent="2" name="crearUsuario">
+    <routine id="273" parent="2" name="crearEnemigo">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="274" parent="2" name="dano">
+    <routine id="274" parent="2" name="crearUsuario">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="275" parent="2" name="dano">
       <RoutineKind>function</RoutineKind>
     </routine>
-    <routine id="275" parent="2" name="danoBase">
+    <routine id="276" parent="2" name="danoBase">
       <RoutineKind>function</RoutineKind>
     </routine>
-    <routine id="276" parent="2" name="dueloHaceMenosDeUnDia">
+    <routine id="277" parent="2" name="dueloHaceMenosDeUnDia">
       <RoutineKind>function</RoutineKind>
     </routine>
-    <routine id="277" parent="2" name="elegirTurnoDuelo">
+    <routine id="278" parent="2" name="elegirTurnoDuelo">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="278" parent="2" name="enemigoAleatorio">
+    <routine id="279" parent="2" name="enemigoAleatorio">
       <RoutineKind>function</RoutineKind>
     </routine>
-    <routine id="279" parent="2" name="enemigoMasRapido">
+    <routine id="280" parent="2" name="enemigoMasRapido">
       <RoutineKind>function</RoutineKind>
     </routine>
-    <routine id="280" parent="2" name="entrenar">
+    <routine id="281" parent="2" name="entrenar">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="281" parent="2" name="equipar">
+    <routine id="282" parent="2" name="equipar">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="282" parent="2" name="existeUsuario">
+    <routine id="283" parent="2" name="existeUsuario">
       <RoutineKind>function</RoutineKind>
     </routine>
-    <routine id="283" parent="2" name="gastarMaterial">
+    <routine id="284" parent="2" name="gastarMaterial">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="284" parent="2" name="jugarTurnoCaza">
+    <routine id="285" parent="2" name="jugarTurnoCaza">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="285" parent="2" name="jugarTurnoDuelo">
+    <routine id="286" parent="2" name="jugarTurnoDuelo">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="286" parent="2" name="marcarVictoria">
+    <routine id="287" parent="2" name="marcarUltimoDuelo">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="287" parent="2" name="oponenteHaElegidoEsteTurno">
+    <routine id="288" parent="2" name="marcarVictoria">
+      <RoutineKind>procedure</RoutineKind>
+    </routine>
+    <routine id="289" parent="2" name="oponenteHaElegidoEsteTurno">
       <RoutineKind>function</RoutineKind>
     </routine>
-    <routine id="288" parent="2" name="oponenteHaElegidoSiguienteTurno">
+    <routine id="290" parent="2" name="oponenteHaElegidoSiguienteTurno">
       <RoutineKind>function</RoutineKind>
     </routine>
-    <routine id="289" parent="2" name="rangoRollo">
+    <routine id="291" parent="2" name="rangoRollo">
       <RoutineKind>function</RoutineKind>
     </routine>
-    <routine id="290" parent="2" name="rechazarDuelo">
+    <routine id="292" parent="2" name="rechazarDuelo">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="291" parent="2" name="retarADuelo">
+    <routine id="293" parent="2" name="retarADuelo">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <routine id="292" parent="2" name="revisarNivel">
+    <routine id="294" parent="2" name="revisarNivel">
       <RoutineKind>procedure</RoutineKind>
     </routine>
-    <column id="293" parent="242" name="ID_Usuario1">
+    <column id="295" parent="242" name="ID_Usuario1">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="242" name="ID_Usuario2">
+    <column id="296" parent="242" name="ID_Usuario2">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="295" parent="242" name="FK_ID_Usuario2">
+    <index id="297" parent="242" name="FK_ID_Usuario2">
       <ColNames>ID_Usuario2</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="296" parent="242" name="PRIMARY">
+    <key id="298" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_Usuario1
 ID_Usuario2</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="297" parent="242" name="FK_ID_Usuario1">
+    <foreign-key id="299" parent="242" name="FK_ID_Usuario1">
       <ColNames>ID_Usuario1</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Usuarios</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="298" parent="242" name="FK_ID_Usuario2">
+    <foreign-key id="300" parent="242" name="FK_ID_Usuario2">
       <ColNames>ID_Usuario2</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Usuarios</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="299" parent="243" name="ID">
+    <column id="301" parent="243" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="243" name="Fuerza">
+    <column id="302" parent="243" name="Fuerza">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="243" name="Constitucion">
+    <column id="303" parent="243" name="Constitucion">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="243" name="Destreza">
+    <column id="304" parent="243" name="Destreza">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="243" name="FinEntrenamiento">
+    <column id="305" parent="243" name="FinEntrenamiento">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="243" name="Pactos">
+    <column id="306" parent="243" name="Pactos">
       <Position>6</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="305" parent="243" name="PRIMARY">
+    <key id="307" parent="243" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="306" parent="244" name="ID_Rollo">
+    <column id="308" parent="244" name="ID_Rollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="307" parent="244" name="ID_Enemigo">
+    <column id="309" parent="244" name="ID_Enemigo">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="308" parent="244" name="VidaRollo">
+    <column id="310" parent="244" name="VidaRollo">
       <Position>3</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;100&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="309" parent="244" name="VidaEnemigo">
+    <column id="311" parent="244" name="VidaEnemigo">
       <Position>4</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;100&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="310" parent="244" name="AtaqueRollo">
+    <column id="312" parent="244" name="AtaqueRollo">
       <Position>5</Position>
       <DataType>tinyint(4)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="244" name="AtaqueEnemigo">
+    <column id="313" parent="244" name="AtaqueEnemigo">
       <Position>6</Position>
       <DataType>tinyint(4)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="312" parent="244" name="FK_Rollos_Enemigos_Rollo">
+    <index id="314" parent="244" name="FK_Rollos_Enemigos_Rollo">
       <ColNames>ID_Rollo</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="313" parent="244" name="FK_Rollos_Enemigos_Enemigo">
+    <index id="315" parent="244" name="FK_Rollos_Enemigos_Enemigo">
       <ColNames>ID_Enemigo</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="314" parent="244" name="FK_Rollos_Enemigos_Rollo">
+    <foreign-key id="316" parent="244" name="FK_Rollos_Enemigos_Rollo">
       <ColNames>ID_Rollo</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="315" parent="244" name="FK_Rollos_Enemigos_Enemigo">
+    <foreign-key id="317" parent="244" name="FK_Rollos_Enemigos_Enemigo">
       <ColNames>ID_Enemigo</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Enemigos</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="316" parent="245" name="ID_Rollo">
+    <column id="318" parent="245" name="ID_Rollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="317" parent="245" name="ID_Oponente">
+    <column id="319" parent="245" name="ID_Oponente">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="318" parent="245" name="Turno">
+    <column id="320" parent="245" name="Turno">
       <Position>3</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="319" parent="245" name="Vida">
+    <column id="321" parent="245" name="Vida">
       <Position>4</Position>
       <DataType>tinyint(4)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="320" parent="245" name="Ataque">
+    <column id="322" parent="245" name="Ataque">
       <Position>5</Position>
       <DataType>tinyint(4)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="321" parent="245" name="Momento">
+    <column id="323" parent="245" name="Momento">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="322" parent="245" name="FK_Duelos_RolloEnemigo">
+    <index id="324" parent="245" name="FK_Duelos_RolloEnemigo">
       <ColNames>ID_Oponente</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="323" parent="245" name="PRIMARY">
+    <key id="325" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_Rollo
 ID_Oponente
 Turno</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="324" parent="245" name="FK_Duelos_ID_Rollo">
+    <foreign-key id="326" parent="245" name="FK_Duelos_ID_Rollo">
       <ColNames>ID_Rollo</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="325" parent="245" name="FK_Duelos_RolloEnemigo">
+    <foreign-key id="327" parent="245" name="FK_Duelos_RolloEnemigo">
       <ColNames>ID_Oponente</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="326" parent="246" name="ID">
+    <column id="328" parent="246" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="327" parent="246" name="Nombre">
+    <column id="329" parent="246" name="Nombre">
       <Position>2</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="328" parent="246" name="ID_Atributos">
+    <column id="330" parent="246" name="ID_Atributos">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="329" parent="246" name="ID_Zona">
+    <column id="331" parent="246" name="ID_Zona">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="330" parent="246" name="EsJefe">
+    <column id="332" parent="246" name="EsJefe">
       <Position>5</Position>
       <DataType>bit(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="331" parent="246" name="Nombre">
+    <index id="333" parent="246" name="Nombre">
       <ColNames>Nombre</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="332" parent="246" name="FK_Enemigos_Atributos">
+    <index id="334" parent="246" name="FK_Enemigos_Atributos">
       <ColNames>ID_Atributos</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="333" parent="246" name="FK_Enemigos_Zona">
+    <index id="335" parent="246" name="FK_Enemigos_Zona">
       <ColNames>ID_Zona</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="334" parent="246" name="PRIMARY">
+    <key id="336" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="335" parent="246" name="Nombre">
+    <key id="337" parent="246" name="Nombre">
       <ColNames>Nombre</ColNames>
       <UnderlyingIndexName>Nombre</UnderlyingIndexName>
     </key>
-    <foreign-key id="336" parent="246" name="FK_Enemigos_Atributos">
+    <foreign-key id="338" parent="246" name="FK_Enemigos_Atributos">
       <ColNames>ID_Atributos</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Atributos</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="337" parent="246" name="FK_Enemigos_Zona">
+    <foreign-key id="339" parent="246" name="FK_Enemigos_Zona">
       <ColNames>ID_Zona</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Zonas</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="338" parent="247" name="ID_Enemigo">
+    <column id="340" parent="247" name="ID_Enemigo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="339" parent="247" name="ID_Material">
+    <column id="341" parent="247" name="ID_Material">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="340" parent="247" name="Cantidad">
+    <column id="342" parent="247" name="Cantidad">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="341" parent="247" name="Probabilidad">
+    <column id="343" parent="247" name="Probabilidad">
       <Position>4</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="342" parent="247" name="FK_Enemigos_Materiales_ID_Material">
+    <index id="344" parent="247" name="FK_Enemigos_Materiales_ID_Material">
       <ColNames>ID_Material</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="343" parent="247" name="PRIMARY">
+    <key id="345" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_Enemigo
 ID_Material</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="344" parent="247" name="FK_Enemigos_Materiales_ID_Enemigo">
+    <foreign-key id="346" parent="247" name="FK_Enemigos_Materiales_ID_Enemigo">
       <ColNames>ID_Enemigo</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Enemigos</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="345" parent="247" name="FK_Enemigos_Materiales_ID_Material">
+    <foreign-key id="347" parent="247" name="FK_Enemigos_Materiales_ID_Material">
       <ColNames>ID_Material</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Materiales</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="346" parent="248" name="ID">
+    <column id="348" parent="248" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="347" parent="248" name="Nombre">
+    <column id="349" parent="248" name="Nombre">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="348" parent="248" name="Tipo">
+    <column id="350" parent="248" name="Tipo">
       <Position>3</Position>
       <DataType>char(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="349" parent="248" name="Bonus">
+    <column id="351" parent="248" name="Bonus">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="350" parent="248" name="DestrezaNecesaria">
+    <column id="352" parent="248" name="DestrezaNecesaria">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="351" parent="248" name="FuerzaNecesaria">
+    <column id="353" parent="248" name="FuerzaNecesaria">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="352" parent="248" name="NivelNecesario">
+    <column id="354" parent="248" name="NivelNecesario">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="353" parent="248" name="Nombre">
+    <index id="355" parent="248" name="Nombre">
       <ColNames>Nombre</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="354" parent="248" name="PRIMARY">
+    <key id="356" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="355" parent="248" name="Nombre">
+    <key id="357" parent="248" name="Nombre">
       <ColNames>Nombre</ColNames>
       <UnderlyingIndexName>Nombre</UnderlyingIndexName>
     </key>
-    <column id="356" parent="249" name="ID_Equipable">
+    <column id="358" parent="249" name="ID_Equipable">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="249" name="ID_Material">
+    <column id="359" parent="249" name="ID_Material">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="249" name="Cantidad">
+    <column id="360" parent="249" name="Cantidad">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="359" parent="249" name="FK_Equipables_Materiales_ID_Material">
+    <index id="361" parent="249" name="FK_Equipables_Materiales_ID_Material">
       <ColNames>ID_Material</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="360" parent="249" name="PRIMARY">
+    <key id="362" parent="249" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_Equipable
 ID_Material</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="361" parent="249" name="FK_Equipables_Materiales_ID_Equipable">
+    <foreign-key id="363" parent="249" name="FK_Equipables_Materiales_ID_Equipable">
       <ColNames>ID_Equipable</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Equipables</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="362" parent="249" name="FK_Equipables_Materiales_ID_Material">
+    <foreign-key id="364" parent="249" name="FK_Equipables_Materiales_ID_Material">
       <ColNames>ID_Material</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Materiales</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="363" parent="250" name="ID">
+    <column id="365" parent="250" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="364" parent="250" name="Nombre">
+    <column id="366" parent="250" name="Nombre">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <index id="365" parent="250" name="Nombre">
+    <index id="367" parent="250" name="Nombre">
       <ColNames>Nombre</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="366" parent="250" name="PRIMARY">
+    <key id="368" parent="250" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="367" parent="250" name="Nombre">
+    <key id="369" parent="250" name="Nombre">
       <ColNames>Nombre</ColNames>
       <UnderlyingIndexName>Nombre</UnderlyingIndexName>
     </key>
-    <column id="368" parent="251" name="ID_Material">
+    <column id="370" parent="251" name="ID_Material">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="369" parent="251" name="ID_Submaterial">
+    <column id="371" parent="251" name="ID_Submaterial">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="370" parent="251" name="Cantidad">
+    <column id="372" parent="251" name="Cantidad">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="371" parent="251" name="FK_Materiales_Materiales_Submaterial">
+    <index id="373" parent="251" name="FK_Materiales_Materiales_Submaterial">
       <ColNames>ID_Submaterial</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="372" parent="251" name="PRIMARY">
+    <key id="374" parent="251" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_Material
 ID_Submaterial</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="373" parent="251" name="FK_Materiales_Materiales_Material">
+    <foreign-key id="375" parent="251" name="FK_Materiales_Materiales_Material">
       <ColNames>ID_Material</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Materiales</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="374" parent="251" name="FK_Materiales_Materiales_Submaterial">
+    <foreign-key id="376" parent="251" name="FK_Materiales_Materiales_Submaterial">
       <ColNames>ID_Submaterial</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Materiales</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="375" parent="252" name="ID_Usuario">
+    <column id="377" parent="252" name="ID_Usuario">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="376" parent="252" name="ID_Atributos">
+    <column id="378" parent="252" name="ID_Atributos">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="377" parent="252" name="ID_Zona">
+    <column id="379" parent="252" name="ID_Zona">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="378" parent="252" name="Nivel">
+    <column id="380" parent="252" name="Nivel">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="379" parent="252" name="Honor">
+    <column id="381" parent="252" name="Honor">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="380" parent="252" name="FK_Rollos_Atributos">
+    <index id="382" parent="252" name="FK_Rollos_Atributos">
       <ColNames>ID_Atributos</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="381" parent="252" name="FK_Rollos_Zona">
+    <index id="383" parent="252" name="FK_Rollos_Zona">
       <ColNames>ID_Zona</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="382" parent="252" name="PRIMARY">
+    <key id="384" parent="252" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_Usuario</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="383" parent="252" name="FK_Rollos_Usuario">
+    <foreign-key id="385" parent="252" name="FK_Rollos_Usuario">
       <ColNames>ID_Usuario</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Usuarios</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="384" parent="252" name="FK_Rollos_Atributos">
+    <foreign-key id="386" parent="252" name="FK_Rollos_Atributos">
       <ColNames>ID_Atributos</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Atributos</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="385" parent="252" name="FK_Rollos_Zona">
+    <foreign-key id="387" parent="252" name="FK_Rollos_Zona">
       <ColNames>ID_Zona</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Zonas</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="386" parent="253" name="ID_Rollo">
+    <column id="388" parent="253" name="ID_Rollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="387" parent="253" name="ID_Equipable">
+    <column id="389" parent="253" name="ID_Equipable">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="388" parent="253" name="Equipado">
+    <column id="390" parent="253" name="Equipado">
       <Position>3</Position>
       <DataType>bit(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>b&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="389" parent="253" name="FK_Rollos_Equipables_ID_Equipable">
+    <index id="391" parent="253" name="FK_Rollos_Equipables_ID_Equipable">
       <ColNames>ID_Equipable</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="390" parent="253" name="PRIMARY">
+    <key id="392" parent="253" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_Rollo
 ID_Equipable</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="391" parent="253" name="FK_Rollos_Equipables_ID_Rollo">
+    <foreign-key id="393" parent="253" name="FK_Rollos_Equipables_ID_Rollo">
       <ColNames>ID_Rollo</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="392" parent="253" name="FK_Rollos_Equipables_ID_Equipable">
+    <foreign-key id="394" parent="253" name="FK_Rollos_Equipables_ID_Equipable">
       <ColNames>ID_Equipable</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Equipables</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="393" parent="254" name="ID_Rollo">
+    <column id="395" parent="254" name="ID_Rollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="394" parent="254" name="ID_Material">
+    <column id="396" parent="254" name="ID_Material">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="395" parent="254" name="Cantidad">
+    <column id="397" parent="254" name="Cantidad">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="396" parent="254" name="FK_Rollos_Materiales_ID_Material">
+    <index id="398" parent="254" name="FK_Rollos_Materiales_ID_Material">
       <ColNames>ID_Material</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="397" parent="254" name="PRIMARY">
+    <key id="399" parent="254" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_Rollo
 ID_Material</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="398" parent="254" name="FK_Rollos_Materiales_ID_Rollo">
+    <foreign-key id="400" parent="254" name="FK_Rollos_Materiales_ID_Rollo">
       <ColNames>ID_Rollo</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="399" parent="254" name="FK_Rollos_Materiales_ID_Material">
+    <foreign-key id="401" parent="254" name="FK_Rollos_Materiales_ID_Material">
       <ColNames>ID_Material</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Materiales</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="400" parent="255" name="ID_Rollo">
+    <column id="402" parent="255" name="ID_Rollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="401" parent="255" name="ID_Oponente">
+    <column id="403" parent="255" name="ID_Oponente">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="402" parent="255" name="Momento">
+    <column id="404" parent="255" name="Momento">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="403" parent="255" name="FK_Ultimos_Duelos_RolloEnemigo">
+    <index id="405" parent="255" name="FK_Ultimos_Duelos_RolloEnemigo">
       <ColNames>ID_Oponente</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="404" parent="255" name="PRIMARY">
+    <key id="406" parent="255" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID_Rollo
 ID_Oponente</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="405" parent="255" name="FK_Ultimos_Duelos_ID_Rollo">
+    <foreign-key id="407" parent="255" name="FK_Ultimos_Duelos_ID_Rollo">
       <ColNames>ID_Rollo</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="406" parent="255" name="FK_Ultimos_Duelos_RolloEnemigo">
+    <foreign-key id="408" parent="255" name="FK_Ultimos_Duelos_RolloEnemigo">
       <ColNames>ID_Oponente</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="407" parent="256" name="ID">
+    <column id="409" parent="256" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="408" parent="256" name="Usuario">
+    <column id="410" parent="256" name="Usuario">
       <Position>2</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="409" parent="256" name="Contrasena">
+    <column id="411" parent="256" name="Contrasena">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <index id="410" parent="256" name="Usuario">
+    <index id="412" parent="256" name="Usuario">
       <ColNames>Usuario</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="411" parent="256" name="PRIMARY">
+    <key id="413" parent="256" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="412" parent="256" name="Usuario">
+    <key id="414" parent="256" name="Usuario">
       <ColNames>Usuario</ColNames>
       <UnderlyingIndexName>Usuario</UnderlyingIndexName>
     </key>
-    <column id="413" parent="257" name="ID_Rollo">
+    <column id="415" parent="257" name="ID_Rollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="414" parent="257" name="ID_Enemigo">
+    <column id="416" parent="257" name="ID_Enemigo">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="415" parent="257" name="FK_Vencidos_Rollo">
+    <index id="417" parent="257" name="FK_Vencidos_Rollo">
       <ColNames>ID_Rollo</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="416" parent="257" name="FK_Vencidos_Enemigo">
+    <index id="418" parent="257" name="FK_Vencidos_Enemigo">
       <ColNames>ID_Enemigo</ColNames>
       <Type>btree</Type>
     </index>
-    <foreign-key id="417" parent="257" name="FK_Vencidos_Rollo">
+    <foreign-key id="419" parent="257" name="FK_Vencidos_Rollo">
       <ColNames>ID_Rollo</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Rollos</RefTableName>
       <RefColNames>ID_Usuario</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="418" parent="257" name="FK_Vencidos_Enemigo">
+    <foreign-key id="420" parent="257" name="FK_Vencidos_Enemigo">
       <ColNames>ID_Enemigo</ColNames>
       <RefSchemaName>grumpyworld</RefSchemaName>
       <RefTableName>Enemigos</RefTableName>
       <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="419" parent="258" name="ID">
+    <column id="421" parent="258" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="420" parent="258" name="Nombre">
+    <column id="422" parent="258" name="Nombre">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="421" parent="258" name="Nivel">
+    <column id="423" parent="258" name="Nivel">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="422" parent="258" name="Nombre">
+    <index id="424" parent="258" name="Nombre">
       <ColNames>Nombre</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="423" parent="258" name="PRIMARY">
+    <key id="425" parent="258" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="424" parent="258" name="Nombre">
+    <key id="426" parent="258" name="Nombre">
       <ColNames>Nombre</ColNames>
       <UnderlyingIndexName>Nombre</UnderlyingIndexName>
     </key>
-    <argument id="425" parent="259" name="idUsuario">
+    <argument id="427" parent="259" name="idUsuario">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="426" parent="259" name="idAmigo">
+    <argument id="428" parent="259" name="idAmigo">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="427" parent="260" name="idRollo">
+    <argument id="429" parent="260" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="428" parent="260" name="idEquipable">
+    <argument id="430" parent="260" name="idEquipable">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="429" parent="261" name="idRollo">
+    <argument id="431" parent="261" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="430" parent="261" name="idMaterial">
+    <argument id="432" parent="261" name="idMaterial">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="431" parent="262" name="idRollo">
+    <argument id="433" parent="262" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="432" parent="263" name="nombreEnemigo">
+    <argument id="434" parent="263" name="nombreEnemigo">
       <Position>1</Position>
       <DataType>varchar(15)|0s</DataType>
     </argument>
-    <argument id="433" parent="263" name="nombreMaterial">
+    <argument id="435" parent="263" name="nombreMaterial">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
     </argument>
-    <argument id="434" parent="263" name="_cantidad">
+    <argument id="436" parent="263" name="_cantidad">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="435" parent="263" name="_probabilidad">
+    <argument id="437" parent="263" name="_probabilidad">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="436" parent="264" name="nombreEquipable">
+    <argument id="438" parent="264" name="nombreEquipable">
       <Position>1</Position>
       <DataType>varchar(30)|0s</DataType>
     </argument>
-    <argument id="437" parent="264" name="nombreMaterial">
+    <argument id="439" parent="264" name="nombreMaterial">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
     </argument>
-    <argument id="438" parent="264" name="_cantidad">
+    <argument id="440" parent="264" name="_cantidad">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="439" parent="265" name="nombreMaterial">
+    <argument id="441" parent="265" name="nombreMaterial">
       <Position>1</Position>
       <DataType>varchar(30)|0s</DataType>
     </argument>
-    <argument id="440" parent="265" name="nombreSubmaterial">
+    <argument id="442" parent="265" name="nombreSubmaterial">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
     </argument>
-    <argument id="441" parent="265" name="_cantidad">
+    <argument id="443" parent="265" name="_cantidad">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="442" parent="266">
+    <argument id="444" parent="266">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="443" parent="267" name="idUsuario">
+    <argument id="445" parent="267" name="idUsuario">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="444" parent="267" name="idAmigo">
+    <argument id="446" parent="267" name="idAmigo">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="445" parent="268" name="idRollo">
+    <argument id="447" parent="268" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="446" parent="269">
+    <argument id="448" parent="269">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="447" parent="269" name="idRollo">
+    <argument id="449" parent="269" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="448" parent="270" name="idRollo">
+    <argument id="450" parent="270" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="449" parent="270" name="nombreZona">
+    <argument id="451" parent="270" name="nombreZona">
       <Position>2</Position>
       <DataType>varchar(15)|0s</DataType>
     </argument>
-    <argument id="450" parent="271" name="idRollo">
+    <argument id="452" parent="271" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="451" parent="271" name="nombreMaterial">
+    <argument id="453" parent="271" name="nombreMaterial">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
     </argument>
-    <argument id="452" parent="271" name="cantidadAnadida">
+    <argument id="454" parent="271" name="cantidadAnadida">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="453" parent="272" name="nNombre">
+    <argument id="455" parent="272" name="_idRollo">
       <Position>1</Position>
-      <DataType>varchar(15)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="454" parent="272" name="nFuerza">
+    <argument id="456" parent="272" name="_cantidad">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="455" parent="272" name="nConstitucion">
+    <argument id="457" parent="273" name="nNombre">
+      <Position>1</Position>
+      <DataType>varchar(15)|0s</DataType>
+    </argument>
+    <argument id="458" parent="273" name="nFuerza">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+    </argument>
+    <argument id="459" parent="273" name="nConstitucion">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="456" parent="272" name="nDestreza">
+    <argument id="460" parent="273" name="nDestreza">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="457" parent="272" name="nEsJefe">
+    <argument id="461" parent="273" name="nEsJefe">
       <Position>5</Position>
       <DataType>bit(1)|0s</DataType>
     </argument>
-    <argument id="458" parent="272" name="nNombreZona">
+    <argument id="462" parent="273" name="nNombreZona">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
     </argument>
-    <argument id="459" parent="273" name="_usuario">
+    <argument id="463" parent="274" name="_usuario">
       <Position>1</Position>
       <DataType>varchar(15)|0s</DataType>
     </argument>
-    <argument id="460" parent="273" name="_contrasena">
+    <argument id="464" parent="274" name="_contrasena">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </argument>
-    <argument id="461" parent="273" name="conseguido">
+    <argument id="465" parent="274" name="conseguido">
       <Position>3</Position>
       <ArgumentDirection>O</ArgumentDirection>
       <DataType>bit(1)|0s</DataType>
     </argument>
-    <argument id="462" parent="274">
+    <argument id="466" parent="275">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="463" parent="274" name="idAtributosAtacante">
+    <argument id="467" parent="275" name="idAtributosAtacante">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="464" parent="274" name="idAtributosVictima">
+    <argument id="468" parent="275" name="idAtributosVictima">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="465" parent="274" name="ataqueAtacante">
+    <argument id="469" parent="275" name="ataqueAtacante">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="466" parent="274" name="ataqueVictima">
+    <argument id="470" parent="275" name="ataqueVictima">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="467" parent="275">
+    <argument id="471" parent="276">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="468" parent="275" name="idAtributosAtacante">
+    <argument id="472" parent="276" name="idAtributosAtacante">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="469" parent="275" name="idAtributosVictima">
+    <argument id="473" parent="276" name="idAtributosVictima">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="470" parent="276">
-      <ArgumentDirection>R</ArgumentDirection>
-      <DataType>bit(1)|0s</DataType>
-    </argument>
-    <argument id="471" parent="276" name="idRollo">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-    </argument>
-    <argument id="472" parent="276" name="idOponente">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-    </argument>
-    <argument id="473" parent="277" name="idRollo">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-    </argument>
-    <argument id="474" parent="277" name="ataqueRollo">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-    </argument>
-    <argument id="475" parent="278">
-      <ArgumentDirection>R</ArgumentDirection>
-      <DataType>int(11)|0s</DataType>
-    </argument>
-    <argument id="476" parent="278" name="idRollo">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-    </argument>
-    <argument id="477" parent="279">
+    <argument id="474" parent="277">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>bit(1)|0s</DataType>
     </argument>
-    <argument id="478" parent="279" name="destrezaRollo">
+    <argument id="475" parent="277" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="479" parent="279" name="destrezaEnemigo">
+    <argument id="476" parent="277" name="idOponente">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="480" parent="280" name="idUsuario">
+    <argument id="477" parent="278" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="481" parent="280" name="atributo">
+    <argument id="478" parent="278" name="ataqueRollo">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+    </argument>
+    <argument id="479" parent="279">
+      <ArgumentDirection>R</ArgumentDirection>
+      <DataType>int(11)|0s</DataType>
+    </argument>
+    <argument id="480" parent="279" name="idRollo">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+    </argument>
+    <argument id="481" parent="280">
+      <ArgumentDirection>R</ArgumentDirection>
+      <DataType>bit(1)|0s</DataType>
+    </argument>
+    <argument id="482" parent="280" name="destrezaRollo">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+    </argument>
+    <argument id="483" parent="280" name="destrezaEnemigo">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+    </argument>
+    <argument id="484" parent="281" name="idUsuario">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+    </argument>
+    <argument id="485" parent="281" name="atributo">
       <Position>2</Position>
       <DataType>varchar(15)|0s</DataType>
     </argument>
-    <argument id="482" parent="281" name="idRollo">
+    <argument id="486" parent="282" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="483" parent="281" name="idEquipable">
+    <argument id="487" parent="282" name="idEquipable">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="484" parent="282">
+    <argument id="488" parent="283">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>bit(1)|0s</DataType>
     </argument>
-    <argument id="485" parent="282" name="nombre_usuario">
+    <argument id="489" parent="283" name="nombre_usuario">
       <Position>1</Position>
       <DataType>varchar(15)|0s</DataType>
     </argument>
-    <argument id="486" parent="283" name="idRollo">
+    <argument id="490" parent="284" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="487" parent="283" name="idMaterial">
+    <argument id="491" parent="284" name="idMaterial">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="488" parent="283" name="cantidadGastada">
+    <argument id="492" parent="284" name="cantidadGastada">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="489" parent="284" name="idRollo">
+    <argument id="493" parent="285" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="490" parent="284" name="ataqueRollo">
+    <argument id="494" parent="285" name="ataqueRollo">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="491" parent="285" name="idRollo">
+    <argument id="495" parent="286" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="492" parent="285" name="ataqueRollo">
+    <argument id="496" parent="286" name="ataqueRollo">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="493" parent="286" name="idRollo">
+    <argument id="497" parent="287" name="_idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="494" parent="286" name="idEnemigo">
+    <argument id="498" parent="287" name="_idOponente">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="495" parent="287">
+    <argument id="499" parent="288" name="idRollo">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+    </argument>
+    <argument id="500" parent="288" name="idEnemigo">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+    </argument>
+    <argument id="501" parent="289">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>bit(1)|0s</DataType>
     </argument>
-    <argument id="496" parent="287" name="idRollo">
+    <argument id="502" parent="289" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="497" parent="288">
+    <argument id="503" parent="290">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>bit(1)|0s</DataType>
     </argument>
-    <argument id="498" parent="288" name="idRollo">
+    <argument id="504" parent="290" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="499" parent="289">
+    <argument id="505" parent="291">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="500" parent="289" name="honorRollo">
+    <argument id="506" parent="291" name="honorRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="501" parent="289" name="idRollo">
+    <argument id="507" parent="291" name="idRollo">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="502" parent="290" name="idRollo">
+    <argument id="508" parent="292" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="503" parent="290" name="idOponente">
+    <argument id="509" parent="292" name="idOponente">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="504" parent="291" name="idRollo">
+    <argument id="510" parent="293" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="505" parent="291" name="idOponente">
+    <argument id="511" parent="293" name="idOponente">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
     </argument>
-    <argument id="506" parent="292" name="idRollo">
+    <argument id="512" parent="294" name="idRollo">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </argument>

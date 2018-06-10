@@ -36,13 +36,15 @@ class DueloController extends Controller
                             }
                         }
                     }else if($request->getUrlElements()[3] == "premio"){
-                        $premio = DueloHandlerModel::calcularPremioDuelo($idUsuario);
-                        if($premio > 0){
+                        if(!DueloHandlerModel::dueloHaceMenosDeUnDia($idUsuario, $idOponente)){
+                            DueloHandlerModel::marcarUltimoDuelo($idUsuario, $idOponente);
+                            $premio = DueloHandlerModel::calcularPremioDuelo($idUsuario);
                             DueloHandlerModel::concederPremioDuelo($idUsuario, $premio);
-                            $response = new Response(200, null, $premio, $request->getAccept(), $idUsuario);
                         }else{
-                            $response = new Response(403, null, null, $request->getAccept(), $idUsuario);
+                            $premio = "0";
+                            DueloHandlerModel::concederPremioDuelo($idUsuario, 0);
                         }
+                        $response = new Response(200, null, $premio, $request->getAccept(), $idUsuario);
                     }else{
                         $response = new Response(400, null, null, $request->getAccept(), $idUsuario);
                     }

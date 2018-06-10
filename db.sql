@@ -685,7 +685,7 @@ CREATE PROCEDURE concederPremio(IN idRollo INT, IN nombreMaterial VARCHAR(30), I
     DECLARE _idMaterial, _cantidadOriginal INT;
 
     SET _idMaterial = (SELECT ID FROM Materiales WHERE Nombre = nombreMaterial);
-    IF EXISTS (SELECT * FROM Rollos_Materiales WHERE ID_Rollo = idRollo AND ID_Material = _idMaterial) THEN
+    IF EXISTS (SELECT 1 FROM Rollos_Materiales WHERE ID_Rollo = idRollo AND ID_Material = _idMaterial) THEN
       BEGIN
         START TRANSACTION;
         SET _cantidadOriginal = (SELECT Cantidad FROM Rollos_Materiales  WHERE ID_Rollo = idRollo AND ID_Material = _idMaterial);
@@ -912,6 +912,21 @@ CREATE PROCEDURE concederPremioDuelo(IN _idRollo INT, IN _cantidad INT)
 	DELETE FROM Duelos WHERE ID_Rollo = _idRollo;
     UPDATE Rollos SET Honor = Honor + _cantidad WHERE ID_Usuario = _idRollo;
   END $$
+  
+CREATE PROCEDURE marcarUltimoDuelo(IN _idRollo INT, IN _idOponente INT)
+  BEGIN
+	START TRANSACTION;
+	IF EXISTS (SELECT 1 FROM Ultimos_Duelos WHERE ID_Rollo = _idRollo AND ID_Oponente = _idOponente) THEN
+      BEGIN
+        UPDATE Ultimos_Duelos SET Momento = UNIX_TIMESTAMP() WHERE ID_Rollo = _idRollo AND ID_Oponente = _idOponente;
+      END;
+    ELSE
+      BEGIN
+        INSERT INTO Ultimos_Duelos(ID_Rollo, ID_Oponente, Momento) VALUE (_idRollo, _idOponente, UNIX_TIMESTAMP());
+      END;
+    END IF;
+    COMMIT;
+  END $$
 
 DELIMITER ;
 
@@ -1026,51 +1041,3 @@ CALL asociarMaterialSubmaterial('bateria', 'zumo_limon', 10);
 CALL asociarMaterialSubmaterial('zinc', 'grapa', 10);
 
 CALL asociarMaterialSubmaterial('cobre', 'cable', 1);
-
--- Pruebas
-CALL crearUsuario('dani', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani2', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani3', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani4', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani5', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani6', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani7', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani8', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani9', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani10', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani11', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('dani12', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-CALL crearUsuario('supremmaer', '$2y$10$8hnEpmUyg8WKrAU9U.tV.e75hFxq9SZRbRc8gmFTU5RThuWDF9Luy', @conseguido);
-
-UPDATE Rollos SET Honor = 1000 WHERE ID_Usuario = 1;
-UPDATE Rollos SET Honor = 800 WHERE ID_Usuario = 2;
-UPDATE Rollos SET Honor = 600 WHERE ID_Usuario = 3;
-UPDATE Rollos SET Honor = 550 WHERE ID_Usuario = 4;
-UPDATE Rollos SET Honor = 200 WHERE ID_Usuario = 5;
-
-UPDATE Atributos SET Fuerza = 100, Constitucion = 100, Destreza = 100 WHERE ID = 16;
-UPDATE Atributos SET Fuerza = 50, Constitucion = 50, Destreza = 50 WHERE ID = 17;
-UPDATE Rollos SET Nivel = 7 WHERE ID_Usuario = 1;
-UPDATE Rollos SET Nivel = 7 WHERE ID_Usuario = 2;
-
-CALL concederPremio(1, 'buen_rollo', 5000);
-CALL concederPremio(1, 'plastico', 5000);
-CALL concederPremio(1, 'zumo_limon', 5000);
-CALL concederPremio(1, 'cable', 5000);
-CALL concederPremio(1, 'zinc', 5000);
-CALL concederPremio(1, 'trozo_calabaza', 5000);
-CALL concederPremio(1, 'madera', 5000);
-CALL concederPremio(1, 'papel', 5000);
-
-CALL concederPremio(2, 'buen_rollo', 5000);
-CALL concederPremio(2, 'plastico', 5000);
-CALL concederPremio(2, 'zumo_limon', 5000);
-CALL concederPremio(2, 'cable', 5000);
-CALL concederPremio(2, 'zinc', 5000);
-CALL concederPremio(2, 'trozo_calabaza', 5000);
-CALL concederPremio(2, 'madera', 5000);
-CALL concederPremio(2, 'papel', 5000);
-
-INSERT INTO Amigos VALUES  (1,2), (2,1), (1,3), (4,1);
-
--- INSERT INTO Duelos (ID_Rollo, ID_Oponente, Turno, Vida, Ataque, Momento) VALUES (1, 2, 0, 100, NULL, NULL), (2, 1, 0, 100, NULL, NULL), (2, 1, 1, NULL, 1, NULL);

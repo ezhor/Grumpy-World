@@ -286,7 +286,7 @@ public class DueloFragment extends Fragment implements View.OnClickListener {
         ivRangoRollo.setVisibility(View.VISIBLE);
         tvNivelRollo.setText(getString(R.string.nivel, rollo.getNivel()));
 
-        tvNombreEnemigo.setText(gesGUI.getNombreCortoEnemigo(getResources(), oponente.getNombre()));
+        tvNombreEnemigo.setText(oponente.getNombre());
         ivRangoEnemigo.setImageDrawable(gesGUI.getDrawableRango(getResources(), oponente.getRango()));
         ivRangoEnemigo.setVisibility(View.VISIBLE);
         tvNivelEnemigo.setText(getString(R.string.nivel, oponente.getNivel()));
