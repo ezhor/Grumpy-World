@@ -8,7 +8,7 @@
  */
 
 require_once "Controller.php";
-require_once __DIR__."/../Authenticacion.php";
+require_once __DIR__."/../Authentication.php";
 
 class UsuarioController extends Controller{
     public function managePostVerb(Request $request){

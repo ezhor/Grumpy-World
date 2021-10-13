@@ -6,7 +6,7 @@
  * Time: 20:01
  */
 
-require_once __DIR__."/../Authenticacion.php";
+require_once __DIR__."/../Authentication.php";
 
 class UsuarioHandlerModel
 {
