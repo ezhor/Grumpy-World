@@ -1,10 +1,10 @@
 package com.arensis_games.grumpyworld.activity;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -76,7 +76,7 @@ public class RegistroActivity extends AppCompatActivity {
         }else if(!etContrasena.getText().toString().equals(etRepetirContrasena.getText().toString())){
             Toast.makeText(RegistroActivity.this, getString(R.string.error_contrasenas_no_coinciden), Toast.LENGTH_SHORT).show();
         }else if(etUsuario.getText().toString().length() > 15){
-            Toast.makeText(RegistroActivity.this, getString(R.string.error_contrasenas_no_coinciden), Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegistroActivity.this, getString(R.string.error_usuario_demasiado_largo), Toast.LENGTH_SHORT).show();
         }else {
             authentication.setUsuario(etUsuario.getText().toString());
             authentication.setContrasena(etContrasena.getText().toString());

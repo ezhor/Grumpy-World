@@ -1,7 +1,7 @@
 package com.arensis_games.grumpyworld.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.management.GestoraGUI;
 import com.arensis_games.grumpyworld.model.Amigo;
-import com.arensis_games.grumpyworld.model.Equipable;
-import com.arensis_games.grumpyworld.model.Zona;
 
 /**
  * Created by dparrado on 14/11/17.

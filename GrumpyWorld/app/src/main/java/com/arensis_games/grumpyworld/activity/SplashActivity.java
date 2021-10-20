@@ -1,13 +1,17 @@
 package com.arensis_games.grumpyworld.activity;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.View;
 import android.widget.Toast;
 
 import com.arensis_games.grumpyworld.connection.Authentication;
@@ -29,11 +33,11 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         sharedPref = getApplication().getSharedPreferences("login", Context.MODE_PRIVATE);
-        String usuario = sharedPref.getString("usuario","");
-        String contrasena = sharedPref.getString("contrasena","");
+        String usuario = sharedPref.getString("usuario", "");
+        String contrasena = sharedPref.getString("contrasena", "");
         final Intent intent;
 
-        if(!usuario.equals("") && !contrasena.equals("")){
+        if (!usuario.equals("") && !contrasena.equals("")) {
             intent = new Intent(this, MainActivity.class);
             vm = ViewModelProviders.of(this).get(LoginActivityVM.class);
             rolloObserver = new Observer<Rollo>() {
@@ -50,8 +54,8 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onChanged(@Nullable String error) {
                     Intent intent;
-                    if(error != null){
-                        switch (error){
+                    if (error != null) {
+                        switch (error) {
                             case "401":
                                 intent = new Intent(thisActivity, LoginActivity.class);
                                 startActivity(intent);
@@ -69,12 +73,10 @@ public class SplashActivity extends AppCompatActivity {
             vm.obtenerRollo(new Authentication(usuario, contrasena));
 
 
-        }else{
+        } else {
             intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
-
-
     }
 }

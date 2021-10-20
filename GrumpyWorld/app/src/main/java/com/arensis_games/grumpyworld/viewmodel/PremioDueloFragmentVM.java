@@ -1,16 +1,14 @@
 package com.arensis_games.grumpyworld.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.MutableLiveData;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
+import androidx.annotation.NonNull;
 
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.connection.BearerAuthInterceptor;
 import com.arensis_games.grumpyworld.connection.DueloInterface;
 import com.arensis_games.grumpyworld.connection.GestoraToken;
-import com.arensis_games.grumpyworld.connection.PremioInterface;
-import com.arensis_games.grumpyworld.model.Material;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;

@@ -1,18 +1,17 @@
 package com.arensis_games.grumpyworld.fragment;
 
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.arensis_games.grumpyworld.R;
@@ -37,7 +36,7 @@ public class DueloFragment extends Fragment implements View.OnClickListener {
     private Observer<String> errorObserver;
     private GestoraGUI gesGUI = new GestoraGUI();
 
-    private RelativeLayout rlFondo;
+    private ImageView ivFondo;
 
     private ProgressBar progress;
     private ProgressBar progress2;
@@ -86,7 +85,7 @@ public class DueloFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_caza, container, false);
 
-        rlFondo = view.findViewById(R.id.rlFondo);
+        ivFondo = view.findViewById(R.id.ivFondo);
 
         progress = view.findViewById(R.id.progress);
         progress2 = view.findViewById(R.id.progress2);
@@ -279,7 +278,7 @@ public class DueloFragment extends Fragment implements View.OnClickListener {
         RolloOponente oponente = duelo.getOponente();
         EstadoDuelo estado = duelo.getEstado();
 
-        rlFondo.setBackgroundDrawable(gesGUI.getDrawableZona(getResources(), "bano"));
+        ivFondo.setImageDrawable(gesGUI.getDrawableZona(getResources(), "bano"));
 
         tvNombreRollo.setText(rollo.getNombre());
         ivRangoRollo.setImageDrawable(gesGUI.getDrawableRango(getResources(), rollo.getRango()));

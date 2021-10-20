@@ -1,28 +1,24 @@
 package com.arensis_games.grumpyworld.fragment;
 
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.res.ColorStateList;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.arensis_games.grumpyworld.R;
-import com.arensis_games.grumpyworld.adapter.AdaptadorFabricacionDetalle;
 import com.arensis_games.grumpyworld.management.GestoraGUI;
 import com.arensis_games.grumpyworld.model.EquipablePoseidoDetalle;
-import com.arensis_games.grumpyworld.model.MaterialNecesario;
 import com.arensis_games.grumpyworld.viewmodel.EquipamientoDetalleFragmentVM;
-import com.arensis_games.grumpyworld.viewmodel.FabricacionDetalleFragmentVM;
 import com.arensis_games.grumpyworld.viewmodel.MainActivityVM;
 
 /**

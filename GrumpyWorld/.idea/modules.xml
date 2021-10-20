@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/GrumpyWorld.iml" filepath="$PROJECT_DIR$/GrumpyWorld.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GrumpyWorld.iml" filepath="$PROJECT_DIR$/.idea/modules/GrumpyWorld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GrumpyWorld.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GrumpyWorld.app.iml" />
     </modules>
   </component>
 </project>

@@ -7,31 +7,36 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fondo_bano"
-        android:id="@+id/relativePrincipal">
+        android:background="@color/colorPrimaryLight">
 
         <ImageView
+            android:id="@+id/ivFondo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/rollo"
-            android:adjustViewBounds="true"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
+            android:src="@drawable/fondo_bano" />
+
+        <ImageView
             android:id="@+id/ivRollo"
-            />
-        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
             android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rollo" />
+
+        <ImageView
             android:id="@+id/ivArma"
-            />
-        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
             android:layout_centerInParent="true"
+            android:adjustViewBounds="true" />
+
+        <ImageView
             android:id="@+id/ivSombrero"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true" />
 
     </RelativeLayout>
 </FrameLayout>
