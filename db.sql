@@ -169,6 +169,7 @@ DELIMITER $$
 -- Comprueba si existe un usuario
 CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(15))
   RETURNS BIT
+  READS SQL DATA
   BEGIN
     RETURN (SELECT COUNT(*) FROM Usuarios WHERE Usuario = nombre_usuario)>0;
   END $$
@@ -176,6 +177,7 @@ CREATE FUNCTION existeUsuario(nombre_usuario NVARCHAR(15))
 -- Comprueba si un rollo es más rápido que su enemigo
 CREATE FUNCTION enemigoMasRapido(destrezaRollo INT, destrezaEnemigo INT)
   RETURNS BIT
+  DETERMINISTIC
   BEGIN
     RETURN destrezaEnemigo>destrezaRollo;
   END $$
@@ -183,6 +185,7 @@ CREATE FUNCTION enemigoMasRapido(destrezaRollo INT, destrezaEnemigo INT)
 -- Calcula el rango de un rollo
 CREATE FUNCTION rangoRollo(honorRollo INT, idRollo INT)
   RETURNS INT
+  READS SQL DATA
   BEGIN
     DECLARE _rango INT;
 
@@ -194,6 +197,7 @@ CREATE FUNCTION rangoRollo(honorRollo INT, idRollo INT)
 -- Devuelve el ID de un enemigo aleatorio para un rollo según su zona y los enemigos que ha vencido en esa zona
 CREATE FUNCTION enemigoAleatorio(idRollo INT)
   RETURNS INT
+  READS SQL DATA  
   BEGIN
     DECLARE _enemigosVencidos, _idEnemigo INT;
 
@@ -239,6 +243,7 @@ CREATE FUNCTION enemigoAleatorio(idRollo INT)
 -- Genera un ataque aleatorio (entero del 1 al 3 incluidos)
 CREATE FUNCTION ataqueAleatorio()
   RETURNS INT
+  NO SQL
   BEGIN
     RETURN FLOOR(1 + (RAND() * 3));
   END $$
@@ -251,6 +256,7 @@ Calcula el daño base parcialmente aleatorio de un personaje a otro, teniendo en
 */
 CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
   RETURNS INT
+  READS SQL DATA
   BEGIN
     DECLARE _fAtacante, _cAtacante, _fVictima, _cVictima, _bonusSombreroAtacante, _bonusArmaAtacante, _bonusSombreroVictima, _bonusArmaVictima, _dano INT;
 
@@ -319,6 +325,7 @@ CREATE FUNCTION danoBase(idAtributosAtacante INT, idAtributosVictima INT)
 -- Calcula el daño de un ataque de un personaje a otro
 CREATE FUNCTION dano(idAtributosAtacante INT, idAtributosVictima INT, ataqueAtacante INT, ataqueVictima INT)
   RETURNS INT
+  DETERMINISTIC
   BEGIN
     DECLARE _dano INT;
 
@@ -365,6 +372,7 @@ CREATE FUNCTION dano(idAtributosAtacante INT, idAtributosVictima INT, ataqueAtac
 -- Comprueba si dos usuarios han jugado un duelo hace menos de un día.
 CREATE FUNCTION dueloHaceMenosDeUnDia(idRollo INT, idOponente INT)
   RETURNS BIT
+  READS SQL DATA
   BEGIN
     RETURN EXISTS(SELECT 1
                   FROM Ultimos_Duelos
@@ -376,6 +384,7 @@ CREATE FUNCTION dueloHaceMenosDeUnDia(idRollo INT, idOponente INT)
 -- Esta función sería la contraposición de oponenteHaElegidoEsteTurno
 CREATE FUNCTION oponenteHaElegidoEsteTurno(idRollo INT)
   RETURNS BIT
+  READS SQL DATA
   BEGIN
     DECLARE _idOponente, _turno INT;
 
@@ -395,6 +404,7 @@ CREATE FUNCTION oponenteHaElegidoEsteTurno(idRollo INT)
 -- Esta función sería la contraposición de oponenteHaElegidoEsteTurno
 CREATE FUNCTION oponenteHaElegidoSiguienteTurno(idRollo INT)
   RETURNS BIT
+  READS SQL DATA
   BEGIN
     DECLARE _idOponente, _turno INT;
 
@@ -412,6 +422,7 @@ CREATE FUNCTION oponenteHaElegidoSiguienteTurno(idRollo INT)
   
 CREATE FUNCTION calcularPremioDuelo(idRollo INT)
 RETURNS INT
+READS SQL DATA
 BEGIN
 	DECLARE premio, vidaRollo, fuerzaRollo, constitucionRollo, destrezaRollo, pactosRollo, vidaOponente, fuerzaOponente, constitucionOponente, destrezaOponente, pactosOponente INT;
     DECLARE oponenteHaBorradoSusDatos BIT;
