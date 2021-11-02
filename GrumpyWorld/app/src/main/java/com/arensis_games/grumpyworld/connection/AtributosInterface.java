@@ -14,10 +14,10 @@ import retrofit2.http.POST;
  */
 
 public interface AtributosInterface {
-    @GET("/atributos")
+    @GET("atributos")
     Call<Atributos> getAtributos();
 
-    @POST("/atributos")
+    @POST("atributos")
     @Headers("Content-Type: application/json")
     Call<Atributos> postAtributos(@Body Entrenamiento entrenamiento);
 }

@@ -13,10 +13,10 @@ import retrofit2.http.POST;
  */
 
 public interface ZonaInterface {
-    @GET("/zona")
+    @GET("zona")
     Call<Zona[]> getZonasDisponibles();
 
-    @POST("/zona")
+    @POST("zona")
     @Headers("Content-Type: application/json")
     Call<Void> postZona(@Body Zona zona);
 }

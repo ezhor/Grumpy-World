@@ -19,25 +19,25 @@ import retrofit2.http.Path;
  */
 
 public interface DueloInterface {
-    @GET("/duelo")
+    @GET("duelo")
     Call<LobbyDuelo> getLobbyDuelo();
 
-    @POST("/duelo/{id}")
+    @POST("duelo/{id}")
     Call<LobbyDuelo> retarADuelo(@Path("id") int id);
 
-    @DELETE("/duelo/{id}")
+    @DELETE("duelo/{id}")
     Call<LobbyDuelo> rechazarDuelo(@Path("id") int id);
 
-    @GET("/duelo/{id}")
+    @GET("duelo/{id}")
     Call<Duelo> getDuelo(@Path("id") int id);
 
-    @GET("/duelo/{id}/estado")
+    @GET("duelo/{id}/estado")
     Call<EstadoDuelo> getEstado(@Path("id") int id);
 
-    @GET("/duelo/{id}/premio")
+    @GET("duelo/{id}/premio")
     Call<Integer> getPremio(@Path("id") int id);
 
-    @POST("/duelo")
+    @POST("duelo")
     @Headers("Content-Type: application/json")
     Call<EstadoDuelo> elegirTurno(@Body Turno turno);
 }

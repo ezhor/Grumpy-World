@@ -15,10 +15,10 @@ import retrofit2.http.POST;
  */
 
 public interface CazaInterface {
-    @GET("/caza")
+    @GET("caza")
     Call<Caza> getCaza();
 
-    @POST("/caza")
+    @POST("caza")
     @Headers("Content-Type: application/json")
     Call<EstadoCaza> postTurno(@Body Turno turno);
 }

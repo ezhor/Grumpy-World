@@ -10,6 +10,6 @@ import retrofit2.http.GET;
  */
 
 public interface RankingInterface {
-    @GET("/ranking")
+    @GET("ranking")
     Call<Ranking> getRanking();
 }

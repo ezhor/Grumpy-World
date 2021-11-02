@@ -15,15 +15,15 @@ import retrofit2.http.Query;
  */
 
 public interface AmigoInterface {
-    @GET("/amigo")
+    @GET("amigo")
     Call<ListadoAmigosCompleto> getListadoAmigosCompleto();
 
-    @GET("/amigo")
+    @GET("amigo")
     Call<Amigo[]> buscarUsuario(@Query("nombre") String nombre);
 
-    @POST("/amigo/{id}")
+    @POST("amigo/{id}")
     Call<ListadoAmigosCompleto> agregarAmigo(@Path("id") int id);
 
-    @DELETE("/amigo/{id}")
+    @DELETE("amigo/{id}")
     Call<ListadoAmigosCompleto> borrarAmigo(@Path("id") int id);
 }

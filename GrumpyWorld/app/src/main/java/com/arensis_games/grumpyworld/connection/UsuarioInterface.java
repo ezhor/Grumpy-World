@@ -10,7 +10,7 @@ import retrofit2.http.POST;
  */
 
 public interface UsuarioInterface {
-    @POST("/usuario")
+    @POST("usuario")
     @Headers("Content-Type: application/json")
     Call<Void> postUsuario(@Body Authentication authentication);
 }

@@ -14,18 +14,18 @@ import retrofit2.http.Path;
  */
 
 public interface FabricacionInterface {
-    @GET("/fabricacion")
+    @GET("fabricacion")
     Call<Equipable[]> getEquipablesDisponibles();
 
-    @GET("/fabricacion/{id}")
+    @GET("fabricacion/{id}")
     Call<EquipableDetalle> getEquipableDetalle(@Path("id") int id);
 
-    @POST("/fabricacion/{id}")
+    @POST("fabricacion/{id}")
     Call<EquipableDetalle> fabricarEquipable(@Path("id") int id);
 
-    @GET("/material/{id}")
+    @GET("material/{id}")
     Call<Supermaterial> getSupermaterial(@Path("id") int id);
 
-    @POST("/material/{id}")
+    @POST("material/{id}")
     Call<Supermaterial> fabricarSupermaterial(@Path("id") int id);
 }

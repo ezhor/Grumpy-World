@@ -4,7 +4,7 @@
 Options -Indexes
 
 RewriteEngine On
-RewriteBase /
+RewriteBase /grumpyworld
 
 # Let's send all requests that don't refer to an existing file or directory to index.php
 RewriteCond %{REQUEST_FILENAME} !-f

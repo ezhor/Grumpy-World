@@ -10,6 +10,6 @@ import retrofit2.http.GET;
  */
 
 public interface PremioInterface {
-    @GET("/caza/premio")
+    @GET("caza/premio")
     Call<Material[]> getPremio();
 }

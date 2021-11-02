@@ -10,6 +10,6 @@ import retrofit2.http.GET;
  */
 
 public interface RolloInterface {
-    @GET("/rollo")
+    @GET("rollo")
     Call<Rollo> getRollo();
 }

@@ -13,12 +13,12 @@ import retrofit2.http.Path;
  */
 
 public interface EquipamientoInterface {
-    @GET("/equipamiento")
+    @GET("equipamiento")
     Call<EquipablePoseido[]> getEquipablesPoseidos();
 
-    @GET("/equipamiento/{id}")
+    @GET("equipamiento/{id}")
     Call<EquipablePoseidoDetalle> getEquipablePoseidoDetalle(@Path("id") int id);
 
-    @POST("/equipamiento/{id}")
+    @POST("equipamiento/{id}")
     Call<Void> equiparEquipablePoseido(@Path("id") int id);
 }
