@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.arensis_games.grumpyworld.adapter.AdaptadorDrawer;
 import com.arensis_games.grumpyworld.fragment.AmigosFragment;
 import com.arensis_games.grumpyworld.fragment.CazaFragment;
+import com.arensis_games.grumpyworld.fragment.CreditsFragment;
 import com.arensis_games.grumpyworld.fragment.EntrenamientoFragment;
 import com.arensis_games.grumpyworld.fragment.EquipamientoFragment;
 import com.arensis_games.grumpyworld.fragment.FabricacionFragment;
@@ -63,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 getString(R.string.menu_ranking),
 
                 getString(R.string.menu_extras),
-                getString(R.string.menu_cerrar_sesion),
+                getString(R.string.menu_creditos),
+                getString(R.string.menu_cerrar_sesion)
         };
 
         vm = ViewModelProviders.of(this).get(MainActivityVM.class);
@@ -166,6 +168,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             fragment = new RankingFragment();
         }else if(opcionElegida.equals(getString(R.string.menu_duelo))){
             fragment = new LobbyDueloFragment();
+        }else if(opcionElegida.equals(getString(R.string.menu_creditos))){
+            fragment = new CreditsFragment();
         }
 
         if(fragment != null){

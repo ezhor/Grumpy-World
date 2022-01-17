@@ -1,7 +1,6 @@
 package com.arensis_games.grumpyworld.connection;
 
 import com.arensis_games.grumpyworld.model.Duelo;
-import com.arensis_games.grumpyworld.model.EstadoCaza;
 import com.arensis_games.grumpyworld.model.EstadoDuelo;
 import com.arensis_games.grumpyworld.model.LobbyDuelo;
 import com.arensis_games.grumpyworld.model.Turno;

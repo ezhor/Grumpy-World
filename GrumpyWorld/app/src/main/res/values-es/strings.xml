@@ -11,6 +11,7 @@
     <string name="menu_equipamiento">Equipamiento</string>
     <string name="menu_extras">Extras</string>
     <string name="menu_historia">Historia</string>
+    <string name="menu_creditos">Créditos</string>
     <string name="menu_cerrar_sesion">Cerrar sesión</string>
 
     <string name="quedan_anos_meses">Quedan %1$d años y %2$d meses</string>
@@ -47,7 +48,7 @@
     <string name="enemigo_cepillo_corto">Cepillo dental</string>
     <string name="enemigo_champu_corto">Champú pirata</string>
     <string name="enemigo_cuchilla_corto">Cuchilla</string>
-    <string name="enemigo_stripper_corto">Rollo stripper</string>
+    <string name="enemigo_hambriento_corto">Rollo hambriento</string>
     <string name="enemigo_vater_corto">Váter</string>
 
     <string name="enemigo_calabaza_corto">Calabaza malvada</string>
@@ -123,4 +124,7 @@
     <string name="has_retado_a">Has retado a %1$s</string>
     <string name="material_honor">Honor</string>
     <string name="duelo_de_nuevo">Batirse en duelo de nuevo</string>
+
+    <string name="credits_ezhor">Producción, programación y game design</string>
+    <string name="credits_gustavo">Arte de personajes y fondos</string>
 </resources>

@@ -16,19 +16,8 @@ import com.arensis_games.grumpyworld.model.EstadoDuelo;
 import com.arensis_games.grumpyworld.model.LobbyDuelo;
 import com.arensis_games.grumpyworld.model.Turno;
 
-import org.json.JSONObject;
-
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 
-import io.socket.client.Ack;
-import io.socket.client.IO;
-import io.socket.client.Manager;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-import io.socket.engineio.client.Transport;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,7 +34,6 @@ public class DueloFragmentVM extends AndroidViewModel {
     private MutableLiveData<Duelo> ldDuelo;
     private MutableLiveData<EstadoDuelo> ldEstado;
     private MutableLiveData<String> ldError;
-    private Socket socket;
 
     public DueloFragmentVM(@NonNull Application application) throws URISyntaxException {
         super(application);
@@ -72,11 +60,51 @@ public class DueloFragmentVM extends AndroidViewModel {
     }
 
     public void obtenerLobbyDuelo(){
+        OkHttpClient client;
+        Retrofit retrofit;
+        DueloInterface dueloInterface;
+
+        /*
+            Android puede haber borrado el dato estático si necesita memoria.
+            En ese caso se manda al usuario a la pantalla de inicio para que
+            el sistema inicie sesión de nuevo.
+        */
         if(GestoraToken.getAuthorization() != null){
-            /*socket.emit("DuelLobbyAck", (Ack) args -> {
-                //GestoraToken.setAuthorization((String)args[1]);
-                ldLobbyDuelo.postValue(parseLobbyDuelo((JSONObject)args[0]));
-            });*/
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
+                    .build();
+
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(getApplication().getString(R.string.SERVER_URL))
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            dueloInterface = retrofit.create(DueloInterface.class);
+
+            dueloInterface.getLobbyDuelo().enqueue(new Callback<LobbyDuelo>() {
+                @Override
+                public void onResponse(Call<LobbyDuelo> call, Response<LobbyDuelo> response) {
+                    if(response.isSuccessful()){
+                        ldLobbyDuelo.postValue(response.body());
+                        GestoraToken.setAuthorization(response.headers().get("Authorization"));
+                    }else{
+                        /*
+                            Puede haber pasado una hora desde que el usuario uso la app por última
+                            vez y que Android aún no haya borrado el token de memoria por lo que
+                            dejaría de ser válido (401 Unauthorized)
+                            En ese caso se manda al usuario a la pantalla de inicio para que
+                            el sistema inicie sesión de nuevo.
+                         */
+                        ldError.setValue(String.valueOf(response.code()));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LobbyDuelo> call, Throwable t) {
+                    ldError.postValue(t.getMessage());
+                }
+            });
         }else{
             ldError.setValue("401");
         }
@@ -86,7 +114,13 @@ public class DueloFragmentVM extends AndroidViewModel {
         OkHttpClient client;
         Retrofit retrofit;
         DueloInterface dueloInterface;
-         if(GestoraToken.getAuthorization() != null){
+
+        /*
+            Android puede haber borrado el dato estático si necesita memoria.
+            En ese caso se manda al usuario a la pantalla de inicio para que
+            el sistema inicie sesión de nuevo.
+        */
+        if(GestoraToken.getAuthorization() != null){
             client = new OkHttpClient.Builder()
                     .addInterceptor(new BearerAuthInterceptor(GestoraToken.getAuthorization()))
                     .build();
@@ -339,7 +373,7 @@ public class DueloFragmentVM extends AndroidViewModel {
         }
     }
 
-    private LobbyDuelo parseLobbyDuelo(JSONObject arg){
+    /*private LobbyDuelo parseLobbyDuelo(JSONObject arg){
         return new LobbyDuelo();
     }
 
@@ -372,5 +406,5 @@ public class DueloFragmentVM extends AndroidViewModel {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

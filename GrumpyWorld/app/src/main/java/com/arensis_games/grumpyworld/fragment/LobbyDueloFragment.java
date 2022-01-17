@@ -1,13 +1,8 @@
 package com.arensis_games.grumpyworld.fragment;
 
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,21 +12,17 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.arensis_games.grumpyworld.R;
 import com.arensis_games.grumpyworld.adapter.AdaptadorBusquedaAmigos;
 import com.arensis_games.grumpyworld.adapter.AdaptadorPeticionesAmistad;
 import com.arensis_games.grumpyworld.model.LobbyDuelo;
 import com.arensis_games.grumpyworld.viewmodel.DueloFragmentVM;
 import com.arensis_games.grumpyworld.viewmodel.MainActivityVM;
-import android.os.Handler;
-
-import java.net.URISyntaxException;
-
-import io.socket.client.IO;
-import io.socket.client.Manager;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-import io.socket.engineio.client.Transport;
 
 public class LobbyDueloFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -47,7 +38,7 @@ public class LobbyDueloFragment extends Fragment implements View.OnClickListener
     private LobbyDueloFragment thisFragment = this;
     private ProgressBar progress;
     private Handler handler = new Handler();
-    private static Socket socket;
+    //private static Socket socket;
 
     public LobbyDueloFragment() {
         // Required empty public constructor

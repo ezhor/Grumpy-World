@@ -953,7 +953,7 @@ INSERT INTO Zonas (Nombre, Nivel) VALUES
 -- ('infierno', 6);
 
 -- Enemigos
-CALL crearEnemigo('stripper', 10, 20, 30, FALSE, 'bano');
+CALL crearEnemigo('hambriento', 10, 20, 30, FALSE, 'bano');
 CALL crearEnemigo('cepillo', 10, 30, 20, FALSE, 'bano');
 CALL crearEnemigo('cuchilla', 30, 10, 20, FALSE, 'bano');
 CALL crearEnemigo('champu', 20, 10, 30, FALSE, 'bano');
@@ -985,7 +985,7 @@ INSERT INTO Materiales (Nombre) VALUES ('buen_rollo'),
   ('papel');
 
 -- Enemigos_Materiales
-CALL asociarEnemigoMaterial('stripper', 'buen_rollo', 1, 100);
+CALL asociarEnemigoMaterial('hambriento', 'buen_rollo', 1, 100);
 CALL asociarEnemigoMaterial('cepillo', 'buen_rollo', 1, 100);
 CALL asociarEnemigoMaterial('cuchilla', 'buen_rollo', 1, 100);
 CALL asociarEnemigoMaterial('champu', 'buen_rollo', 1, 100);

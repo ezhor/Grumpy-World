@@ -14,6 +14,7 @@
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_amigos.xml" value="0.3038949275362319" />
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_busqueda_amigos.xml" value="0.24365942028985507" />
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_caza.xml" value="0.33" />
+        <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_credits.xml" value="0.28396739130434784" />
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_entrenamiento.xml" value="0.24365942028985507" />
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_equipamiento.xml" value="0.24365942028985507" />
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_equipamiento_detalle.xml" value="0.24365942028985507" />
@@ -21,6 +22,7 @@
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_lobby_duelo.xml" value="0.24365942028985507" />
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_mapa.xml" value="0.24365942028985507" />
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_premio.xml" value="0.24365942028985507" />
+        <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/fragment_sello.xml" value="0.28396739130434784" />
         <entry key="..\:/Code/Grumpy-World/GrumpyWorld/app/src/main/res/layout/seccion_drawer.xml" value="0.24365942028985507" />
       </map>
     </option>
@@ -69,7 +71,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

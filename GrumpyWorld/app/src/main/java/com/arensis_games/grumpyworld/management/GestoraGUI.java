@@ -140,6 +140,8 @@ public class GestoraGUI {
                 drawable = resources.getDrawable(R.drawable.icono_historia);
             } else if (elemento.equals(resources.getString(R.string.menu_cerrar_sesion))) {
                 drawable = resources.getDrawable(R.drawable.icono_cerrar_sesion);
+            } else if (elemento.equals(resources.getString(R.string.menu_creditos))) {
+                drawable = resources.getDrawable(R.drawable.icono_creditos);
             }
         }
         return drawable;
@@ -281,8 +283,8 @@ public class GestoraGUI {
             case "cuchilla":
                 nombreCorto = resources.getString(R.string.enemigo_cuchilla_corto);
                 break;
-            case "stripper":
-                nombreCorto = resources.getString(R.string.enemigo_stripper_corto);
+            case "hambriento":
+                nombreCorto = resources.getString(R.string.enemigo_hambriento_corto);
                 break;
             case "vater":
                 nombreCorto = resources.getString(R.string.enemigo_vater_corto);
